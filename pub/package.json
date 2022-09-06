@@ -1,0 +1,38 @@
+{
+  "author": "Corno",
+  "bugs": {
+    "url": "https://github.com/corno/lib-generate-typesafe-ast/issues"
+  },
+  "description": "this package creates a typesafe TypeScript AST. Instead of just 1 generic 'Node' type, there over a hundred specific types. This is useful if you want to want to code that is dependent on the type of node from the AST",
+  "homepage": "https://github.com/corno/lib-generate-typesafe-ast#readme",
+  "keywords": [
+    "TypeScript",
+    "AST",
+    "typesafe"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corno/lib-generate-typesafe-ast.git"
+  },
+  "dependencies": {
+    "api-pareto-filesystem": "^0.3.0",
+    "api-pareto-main": "^0.6.0",
+    "lib-fountain-pen": "^0.4.5",
+    "pareto-core-lib": "^0.8.0",
+    "pareto-core-raw": "^0.2.0",
+    "pareto-core-resolve": "^0.2.0",
+    "pareto-core-state": "^0.6.0",
+    "pareto-core-tostring": "^0.5.0",
+    "res-pareto-collation": "^0.4.0"
+  },
+  "name": "lib-generate-typesafe-ast",
+  "version": "0.3.2",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "interface-fingerprint": "fd7482836fe0f3a059691f7e6b8e7ac4ad9d0b7c",
+  "content-fingerprint": "d9ceff80bf5cc3ea33506426fb3596a8f68e2fc7"
+}
