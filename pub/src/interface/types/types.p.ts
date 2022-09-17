@@ -4,9 +4,9 @@ export type TOptions = pt.Dictionary<TValue>
 
 
 export type TCardinality =
-    | ["one", {}]
-    | ["optional", {}]
-    | ["array", {}]
+    | ["one", null]
+    | ["optional", null]
+    | ["array", null]
 
 export type TSequenceElement = {
     readonly "name": string,
@@ -48,3 +48,5 @@ export type TLeaf = {
 }
 
 export type TComposite = TValue
+
+export type TPath = pt.Nested<string>

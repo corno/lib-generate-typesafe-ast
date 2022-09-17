@@ -1,6 +1,6 @@
 import * as collation from "res-pareto-collation"
 import * as fs from "res-pareto-filesystem"
-import { DDependencies } from "../imp"
+import { DDependencies } from "../implementation"
 
 export const dependencies: DDependencies = {
     createWriteStream: fs.createWriteStream,

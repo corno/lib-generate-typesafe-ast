@@ -1,6 +1,5 @@
 
 import * as pl from "pareto-core-lib"
-import * as p2 from "pareto-core-tostring"
 import * as pm from "pareto-core-state"
 import * as pr from "pareto-core-resolve"
 
@@ -8,9 +7,9 @@ import * as wapi from "lib-fountain-pen"
 
 import * as api from "../../interface"
 
-import { XGenerateImplementationFile } from "./GenerateFile"
+import { FGenerateImplementationFile } from "../types/functions.p"
 
-export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
+export const p_generateParser: FGenerateImplementationFile = ($, $i, $d) => {
     const grammar = $.grammar
     function findNextPossibleTokensInSymbolType(
         $: api.TValueType,
@@ -20,13 +19,15 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
         switch ($[0]) {
             case "choice":
                 pl.cc($[1], ($) => {
-                    $.options.forEach((a, b) => false, ($, key) => {
-                        findNextPossibleTokensInSymbolType(
-                            $.type,
-                            onToken,
-                            onEnd
-                        )
-                    })
+                    $d.sortedForEach(
+                        $.options,
+                        ($) => {
+                            findNextPossibleTokensInSymbolType(
+                                $.value.type,
+                                onToken,
+                                onEnd
+                            )
+                        })
                 })
                 break
             case "reference":
@@ -81,54 +82,54 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
         }
     }
     pl.cc($i.block, ($w) => {
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as pl from "pareto-core-lib"`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as pm from "pareto-core-state"`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as uast from "api-untyped-ast"`)
         })
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as api from "${$.pathToInterface}"`)
         })
 
-        $w.line({}, ($w) => { })
+        $w.line(($w) => { })
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export function parse(`)
-            $w.indent({}, ($w) => {
-                $w.line({}, ($w) => {
+            $w.indent(($w) => {
+                $w.line(($w) => {
                     $w.snippet(`$: uast.TUntypedNode,`)
                 })
 
-                $w.line({}, ($w) => {
+                $w.line(($w) => {
                     $w.snippet(`$i: {`)
-                    $w.indent({}, ($w) => {
-                        $w.line({}, ($w) => {
+                    $w.indent(($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`callback: ($: api.TRoot) => void,`)
                         })
-                        $w.line({}, ($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`reportUnexpectedToken: ($: { path: string, token: uast.TUntypedNode, expected: null | string }) => void,`)
                         })
-                        $w.line({}, ($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`reportMissingToken: ($: { parentDetails: uast.TDetails, path: string, kindNameOptions: string, }) => void,`)
                         })
                     })
                     $w.snippet(`},`)
                 })
-                $w.line({}, ($w) => {
+                $w.line(($w) => {
                     $w.snippet(`$d: {`)
-                    $w.indent({}, ($w) => {
-                        $w.line({}, ($w) => {
+                    $w.indent(($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,`)
                         })
-                        $w.line({}, ($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`lookAhead: <T>(stack: pm.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,`)
                         })
-                        $w.line({}, ($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`stringsAreEqual: (a: string, b: string) => boolean,`)
                         })
                     })
@@ -136,9 +137,9 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                 })
             })
             $w.snippet(`): void {`)
-            $w.indent({}, ($w) => {
+            $w.indent(($w) => {
 
-                $w.line({}, ($w) => {
+                $w.line(($w) => {
                     $w.snippet(`const $x = $i`)
                 })
                 function generateNode(
@@ -148,23 +149,23 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                     call: ($w: wapi.ILine) => void
                 ) {
 
-                    $w.line({}, ($w) => {
+                    $w.line(($w) => {
 
                         $w.snippet(`((`)
-                        $w.indent({}, ($w) => {
-                            $w.line({}, ($w) => {
+                        $w.indent(($w) => {
+                            $w.line(($w) => {
                                 $w.snippet(`$: uast.TUntypedNode,`)
                             })
-                            $w.line({}, ($w) => {
+                            $w.line(($w) => {
                                 $w.snippet(`callback: ($: api.TN${path}) => void,`)
                             })
                         })
                         $w.snippet(`): void => {`)
-                        $w.indent({}, ($w) => {
-                            $w.line({}, ($w) => {
+                        $w.indent(($w) => {
+                            $w.line(($w) => {
                                 $w.snippet(`const node = $`)
                             })
-                            $w.line({}, ($w) => {
+                            $w.line(($w) => {
                                 $w.snippet(`const children = pm.createStack($.children)`)
                             })
                             switch ($.type[0]) {
@@ -175,13 +176,13 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                             path,
                                             $w,
                                             ($w) => {
-                                                $w.line({}, ($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`callback({`)
-                                                    $w.indent({}, ($w) => {
-                                                        $w.line({}, ($w) => {
+                                                    $w.indent(($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`tokenDetails: node.details,`)
                                                         })
-                                                        $w.line({}, ($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`content: $,`)
                                                         })
                                                     })
@@ -193,15 +194,15 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                     break
                                 case "leaf":
                                     pl.cc($.type[1], ($) => {
-                                        $w.line({}, ($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`callback(`)
                                             if ($.hasTextContent) {
                                                 $w.snippet(`{`)
-                                                $w.indent({}, ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                $w.indent(($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`tokenDetails: $.details,`)
                                                     })
-                                                    $w.line({}, ($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`value: $.value`)
                                                     })
                                                 })
@@ -217,22 +218,22 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                     pl.au($.type[0])
                             }
 
-                            $w.line({}, ($w) => {
+                            $w.line(($w) => {
                                 $w.snippet(`children.pop(`)
-                                $w.indent({}, ($w) => {
-                                    $w.line({}, ($w) => {
+                                $w.indent(($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`(nextChild) => {`)
-                                        $w.indent({}, ($w) => {
-                                            $w.line({}, ($w) => {
+                                        $w.indent(($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`$x.reportUnexpectedToken({`)
-                                                $w.indent({}, ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                $w.indent(($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`path: "${path}",`)
                                                     })
-                                                    $w.line({}, ($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`token: nextChild,`)
                                                     })
-                                                    $w.line({}, ($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`expected: null,`)
                                                     })
                                                 })
@@ -241,9 +242,9 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                         })
                                         $w.snippet(`},`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`() => {`)
-                                        $w.indent({}, ($w) => {
+                                        $w.indent(($w) => {
                                         })
                                         $w.snippet(`},`)
                                     })
@@ -269,18 +270,18 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                         switch ($.cardinality[0]) {
                             case "array":
                                 pl.cc($.cardinality[1], ($) => {
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`const elements = pm.createArrayBuilder<api.TVT${path}>()`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`const processElement = () => {`)
-                                        $w.indent({}, ($w) => {
+                                        $w.indent(($w) => {
                                             generateValueType(
                                                 symbol.type,
                                                 path,
                                                 $w,
                                                 ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`elements.push($)`)
                                                     })
                                                 },
@@ -288,18 +289,18 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                         })
                                         $w.snippet(`}`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`$d.doUntil(`)
-                                        $w.indent({}, ($w) => {
-                                            $w.line({}, ($w) => {
+                                        $w.indent(($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`children,`)
                                             })
-                                            $w.line({}, ($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`(nextChild) => {`)
-                                                $w.indent({}, ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                $w.indent(($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`switch (nextChild.kindName) {`)
-                                                        $w.indent({}, ($w) => {
+                                                        $w.indent(($w) => {
 
                                                             const possibleTokens = pm.createDictionaryBuilder<null>(
                                                                 ["ignore", {}],
@@ -318,21 +319,21 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                                             )
                                                             $d.sortedForEach(
                                                                 possibleTokens.getDictionary(),
-                                                                ($, key) => {
-                                                                    $w.line({}, ($w) => {
-                                                                        $w.snippet(`case "${key}":`)
-                                                                        $w.indent({}, ($w) => {
-                                                                            $w.line({}, ($w) => {
+                                                                ($) => {
+                                                                    $w.line(($w) => {
+                                                                        $w.snippet(`case "${$.key}":`)
+                                                                        $w.indent(($w) => {
+                                                                            $w.line(($w) => {
                                                                                 $w.snippet(`processElement()`)
                                                                             })
-                                                                            $w.line({}, ($w) => {
+                                                                            $w.line(($w) => {
                                                                                 $w.snippet(`return true`)
                                                                             })
                                                                         })
                                                                     })
                                                                 })
 
-                                                            $w.line({}, ($w) => {
+                                                            $w.line(($w) => {
                                                                 $w.snippet(`default: return false`)
                                                             })
                                                         })
@@ -344,9 +345,9 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                         })
                                         $w.snippet(`)`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`pl.cc(elements.getArray(), ($) => {`)
-                                        $w.indent({}, ($w) => {
+                                        $w.indent(($w) => {
                                             endCallback($w)
                                         })
                                         $w.snippet(`})`)
@@ -365,18 +366,18 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                 break
                             case "optional":
                                 pl.cc($.cardinality[1], ($) => {
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`let optional: null | api.TVT${path} = null`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`const setOptional = () => {`)
-                                        $w.indent({}, ($w) => {
+                                        $w.indent(($w) => {
                                             generateValueType(
                                                 symbol.type,
                                                 path,
                                                 $w,
                                                 ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`optional = $`)
                                                     })
                                                 },
@@ -385,15 +386,15 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                         $w.snippet(`}`)
                                     })
 
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`$d.lookAhead(children, `)
-                                        $w.indent({}, ($w) => {
-                                            $w.line({}, ($w) => {
+                                        $w.indent(($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`(nextChild) => {`)
-                                                $w.indent({}, ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                $w.indent(($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`switch (nextChild.kindName) {`)
-                                                        $w.indent({}, ($w) => {
+                                                        $w.indent(($w) => {
 
                                                             const possibleTokens = pm.createDictionaryBuilder<null>(
                                                                 ["ignore", {}],
@@ -410,37 +411,39 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                                                     pl.panic("IMPLEMENT ME 5")
                                                                 }
                                                             )
-                                                            $d.sortedForEach(possibleTokens.getDictionary(), ($, key) => {
-                                                                $w.line({}, ($w) => {
-                                                                    $w.snippet(`case "${key}":`)
-                                                                    $w.indent({}, ($w) => {
-                                                                        $w.line({}, ($w) => {
-                                                                            $w.snippet(`setOptional()`)
-                                                                        })
-                                                                        $w.line({}, ($w) => {
-                                                                            $w.snippet(`break`)
+                                                            $d.sortedForEach(
+                                                                possibleTokens.getDictionary(),
+                                                                ($) => {
+                                                                    $w.line(($w) => {
+                                                                        $w.snippet(`case "${$.key}":`)
+                                                                        $w.indent(($w) => {
+                                                                            $w.line(($w) => {
+                                                                                $w.snippet(`setOptional()`)
+                                                                            })
+                                                                            $w.line(($w) => {
+                                                                                $w.snippet(`break`)
+                                                                            })
                                                                         })
                                                                     })
                                                                 })
-                                                            })
                                                         })
                                                         $w.snippet(`}`)
                                                     })
                                                 })
                                                 $w.snippet(`},`)
                                             })
-                                            $w.line({}, ($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`() => {`)
-                                                $w.indent({}, ($w) => {
+                                                $w.indent(($w) => {
                                                 })
                                                 $w.snippet(`},`)
                                             })
                                         })
                                         $w.snippet(`)`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`pl.cc(optional, ($) => {`)
-                                        $w.indent({}, ($w) => {
+                                        $w.indent(($w) => {
                                             endCallback($w)
                                         })
                                         $w.snippet(`})`)
@@ -476,21 +479,24 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                         pl.panic("tokens are not unique")
                                     }
                                 )
-                                $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a }), ($, key) => {
-                                    const option = $
-                                    findNextPossibleTokensInSymbolType(
-                                        option.type,
-                                        ($) => {
-                                            possibleTokens.add($, key)
-                                        },
-                                        () => {
-                                            pl.panic("IMPLEMENT ME 1")
-                                        }
-                                    )
-                                })
-                                $w.line({}, ($w) => {
+                                $d.sortedForEach(
+                                    $.options,
+                                    ($) => {
+                                        const option = $.value
+                                        const key = $.key
+                                        findNextPossibleTokensInSymbolType(
+                                            option.type,
+                                            ($) => {
+                                                possibleTokens.add($, key)
+                                            },
+                                            () => {
+                                                pl.panic("IMPLEMENT ME 1")
+                                            }
+                                        )
+                                    })
+                                $w.line(($w) => {
                                     $w.snippet(`const choiceEnd_${path} = ($: api.TVT${path}) => {`)
-                                    $w.indent({}, ($w) => {
+                                    $w.indent(($w) => {
                                         endCallback(
                                             $w,
                                         )
@@ -498,81 +504,91 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                     $w.snippet(`}`)
                                 })
 
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`$d.lookAhead(children, `)
-                                    $w.indent({}, ($w) => {
-                                        $w.line({}, ($w) => {
+                                    $w.indent(($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`(nextChild) => {`)
-                                            $w.indent({}, ($w) => {
-                                                $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a }), ($, key) => {
-                                                    const option = $
-                                                    $w.line({}, ($w) => {
-                                                        $w.snippet(`const choose_${key} = () => {`)
-                                                        $w.indent({}, ($w) => {
+                                            $w.indent(($w) => {
+                                                $d.sortedForEach(
+                                                    $.options,
+                                                    ($) => {
+                                                        const option = $.value
+                                                        $w.line(($w) => {
+                                                            $w.snippet(`const choose_${$.key} = () => {`)
+                                                            $w.indent(($w) => {
 
-                                                            generateValue(
-                                                                option,
-                                                                `${path}_${key}`,
-                                                                $w,
-                                                                ($w) => {
-                                                                    $w.line({}, ($w) => {
-                                                                        $w.snippet(`choiceEnd_${path}(["${key}", $])`)
-                                                                    })
-                                                                }
-                                                            )
+                                                                generateValue(
+                                                                    option,
+                                                                    `${path}_${$.key}`,
+                                                                    $w,
+                                                                    ($w) => {
+                                                                        $w.line(($w) => {
+                                                                            $w.snippet(`choiceEnd_${path}(["${$.key}", $])`)
+                                                                        })
+                                                                    }
+                                                                )
+                                                            })
+                                                            $w.snippet(`}`)
                                                         })
-                                                        $w.snippet(`}`)
                                                     })
-                                                })
-                                                $w.line({}, ($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`switch (nextChild.kindName) {`)
-                                                    $w.indent({}, ($w) => {
+                                                    $w.indent(($w) => {
                                                         const possibleTokens = pm.createDictionaryBuilder<string>(
                                                             ["ignore", {}],
                                                             () => {
                                                                 pl.panic("unexpected: duplicate key")
                                                             }
                                                         )
-                                                        $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a }), ($, key) => {
-                                                            const option = $
-                                                            findNextPossibleTokensInSymbolType(
-                                                                option.type,
-                                                                ($) => {
-                                                                    possibleTokens.add($, key)
-                                                                },
-                                                                () => {
-                                                                    pl.panic("IMPLEMENT ME 2")
-                                                                }
-                                                            )
-                                                        })
-                                                        possibleTokens.getDictionary().forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a }), (optionKey, key) => {
-                                                            $w.line({}, ($w) => {
-                                                                $w.snippet(`case "${key}": /*Y*/ {`)
-                                                                $w.indent({}, ($w) => {
-                                                                    $w.line({}, ($w) => {
-                                                                        $w.snippet(`choose_${optionKey}()`)
-                                                                    })
-                                                                    $w.line({}, ($w) => {
-                                                                        $w.snippet(`break`)
-                                                                    })
-                                                                })
-                                                                $w.snippet(`}`)
+                                                        $d.sortedForEach(
+                                                            $.options,
+                                                            ($) => {
+                                                                const option = $.value
+                                                                const key = $.key
+                                                                findNextPossibleTokensInSymbolType(
+                                                                    option.type,
+                                                                    ($) => {
+                                                                        possibleTokens.add($, key)
+                                                                    },
+                                                                    () => {
+                                                                        pl.panic("IMPLEMENT ME 2")
+                                                                    }
+                                                                )
                                                             })
-                                                        })
-                                                        $w.line({}, ($w) => {
+                                                        $d.sortedForEach(
+                                                            possibleTokens.getDictionary(),
+                                                            (optionKey) => {
+                                                                $w.line(($w) => {
+                                                                    $w.snippet(`case "${optionKey.key}": /*Y*/ {`)
+                                                                    $w.indent(($w) => {
+                                                                        $w.line(($w) => {
+                                                                            $w.snippet(`choose_${optionKey.value}()`)
+                                                                        })
+                                                                        $w.line(($w) => {
+                                                                            $w.snippet(`break`)
+                                                                        })
+                                                                    })
+                                                                    $w.snippet(`}`)
+                                                                })
+                                                            })
+                                                        $w.line(($w) => {
                                                             $w.snippet(`default: {`)
-                                                            $w.indent({}, ($w) => {
-                                                                $w.line({}, ($w) => {
+                                                            $w.indent(($w) => {
+                                                                $w.line(($w) => {
                                                                     $w.snippet(`$x.reportUnexpectedToken({`)
-                                                                    $w.indent({}, ($w) => {
-                                                                        $w.line({}, ($w) => {
+                                                                    $w.indent(($w) => {
+                                                                        $w.line(($w) => {
                                                                             $w.snippet(`path: "${path}",`)
                                                                         })
-                                                                        $w.line({}, ($w) => {
+                                                                        $w.line(($w) => {
                                                                             $w.snippet(`token: nextChild,`)
                                                                         })
-                                                                        $w.line({}, ($w) => {
-                                                                            $w.snippet(`expected: "${p2.getKeysAsString(possibleTokens.getDictionary())}",`)
+                                                                        $w.line(($w) => {
+                                                                            $w.snippet(`expected: "${$d.getKeysAsString({
+                                                                                dictionary: possibleTokens.getDictionary(),
+                                                                                separator: ",",
+                                                                            })}",`)
                                                                         })
                                                                     })
                                                                     $w.snippet(`})`)
@@ -587,20 +603,23 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                             })
                                             $w.snippet(`},`)
                                         })
-                                        $w.line({}, ($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`() => { // no child`)
-                                            $w.indent({}, ($w) => {
-                                                $w.line({}, ($w) => {
+                                            $w.indent(($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`$x.reportMissingToken({`)
-                                                    $w.indent({}, ($w) => {
-                                                        $w.line({}, ($w) => {
+                                                    $w.indent(($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`parentDetails: node.details,`)
                                                         })
-                                                        $w.line({}, ($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`path: "${path}",`)
                                                         })
-                                                        $w.line({}, ($w) => {
-                                                            $w.snippet(`kindNameOptions: "${p2.getKeysAsString(possibleTokens.getDictionary())}",`)
+                                                        $w.line(($w) => {
+                                                            $w.snippet(`kindNameOptions: "${$d.getKeysAsString({
+                                                                dictionary: possibleTokens.getDictionary(),
+                                                                separator: ", ",
+                                                            })}",`)
                                                         })
                                                     })
                                                     $w.snippet(`})`)
@@ -615,9 +634,9 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                             break
                         case "reference":
                             pl.cc($[1], ($) => {
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`G${$.name}(node, children, ($) => {`)
-                                    $w.indent({}, ($w) => {
+                                    $w.indent(($w) => {
                                         endCallback(
                                             $w,
                                         )
@@ -628,9 +647,9 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                             break
                         case "sequence":
                             pl.cc($[1], ($) => {
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`const sequenceEnd = ($: api.TVT${path}) => {`)
-                                    $w.indent({}, ($w) => {
+                                    $w.indent(($w) => {
                                         endCallback(
                                             $w,
                                         )
@@ -649,7 +668,7 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                                 `${path}_${element.name}`,
                                                 $w,
                                                 ($w) => {
-                                                    $w.line({}, ($w) => {
+                                                    $w.line(($w) => {
                                                         $w.snippet(`const _${element.name} = $`)
                                                     })
                                                     generateElements(
@@ -660,11 +679,11 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                             )
                                         },
                                         () => {
-                                            $w.line({}, ($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`sequenceEnd({`)
-                                                $w.indent({}, ($w) => {
+                                                $w.indent(($w) => {
                                                     $.elements.forEach(($) => {
-                                                        $w.line({}, ($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`"${$.name}": _${$.name},`)
                                                         })
                                                     })
@@ -682,28 +701,28 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                             break
                         case "node":
                             pl.cc($[1], ($) => {
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`children.pop(`)
-                                    $w.indent({}, ($w) => {
-                                        $w.line({}, ($w) => {
+                                    $w.indent(($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`(currentChild) => {`)
-                                            $w.indent({}, ($w) => {
-                                                $w.line({}, ($w) => {
+                                            $w.indent(($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`if ($d.stringsAreEqual(currentChild.kindName, "${$.name}")) {`)
-                                                    $w.indent({}, ($w) => {
+                                                    $w.indent(($w) => {
                                                         generateNode(
                                                             $,
                                                             `${path}$`,
                                                             $w,
                                                             ($w) => {
                                                                 $w.snippet(`(`)
-                                                                $w.indent({}, ($w) => {
-                                                                    $w.line({}, ($w) => {
+                                                                $w.indent(($w) => {
+                                                                    $w.line(($w) => {
                                                                         $w.snippet(`currentChild,`)
                                                                     })
-                                                                    $w.line({}, ($w) => {
+                                                                    $w.line(($w) => {
                                                                         $w.snippet(`($) => {`)
-                                                                        $w.indent({}, ($w) => {
+                                                                        $w.indent(($w) => {
                                                                             endCallback($w)
                                                                         })
                                                                         $w.snippet(`}`)
@@ -715,17 +734,17 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
 
                                                     })
                                                     $w.snippet(`} else {`)
-                                                    $w.indent({}, ($w) => {
-                                                        $w.line({}, ($w) => {
+                                                    $w.indent(($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`$x.reportUnexpectedToken({`)
-                                                            $w.indent({}, ($w) => {
-                                                                $w.line({}, ($w) => {
+                                                            $w.indent(($w) => {
+                                                                $w.line(($w) => {
                                                                     $w.snippet(`path: "${path}",`)
                                                                 })
-                                                                $w.line({}, ($w) => {
+                                                                $w.line(($w) => {
                                                                     $w.snippet(`token: currentChild,`)
                                                                 })
-                                                                $w.line({}, ($w) => {
+                                                                $w.line(($w) => {
                                                                     $w.snippet(`expected: "${$.name}",`)
                                                                 })
                                                             })
@@ -737,19 +756,19 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                                             })
                                             $w.snippet(`},`)
                                         })
-                                        $w.line({}, ($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`() => { // no child`)
-                                            $w.indent({}, ($w) => {
-                                                $w.line({}, ($w) => {
+                                            $w.indent(($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`$x.reportMissingToken({`)
-                                                    $w.indent({}, ($w) => {
-                                                        $w.line({}, ($w) => {
+                                                    $w.indent(($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`parentDetails: node.details,`)
                                                         })
-                                                        $w.line({}, ($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`path: "${path}",`)
                                                         })
-                                                        $w.line({}, ($w) => {
+                                                        $w.line(($w) => {
                                                             $w.snippet(`kindNameOptions: "${$.name}",`)
                                                         })
                                                     })
@@ -767,42 +786,44 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                             pl.au($[0])
                     }
                 }
-                grammar.globalValueTypes.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a }), ($, key) => {
+                $d.sortedForEach(
+                    grammar.globalValueTypes,
+                    ($) => {
 
-                    $w.line({}, ($w) => {
+                        $w.line(($w) => {
 
-                        $w.snippet(`function G${key}(`)
-                        $w.indent({}, ($w) => {
-                            $w.line({}, ($w) => {
-                                $w.snippet(`node: uast.TUntypedNode,`)
+                            $w.snippet(`function G${$.key}(`)
+                            $w.indent(($w) => {
+                                $w.line(($w) => {
+                                    $w.snippet(`node: uast.TUntypedNode,`)
+                                })
+                                $w.line(($w) => {
+                                    $w.snippet(`children: pm.Stack<uast.TUntypedNode>,`)
+                                })
+                                $w.line(($w) => {
+                                    $w.snippet(`callback: ($: api.TG${$.key}) => void,`)
+                                })
                             })
-                            $w.line({}, ($w) => {
-                                $w.snippet(`children: pm.Stack<uast.TUntypedNode>,`)
+                            $w.snippet(`): void {`)
+                            $w.indent(($w) => {
+                                generateValueType(
+                                    $.value,
+                                    `G${$.key}`,
+                                    $w,
+                                    ($w) => {
+                                        $w.line(($w) => {
+                                            $w.snippet(`callback($)`)
+                                        })
+                                    }
+                                )
                             })
-                            $w.line({}, ($w) => {
-                                $w.snippet(`callback: ($: api.TG${key}) => void,`)
-                            })
+                            $w.snippet(`}`)
                         })
-                        $w.snippet(`): void {`)
-                        $w.indent({}, ($w) => {
-                            generateValueType(
-                                $,
-                                `G${key}`,
-                                $w,
-                                ($w) => {
-                                    $w.line({}, ($w) => {
-                                        $w.snippet(`callback($)`)
-                                    })
-                                }
-                            )
-                        })
-                        $w.snippet(`}`)
                     })
-                })
 
-                $w.line({}, ($w) => {
+                $w.line(($w) => {
                     $w.snippet(`if ($d.stringsAreEqual($.kindName, "${grammar.root.name}")) {`)
-                    $w.indent({}, ($w) => {
+                    $w.indent(($w) => {
                         generateNode(
                             grammar.root,
                             "root",
@@ -810,14 +831,14 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                             ($w) => {
 
                                 $w.snippet(`(`)
-                                $w.indent({}, ($w) => {
-                                    $w.line({}, ($w) => {
+                                $w.indent(($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`$,`)
                                     })
-                                    $w.line({}, ($w) => {
+                                    $w.line(($w) => {
                                         $w.snippet(`($) => {`)
-                                        $w.indent({}, ($w) => {
-                                            $w.line({}, ($w) => {
+                                        $w.indent(($w) => {
+                                            $w.line(($w) => {
                                                 $w.snippet(`$x.callback($)`)
                                             })
                                         })
@@ -829,17 +850,17 @@ export const generateParse: XGenerateImplementationFile = ($, $i, $d) => {
                         )
                     })
                     $w.snippet(`} else {`)
-                    $w.indent({}, ($w) => {
-                        $w.line({}, ($w) => {
+                    $w.indent(($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`$x.reportUnexpectedToken({`)
-                            $w.indent({}, ($w) => {
-                                $w.line({}, ($w) => {
+                            $w.indent(($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`path: "",`)
                                 })
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`token: $,`)
                                 })
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`expected: "${grammar.root.name}",`)
                                 })
                             })

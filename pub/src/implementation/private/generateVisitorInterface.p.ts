@@ -4,22 +4,22 @@ import * as pr from "pareto-core-raw"
 
 import * as g from "../../interface"
 import * as wapi from "lib-fountain-pen"
-import { XGenerateInterfaceFile } from "./GenerateFile"
+import { FGenerateInterfaceFile } from "../types/functions.p"
 
-export const generateVisitorInterface: XGenerateInterfaceFile = ($, $i, $d) => {
+export const p_generateVisitorInterface: FGenerateInterfaceFile = ($, $i, $d) => {
     const grammar = $.grammar
     pl.cc(($i.block), $w => {
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as pt from "pareto-core-types"`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as types from "../types/ts_api"`)
         })
-        $w.line({}, ($w) => { })
-        $w.line({}, ($w) => {
+        $w.line(($w) => { })
+        $w.line(($w) => {
             $w.snippet(`export type IVisitor = {`)
-            $w.indent({}, ($w) => {
+            $w.indent(($w) => {
 
                 function generateNode(
                     $: g.TNode2,
@@ -46,17 +46,17 @@ export const generateVisitorInterface: XGenerateInterfaceFile = ($, $i, $d) => {
                         default:
                             pl.au($.type[0])
                     }
-                    $w.line({}, ($w) => {
+                    $w.line(($w) => {
                         $w.snippet(`readonly "${pathForReporting}"?: `)
                         switch ($.type[0]) {
                             case "composite":
                                 pl.cc($.type[1], ($) => {
                                     $w.snippet(`{`)
-                                    $w.indent({}, ($w) => {
-                                        $w.line({}, ($w) => {
+                                    $w.indent(($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`readonly "begin": ($: types.TN${pathForCode}) => void,`)
                                         })
-                                        $w.line({}, ($w) => {
+                                        $w.line(($w) => {
                                             $w.snippet(`readonly "end": ($: types.TN${pathForCode}) => void,`)
                                         })
                                     })
@@ -82,14 +82,16 @@ export const generateVisitorInterface: XGenerateInterfaceFile = ($, $i, $d) => {
                     switch ($[0]) {
                         case "choice":
                             pl.cc($[1], ($) => {
-                                $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), (option, key) => {
-                                    generateValue(
-                                        option,
-                                        $w,
-                                        `${pathForCode}_${key}`,
-                                        `${pathForReporting}/?${key}`,
-                                    )
-                                })
+                                $d.sortedForEach(
+                                    $.options,
+                                    ($) => {
+                                        generateValue(
+                                            $.value,
+                                            $w,
+                                            `${pathForCode}_${$.key}`,
+                                            `${pathForReporting}/?${$.key}`,
+                                        )
+                                    })
                             })
                             break
                         case "reference":
@@ -138,14 +140,16 @@ export const generateVisitorInterface: XGenerateInterfaceFile = ($, $i, $d) => {
                         pathForReporting,
                     )
                 }
-                grammar.globalValueTypes.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), ($, key) => {
-                    generateValueType(
-                        $,
-                        $w,
-                        `G${key}`,
-                        `$${key}`,
-                    )
-                })
+                $d.sortedForEach(
+                    grammar.globalValueTypes,
+                    ($) => {
+                        generateValueType(
+                            $.value,
+                            $w,
+                            `G${$.key}`,
+                            `$${$.key}`,
+                        )
+                    })
 
                 generateNode(
                     grammar.root,

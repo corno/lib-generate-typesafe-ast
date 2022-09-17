@@ -1,17 +1,17 @@
 import * as pl from "pareto-core-lib"
-import * as pr from "pareto-core-raw"
-import * as p2t from "pareto-core-tostring"
 
 
-import * as g from "../../interface"
-import * as wapi from "lib-fountain-pen"
-import { XGenerateInterfaceFile } from "./GenerateFile"
+import * as api from "../../interface"
+import * as fp from "lib-fountain-pen"
 
-export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
+import { FGenerateInterfaceFile } from "../types/functions.p"
+
+
+export const p_generateTypes: FGenerateInterfaceFile = ($, $i, $d) => {
     const grammar = $.grammar
     function generateTypesForNode(
-        $: g.TNode2,
-        $w: wapi.IBlock,
+        $: api.TNode2,
+        $w: fp.IBlock,
         path: string
     ) {
         switch ($.type[0]) {
@@ -32,10 +32,10 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
             default:
                 pl.au($.type[0])
         }
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(``)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export type TN${path} = `)
             switch ($.type[0]) {
                 case "composite":
@@ -60,20 +60,25 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
 
     }
     function generateTypesForValueType(
-        $: g.TValueType,
-        $w: wapi.IBlock,
+        $: api.TValueType,
+        $w: fp.IBlock,
         path: string,
     ) {
         switch ($[0]) {
             case "choice":
                 pl.cc($[1], ($) => {
-                    $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), (option, key) => {
-                        generateTypesForValue(
-                            option,
-                            $w,
-                            p2t.joinNestedStrings([path, "_", key])
-                        )
-                    })
+                    $d.sortedForEach(
+                        $.options,
+                        ($) => {
+                            generateTypesForValue(
+                                $.value,
+                                $w,
+                                $d.joinNestedStrings({
+                                    strings: [path, "_", $.key],
+                                    separator: ", ",
+                                })
+                            )
+                        })
                 })
                 break
             case "reference":
@@ -87,7 +92,10 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
                         generateTypesForValue(
                             $.value,
                             $w,
-                            p2t.joinNestedStrings([path, "_", $.name])
+                            $d.joinNestedStrings({
+                                strings: [path, "_", $.name],
+                                separator: ", ",
+                            })
                         )
                     })
                 })
@@ -104,19 +112,22 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
             default:
                 pl.au($[0])
         }
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export type TVT${path} = `)
 
             switch ($[0]) {
                 case "choice":
                     pl.cc($[1], ($) => {
 
-                        $w.indent({}, ($w) => {
-                            $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), (option, key) => {
-                                $w.line({}, ($w) => {
-                                    $w.snippet(`| [ "${key}", TV${path}_${key}]`)
-                                })
-                            })
+                        $w.indent(($w) => {
+                            $d.sortedForEach(
+                                $.options,
+                                ($) => {
+                                    $w.line(($w) => {
+                                        $w.snippet(`| [ "${$.key}", TV${path}_${$.key}]`)
+                                    })
+                                }
+                            )
                         })
                     })
                     break
@@ -128,9 +139,9 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
                 case "sequence":
                     pl.cc($[1], ($) => {
                         $w.snippet(`{`)
-                        $w.indent({}, ($w) => {
+                        $w.indent(($w) => {
                             $.elements.forEach(($) => {
-                                $w.line({}, ($w) => {
+                                $w.line(($w) => {
                                     $w.snippet(`readonly "${$.name}":  TV${path}_${$.name}`)
                                 })
                             })
@@ -149,8 +160,8 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
         })
     }
     function generateTypesForValue(
-        $: g.TValue,
-        $w: wapi.IBlock,
+        $: api.TValue,
+        $w: fp.IBlock,
         path: string,
     ) {
         generateTypesForValueType(
@@ -158,7 +169,7 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
             $w,
             path,
         )
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export type TV${path} = `)
             if (pl.isNotUndefined($.cardinality)) {
                 switch ($.cardinality[0]) {
@@ -187,42 +198,44 @@ export const generateTypes: XGenerateInterfaceFile = ($, $i, $d) => {
     }
     pl.cc($i.block, ($w) => {
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as pt from "pareto-core-types"`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
         })
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as uast from "api-untyped-ast"`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
         })
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export type TAnnotatedString = { readonly "tokenDetails": uast.TDetails; readonly "value": string }`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.TDetails; readonly "content": Type }`)
         })
 
-        grammar.globalValueTypes.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), ($, key) => {
-            generateTypesForValueType(
-                $,
-                $w,
-                `G${key}`,
-            )
-            $w.line({}, ($w) => {
-                $w.snippet(`export type TG${key} =  TVTG${key}`)
+        $d.sortedForEach(
+            grammar.globalValueTypes,
+            ($) => {
+                generateTypesForValueType(
+                    $.value,
+                    $w,
+                    `G${$.key}`,
+                )
+                $w.line(($w) => {
+                    $w.snippet(`export type TG${$.key} = TVTG${$.key}`)
+                })
             })
-        })
         generateTypesForNode(
             grammar.root,
             $w,
             "root",
         )
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`export type TRoot = TNroot`)
         })
 

@@ -3,26 +3,26 @@ import * as pl from "pareto-core-lib"
 import * as wapi from "lib-fountain-pen"
 
 import * as g from "../../interface"
-import { XGenerateImplementationFile } from "./GenerateFile"
+import { FGenerateImplementationFile } from "../types/functions.p"
 
-export const generateCreateDefaultVisitor: XGenerateImplementationFile = ($, $i, $d) => {
+export const p_generateCreateDefaultVisitor: FGenerateImplementationFile = ($, $i, $d) => {
     const grammar = $.grammar
     pl.cc(($i.block), $w => {
 
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as pt from "pareto-core-types"`)
         })
-        $w.line({}, ($w) => {
+        $w.line(($w) => {
             $w.snippet(`import * as api from "${$.pathToInterface}"`)
         })
-        $w.line({}, ($w) => { })
-        $w.line({}, ($w) => {
+        $w.line(($w) => { })
+        $w.line(($w) => {
             $w.snippet(`export function createDefaultVisistor(`)
-            $w.indent({}, ($w) => {
-                $w.line({}, ($w) => {
+            $w.indent(($w) => {
+                $w.line(($w) => {
                     $w.snippet(`$i: {`)
-                    $w.indent({}, ($w) => {
-                        $w.line({}, ($w) => {
+                    $w.indent(($w) => {
+                        $w.line(($w) => {
                             $w.snippet(`log: ($: string) => void`)
                         })
                     })
@@ -30,10 +30,10 @@ export const generateCreateDefaultVisitor: XGenerateImplementationFile = ($, $i,
                 })
             })
             $w.snippet(`): api.IVisitor {`)
-            $w.indent({}, ($w) => {
-                $w.line({}, ($w) => {
+            $w.indent(($w) => {
+                $w.line(($w) => {
                     $w.snippet(`return {`)
-                    $w.indent({}, ($w) => {
+                    $w.indent(($w) => {
                         function generateNode(
                             $: g.TNode2,
                             $w: wapi.IBlock,
@@ -56,17 +56,17 @@ export const generateCreateDefaultVisitor: XGenerateImplementationFile = ($, $i,
                                 default:
                                     pl.au($.type[0])
                             }
-                            $w.line({}, ($w) => {
+                            $w.line(($w) => {
                                 $w.snippet(`"${path}": `)
                                 switch ($.type[0]) {
                                     case "composite":
                                         pl.cc($.type[1], ($) => {
                                             $w.snippet(`{`)
-                                            $w.indent({}, ($w) => {
-                                                $w.line({}, ($w) => {
+                                            $w.indent(($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`begin: ($) => { $i.log("${path} begin") },`)
                                                 })
-                                                $w.line({}, ($w) => {
+                                                $w.line(($w) => {
                                                     $w.snippet(`end: ($) => { $i.log("${path} end") },`)
                                                 })
                                             })
@@ -92,13 +92,15 @@ export const generateCreateDefaultVisitor: XGenerateImplementationFile = ($, $i,
                             switch ($[0]) {
                                 case "choice":
                                     pl.cc($[1], ($) => {
-                                        $.options.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), (option, key) => {
-                                            generateValue(
-                                                option,
-                                                $w,
-                                                `${path}/?${key}`
-                                            )
-                                        })
+                                        $d.sortedForEach(
+                                            $.options,
+                                            ($) => {
+                                                generateValue(
+                                                    $.value,
+                                                    $w,
+                                                    `${path}/?${$.key}`
+                                                )
+                                            })
                                     })
                                     break
                                 case "reference":
@@ -143,11 +145,11 @@ export const generateCreateDefaultVisitor: XGenerateImplementationFile = ($, $i,
                                 path,
                             )
                         }
-                        grammar.globalValueTypes.forEach((a, b) => $d.isYinBeforeYang({ yin: b, yang: a}), ($, key) => {
+                        $d.sortedForEach(grammar.globalValueTypes, ($) => {
                             generateValueType(
-                                $,
+                                $.value,
                                 $w,
-                                `$${key}`,
+                                `$${$.key}`,
                             )
                         })
 

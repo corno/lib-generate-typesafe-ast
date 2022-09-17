@@ -1,2 +1,2 @@
-export * from "./algorithms/x"
+export * from "./functions/x"
 export * from "./dependencies/x"
