@@ -1,4 +1,5 @@
 import * as pt from "pareto-core-types"
+import * as fp from "lib-fountain-pen"
 
 export type TOptions = pt.Dictionary<TValue>
 
@@ -49,4 +50,6 @@ export type TLeaf = {
 
 export type TComposite = TValue
 
-export type TPath = pt.Nested<string>
+export type TConfig = {
+    fp: fp.TConfiguration
+}

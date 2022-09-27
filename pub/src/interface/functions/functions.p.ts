@@ -2,13 +2,14 @@
 import * as pt from "pareto-core-types"
 
 import * as fp from "lib-fountain-pen"
+import * as fs from "api-pareto-filesystem"
 
 import { TGrammar } from "../types/types.p"
 import { DDependencies } from "../dependencies/dependencies.p"
 
 export type FGenerateImplementation = (
     $: {
-        readonly "rootPath": string,
+        readonly "rootPath": fs.TPath,
         readonly "fpSettings": fp.TConfiguration,
         readonly "generation": {
             readonly "grammar": TGrammar
@@ -22,7 +23,7 @@ export type FGenerateImplementation = (
 
 export type FGenerateInterface = (
     $: {
-        readonly "rootPath": string,
+        readonly "rootPath": fs.TPath,
         readonly "fpSettings": fp.TConfiguration,
         readonly "generation": {
             readonly "grammar": TGrammar

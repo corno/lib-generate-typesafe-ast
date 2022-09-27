@@ -13,7 +13,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 'type': ["reference", { 'name': `statement` }]
             }],
         }],
-        'expression': ["old choice", {
+        'expression': ["choice", {
             'options': pw.wrapRawDictionary({
                 'arrayLiteral': {
                     'type': ["node", {
@@ -58,7 +58,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `implementation`,
                                         'value': {
-                                            'type': ["old choice", {
+                                            'type': ["choice", {
                                                 'options': pw.wrapRawDictionary({
                                                     "block": {
                                                         'type': ["reference", {
@@ -92,7 +92,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `operator`,
                                         'value': {
-                                            'type': ["old choice", {
+                                            'type': ["choice", {
                                                 'options': pw.wrapRawDictionary({
                                                     'ampersandAmpersand': {
                                                         'type': ["node", {
@@ -344,7 +344,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                             {
                                                 'name': `name`,
                                                 'value': {
-                                                    'type': ["old choice", {
+                                                    'type': ["choice", {
                                                         'options': pw.wrapRawDictionary({
                                                             'identifier': {
                                                                 'type': ["reference", {
@@ -463,7 +463,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                                             {
                                                                 'name': `x`,
                                                                 'value': {
-                                                                    'type': ["old choice", {
+                                                                    'type': ["choice", {
                                                                         'options': pw.wrapRawDictionary({
                                                                             'middle': {
                                                                                 'type': ["node", {
@@ -533,7 +533,7 @@ export const _typescriptGrammar: gr.TGrammar = {
             'name': `Identifier`,
             'type': ["leaf", { 'hasTextContent': true }]
         }],
-        'identifierOrStringLiteral': ["old choice", {
+        'identifierOrStringLiteral': ["choice", {
             'options': pw.wrapRawDictionary({
                 'identifier': {
                     'type': ["reference", {
@@ -547,7 +547,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 },
             })
         }],
-        'modifier': ["old choice", {
+        'modifier': ["choice", {
             //AbstractKeyword | AsyncKeyword | ConstKeyword | DeclareKeyword | DefaultKeyword | ExportKeyword | PrivateKeyword | ProtectedKeyword | PublicKeyword | OverrideKeyword | ReadonlyKeyword | StaticKeyword;
             'options': pw.wrapRawDictionary({
                 'declare': {
@@ -608,7 +608,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 }]
             }]
         }],
-        'statement': ["old choice", {
+        'statement': ["choice", {
             'options': pw.wrapRawDictionary({
                 'block': {
                     'type': ["reference", {
@@ -772,7 +772,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                             'type': ["node", {
                                                 'name': `ImportClause`,
                                                 'type': ["composite", {
-                                                    'type': ["old choice", {
+                                                    'type': ["choice", {
                                                         'options': pw.wrapRawDictionary({
                                                             'namespace': {
                                                                 'type': ["node", {
@@ -932,7 +932,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                                 'name': `CaseBlock`,
                                                 'type': ["composite", {
                                                     'cardinality': ["array", null],
-                                                    'type': ["old choice", {
+                                                    'type': ["choice", {
                                                         'options': pw.wrapRawDictionary({
                                                             "case": {
                                                                 'type': ["node", {
@@ -1133,7 +1133,7 @@ export const _typescriptGrammar: gr.TGrammar = {
             'name': `StringLiteral`,
             'type': ["leaf", { 'hasTextContent': true }]
         }],
-        'type': ["old choice", {
+        'type': ["choice", {
             'options': pw.wrapRawDictionary({
                 'any': {
                     'type': ["node", {
@@ -1186,7 +1186,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `LiteralType`,
                         'type': ["composite", {
-                            'type': ["old choice", {
+                            'type': ["choice", {
                                 'options': pw.wrapRawDictionary({
                                     'null': {
                                         'type': ["node", {
@@ -1266,7 +1266,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                         'name': `x`,
                                         'value': {
                                             "cardinality": ["one", null],
-                                            'type': ["old choice", {
+                                            'type': ["choice", {
                                                 'options': pw.wrapRawDictionary({
                                                     "identifier": {
                                                         'type': ["reference", {
@@ -1347,7 +1347,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 }],
             }]
         }],
-        'typeSignature': ["old choice", {
+        'typeSignature': ["choice", {
             'options': pw.wrapRawDictionary({
                 'construct': {
                     'type': ["node", {

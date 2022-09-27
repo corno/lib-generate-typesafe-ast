@@ -1,6 +1,7 @@
 import * as pl from "pareto-core-lib"
 
 import * as fp from "lib-fountain-pen"
+import * as fs from "api-pareto-filesystem"
 
 import * as api from "../../interface"
 
@@ -15,33 +16,32 @@ export const p_generateInterface: api.FGenerateInterface = ($, $d, $a) => {
     const deps = $d
 
     function generateFile(
-        filePath: api.TPath,
-        func: FGenerateInterfaceFile,
+        $: fs.TPath,
+        $d: {
+            func: FGenerateInterfaceFile,
+        }
     ) {
 
-        $d.createWriteStream(
+        deps.createWriteStream(
             {
-                path: filePath,
+                path: $,
                 createContainingDirectories: true,
             },
             ($i) => {
                 fp.f_createContext(
-                    $.fpSettings,
+                    conf.fpSettings,
                     ($i) => {
-                        func(
-                            $.generation,
+                        $d.func(
+                            conf.generation,
                             {
                                 block: $i,
                             },
-                            {
-                                sortedForEach: $d.sortedForEach,
-                                joinNestedStrings: $d.joinNestedStrings,
-                            }
+                            deps.generateInf
                         )
 
                     },
                     $i,
-                    $d,
+                    deps.fp,
 
                 )
             },
@@ -56,18 +56,30 @@ export const p_generateInterface: api.FGenerateInterface = ($, $d, $a) => {
 
     generateFile(
         'types/ts_api.generated.ts',
-        p_generateTypes,
+        {
+            func: p_generateTypes
+        }
+        ,
     )
     generateFile(
         'interfaces/visitor.generated.ts',
-        p_generateVisitorInterface,
+        {
+            func: p_generateVisitorInterface
+        }
+        ,
     )
     generateFile(
         'algorithms/algorithms.generated.ts',
-        p_generateVisitorInterface,
+        {
+            func: p_generateVisitorInterface
+        }
+        ,
     )
     generateFile(
         'index.ts',
-        p_generateInterfaceIndex,
+        {
+            func: p_generateInterfaceIndex
+        }
+        ,
     )
 }

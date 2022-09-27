@@ -1,6 +1,7 @@
 import * as pl from "pareto-core-lib"
 
 import * as fp from "lib-fountain-pen"
+import * as fs from "api-pareto-filesystem"
 
 import * as api from "../../interface"
 
@@ -14,105 +15,66 @@ export const p_generateImplementation: api.FGenerateImplementation = ($, $d, $a)
     const conf = $
     const deps = $d
 
-
-    const generateImplementationX: api.FGenerateImplementation = ($, $d) => {
-        const grammar = $.generation.grammar
-
-        function generateFile(
-            filePath: api.TPath,
+    function generateFile(
+        $: fs.TPath,
+        $d: {
             func: FGenerateImplementationFile,
-        ) {
-
-            $d.createWriteStream(
-                {
-                    path: filePath,
-                    createContainingDirectories: true,
-                },
-                ($i) => {
-                    fp.f_createContext(
-                        $.fpSettings,
-                        ($c) => {
-                            func(
-                                $.generation,
-                                {
-                                    block: $c,
-                                },
-                                {
-                                    sortedForEach: $d.sortedForEach,
-                                    getKeysAsString: $d.getKeysAsString,
-                                }
-                            )
-                        },
-                        $i,
-                        {
-                            joinNestedStrings: $d.joinNestedStrings,
-                            getKeysAsString: $d.getKeysAsString,
-                        }
-
-                    )
-                },
-                {
-                    onError: ($) => {
-                        pl.implementMe("!!!!")
-                    }
-                },
-                $a,
-            )
         }
-        generateFile(
-            'public/parse.generated.ts',
-            p_generateParser,
-        )
-        generateFile(
-            'public/visit.generated.ts',
-            p_generateVisit,
-        )
-        generateFile(
-            'public/createDefaultVisitor.generated.ts',
-            p_generateCreateDefaultVisitor,
-        )
-        generateFile(
-            'index.ts',
-            p_generateImplementationIndex,
-        )
-    }
-    generateImplementationX(
-        {
-            rootPath: $.rootPath,
-            fpSettings: {
-                newline: "\n",
-                indentation: "    ",
+    ) {
+
+        deps.createWriteStream(
+            {
+                path: $,
+                createContainingDirectories: true,
             },
-            generation: {
-                grammar: conf.generation.grammar,
-                pathToInterface: conf.generation.pathToInterface,
-            }
-        },
-        {
-            sortedForEach: deps.sortedForEach,
-            getKeysAsString: deps.getKeysAsString,
-            joinNestedStrings: deps.joinNestedStrings,
-            createWriteStream: (
-                $,
-                $c,
-            ) => {
-                deps.createWriteStream(
-                    {
-                        path: [conf.rootPath, $.path],
-                        createContainingDirectories: true,
+            ($i) => {
+                fp.f_createContext(
+                    conf.fpSettings,
+                    ($c) => {
+                        $d.func(
+                            conf.generation,
+                            {
+                                block: $c,
+                            },
+                            deps.generateImp
+                        )
                     },
-                    ($i) => {
-                        $c($i)
-                    },
-                    {
-                        onError: () => {
-                            pl.implementMe("ERROR HANDLER")
-                        },
-                    },
-                    $a,
+                    $i,
+                    deps.fp,
+
                 )
             },
+            {
+                onError: ($) => {
+                    pl.implementMe("!!!!")
+                }
+            },
+            $a,
+        )
+    }
+    generateFile(
+        'public/parse.generated.ts',
+        {
+            func: p_generateParser
         },
-        $a,
     )
+    generateFile(
+        'public/visit.generated.ts',
+        {
+            func: p_generateVisit
+        },
+    )
+    generateFile(
+        'public/createDefaultVisitor.generated.ts',
+        {
+            func: p_generateCreateDefaultVisitor
+        },
+    )
+    generateFile(
+        'index.ts',
+        {
+            func: p_generateImplementationIndex
+        },
+    )
+
 }

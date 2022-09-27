@@ -8,45 +8,43 @@ import * as api from "../../interface"
 
 import * as pub from "../../../../pub"
 
-export const createGetTestset: api.FCreateGetTestset = ($, $a) => {
+export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
     const config = $
     const cws = $d.createWriteStream
-    const yinBeforeYang = $d.isYinBeforeYang
-    return ($, $d) => {
+    return ($, $a) => {
 
         pub.p_generateInterface(
             {
                 rootPath: [$.testDirectory, "out", "src", "interface"],
-                grammar: config.typescriptGrammar,
+                fpSettings: config.config.fp,
+                generation: {
+                    grammar: config.grammar,
+                },
             },
             // {
             //     onError: ($) => {
             //         pl.panic(`write file stream error: ${$.error[0]}, ${$.error[1]}, ${$.path}`)
             //     }
             // },
-            {
-                startAsync: $d.startAsync,
-                createWriteStream: cws,
-                isYinBeforeYang: yinBeforeYang
-            },
+            $d,
             $a,
         )
-        pub.generateImplementation(
+        pub.p_generateImplementation(
             {
                 rootPath: [$.testDirectory, "out", "src", "imp"],
-                grammar: config.typescriptGrammar,
-                pathToInterface: "../interface",
+                fpSettings: config.config.fp,
+                generation: {
+                    grammar: config.grammar,
+                    pathToInterface: "../interface",
+                },
             },
             // {
             //     onError: ($) => {
             //         pl.panic(`write file stream error: ${$.error[0]}, ${$.error[1]}, ${$.path}`)
             //     }
             // },
-            {
-                startAsync: $d.startAsync,
-                createWriteStream: cws,
-                isYinBeforeYang: yinBeforeYang,
-            }
+            $d,
+            $a,
         )
 
         const builder = pm.createUnsafeDictionaryBuilder<test.TTestElement>()
@@ -61,7 +59,7 @@ export const createGetTestset: api.FCreateGetTestset = ($, $a) => {
             })
         }
 
-        return pa.value({
+        return pl.asyncValue({
             elements: builder.getDictionary()
         })
     }
