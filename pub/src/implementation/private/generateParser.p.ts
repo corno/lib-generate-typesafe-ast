@@ -305,7 +305,7 @@ export const p_generateParser: FGenerateImplementationFile = ($, $i, $d) => {
                                                             const possibleTokens = pm.createDictionaryBuilder<null>(
                                                                 ["ignore", {}],
                                                                 () => {
-
+                                                                    //accept double keys?
                                                                 }
                                                             )
                                                             findNextPossibleTokensInSymbolType(
@@ -399,7 +399,7 @@ export const p_generateParser: FGenerateImplementationFile = ($, $i, $d) => {
                                                             const possibleTokens = pm.createDictionaryBuilder<null>(
                                                                 ["ignore", {}],
                                                                 () => {
-
+                                                                    //allow duplicates???
                                                                 }
                                                             )
                                                             findNextPossibleTokensInSymbolType(
@@ -473,12 +473,7 @@ export const p_generateParser: FGenerateImplementationFile = ($, $i, $d) => {
                     switch ($[0]) {
                         case "choice":
                             pl.cc($[1], ($) => {
-                                const possibleTokens = pm.createDictionaryBuilder<string>(
-                                    ["ignore", {}],
-                                    () => {
-                                        pl.panic("tokens are not unique")
-                                    }
-                                )
+                                const possibleTokens = pm.createUnsafeDictionaryBuilder<string>()
                                 $d.sortedForEach(
                                     $.options,
                                     ($) => {
@@ -535,12 +530,7 @@ export const p_generateParser: FGenerateImplementationFile = ($, $i, $d) => {
                                                 $w.line(($w) => {
                                                     $w.snippet(`switch (nextChild.kindName) {`)
                                                     $w.indent(($w) => {
-                                                        const possibleTokens = pm.createDictionaryBuilder<string>(
-                                                            ["ignore", {}],
-                                                            () => {
-                                                                pl.panic("unexpected: duplicate key")
-                                                            }
-                                                        )
+                                                        const possibleTokens = pm.createUnsafeDictionaryBuilder<string>( )
                                                         $d.sortedForEach(
                                                             $.options,
                                                             ($) => {

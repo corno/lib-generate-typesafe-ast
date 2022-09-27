@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "api-pareto-collation": "^0.12.0",
-    "api-pareto-filesystem": "^0.10.0",
+    "api-pareto-filesystem": "^0.11.0",
     "api-pareto-main": "^0.9.0",
-    "lib-fountain-pen": "^0.6.0",
+    "lib-fountain-pen": "^0.6.1",
     "pareto-core-lib": "^0.13.0",
     "pareto-core-raw": "^0.4.0",
     "pareto-core-resolve": "^0.4.0",
     "pareto-core-state": "^0.10.0",
-    "res-pareto-tostring": "^0.3.0"
+    "res-pareto-tostring": "^0.4.0"
   },
   "name": "lib-generate-typesafe-ast",
   "version": "0.3.2",
@@ -34,5 +34,5 @@
     "dist"
   ],
   "interface-fingerprint": "01169ab7c36abe6033ded8a3ea2938089a9b3742",
-  "content-fingerprint": "ac40bcc40b23eccea97f8238b6abfe047a04ba7f"
+  "content-fingerprint": "d7dab19b6dff56960c6fa2a1131dc8623f4844ed"
 }

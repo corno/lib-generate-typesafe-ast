@@ -1,25 +1,20 @@
 
-import * as pa from "pareto-core-async"
 import * as pm from "pareto-core-state"
 import * as pl from "pareto-core-lib"
 
-import * as fs from "api-pareto-filesystem"
 import * as test from "lib-pareto-test"
-
-import * as collation from "api-pareto-collation"
 
 import * as api from "../../interface"
 
+import * as pub from "../../../../pub"
 
-import * as pub from "../../../../pub/dist"
-
-export const f_createGetTestset: api.FCreateGetTestset = ($, $d) => {
+export const createGetTestset: api.FCreateGetTestset = ($, $a) => {
     const config = $
     const cws = $d.createWriteStream
     const yinBeforeYang = $d.isYinBeforeYang
     return ($, $d) => {
 
-        pub.generateInterface(
+        pub.p_generateInterface(
             {
                 rootPath: [$.testDirectory, "out", "src", "interface"],
                 grammar: config.typescriptGrammar,
@@ -33,7 +28,8 @@ export const f_createGetTestset: api.FCreateGetTestset = ($, $d) => {
                 startAsync: $d.startAsync,
                 createWriteStream: cws,
                 isYinBeforeYang: yinBeforeYang
-            }
+            },
+            $a,
         )
         pub.generateImplementation(
             {
@@ -53,12 +49,7 @@ export const f_createGetTestset: api.FCreateGetTestset = ($, $d) => {
             }
         )
 
-        const builder = pm.createDictionaryBuilder<test.TTestElement>(
-            ["ignore", null],
-            () => {
-                pl.panic("duplicate key")
-            }
-        )
+        const builder = pm.createUnsafeDictionaryBuilder<test.TTestElement>()
         function createTest(name: string, actual: string, expected: string) {
             builder.add(name, {
                 type: ["test", {
