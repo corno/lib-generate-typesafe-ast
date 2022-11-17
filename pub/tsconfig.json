@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noLib": true,
     "target": "ES2015",
-    "module": "CommonJS",
+    "module": "commonjs",
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
