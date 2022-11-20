@@ -4,4 +4,4 @@ import { DDependencies } from "../interface"
 
 import * as pub from "../../../pub"
 
-export const dependencies: DDependencies = pub.ddeps
+export const dependencies = pub.ddeps

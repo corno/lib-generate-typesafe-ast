@@ -6,5 +6,5 @@ import * as api from "../../interface"
 
 export type FCreateGetTestset = (
     $: api.TConfig,
-    $d: DDependencies
+    $d: null// DDependencies
 ) => test.FGetTestSet
