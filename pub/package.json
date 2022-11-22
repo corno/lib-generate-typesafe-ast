@@ -18,10 +18,7 @@
   "dependencies": {
     "api-pareto-main": "^0.9.0",
     "lib-fountain-pen": "^0.6.1",
-    "pareto-core-lib": "^0.13.0",
-    "pareto-core-raw": "^0.4.0",
-    "pareto-core-resolve": "^0.4.0",
-    "pareto-core-state": "^0.10.0",
+    "pareto-core": "^0.0.4",
     "res-pareto-collation": "^0.8.0",
     "res-pareto-filesystem": "^0.26.0",
     "res-pareto-tostring": "^0.4.0"
@@ -33,6 +30,6 @@
   "files": [
     "dist"
   ],
-  "interface-fingerprint": "5f240aa3f244ede86d05be702b04eac62e3847a9",
-  "content-fingerprint": "23711be4cabba900c30d2bbd2ff7bc0efb76ea11"
+  "interface-fingerprint": "fd5152909ed36ba91944d4672bc04632475a0fc9",
+  "content-fingerprint": "2d07ba1f13be338f70b001babd9f3bf09b3e350a"
 }
