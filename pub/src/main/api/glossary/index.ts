@@ -1,2 +1,2 @@
 export * from "./types.generated"
-export * from "./api.generated"
+export * from "./public.generated"
