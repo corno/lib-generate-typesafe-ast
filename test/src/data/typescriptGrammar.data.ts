@@ -1,7 +1,7 @@
 
 import * as pw from "pareto-core-raw"
 
-import * as gr from "../../../pub"
+import * as gr from "../../../pub/dist"
 
 
 export const _typescriptGrammar: gr.TGrammar = {

@@ -6,7 +6,7 @@ import * as test from "lib-pareto-test"
 
 import * as api from "../../interface"
 
-import * as pub from "../../../../pub"
+import * as pub from "../../../../../pub/dist"
 
 export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
     const config = $
