@@ -4,12 +4,11 @@ import {
     reference,
     boolean,
     array,
-    dictionary, group, member, taggedUnion, types, typeReference,
+    dictionary, group, member, taggedUnion, types, typeReference, func, interfaceReference,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands.p"
 
-import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands.p"
 
-import { } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands.p"
 import * as mproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 const d = pr.wrapRawDictionary
@@ -20,11 +19,14 @@ export const project: mproject.TProject = {
     'license': "ISC",
 
     'pubdependencies': d({
+        "glo-pareto-common": {},
+        "lib-fountain-pen": {},
+        "res-pareto-foreach": {},
     }),
     'type': ['library', {
         'main': {
             'definition': {
-                'glossary': <mglossary.TGlossary>{
+                'glossary': {
                     'imports': d({
                         "fp": "lib-fountain-pen",
                         "common": "glo-pareto-common",
@@ -75,12 +77,12 @@ export const project: mproject.TProject = {
 
                         }),
                         "Composite": reference("Value"),
-                        "Config": group({
-                            "fountainPen": member(reference("fp", "Configuration"))
-                        }),
+                        // "Config": group({
+                        //     "fountainPen": member(reference("fp", "Configuration"))
+                        // }),
                         "GenerateImplementationData": group({
                             "rootPath": member(reference("common", "Path")),
-                            "fpSettings": member(reference("fp", "Configuration")),
+                            //"fpSettings": member(reference("fp", "Configuration")),
                             "generation": member(group({
                                 "grammar": member(reference("Grammar")),
                                 "pathToInterface": member(string()),
@@ -88,7 +90,7 @@ export const project: mproject.TProject = {
                         }),
                         "GenerateInterfaceData": group({
                             "rootPath": member(reference("common", "Path")),
-                            "fpSettings": member(reference("fp", "Configuration")),
+                            //"fpSettings": member(reference("fp", "Configuration")),
                             "generation": member(group({
                                 "grammar": member(reference("Grammar")),
                             })),
@@ -109,161 +111,79 @@ export const project: mproject.TProject = {
                         //     $a: pt.ProcessAsyncValue,
                         // ) => void
                     }),
-                    'functions': d({}),
+                    'functions': d({
+                        "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Line"), null),
+                        "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Line"), null),
+                    }),
                     'interfaces': d({}),
                 },
                 "api": {
                     'imports': d({}),
                     'algorithms': d({
-                        // "generateImplementation": {
-                        //     'definition': ['procedure', ['type', reference("GenerateImplementationData")]],
-                        //     'type': ['constructor', {
-                        //         'configuration data': ['null', null],
-                        //         'dependencies': d({}),
-                        //     }]
-                        // },
-                        // "generateInterface": {
-                        //     'definition': ['procedure', ['type', reference("GenerateInterfaceData")]],
-                        //     'type': ['constructor', {
-                        //         'configuration data': ['null', null],
-                        //         'dependencies': d({}),
-                        //     }]
-                        // }
+                        "generateImplementation": algorithm(definitionReference("GenerateImplementation"), constructor(null, {
+
+                        })),
+                        "generateInterface": algorithm(definitionReference("GenerateInterface"), constructor(null, {
+
+                        })),
                     })
                 },
             },
         },
         'submodules': d({
-            //         "private": {
-            //             'definition': {
-            //                 'glossary': {
-            //                     'imports': d({
-            //                         "fp": "lib-fountain-pen",
-            //                         "main": "../../main",
-            //                     }),
-            //                     'types': types({
-            //                         "GenerateInterfaceFileData": group({
-            //                             "grammar": member(reference("main", "Grammar")),
-            //                         }),
-            //                         "GenerateImplementationFileData": group({
-            //                             "grammar": member(reference("main", "Grammar")),
-            //                             "pathToInterface": member(string()),
-            //                         })
-            //                     }),
-            //                     'functions': d({}),
-            //                     'callbacks': d({
-            //                         "GenerateImplementationFile": {
-            //                             'data': ['type', reference("GenerateImplementationFileData")],
-            //                             'context': ['import', "fp"],
-            //                             'interface': "Block"
-            //                         },
-            //                         "GenerateInterfaceFile": {
-            //                             'data': ['type', reference("GenerateInterfaceFileData")],
-            //                             'context': ['import', "fp"],
-            //                             'interface': "Block"
-            //                         }
-            //                     }),
-            //                     'interfaces': d({}),
-            //                     'pipes': d({}),
-            //                 },
-            //                 "api": {
-            //                     'imports': d({
-            //                     }),
-            //                     'algorithms': d({
-            //                         "generateCreateDefaultVisitor": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateInterfaceFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateFunctions": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateInterfaceFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateImplementationIndex": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateImplementationFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateInterfaceIndex": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateInterfaceFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateParser": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateImplementationFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateTypes": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateInterfaceFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateVisit": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateInterfaceFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                         "generateVisitorInterface": {
-            //                             'definition': ['callback', {
-            //                                 'callback': "GenerateInterfaceFile"
-            //                             }],
-            //                             'type': ['constructor', {
-            //                                 'configuration data': ['null', null],
-            //                                 'dependencies': d({
-        
-            //                                 }),
-            //                             }]
-            //                         },
-            //                     })
-            //                 },
-            //             },
-            //             'implementation': {}
-        
-            //         },
+            "private": {
+                'definition': {
+                    'glossary': {
+                        'imports': d({
+                            "fp": "lib-fountain-pen",
+                            "main": "../../../../main",
+                        }),
+                        'parameters': d({}),
+                        'templates': d({}),
+                        'types': types({
+                            "GenerateInterfaceFileData": group({
+                                "grammar": member(reference("main", "Grammar")),
+                            }),
+                            "GenerateImplementationFileData": group({
+                                "grammar": member(reference("main", "Grammar")),
+                                "pathToInterface": member(string()),
+                            })
+                        }),
+                        'interfaces': d({}),
+                        'functions': d({
+                            "GenerateImplementationFile": func(typeReference("GenerateImplementationFileData"), null, interfaceReference("fp", "Block"), null),
+                            "GenerateInterfaceFile": func(typeReference("GenerateInterfaceFileData"), null, interfaceReference("fp", "Block"), null),
+                        }),
+                    },
+                    "api": {
+                        'imports': d({
+                            "foreach": "res-pareto-foreach",
+                            "fp": "lib-fountain-pen",
+                        }),
+                        'algorithms': d({
+                            "generateFunctions": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {})),
+                            "generateInterfaceIndex": algorithm(definitionReference("GenerateInterfaceFile")),
+                            "generateTypes": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {
+                                "sortedForEach": definitionReference("foreach", "DictionaryForEach"),
+                            })),
+                            "generateVisitorInterface": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {
+                                "sortedForEach": definitionReference("foreach", "DictionaryForEach"),
+                            })),
+
+                            "generateImplementationIndex": algorithm(definitionReference("GenerateImplementationFile")),
+                            "generateParser": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
+                                "sortedForEach": definitionReference("foreach", "DictionaryForEach"),
+                            })),
+                            "generateCreateDefaultVisitor": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
+                                "sortedForEach": definitionReference("foreach", "DictionaryForEach"),
+                            })),
+                            "generateVisit": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
+                                "sortedForEach": definitionReference("foreach", "DictionaryForEach"),
+                            })),
+                        })
+                    },
+                },
+            },
         }),
         'executables': d({}),
         'test': {

@@ -2,37 +2,29 @@ import * as pl from "pareto-core-lib"
 
 import * as api from "../api"
 
-import * as mmain from "../../main"
+import * as mmain from "../../../main"
 import * as mfp from "lib-fountain-pen"
 
-export const igenerateVisit: api.CgenerateVisit = ($d) => {
+export const $$: api.CgenerateVisit = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
 
         pl.cc($i, ($w) => {
 
-            $w.line(($w) => {
-                $w.snippet(`import * as pl from "pareto-core-lib"`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`import * as api from "${$.pathToInterface}"`)
-            })
+            $w.line(`import * as pl from "pareto-core-lib"`)
+            $w.line(`import * as api from "${$.pathToInterface}"`)
 
-            $w.line(($w) => { })
+            $w.line(``)
 
-            $w.line(($w) => { })
-            $w.line(($w) => {
+            $w.line(``)
+            $w.nestedLine(($w) => {
                 $w.snippet(`export function visit(`)
                 $w.indent(($w) => {
-                    $w.line(($w) => {
-                        $w.snippet(`$: api.TNroot,`)
-                    })
-                    $w.line(($w) => {
+                    $w.line(`$: api.TNroot,`)
+                    $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
-                            $w.line(($w) => {
-                                $w.snippet(`visitor: api.IVisitor,`)
-                            })
+                            $w.line(`visitor: api.IVisitor,`)
                         })
                         $w.snippet(`}`)
                     })
@@ -46,23 +38,19 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                         pathForCode: string,
                         pathForReporting: string,
                     ) {
-                        $w.line(($w) => {
+                        $w.nestedLine(($w) => {
 
                             $w.snippet(`((`)
                             $w.indent(($w) => {
-                                $w.line(($w) => {
-                                    $w.snippet(`$: api.TN${pathForCode},`)
-                                })
+                                $w.line(`$: api.TN${pathForCode},`)
                             })
                             $w.snippet(`) => {`)
                             $w.indent(($w) => {
                                 switch ($.type[0]) {
                                     case "composite":
                                         pl.cc($.type[1], ($) => {
-                                            $w.line(($w) => {
-                                                $w.snippet(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"].begin($) }`)
-                                            })
-                                            $w.line(($w) => {
+                                            $w.line(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"].begin($) }`)
+                                            $w.nestedLine(($w) => {
                                                 $w.snippet(`pl.cc($.content, ($) => {`)
                                                 $w.indent(($w) => {
                                                     generateValue(
@@ -74,16 +62,12 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                                                 })
                                                 $w.snippet(`})`)
                                             })
-                                            $w.line(($w) => {
-                                                $w.snippet(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"].end($) }`)
-                                            })
+                                            $w.line(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"].end($) }`)
                                         })
                                         break
                                     case "leaf":
                                         pl.cc($.type[1], ($) => {
-                                            $w.line(($w) => {
-                                                $w.snippet(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"]($) }`)
-                                            })
+                                            $w.line(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"]($) }`)
                                         })
                                         break
                                     default:
@@ -102,17 +86,17 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                         switch ($[0]) {
                             case "choice":
                                 pl.cc($[1], ($) => {
-                                    $w.line(($w) => {
+                                    $w.nestedLine(($w) => {
 
                                         $w.snippet(`switch ($[0]) {`)
                                         $w.indent(($w) => {
                                             $d.sortedForEach(
                                                 $.options,
                                                 ($) => {
-                                                    $w.line(($w) => {
+                                                    $w.nestedLine(($w) => {
                                                         $w.snippet(`case "${$.key}": {`)
                                                         $w.indent(($w) => {
-                                                            $w.line(($w) => {
+                                                            $w.nestedLine(($w) => {
                                                                 $w.snippet(`pl.cc($[1], ($) => {`)
                                                                 $w.indent(($w) => {
                                                                     generateValue(
@@ -124,16 +108,12 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                                                                 })
                                                                 $w.snippet(`})`)
                                                             })
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`break`)
-                                                            })
+                                                            $w.line(`break`)
                                                         })
                                                         $w.snippet(`}`)
                                                     })
                                                 })
-                                            $w.line(($w) => {
-                                                $w.snippet(`default: pl.au($[0])`)
-                                            })
+                                            $w.line(`default: pl.au($[0])`)
                                         })
                                         $w.snippet(`}`)
                                     })
@@ -142,15 +122,13 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                             case "reference":
                                 pl.cc($[1], ($) => {
 
-                                    $w.line(($w) => {
-                                        $w.snippet(`X_${$.name}($)`)
-                                    })
+                                    $w.line(`X_${$.name}($)`)
                                 })
                                 break
                             case "sequence":
                                 pl.cc($[1], ($) => {
                                     $.elements.forEach(($) => {
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`pl.cc($["${$.name}"], ($) => {`)
                                             $w.indent(($w) => {
                                                 generateValue(
@@ -191,7 +169,7 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                             switch ($.cardinality[0]) {
                                 case "array":
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`$.forEach(($) => {`)
                                             $w.indent(($w) => {
                                                 generateValueType(
@@ -218,7 +196,7 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                                     break
                                 case "optional":
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`if (pl.isNotNull($)) {`)
                                             $w.indent(($w) => {
                                                 generateValueType(
@@ -230,9 +208,7 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                                             })
                                             $w.snippet(`} else {`)
                                             $w.indent(($w) => {
-                                                $w.line(($w) => {
-                                                    $w.snippet(`//FIXME??`)
-                                                })
+                                                $w.line(`//FIXME??`)
                                             })
                                             $w.snippet(`}`)
                                         })
@@ -254,13 +230,11 @@ export const igenerateVisit: api.CgenerateVisit = ($d) => {
                     $d.sortedForEach(
                         grammar.globalValueTypes,
                         ($) => {
-                            $w.line(($w) => {
+                            $w.nestedLine(($w) => {
 
                                 $w.snippet(`function X_${$.key}(`)
                                 $w.indent(($w) => {
-                                    $w.line(($w) => {
-                                        $w.snippet(`$: api.TG${$.key},`)
-                                    })
+                                    $w.line(`$: api.TG${$.key},`)
                                 })
                                 $w.snippet(`) {`)
                                 $w.indent(($w) => {

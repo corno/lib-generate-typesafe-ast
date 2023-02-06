@@ -4,9 +4,9 @@ import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
 import * as mcommon from "glo-pareto-common"
-import * as mprivate from "../../private"
+import * as mprivate from "../../submodules/private"
 
-export const igenerateInterface: api.CgenerateInterface = ($d) => {
+export const $$: api.CgenerateInterface = ($d) => {
     return ($) => {
 
         const conf = $

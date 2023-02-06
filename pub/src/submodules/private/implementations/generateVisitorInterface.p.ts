@@ -2,22 +2,17 @@ import * as pl from "pareto-core-lib"
 
 import * as api from "../api"
 
-import * as mmain from "../../main"
+import * as mmain from "../../../main"
 import * as mfp from "lib-fountain-pen"
 
-export const igenerateVisitorInterface: api.CgenerateVisitorInterface = ($d) => {
+export const $$: api.CgenerateVisitorInterface = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {
 
-            $w.line(($w) => {
-                $w.snippet(`import * as pt from "pareto-core-types"`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`import * as types from "../types/ts_api"`)
-            })
-            $w.line(($w) => { })
-            $w.line(($w) => {
+            $w.line(`import * as pt from "pareto-core-types"`)
+            $w.line(`import * as types from "../types/ts_api"`)
+            $w.nestedLine(($w) => {
                 $w.snippet(`export type IVisitor = {`)
                 $w.indent(($w) => {
 
@@ -46,19 +41,15 @@ export const igenerateVisitorInterface: api.CgenerateVisitorInterface = ($d) => 
                             default:
                                 pl.au($.type[0])
                         }
-                        $w.line(($w) => {
+                        $w.nestedLine(($w) => {
                             $w.snippet(`readonly "${pathForReporting}"?: `)
                             switch ($.type[0]) {
                                 case "composite":
                                     pl.cc($.type[1], ($) => {
                                         $w.snippet(`{`)
                                         $w.indent(($w) => {
-                                            $w.line(($w) => {
-                                                $w.snippet(`readonly "begin": ($: types.TN${pathForCode}) => void,`)
-                                            })
-                                            $w.line(($w) => {
-                                                $w.snippet(`readonly "end": ($: types.TN${pathForCode}) => void,`)
-                                            })
+                                            $w.line(`readonly "begin": ($: types.TN${pathForCode}) => void,`)
+                                            $w.line(`readonly "end": ($: types.TN${pathForCode}) => void,`)
                                         })
                                         $w.snippet(`}`)
                                     })

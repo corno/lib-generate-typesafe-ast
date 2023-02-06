@@ -6,9 +6,9 @@ import * as mfp from "lib-fountain-pen"
 import * as mcommon from "glo-pareto-common"
 //import * as fs from "api-pareto-filesystem"
 
-import * as mprivate from "../../private"
+import * as mprivate from "../../submodules/private"
 
-export const igenerateImplementation: api.CgenerateImplementation = ($d) => {
+export const $$: api.CgenerateImplementation = ($d) => {
     return ($) => {
         const conf = $
         const deps = $d

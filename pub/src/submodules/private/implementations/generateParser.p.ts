@@ -6,9 +6,9 @@ import * as pr from "pareto-core-raw"
 import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
-import * as mmain from "../../main"
+import * as mmain from "../../../main"
 
-export const igenerateParser: api.CgenerateParser = ($d) => {
+export const $$: api.CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
@@ -82,56 +82,34 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
             }
         }
         pl.cc($i, ($w) => {
-            $w.line(($w) => {
-                $w.snippet(`import * as pl from "pareto-core-lib"`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`import * as pm from "pareto-core-state"`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`import * as uast from "api-untyped-ast"`)
-            })
+            $w.line(`import * as pl from "pareto-core-lib"`)
+            $w.line(`import * as pm from "pareto-core-state"`)
+            $w.line(`import * as uast from "api-untyped-ast"`)
 
-            $w.line(($w) => {
-                $w.snippet(`import * as api from "${$.pathToInterface}"`)
-            })
+            $w.line(`import * as api from "${$.pathToInterface}"`)
 
-            $w.line(($w) => { })
+            $w.line(``)
 
-            $w.line(($w) => {
+            $w.nestedLine(($w) => {
                 $w.snippet(`export function parse(`)
                 $w.indent(($w) => {
-                    $w.line(($w) => {
-                        $w.snippet(`$: uast.TUntypedNode,`)
-                    })
+                    $w.line(`$: uast.TUntypedNode,`)
 
-                    $w.line(($w) => {
+                    $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
-                            $w.line(($w) => {
-                                $w.snippet(`callback: ($: api.TRoot) => void,`)
-                            })
-                            $w.line(($w) => {
-                                $w.snippet(`reportUnexpectedToken: ($: { path: string, token: uast.TUntypedNode, expected: null | string }) => void,`)
-                            })
-                            $w.line(($w) => {
-                                $w.snippet(`reportMissingToken: ($: { parentDetails: uast.TDetails, path: string, kindNameOptions: string, }) => void,`)
-                            })
+                            $w.line(`callback: ($: api.TRoot) => void,`)
+                            $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.TUntypedNode, expected: null | string }) => void,`)
+                            $w.line(`reportMissingToken: ($: { parentDetails: uast.TDetails, path: string, kindNameOptions: string, }) => void,`)
                         })
                         $w.snippet(`},`)
                     })
-                    $w.line(($w) => {
+                    $w.nestedLine(($w) => {
                         $w.snippet(`$d: {`)
                         $w.indent(($w) => {
-                            $w.line(($w) => {
-                                $w.snippet(`doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,`)
-                            })
-                            $w.line(($w) => {
-                                $w.snippet(`lookAhead: <T>(stack: pm.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,`)
-                            })
-                            $w.line(($w) => {
-                                $w.snippet(`stringsAreEqual: (a: string, b: string) => boolean,`)
-                            })
+                            $w.line(`doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,`)
+                            $w.line(`lookAhead: <T>(stack: pm.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,`)
+                            $w.line(`stringsAreEqual: (a: string, b: string) => boolean,`)
                         })
                         $w.snippet(`},`)
                     })
@@ -139,9 +117,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                 $w.snippet(`): void {`)
                 $w.indent(($w) => {
 
-                    $w.line(($w) => {
-                        $w.snippet(`const $x = $i`)
-                    })
+                    $w.line(`const $x = $i`)
                     function generateNode(
                         $: mmain.TNode2,
                         path: string,
@@ -149,25 +125,17 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                         call: ($w: mfp.ILine) => void
                     ) {
 
-                        $w.line(($w) => {
+                        $w.nestedLine(($w) => {
 
                             $w.snippet(`((`)
                             $w.indent(($w) => {
-                                $w.line(($w) => {
-                                    $w.snippet(`$: uast.TUntypedNode,`)
-                                })
-                                $w.line(($w) => {
-                                    $w.snippet(`callback: ($: api.TN${path}) => void,`)
-                                })
+                                $w.line(`$: uast.TUntypedNode,`)
+                                $w.line(`callback: ($: api.TN${path}) => void,`)
                             })
                             $w.snippet(`): void => {`)
                             $w.indent(($w) => {
-                                $w.line(($w) => {
-                                    $w.snippet(`const node = $`)
-                                })
-                                $w.line(($w) => {
-                                    $w.snippet(`const children = pm.createStack($.children)`)
-                                })
+                                $w.line(`const node = $`)
+                                $w.line(`const children = pm.createStack($.children)`)
                                 switch ($.type[0]) {
                                     case "composite":
                                         pl.cc($.type[1], ($) => {
@@ -176,15 +144,11 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                 path,
                                                 $w,
                                                 ($w) => {
-                                                    $w.line(($w) => {
+                                                    $w.nestedLine(($w) => {
                                                         $w.snippet(`callback({`)
                                                         $w.indent(($w) => {
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`tokenDetails: node.details,`)
-                                                            })
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`content: $,`)
-                                                            })
+                                                            $w.line(`tokenDetails: node.details,`)
+                                                            $w.line(`content: $,`)
                                                         })
                                                         $w.snippet(`})`)
                                                     })
@@ -194,17 +158,13 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                         break
                                     case "leaf":
                                         pl.cc($.type[1], ($) => {
-                                            $w.line(($w) => {
+                                            $w.nestedLine(($w) => {
                                                 $w.snippet(`callback(`)
                                                 if ($.hasTextContent) {
                                                     $w.snippet(`{`)
                                                     $w.indent(($w) => {
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`tokenDetails: $.details,`)
-                                                        })
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`value: $.value`)
-                                                        })
+                                                        $w.line(`tokenDetails: $.details,`)
+                                                        $w.line(`value: $.value`)
                                                     })
                                                     $w.snippet(`}`)
                                                 } else {
@@ -218,31 +178,25 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                         pl.au($.type[0])
                                 }
 
-                                $w.line(($w) => {
+                                $w.nestedLine(($w) => {
                                     $w.snippet(`children.pop(`)
                                     $w.indent(($w) => {
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`(nextChild) => {`)
                                             $w.indent(($w) => {
-                                                $w.line(($w) => {
+                                                $w.nestedLine(($w) => {
                                                     $w.snippet(`$x.reportUnexpectedToken({`)
                                                     $w.indent(($w) => {
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`path: "${path}",`)
-                                                        })
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`token: nextChild,`)
-                                                        })
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`expected: null,`)
-                                                        })
+                                                        $w.line(`path: "${path}",`)
+                                                        $w.line(`token: nextChild,`)
+                                                        $w.line(`expected: null,`)
                                                     })
                                                     $w.snippet(`})`)
                                                 })
                                             })
                                             $w.snippet(`},`)
                                         })
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`() => {`)
                                             $w.indent(($w) => {
                                             })
@@ -258,7 +212,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
 
                     }
                     function generateValue(
-                        $: api.TValue,
+                        $: mmain.TValue,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -270,10 +224,8 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                             switch ($.cardinality[0]) {
                                 case "array":
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(($w) => {
-                                            $w.snippet(`const elements = pm.createArrayBuilder<api.TVT${path}>()`)
-                                        })
-                                        $w.line(($w) => {
+                                        $w.line(`const elements = pm.createArrayBuilder<api.TVT${path}>()`)
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`const processElement = () => {`)
                                             $w.indent(($w) => {
                                                 generateValueType(
@@ -281,24 +233,20 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                     path,
                                                     $w,
                                                     ($w) => {
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`elements.push($)`)
-                                                        })
+                                                        $w.line(`elements.push($)`)
                                                     },
                                                 )
                                             })
                                             $w.snippet(`}`)
                                         })
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`$d.doUntil(`)
                                             $w.indent(($w) => {
-                                                $w.line(($w) => {
-                                                    $w.snippet(`children,`)
-                                                })
-                                                $w.line(($w) => {
+                                                $w.line(`children,`)
+                                                $w.nestedLine(($w) => {
                                                     $w.snippet(`(nextChild) => {`)
                                                     $w.indent(($w) => {
-                                                        $w.line(($w) => {
+                                                        $w.nestedLine(($w) => {
                                                             $w.snippet(`switch (nextChild.kindName) {`)
                                                             $w.indent(($w) => {
 
@@ -320,22 +268,16 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                                 $d.sortedForEach(
                                                                     possibleTokens.getDictionary(),
                                                                     ($) => {
-                                                                        $w.line(($w) => {
+                                                                        $w.nestedLine(($w) => {
                                                                             $w.snippet(`case "${$.key}":`)
                                                                             $w.indent(($w) => {
-                                                                                $w.line(($w) => {
-                                                                                    $w.snippet(`processElement()`)
-                                                                                })
-                                                                                $w.line(($w) => {
-                                                                                    $w.snippet(`return true`)
-                                                                                })
+                                                                                $w.line(`processElement()`)
+                                                                                $w.line(`return true`)
                                                                             })
                                                                         })
                                                                     })
 
-                                                                $w.line(($w) => {
-                                                                    $w.snippet(`default: return false`)
-                                                                })
+                                                                $w.line(`default: return false`)
                                                             })
                                                             $w.snippet(`}`)
                                                         })
@@ -345,7 +287,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                             })
                                             $w.snippet(`)`)
                                         })
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`pl.cc(elements.getArray(), ($) => {`)
                                             $w.indent(($w) => {
                                                 endCallback($w)
@@ -366,10 +308,8 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                     break
                                 case "optional":
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(($w) => {
-                                            $w.snippet(`let optional: null | api.TVT${path} = null`)
-                                        })
-                                        $w.line(($w) => {
+                                        $w.line(`let optional: null | api.TVT${path} = null`)
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`const setOptional = () => {`)
                                             $w.indent(($w) => {
                                                 generateValueType(
@@ -377,22 +317,20 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                     path,
                                                     $w,
                                                     ($w) => {
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`optional = $`)
-                                                        })
+                                                        $w.line(`optional = $`)
                                                     },
                                                 )
                                             })
                                             $w.snippet(`}`)
                                         })
 
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`$d.lookAhead(children, `)
                                             $w.indent(($w) => {
-                                                $w.line(($w) => {
+                                                $w.nestedLine(($w) => {
                                                     $w.snippet(`(nextChild) => {`)
                                                     $w.indent(($w) => {
-                                                        $w.line(($w) => {
+                                                        $w.nestedLine(($w) => {
                                                             $w.snippet(`switch (nextChild.kindName) {`)
                                                             $w.indent(($w) => {
 
@@ -414,15 +352,11 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                                 $d.sortedForEach(
                                                                     possibleTokens.getDictionary(),
                                                                     ($) => {
-                                                                        $w.line(($w) => {
+                                                                        $w.nestedLine(($w) => {
                                                                             $w.snippet(`case "${$.key}":`)
                                                                             $w.indent(($w) => {
-                                                                                $w.line(($w) => {
-                                                                                    $w.snippet(`setOptional()`)
-                                                                                })
-                                                                                $w.line(($w) => {
-                                                                                    $w.snippet(`break`)
-                                                                                })
+                                                                                $w.line(`setOptional()`)
+                                                                                $w.line(`break`)
                                                                             })
                                                                         })
                                                                     })
@@ -432,7 +366,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                     })
                                                     $w.snippet(`},`)
                                                 })
-                                                $w.line(($w) => {
+                                                $w.nestedLine(($w) => {
                                                     $w.snippet(`() => {`)
                                                     $w.indent(($w) => {
                                                     })
@@ -441,7 +375,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                             })
                                             $w.snippet(`)`)
                                         })
-                                        $w.line(($w) => {
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`pl.cc(optional, ($) => {`)
                                             $w.indent(($w) => {
                                                 endCallback($w)
@@ -463,7 +397,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                         }
                     }
                     function generateValueType(
-                        $: api.TValueType,
+                        $: mmain.TValueType,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -489,7 +423,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                 }
                                             )
                                         })
-                                    $w.line(($w) => {
+                                    $w.nestedLine(($w) => {
                                         $w.snippet(`const choiceEnd_${path} = ($: api.TVT${path}) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
@@ -499,17 +433,17 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
 
-                                    $w.line(($w) => {
+                                    $w.nestedLine(($w) => {
                                         $w.snippet(`$d.lookAhead(children, `)
                                         $w.indent(($w) => {
-                                            $w.line(($w) => {
+                                            $w.nestedLine(($w) => {
                                                 $w.snippet(`(nextChild) => {`)
                                                 $w.indent(($w) => {
                                                     $d.sortedForEach(
                                                         $.options,
                                                         ($) => {
                                                             const option = $.value
-                                                            $w.line(($w) => {
+                                                            $w.nestedLine(($w) => {
                                                                 $w.snippet(`const choose_${$.key} = () => {`)
                                                                 $w.indent(($w) => {
 
@@ -518,16 +452,14 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                                         `${path}_${$.key}`,
                                                                         $w,
                                                                         ($w) => {
-                                                                            $w.line(($w) => {
-                                                                                $w.snippet(`choiceEnd_${path}(["${$.key}", $])`)
-                                                                            })
+                                                                            $w.line(`choiceEnd_${path}(["${$.key}", $])`)
                                                                         }
                                                                     )
                                                                 })
                                                                 $w.snippet(`}`)
                                                             })
                                                         })
-                                                    $w.line(($w) => {
+                                                    $w.nestedLine(($w) => {
                                                         $w.snippet(`switch (nextChild.kindName) {`)
                                                         $w.indent(($w) => {
                                                             const possibleTokens = pm.createUnsafeDictionaryBuilder<string>()
@@ -549,32 +481,24 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                             $d.sortedForEach(
                                                                 possibleTokens.getDictionary(),
                                                                 (optionKey) => {
-                                                                    $w.line(($w) => {
+                                                                    $w.nestedLine(($w) => {
                                                                         $w.snippet(`case "${optionKey.key}": /*Y*/ {`)
                                                                         $w.indent(($w) => {
-                                                                            $w.line(($w) => {
-                                                                                $w.snippet(`choose_${optionKey.value}()`)
-                                                                            })
-                                                                            $w.line(($w) => {
-                                                                                $w.snippet(`break`)
-                                                                            })
+                                                                            $w.line(`choose_${optionKey.value}()`)
+                                                                            $w.line(`break`)
                                                                         })
                                                                         $w.snippet(`}`)
                                                                     })
                                                                 })
-                                                            $w.line(($w) => {
+                                                            $w.nestedLine(($w) => {
                                                                 $w.snippet(`default: {`)
                                                                 $w.indent(($w) => {
-                                                                    $w.line(($w) => {
+                                                                    $w.nestedLine(($w) => {
                                                                         $w.snippet(`$x.reportUnexpectedToken({`)
                                                                         $w.indent(($w) => {
-                                                                            $w.line(($w) => {
-                                                                                $w.snippet(`path: "${path}",`)
-                                                                            })
-                                                                            $w.line(($w) => {
-                                                                                $w.snippet(`token: nextChild,`)
-                                                                            })
-                                                                            $w.line(($w) => {
+                                                                            $w.line(`path: "${path}",`)
+                                                                            $w.line(`token: nextChild,`)
+                                                                            $w.nestedLine(($w) => {
                                                                                 $w.snippet(`expected: "${$d.getKeysAsString({
                                                                                     dictionary: possibleTokens.getDictionary(),
                                                                                     separator: ",",
@@ -593,19 +517,15 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                 })
                                                 $w.snippet(`},`)
                                             })
-                                            $w.line(($w) => {
+                                            $w.nestedLine(($w) => {
                                                 $w.snippet(`() => { // no child`)
                                                 $w.indent(($w) => {
-                                                    $w.line(($w) => {
+                                                    $w.nestedLine(($w) => {
                                                         $w.snippet(`$x.reportMissingToken({`)
                                                         $w.indent(($w) => {
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`parentDetails: node.details,`)
-                                                            })
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`path: "${path}",`)
-                                                            })
-                                                            $w.line(($w) => {
+                                                            $w.line(`parentDetails: node.details,`)
+                                                            $w.line(`path: "${path}",`)
+                                                            $w.nestedLine(($w) => {
                                                                 $w.snippet(`kindNameOptions: "${$d.getKeysAsString({
                                                                     dictionary: possibleTokens.getDictionary(),
                                                                     separator: ", ",
@@ -624,7 +544,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                 break
                             case "reference":
                                 pl.cc($[1], ($) => {
-                                    $w.line(($w) => {
+                                    $w.nestedLine(($w) => {
                                         $w.snippet(`G${$.name}(node, children, ($) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
@@ -637,7 +557,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                 break
                             case "sequence":
                                 pl.cc($[1], ($) => {
-                                    $w.line(($w) => {
+                                    $w.nestedLine(($w) => {
                                         $w.snippet(`const sequenceEnd = ($: api.TVT${path}) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
@@ -647,7 +567,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     function generateElements(
-                                        elements: pm.Stack<api.TSequenceElement>,
+                                        elements: pm.Stack<mmain.TSequenceElement>,
                                         $w: mfp.IBlock,
                                     ) {
                                         elements.pop(
@@ -658,9 +578,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                     `${path}_${element.name}`,
                                                     $w,
                                                     ($w) => {
-                                                        $w.line(($w) => {
-                                                            $w.snippet(`const _${element.name} = $`)
-                                                        })
+                                                        $w.line(`const _${element.name} = $`)
                                                         generateElements(
                                                             elements,
                                                             $w,
@@ -669,13 +587,11 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                 )
                                             },
                                             () => {
-                                                $w.line(($w) => {
+                                                $w.nestedLine(($w) => {
                                                     $w.snippet(`sequenceEnd({`)
                                                     $w.indent(($w) => {
                                                         $.elements.forEach(($) => {
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`"${$.name}": _${$.name},`)
-                                                            })
+                                                            $w.line(`"${$.name}": _${$.name},`)
                                                         })
                                                     })
                                                     $w.snippet(`})`)
@@ -691,13 +607,13 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                 break
                             case "node":
                                 pl.cc($[1], ($) => {
-                                    $w.line(($w) => {
+                                    $w.nestedLine(($w) => {
                                         $w.snippet(`children.pop(`)
                                         $w.indent(($w) => {
-                                            $w.line(($w) => {
+                                            $w.nestedLine(($w) => {
                                                 $w.snippet(`(currentChild) => {`)
                                                 $w.indent(($w) => {
-                                                    $w.line(($w) => {
+                                                    $w.nestedLine(($w) => {
                                                         $w.snippet(`if ($d.stringsAreEqual(currentChild.kindName, "${$.name}")) {`)
                                                         $w.indent(($w) => {
                                                             generateNode(
@@ -707,10 +623,8 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                                 ($w) => {
                                                                     $w.snippet(`(`)
                                                                     $w.indent(($w) => {
-                                                                        $w.line(($w) => {
-                                                                            $w.snippet(`currentChild,`)
-                                                                        })
-                                                                        $w.line(($w) => {
+                                                                        $w.line(`currentChild,`)
+                                                                        $w.nestedLine(($w) => {
                                                                             $w.snippet(`($) => {`)
                                                                             $w.indent(($w) => {
                                                                                 endCallback($w)
@@ -725,18 +639,12 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                         })
                                                         $w.snippet(`} else {`)
                                                         $w.indent(($w) => {
-                                                            $w.line(($w) => {
+                                                            $w.nestedLine(($w) => {
                                                                 $w.snippet(`$x.reportUnexpectedToken({`)
                                                                 $w.indent(($w) => {
-                                                                    $w.line(($w) => {
-                                                                        $w.snippet(`path: "${path}",`)
-                                                                    })
-                                                                    $w.line(($w) => {
-                                                                        $w.snippet(`token: currentChild,`)
-                                                                    })
-                                                                    $w.line(($w) => {
-                                                                        $w.snippet(`expected: "${$.name}",`)
-                                                                    })
+                                                                    $w.line(`path: "${path}",`)
+                                                                    $w.line(`token: currentChild,`)
+                                                                    $w.line(`expected: "${$.name}",`)
                                                                 })
                                                                 $w.snippet(`})`)
                                                             })
@@ -746,21 +654,15 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                                 })
                                                 $w.snippet(`},`)
                                             })
-                                            $w.line(($w) => {
+                                            $w.nestedLine(($w) => {
                                                 $w.snippet(`() => { // no child`)
                                                 $w.indent(($w) => {
-                                                    $w.line(($w) => {
+                                                    $w.nestedLine(($w) => {
                                                         $w.snippet(`$x.reportMissingToken({`)
                                                         $w.indent(($w) => {
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`parentDetails: node.details,`)
-                                                            })
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`path: "${path}",`)
-                                                            })
-                                                            $w.line(($w) => {
-                                                                $w.snippet(`kindNameOptions: "${$.name}",`)
-                                                            })
+                                                            $w.line(`parentDetails: node.details,`)
+                                                            $w.line(`path: "${path}",`)
+                                                            $w.line(`kindNameOptions: "${$.name}",`)
                                                         })
                                                         $w.snippet(`})`)
                                                     })
@@ -780,19 +682,13 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                         grammar.globalValueTypes,
                         ($) => {
 
-                            $w.line(($w) => {
+                            $w.nestedLine(($w) => {
 
                                 $w.snippet(`function G${$.key}(`)
                                 $w.indent(($w) => {
-                                    $w.line(($w) => {
-                                        $w.snippet(`node: uast.TUntypedNode,`)
-                                    })
-                                    $w.line(($w) => {
-                                        $w.snippet(`children: pm.Stack<uast.TUntypedNode>,`)
-                                    })
-                                    $w.line(($w) => {
-                                        $w.snippet(`callback: ($: api.TG${$.key}) => void,`)
-                                    })
+                                    $w.line(`node: uast.TUntypedNode,`)
+                                    $w.line(`children: pm.Stack<uast.TUntypedNode>,`)
+                                    $w.line(`callback: ($: api.TG${$.key}) => void,`)
                                 })
                                 $w.snippet(`): void {`)
                                 $w.indent(($w) => {
@@ -801,9 +697,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                                         `G${$.key}`,
                                         $w,
                                         ($w) => {
-                                            $w.line(($w) => {
-                                                $w.snippet(`callback($)`)
-                                            })
+                                            $w.line(`callback($)`)
                                         }
                                     )
                                 })
@@ -811,7 +705,7 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                             })
                         })
 
-                    $w.line(($w) => {
+                    $w.nestedLine(($w) => {
                         $w.snippet(`if ($d.stringsAreEqual($.kindName, "${grammar.root.name}")) {`)
                         $w.indent(($w) => {
                             generateNode(
@@ -822,15 +716,11 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
 
                                     $w.snippet(`(`)
                                     $w.indent(($w) => {
-                                        $w.line(($w) => {
-                                            $w.snippet(`$,`)
-                                        })
-                                        $w.line(($w) => {
+                                        $w.line(`$,`)
+                                        $w.nestedLine(($w) => {
                                             $w.snippet(`($) => {`)
                                             $w.indent(($w) => {
-                                                $w.line(($w) => {
-                                                    $w.snippet(`$x.callback($)`)
-                                                })
+                                                $w.line(`$x.callback($)`)
                                             })
                                             $w.snippet(`},`)
                                         })
@@ -841,18 +731,12 @@ export const igenerateParser: api.CgenerateParser = ($d) => {
                         })
                         $w.snippet(`} else {`)
                         $w.indent(($w) => {
-                            $w.line(($w) => {
+                            $w.nestedLine(($w) => {
                                 $w.snippet(`$x.reportUnexpectedToken({`)
                                 $w.indent(($w) => {
-                                    $w.line(($w) => {
-                                        $w.snippet(`path: "",`)
-                                    })
-                                    $w.line(($w) => {
-                                        $w.snippet(`token: $,`)
-                                    })
-                                    $w.line(($w) => {
-                                        $w.snippet(`expected: "${grammar.root.name}",`)
-                                    })
+                                    $w.line(`path: "",`)
+                                    $w.line(`token: $,`)
+                                    $w.line(`expected: "${grammar.root.name}",`)
                                 })
                                 $w.snippet(`})`)
                             })

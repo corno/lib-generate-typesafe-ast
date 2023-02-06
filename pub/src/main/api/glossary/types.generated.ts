@@ -21,12 +21,6 @@ export type GCardinality =
 export type UCardinality = GCardinality
 export type UComposite = UValue
 
-export namespace GConfig {}
-export type GConfig = {
-    readonly 'fountainPen': mfp.TConfiguration
-}
-export type UConfig = GConfig
-
 export namespace GGenerateImplementationData {
     
     export namespace Pgeneration {}
@@ -36,7 +30,6 @@ export namespace GGenerateImplementationData {
     }
 }
 export type GGenerateImplementationData = {
-    readonly 'fpSettings': mfp.TConfiguration
     readonly 'generation': GGenerateImplementationData.Pgeneration
     readonly 'rootPath': mcommon.TPath
 }
@@ -50,7 +43,6 @@ export namespace GGenerateInterfaceData {
     }
 }
 export type GGenerateInterfaceData = {
-    readonly 'fpSettings': mfp.TConfiguration
     readonly 'generation': GGenerateInterfaceData.Pgeneration
     readonly 'rootPath': mcommon.TPath
 }

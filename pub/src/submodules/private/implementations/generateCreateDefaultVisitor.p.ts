@@ -3,37 +3,31 @@ import * as pl from "pareto-core-lib"
 import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
-import * as mmain from "../../main"
+import * as mmain from "../../../main"
 
 
-export const igenerateCreateDefaultVisitor: api.CgenerateCreateDefaultVisitor = ($d) => {
+export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {
 
-            $w.line(($w) => {
-                $w.snippet(`import * as pt from "pareto-core-types"`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`import * as api from "${$.pathToInterface}"`)
-            })
-            $w.line(($w) => { })
-            $w.line(($w) => {
+            $w.line(`import * as pt from "pareto-core-types"`)
+            $w.line(`import * as api from "${$.pathToInterface}"`)
+            $w.line(``)
+            $w.nestedLine(($w) => {
                 $w.snippet(`export function createDefaultVisistor(`)
                 $w.indent(($w) => {
-                    $w.line(($w) => {
+                    $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
-                            $w.line(($w) => {
-                                $w.snippet(`log: ($: string) => void`)
-                            })
+                            $w.line(`log: ($: string) => void`)
                         })
                         $w.snippet(`}`)
                     })
                 })
                 $w.snippet(`): api.IVisitor {`)
                 $w.indent(($w) => {
-                    $w.line(($w) => {
+                    $w.nestedLine(($w) => {
                         $w.snippet(`return {`)
                         $w.indent(($w) => {
                             function generateNode(
@@ -58,19 +52,15 @@ export const igenerateCreateDefaultVisitor: api.CgenerateCreateDefaultVisitor = 
                                     default:
                                         pl.au($.type[0])
                                 }
-                                $w.line(($w) => {
+                                $w.nestedLine(($w) => {
                                     $w.snippet(`"${path}": `)
                                     switch ($.type[0]) {
                                         case "composite":
                                             pl.cc($.type[1], ($) => {
                                                 $w.snippet(`{`)
                                                 $w.indent(($w) => {
-                                                    $w.line(($w) => {
-                                                        $w.snippet(`begin: ($) => { $i.log("${path} begin") },`)
-                                                    })
-                                                    $w.line(($w) => {
-                                                        $w.snippet(`end: ($) => { $i.log("${path} end") },`)
-                                                    })
+                                                    $w.line(`begin: ($) => { $i.log("${path} begin") },`)
+                                                    $w.line(`end: ($) => { $i.log("${path} end") },`)
                                                 })
                                                 $w.snippet(`},`)
                                             })

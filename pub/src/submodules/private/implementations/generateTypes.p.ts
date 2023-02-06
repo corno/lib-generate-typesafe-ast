@@ -3,9 +3,9 @@ import * as pl from "pareto-core-lib"
 import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
-import * as mmain from "../../main"
+import * as mmain from "../../../main"
 
-export const igenerateTypes: api.CgenerateTypes = ($d) => {
+export const $$: api.CgenerateTypes = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function generateTypesForNode(
@@ -31,10 +31,8 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                 default:
                     pl.au($.type[0])
             }
-            $w.line(($w) => {
-                $w.snippet(``)
-            })
-            $w.line(($w) => {
+            $w.line(``)
+            $w.nestedLine(($w) => {
                 $w.snippet(`export type TN${path} = `)
                 switch ($.type[0]) {
                     case "composite":
@@ -111,7 +109,7 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                 default:
                     pl.au($[0])
             }
-            $w.line(($w) => {
+            $w.nestedLine(($w) => {
                 $w.snippet(`export type TVT${path} = `)
 
                 switch ($[0]) {
@@ -122,9 +120,7 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                                 $d.sortedForEach(
                                     $.options,
                                     ($) => {
-                                        $w.line(($w) => {
-                                            $w.snippet(`| [ "${$.key}", TV${path}_${$.key}]`)
-                                        })
+                                        $w.line(`| [ "${$.key}", TV${path}_${$.key}]`)
                                     }
                                 )
                             })
@@ -140,9 +136,7 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                             $w.snippet(`{`)
                             $w.indent(($w) => {
                                 $.elements.forEach(($) => {
-                                    $w.line(($w) => {
-                                        $w.snippet(`readonly "${$.name}":  TV${path}_${$.name}`)
-                                    })
+                                    $w.line(`readonly "${$.name}":  TV${path}_${$.name}`)
                                 })
                             })
                             $w.snippet(`}`)
@@ -168,7 +162,7 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                 $w,
                 path,
             )
-            $w.line(($w) => {
+            $w.nestedLine(($w) => {
                 $w.snippet(`export type TV${path} = `)
                 if (pl.isNotUndefined($.cardinality)) {
                     switch ($.cardinality[0]) {
@@ -197,24 +191,16 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
         }
         pl.cc($i, ($w) => {
 
-            $w.line(($w) => {
-                $w.snippet(`import * as pt from "pareto-core-types"`)
-            })
-            $w.line(($w) => {
+            $w.line(`import * as pt from "pareto-core-types"`)
+            $w.nestedLine(($w) => {
             })
 
-            $w.line(($w) => {
-                $w.snippet(`import * as uast from "api-untyped-ast"`)
-            })
-            $w.line(($w) => {
+            $w.line(`import * as uast from "api-untyped-ast"`)
+            $w.nestedLine(($w) => {
             })
 
-            $w.line(($w) => {
-                $w.snippet(`export type TAnnotatedString = { readonly "tokenDetails": uast.TDetails; readonly "value": string }`)
-            })
-            $w.line(($w) => {
-                $w.snippet(`export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.TDetails; readonly "content": Type }`)
-            })
+            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": uast.TDetails; readonly "value": string }`)
+            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.TDetails; readonly "content": Type }`)
 
             $d.sortedForEach(
                 grammar.globalValueTypes,
@@ -224,9 +210,7 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                         $w,
                         `G${$.key}`,
                     )
-                    $w.line(($w) => {
-                        $w.snippet(`export type TG${$.key} = TVTG${$.key}`)
-                    })
+                    $w.line(`export type TG${$.key} = TVTG${$.key}`)
                 })
             generateTypesForNode(
                 grammar.root,
@@ -234,9 +218,7 @@ export const igenerateTypes: api.CgenerateTypes = ($d) => {
                 "root",
             )
 
-            $w.line(($w) => {
-                $w.snippet(`export type TRoot = TNroot`)
-            })
+            $w.line(`export type TRoot = TNroot`)
 
         })
 
