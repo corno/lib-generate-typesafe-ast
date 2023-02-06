@@ -1,8 +1,8 @@
 
 import * as pt from "pareto-core-types"
 
-import * as collation from "api-pareto-collation"
-import * as tostring from "api-pareto-tostring"
+import * as collation from "res-pareto-collation"
+import * as tostring from "res-pareto-tostring"
 
 import * as fp from "lib-fountain-pen"
 

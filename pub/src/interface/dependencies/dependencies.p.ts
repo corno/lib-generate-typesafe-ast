@@ -4,7 +4,6 @@ import * as tostring from "api-pareto-tostring"
 import * as fountainPen from "lib-fountain-pen"
 
 export type DDependencies = {
-    readonly "fp": fountainPen.DDependencies
     readonly "generateImp": {
         readonly "sortedForEach": collation.FSortedForEach
         readonly "getKeysAsString": tostring.FGetKeysAsString

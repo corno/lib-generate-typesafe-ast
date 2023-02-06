@@ -16,14 +16,14 @@
     "url": "git+https://github.com/corno/lib-generate-typesafe-ast.git"
   },
   "dependencies": {
-    "api-pareto-main": "^0.9.0",
-    "lib-fountain-pen": "^0.6.1",
+    "lib-fountain-pen": "^0.23.0",
+    "lib-pareto-main": "^0.7.0",
     "pareto-core-lib": "^0.17.0",
-    "pareto-core-raw": "^0.7.0",
+    "pareto-core-raw": "^0.7.4",
     "pareto-core-state": "^0.12.0",
-    "res-pareto-collation": "^0.8.0",
-    "res-pareto-filesystem": "^0.26.0",
-    "res-pareto-tostring": "^0.4.0"
+    "res-pareto-collation": "^0.11.0",
+    "res-pareto-filesystem": "^0.30.0",
+    "res-pareto-tostring": "^0.8.0"
   },
   "name": "lib-generate-typesafe-ast",
   "version": "0.3.2",

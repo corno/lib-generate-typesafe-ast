@@ -1,2 +1,2 @@
-export * from "./public/generateImplementation.p"
-export * from "./public/generateInterface.p"
+export * from "../modules/main/implementations/generateImplementation.p"
+export * from "../modules/main/implementations/generateInterface.p"

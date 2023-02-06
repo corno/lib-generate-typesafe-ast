@@ -1,4 +1,2 @@
-export * from "./interface"
-export * from "./implementation"
-export * from "./dependencies/dependencies.p"
-export * from "./data/data.p"
+export { $a } from "./modules/main"
+export * from "./modules/main/api"
