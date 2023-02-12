@@ -500,7 +500,7 @@ export function parse(
                                                                                 $x.reportUnexpectedToken({
                                                                                     path: "Gexpression_arrowFunction$_implementation",
                                                                                     token: nextChild,
-                                                                                    expected: "ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NewExpression, NoSubstitutionTemplateLiteral, NumericLiteral, NullKeyword, ObjectLiteralExpression, ParenthesizedExpression, PostfixUnaryExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword, Block",
+                                                                                    expected: "Block, ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NewExpression, NoSubstitutionTemplateLiteral, NullKeyword, NumericLiteral, ObjectLiteralExpression, ParenthesizedExpression, PostfixUnaryExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
                                                                                 })
                                                                             }
                                                                         }
@@ -509,7 +509,7 @@ export function parse(
                                                                         $x.reportMissingToken({
                                                                             parentDetails: node.details,
                                                                             path: "Gexpression_arrowFunction$_implementation",
-                                                                            kindNameOptions: "ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NewExpression, NoSubstitutionTemplateLiteral, NumericLiteral, NullKeyword, ObjectLiteralExpression, ParenthesizedExpression, PostfixUnaryExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword, Block",
+                                                                            kindNameOptions: "Block, ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NewExpression, NoSubstitutionTemplateLiteral, NullKeyword, NumericLiteral, ObjectLiteralExpression, ParenthesizedExpression, PostfixUnaryExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
                                                                         })
                                                                     },
                                                                 )
@@ -1130,7 +1130,7 @@ export function parse(
                                                         $x.reportUnexpectedToken({
                                                             path: "Gexpression_binary$_operator",
                                                             token: nextChild,
-                                                            expected: "PlusEqualsToken, PlusToken, MinusEqualsToken, MinusToken, LessThanToken, GreaterThanToken, ExclamationEqualsEqualsToken, EqualsEqualsEqualsToken, EqualsToken, BarBarToken, AmpersandAmpersandToken",
+                                                            expected: "AmpersandAmpersandToken, BarBarToken, EqualsToken, EqualsEqualsEqualsToken, ExclamationEqualsEqualsToken, GreaterThanToken, LessThanToken, MinusToken, MinusEqualsToken, PlusToken, PlusEqualsToken",
                                                         })
                                                     }
                                                 }
@@ -1139,7 +1139,7 @@ export function parse(
                                                 $x.reportMissingToken({
                                                     parentDetails: node.details,
                                                     path: "Gexpression_binary$_operator",
-                                                    kindNameOptions: "PlusEqualsToken, PlusToken, MinusEqualsToken, MinusToken, LessThanToken, GreaterThanToken, ExclamationEqualsEqualsToken, EqualsEqualsEqualsToken, EqualsToken, BarBarToken, AmpersandAmpersandToken",
+                                                    kindNameOptions: "AmpersandAmpersandToken, BarBarToken, EqualsToken, EqualsEqualsEqualsToken, ExclamationEqualsEqualsToken, GreaterThanToken, LessThanToken, MinusToken, MinusEqualsToken, PlusToken, PlusEqualsToken",
                                                 })
                                             },
                                         )
@@ -1930,7 +1930,7 @@ export function parse(
                                                                         $x.reportUnexpectedToken({
                                                                             path: "Gexpression_objectLiteral$$_name",
                                                                             token: nextChild,
-                                                                            expected: "StringLiteral, NumericLiteral, Identifier",
+                                                                            expected: "Identifier, NumericLiteral, StringLiteral",
                                                                         })
                                                                     }
                                                                 }
@@ -1939,7 +1939,7 @@ export function parse(
                                                                 $x.reportMissingToken({
                                                                     parentDetails: node.details,
                                                                     path: "Gexpression_objectLiteral$$_name",
-                                                                    kindNameOptions: "StringLiteral, NumericLiteral, Identifier",
+                                                                    kindNameOptions: "Identifier, NumericLiteral, StringLiteral",
                                                                 })
                                                             },
                                                         )
@@ -2415,7 +2415,7 @@ export function parse(
                                                                                                 $x.reportUnexpectedToken({
                                                                                                     path: "Gexpression_template$_spans$_x",
                                                                                                     token: nextChild,
-                                                                                                    expected: "TemplateTail, TemplateMiddle",
+                                                                                                    expected: "TemplateMiddle, TemplateTail",
                                                                                                 })
                                                                                             }
                                                                                         }
@@ -2424,7 +2424,7 @@ export function parse(
                                                                                         $x.reportMissingToken({
                                                                                             parentDetails: node.details,
                                                                                             path: "Gexpression_template$_spans$_x",
-                                                                                            kindNameOptions: "TemplateTail, TemplateMiddle",
+                                                                                            kindNameOptions: "TemplateMiddle, TemplateTail",
                                                                                         })
                                                                                     },
                                                                                 )
@@ -2660,7 +2660,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "Gexpression",
                             token: nextChild,
-                            expected: "TrueKeyword, TemplateExpression, StringLiteral, PropertyAccessExpression, PrefixUnaryExpression, PostfixUnaryExpression, ParenthesizedExpression, ObjectLiteralExpression, NumericLiteral, NullKeyword, NoSubstitutionTemplateLiteral, NewExpression, Identifier, FalseKeyword, ElementAccessExpression, ConditionalExpression, CallExpression, BinaryExpression, ArrowFunction, ArrayLiteralExpression",
+                            expected: "ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NewExpression, NoSubstitutionTemplateLiteral, NullKeyword, NumericLiteral, ObjectLiteralExpression, ParenthesizedExpression, PostfixUnaryExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
                         })
                     }
                 }
@@ -2669,7 +2669,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "Gexpression",
-                    kindNameOptions: "TrueKeyword, TemplateExpression, StringLiteral, PropertyAccessExpression, PrefixUnaryExpression, PostfixUnaryExpression, ParenthesizedExpression, ObjectLiteralExpression, NumericLiteral, NullKeyword, NoSubstitutionTemplateLiteral, NewExpression, Identifier, FalseKeyword, ElementAccessExpression, ConditionalExpression, CallExpression, BinaryExpression, ArrowFunction, ArrayLiteralExpression",
+                    kindNameOptions: "ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NewExpression, NoSubstitutionTemplateLiteral, NullKeyword, NumericLiteral, ObjectLiteralExpression, ParenthesizedExpression, PostfixUnaryExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
                 })
             },
         )
@@ -2876,7 +2876,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "GidentifierOrStringLiteral",
                             token: nextChild,
-                            expected: "StringLiteral, Identifier",
+                            expected: "Identifier, StringLiteral",
                         })
                     }
                 }
@@ -2885,7 +2885,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "GidentifierOrStringLiteral",
-                    kindNameOptions: "StringLiteral, Identifier",
+                    kindNameOptions: "Identifier, StringLiteral",
                 })
             },
         )
@@ -3049,7 +3049,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "Gmodifier",
                             token: nextChild,
-                            expected: "ReadonlyKeyword, ExportKeyword, DeclareKeyword",
+                            expected: "DeclareKeyword, ExportKeyword, ReadonlyKeyword",
                         })
                     }
                 }
@@ -3058,7 +3058,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "Gmodifier",
-                    kindNameOptions: "ReadonlyKeyword, ExportKeyword, DeclareKeyword",
+                    kindNameOptions: "DeclareKeyword, ExportKeyword, ReadonlyKeyword",
                 })
             },
         )
@@ -4006,7 +4006,7 @@ export function parse(
                                                                     $x.reportUnexpectedToken({
                                                                         path: "Gstatement_import$_clause$",
                                                                         token: nextChild,
-                                                                        expected: "NamespaceImport, NamedImports",
+                                                                        expected: "NamedImports, NamespaceImport",
                                                                     })
                                                                 }
                                                             }
@@ -4015,7 +4015,7 @@ export function parse(
                                                             $x.reportMissingToken({
                                                                 parentDetails: node.details,
                                                                 path: "Gstatement_import$_clause$",
-                                                                kindNameOptions: "NamespaceImport, NamedImports",
+                                                                kindNameOptions: "NamedImports, NamespaceImport",
                                                             })
                                                         },
                                                     )
@@ -4690,7 +4690,7 @@ export function parse(
                                                                             $x.reportUnexpectedToken({
                                                                                 path: "Gstatement_switch$_caseBlock$",
                                                                                 token: nextChild,
-                                                                                expected: "DefaultClause, CaseClause",
+                                                                                expected: "CaseClause, DefaultClause",
                                                                             })
                                                                         }
                                                                     }
@@ -4699,7 +4699,7 @@ export function parse(
                                                                     $x.reportMissingToken({
                                                                         parentDetails: node.details,
                                                                         path: "Gstatement_switch$_caseBlock$",
-                                                                        kindNameOptions: "DefaultClause, CaseClause",
+                                                                        kindNameOptions: "CaseClause, DefaultClause",
                                                                     })
                                                                 },
                                                             )
@@ -5277,7 +5277,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "Gstatement",
                             token: nextChild,
-                            expected: "WhileStatement, VariableStatement, TypeAliasDeclaration, TryStatement, ThrowStatement, SwitchStatement, ReturnStatement, LabeledStatement, InterfaceDeclaration, ImportDeclaration, IfStatement, FunctionDeclaration, ForStatement, ExpressionStatement, ExportDeclaration, BreakStatement, Block",
+                            expected: "Block, BreakStatement, ExportDeclaration, ExpressionStatement, ForStatement, FunctionDeclaration, IfStatement, ImportDeclaration, InterfaceDeclaration, LabeledStatement, ReturnStatement, SwitchStatement, ThrowStatement, TryStatement, TypeAliasDeclaration, VariableStatement, WhileStatement",
                         })
                     }
                 }
@@ -5286,7 +5286,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "Gstatement",
-                    kindNameOptions: "WhileStatement, VariableStatement, TypeAliasDeclaration, TryStatement, ThrowStatement, SwitchStatement, ReturnStatement, LabeledStatement, InterfaceDeclaration, ImportDeclaration, IfStatement, FunctionDeclaration, ForStatement, ExpressionStatement, ExportDeclaration, BreakStatement, Block",
+                    kindNameOptions: "Block, BreakStatement, ExportDeclaration, ExpressionStatement, ForStatement, FunctionDeclaration, IfStatement, ImportDeclaration, InterfaceDeclaration, LabeledStatement, ReturnStatement, SwitchStatement, ThrowStatement, TryStatement, TypeAliasDeclaration, VariableStatement, WhileStatement",
                 })
             },
         )
@@ -5706,7 +5706,7 @@ export function parse(
                                                     $x.reportUnexpectedToken({
                                                         path: "Gtype_literal$",
                                                         token: nextChild,
-                                                        expected: "StringLiteral, NullKeyword",
+                                                        expected: "NullKeyword, StringLiteral",
                                                     })
                                                 }
                                             }
@@ -5715,7 +5715,7 @@ export function parse(
                                             $x.reportMissingToken({
                                                 parentDetails: node.details,
                                                 path: "Gtype_literal$",
-                                                kindNameOptions: "StringLiteral, NullKeyword",
+                                                kindNameOptions: "NullKeyword, StringLiteral",
                                             })
                                         },
                                     )
@@ -6335,7 +6335,7 @@ export function parse(
                                                     $x.reportUnexpectedToken({
                                                         path: "Gtype_typeReference$_x",
                                                         token: nextChild,
-                                                        expected: "QualifiedName, Identifier",
+                                                        expected: "Identifier, QualifiedName",
                                                     })
                                                 }
                                             }
@@ -6344,7 +6344,7 @@ export function parse(
                                             $x.reportMissingToken({
                                                 parentDetails: node.details,
                                                 path: "Gtype_typeReference$_x",
-                                                kindNameOptions: "QualifiedName, Identifier",
+                                                kindNameOptions: "Identifier, QualifiedName",
                                             })
                                         },
                                     )
@@ -6649,7 +6649,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "Gtype",
                             token: nextChild,
-                            expected: "VoidKeyword, UnionType, UndefinedKeyword, TypeReference, TypeLiteral, TupleType, StringKeyword, ParenthesizedType, OptionalType, NumberKeyword, NeverKeyword, LiteralType, FunctionType, BooleanKeyword, ArrayType, AnyKeyword",
+                            expected: "AnyKeyword, ArrayType, BooleanKeyword, FunctionType, LiteralType, NeverKeyword, NumberKeyword, OptionalType, ParenthesizedType, StringKeyword, TupleType, TypeLiteral, TypeReference, UndefinedKeyword, UnionType, VoidKeyword",
                         })
                     }
                 }
@@ -6658,7 +6658,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "Gtype",
-                    kindNameOptions: "VoidKeyword, UnionType, UndefinedKeyword, TypeReference, TypeLiteral, TupleType, StringKeyword, ParenthesizedType, OptionalType, NumberKeyword, NeverKeyword, LiteralType, FunctionType, BooleanKeyword, ArrayType, AnyKeyword",
+                    kindNameOptions: "AnyKeyword, ArrayType, BooleanKeyword, FunctionType, LiteralType, NeverKeyword, NumberKeyword, OptionalType, ParenthesizedType, StringKeyword, TupleType, TypeLiteral, TypeReference, UndefinedKeyword, UnionType, VoidKeyword",
                 })
             },
         )
@@ -7235,7 +7235,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "GtypeSignature",
                             token: nextChild,
-                            expected: "PropertySignature, MethodSignature, IndexSignature, ConstructSignature",
+                            expected: "ConstructSignature, IndexSignature, MethodSignature, PropertySignature",
                         })
                     }
                 }
@@ -7244,7 +7244,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "GtypeSignature",
-                    kindNameOptions: "PropertySignature, MethodSignature, IndexSignature, ConstructSignature",
+                    kindNameOptions: "ConstructSignature, IndexSignature, MethodSignature, PropertySignature",
                 })
             },
         )

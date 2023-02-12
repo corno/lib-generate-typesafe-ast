@@ -3,7 +3,7 @@ import * as pw from 'pareto-core-raw'
 
 import * as gr from "../../../pub/dist/submodules/definition"
 
-export const $: gr.TGrammar = {
+export const $: gr.T.Grammar = {
     'globalValueTypes': pw.wrapRawDictionary({
         'block': ["node", {
             'name': `Block`,

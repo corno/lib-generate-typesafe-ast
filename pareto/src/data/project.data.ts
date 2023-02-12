@@ -71,29 +71,38 @@ export const project: mproject.T.Project = {
                         // ) => void
                     }),
                     'functions': d({
-                        "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Writer"), null),
-                        "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Writer"), null),
+                        "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, null, null),
+                        "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, null, null),
+                        "GenerateImplementation2": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Writer"), null),
+                        "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Writer"), null),
+                        "Serialize": func(typeReference("definition", "Grammar"), null, null, null)
                     }),
                     'interfaces': d({}),
                 },
                 "api": {
                     'imports': d({
-                        "private": "../../submodules/private",
                         "definition": "../../submodules/definition",
+                        "fp": "lib-fountain-pen",
+                        "private": "../../submodules/private",
                     }),
                     'algorithms': d({
-                        "generateImplementation": algorithm(definitionReference("GenerateImplementation"), constructor(null, {
-
+                        "generateImplementation": algorithm(definitionReference("GenerateImplementation")),
+                        "generateInterface": algorithm(definitionReference("GenerateInterface")),
+                        "unboundGenerateImplementation": algorithm(definitionReference("GenerateImplementation2"), constructor(null, {
                             "generateImplementationIndex": definitionReference("private", {}, "GenerateImplementationFile"),
                             "generateParser": definitionReference("private", {}, "GenerateImplementationFile"),
                             "generateCreateDefaultVisitor": definitionReference("private", {}, "GenerateImplementationFile"),
                             "generateVisit": definitionReference("private", {}, "GenerateImplementationFile"),
                         })),
-                        "generateInterface": algorithm(definitionReference("GenerateInterface"), constructor(null, {
+                        "unboundGenerateInterface": algorithm(definitionReference("GenerateInterface2"), constructor(null, {
                             "generateFunctions": definitionReference("private",  {}, "GenerateInterfaceFile"),
                             "generateInterfaceIndex": definitionReference("private", {}, "GenerateInterfaceFile"),
                             "generateTypes": definitionReference("private", {}, "GenerateInterfaceFile"),
                             "generateVisitorInterface": definitionReference("private", {}, "GenerateInterfaceFile"),
+                        })),
+                        "serialize": algorithm(definitionReference("Serialize"), constructor(null, {
+                            // "createFountainPen": definitionReference("fp", {}, "CreateWriter"),
+                            // "serialize": definitionReference("definition", {}, "Serialize"),
                         }))
                     })
                 },
@@ -104,33 +113,31 @@ export const project: mproject.T.Project = {
                 'definition': {
                     'glossary': {
                         'imports': d({
+                            "fp": "lib-fountain-pen",
                         }),
                         'parameters': d({}),
                         'types': d({
-                            "Options": type( dictionary(reference("Value"))),
-                            "Cardinality": type( taggedUnion({
-                                "one": group({}),
-                                "optional": group({}),
-                                "array": group({}),
-                            })),
-                            "SequenceElement": type( group({
-                                "name": member(string()),
-                                "value": member(reference("Value"))
-                            })),
                             "ValueType": type( taggedUnion({
                                 "reference": group({
                                     "name": member(string())
                                 }),
                                 "choice": group({
-                                    "options": member(reference("Options"))
+                                    "options": member(dictionary(reference("Value")))
                                 }),
                                 "node": reference("Node2"),
                                 "sequence": group({
-                                    "elements": member(array(reference("SequenceElement")))
+                                    "elements": member(array(group({
+                                        "name": member(string()),
+                                        "value": member(reference("Value"))
+                                    })))
                                 })
                             })),
                             "Value": type( group({
-                                "cardinality": member(reference("Cardinality"), true),
+                                "cardinality": member(taggedUnion({
+                                    "one": group({}),
+                                    "optional": group({}),
+                                    "array": group({}),
+                                }), true),
                                 "type": member(reference("ValueType")),
                             })),
                             "Grammar": type( group({
@@ -140,22 +147,27 @@ export const project: mproject.T.Project = {
                             "Node2": type( group({
                                 "name": member(string()),
                                 "type": member(taggedUnion({
-                                    "composite": reference("Composite"),
-                                    "leaf": reference("Leaf"),
+                                    "composite": reference("Value"),
+                                    "leaf": group({
+                                        "hasTextContent": member(boolean()),
+                                    }),
                                 }))
                             })),
-                            "Leaf": type( group({
-                                "hasTextContent": member(boolean()),
-
-                            })),
-                            "Composite": type( reference("Value")),
                         }),
                         'interfaces': d({}),
-                        'functions': d({}),
+                        'functions': d({
+                            "Serialize": func(typeReference("Grammar"), null, interfaceReference("fp", "Block"), null)
+                        }),
                     },
                     "api": {
-                        'imports': d({}),
-                        'algorithms': d({})
+                        'imports': d({
+                            "foreach": "res-pareto-foreach",
+                        }),
+                        'algorithms': d({
+                            "serialize": algorithm(definitionReference("Serialize"), constructor(null, {
+                                "dictionaryForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                            }))
+                        })
                     },
                 },
             },

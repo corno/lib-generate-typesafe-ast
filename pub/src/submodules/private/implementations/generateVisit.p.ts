@@ -33,7 +33,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                 $w.indent(($w) => {
 
                     function generateNode(
-                        $: mdefinition.TNode2,
+                        $: mdefinition.T.Node2,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
@@ -78,7 +78,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                         })
                     }
                     function generateValueType(
-                        $: mdefinition.TValueType,
+                        $: mdefinition.T.ValueType,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
@@ -159,7 +159,7 @@ export const $$: api.CgenerateVisit = ($d) => {
 
                     }
                     function generateValue(
-                        $: mdefinition.TValue,
+                        $: mdefinition.T.Value,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,

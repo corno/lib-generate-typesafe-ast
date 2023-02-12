@@ -2,21 +2,40 @@ import * as pl from 'pareto-core-lib'
 
 import * as api from "../api"
 
-export const $$: api.CgenerateImplementation = ($d) => {
-    return ($, $i) => {
-        $i.directory("public", ($i) => {
-            $i.file("parse.generated.ts", ($i) => {
-                $d.generateParser($.generation, $i)
+import * as mfp from "lib-fountain-pen"
+
+import { $$ as ugImp } from "./unboundGenerateImplementation.p"
+
+import * as mprivate from "../../submodules/private"
+import * as mforeach from "res-pareto-foreach"
+import * as mcoll from "res-pareto-collation"
+import * as mtostring from "res-pareto-tostring"
+
+export const $$: api.CgenerateImplementation = ($) => {
+
+    const dfe = mforeach.$a.createDictionaryForEach({
+        'compare': mcoll.$a.localeIsABeforeB,
+    })
+    mfp.$a.createWriter({
+        'onError': ($) => {
+            pl.logDebugMessage("FSDFSDSFDFSDFS")
+        },
+        'reportSuperfluousNode': ($) => {
+            pl.logDebugMessage("SDSFS")
+        },
+    })([$.rootPath], ($i) => {
+        ugImp({
+            'generateCreateDefaultVisitor': mprivate.$a.generateCreateDefaultVisitor({
+                'sortedForEach': dfe
+            }),
+            'generateImplementationIndex': mprivate.$a.generateImplementationIndex,
+            'generateParser': mprivate.$a.generateParser({
+                'getKeysAsString': mtostring.$a.getKeysAsString,
+                'sortedForEach': dfe,
+            }),
+            'generateVisit': mprivate.$a.generateVisit({
+                'sortedForEach': dfe,
             })
-            $i.file("visit.generated.ts", ($i) => {
-                $d.generateVisit($.generation, $i)
-            })
-            $i.file("createDefaultVisitor.generated.ts", ($i) => {
-                $d.generateCreateDefaultVisitor($.generation, $i)
-            })
-        })
-        $i.file("index.ts", ($i) => {
-            $d.generateImplementationIndex($.generation, $i)
-        })
-    }
+        })($, $i)
+    })
 }

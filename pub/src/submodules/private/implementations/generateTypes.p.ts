@@ -9,7 +9,7 @@ export const $$: api.CgenerateTypes = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function generateTypesForNode(
-            $: mdefinition.TNode2,
+            $: mdefinition.T.Node2,
             $w: mfp.IBlock,
             path: string
         ) {
@@ -57,7 +57,7 @@ export const $$: api.CgenerateTypes = ($d) => {
 
         }
         function generateTypesForValueType(
-            $: mdefinition.TValueType,
+            $: mdefinition.T.ValueType,
             $w: mfp.IBlock,
             path: string,
         ) {
@@ -71,8 +71,8 @@ export const $$: api.CgenerateTypes = ($d) => {
                                     $.value,
                                     $w,
                                     $d.joinNestedStrings({
-                                        strings: [path, "_", $.key],
-                                        separator: ", ",
+                                        strings: [path, $.key],
+                                        separator: "_",
                                     })
                                 )
                             })
@@ -90,8 +90,8 @@ export const $$: api.CgenerateTypes = ($d) => {
                                 $.value,
                                 $w,
                                 $d.joinNestedStrings({
-                                    strings: [path, "_", $.name],
-                                    separator: ", ",
+                                    strings: [path, $.name],
+                                    separator: "_",
                                 })
                             )
                         })
@@ -153,7 +153,7 @@ export const $$: api.CgenerateTypes = ($d) => {
             })
         }
         function generateTypesForValue(
-            $: mdefinition.TValue,
+            $: mdefinition.T.Value,
             $w: mfp.IBlock,
             path: string,
         ) {

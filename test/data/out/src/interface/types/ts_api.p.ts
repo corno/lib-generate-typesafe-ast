@@ -9,7 +9,7 @@ export type TVGblock$ = pt.Array<TVTGblock$>
 
 export type TNGblock$ = TAnnotatedType<TVGblock$>
 export type TVTGblock = TNGblock$
-export type TGblock =  TVTGblock
+export type TGblock = TVTGblock
 export type TVTGexpression_arrayLiteral$ = TGexpression
 export type TVGexpression_arrayLiteral$ = pt.Array<TVTGexpression_arrayLiteral$>
 
@@ -318,7 +318,7 @@ export type TVTGexpression =
     | [ "stringLiteral", TVGexpression_stringLiteral]
     | [ "template", TVGexpression_template]
     | [ "true", TVGexpression_true]
-export type TGexpression =  TVTGexpression
+export type TGexpression = TVTGexpression
 export type TVTGfunctionDefinition_typeParameters = TGtypeParameter
 export type TVGfunctionDefinition_typeParameters = pt.Array<TVTGfunctionDefinition_typeParameters>
 export type TVTGfunctionDefinition_parameters = TGparameter
@@ -330,11 +330,11 @@ export type TVTGfunctionDefinition = {
     readonly "parameters":  TVGfunctionDefinition_parameters
     readonly "returnType":  TVGfunctionDefinition_returnType
 }
-export type TGfunctionDefinition =  TVTGfunctionDefinition
+export type TGfunctionDefinition = TVTGfunctionDefinition
 
 export type TNGidentifier$ = TAnnotatedString
 export type TVTGidentifier = TNGidentifier$
-export type TGidentifier =  TVTGidentifier
+export type TGidentifier = TVTGidentifier
 export type TVTGidentifierOrStringLiteral_identifier = TGidentifier
 export type TVGidentifierOrStringLiteral_identifier = TVTGidentifierOrStringLiteral_identifier
 export type TVTGidentifierOrStringLiteral_stringLiteral = TGstringLiteral
@@ -342,7 +342,7 @@ export type TVGidentifierOrStringLiteral_stringLiteral = TVTGidentifierOrStringL
 export type TVTGidentifierOrStringLiteral = 
     | [ "identifier", TVGidentifierOrStringLiteral_identifier]
     | [ "stringLiteral", TVGidentifierOrStringLiteral_stringLiteral]
-export type TGidentifierOrStringLiteral =  TVTGidentifierOrStringLiteral
+export type TGidentifierOrStringLiteral = TVTGidentifierOrStringLiteral
 
 export type TNGmodifier_declare$ = uast.TDetails
 export type TVTGmodifier_declare = TNGmodifier_declare$
@@ -359,11 +359,11 @@ export type TVTGmodifier =
     | [ "declare", TVGmodifier_declare]
     | [ "export", TVGmodifier_export]
     | [ "readonly", TVGmodifier_readonly]
-export type TGmodifier =  TVTGmodifier
+export type TGmodifier = TVTGmodifier
 
 export type TNGnumericLiteral$ = TAnnotatedString
 export type TVTGnumericLiteral = TNGnumericLiteral$
-export type TGnumericLiteral =  TVTGnumericLiteral
+export type TGnumericLiteral = TVTGnumericLiteral
 export type TVTGparameter$_name = TGidentifier
 export type TVGparameter$_name = TVTGparameter$_name
 
@@ -381,7 +381,7 @@ export type TVGparameter$ = TVTGparameter$
 
 export type TNGparameter$ = TAnnotatedType<TVGparameter$>
 export type TVTGparameter = TNGparameter$
-export type TGparameter =  TVTGparameter
+export type TGparameter = TVTGparameter
 export type TVTGstatement_block = TGblock
 export type TVGstatement_block = TVTGstatement_block
 export type TVTGstatement_break$ = TGidentifier
@@ -667,11 +667,11 @@ export type TVTGstatement =
     | [ "typeAlias", TVGstatement_typeAlias]
     | [ "variable", TVGstatement_variable]
     | [ "while", TVGstatement_while]
-export type TGstatement =  TVTGstatement
+export type TGstatement = TVTGstatement
 
 export type TNGstringLiteral$ = TAnnotatedString
 export type TVTGstringLiteral = TNGstringLiteral$
-export type TGstringLiteral =  TVTGstringLiteral
+export type TGstringLiteral = TVTGstringLiteral
 
 export type TNGtype_any$ = uast.TDetails
 export type TVTGtype_any = TNGtype_any$
@@ -810,13 +810,13 @@ export type TVTGtype =
     | [ "undefined", TVGtype_undefined]
     | [ "union", TVGtype_union]
     | [ "void", TVGtype_void]
-export type TGtype =  TVTGtype
+export type TGtype = TVTGtype
 export type TVTGtypeParameter$ = TGidentifier
 export type TVGtypeParameter$ = TVTGtypeParameter$
 
 export type TNGtypeParameter$ = TAnnotatedType<TVGtypeParameter$>
 export type TVTGtypeParameter = TNGtypeParameter$
-export type TGtypeParameter =  TVTGtypeParameter
+export type TGtypeParameter = TVTGtypeParameter
 export type TVTGtypeSignature_construct$_parameters = TGparameter
 export type TVGtypeSignature_construct$_parameters = pt.Array<TVTGtypeSignature_construct$_parameters>
 export type TVTGtypeSignature_construct$_returnType = TGtype
@@ -885,7 +885,7 @@ export type TVTGtypeSignature =
     | [ "index", TVGtypeSignature_index]
     | [ "method", TVGtypeSignature_method]
     | [ "property", TVGtypeSignature_property]
-export type TGtypeSignature =  TVTGtypeSignature
+export type TGtypeSignature = TVTGtypeSignature
 export type TVTGvariableDeclaration$_name = TGidentifier
 export type TVGvariableDeclaration$_name = TVTGvariableDeclaration$_name
 export type TVTGvariableDeclaration$_type = TGtype
@@ -901,13 +901,13 @@ export type TVGvariableDeclaration$ = TVTGvariableDeclaration$
 
 export type TNGvariableDeclaration$ = TAnnotatedType<TVGvariableDeclaration$>
 export type TVTGvariableDeclaration = TNGvariableDeclaration$
-export type TGvariableDeclaration =  TVTGvariableDeclaration
+export type TGvariableDeclaration = TVTGvariableDeclaration
 export type TVTGvariableDeclarationList$ = TGvariableDeclaration
 export type TVGvariableDeclarationList$ = pt.Array<TVTGvariableDeclarationList$>
 
 export type TNGvariableDeclarationList$ = TAnnotatedType<TVGvariableDeclarationList$>
 export type TVTGvariableDeclarationList = TNGvariableDeclarationList$
-export type TGvariableDeclarationList =  TVTGvariableDeclarationList
+export type TGvariableDeclarationList = TVTGvariableDeclarationList
 export type TVTroot_statements = TGstatement
 export type TVroot_statements = pt.Array<TVTroot_statements>
 

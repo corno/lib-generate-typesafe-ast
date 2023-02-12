@@ -31,7 +31,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                         $w.snippet(`return {`)
                         $w.indent(($w) => {
                             function generateNode(
-                                $: mdefinition.TNode2,
+                                $: mdefinition.T.Node2,
                                 $w: mfp.IBlock,
                                 path: string,
                             ) {
@@ -77,7 +77,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
 
                             }
                             function generateValueType(
-                                $: mdefinition.TValueType,
+                                $: mdefinition.T.ValueType,
                                 $w: mfp.IBlock,
                                 path: string,
                             ) {
@@ -126,7 +126,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
 
                             }
                             function generateValue(
-                                $: mdefinition.TValue,
+                                $: mdefinition.T.Value,
                                 $w: mfp.IBlock,
                                 path: string,
                             ) {

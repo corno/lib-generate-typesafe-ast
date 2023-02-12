@@ -12,7 +12,7 @@ export const $$: api.CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
-            $: mdefinition.TValueType,
+            $: mdefinition.T.ValueType,
             onToken: (token: string) => void,
             onEnd: () => void,
         ) {
@@ -119,7 +119,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                     $w.line(`const $x = $i`)
                     function generateNode(
-                        $: mdefinition.TNode2,
+                        $: mdefinition.T.Node2,
                         path: string,
                         $w: mfp.IBlock,
                         call: ($w: mfp.ILine) => void
@@ -212,7 +212,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                     }
                     function generateValue(
-                        $: mdefinition.TValue,
+                        $: mdefinition.T.Value,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -397,7 +397,7 @@ export const $$: api.CgenerateParser = ($d) => {
                         }
                     }
                     function generateValueType(
-                        $: mdefinition.TValueType,
+                        $: mdefinition.T.ValueType,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -501,7 +501,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                             $w.nestedLine(($w) => {
                                                                                 $w.snippet(`expected: "${$d.getKeysAsString({
                                                                                     dictionary: possibleTokens.getDictionary().map(() => null),
-                                                                                    separator: ",",
+                                                                                    separator: ", ",
                                                                                 })}",`)
                                                                             })
                                                                         })
@@ -567,7 +567,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     function generateElements(
-                                        elements: pm.Stack<mdefinition.TSequenceElement>,
+                                        elements: pm.Stack<mdefinition.T.ValueType.sequence.elements.A>,
                                         $w: mfp.IBlock,
                                     ) {
                                         elements.pop(

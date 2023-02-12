@@ -1,29 +1,8 @@
 import * as pt from 'pareto-core-types'
 
+import * as mfp from "lib-fountain-pen"
 
 export namespace T {
-    
-    export namespace Cardinality {
-        
-        export namespace array {}
-        
-        export type array = {}
-        
-        export namespace one {}
-        
-        export type one = {}
-        
-        export namespace optional {}
-        
-        export type optional = {}
-    }
-    
-    export type Cardinality = 
-        | ['array', {}]
-        | ['one', {}]
-        | ['optional', {}]
-    
-    export type Composite = T.Value
     
     export namespace Grammar {
         
@@ -42,66 +21,70 @@ export namespace T {
         readonly 'root': T.Node2
     }
     
-    export namespace Leaf {
-        
-        export type hasTextContent = boolean
-    }
-    
-    export type Leaf = {
-        readonly 'hasTextContent': boolean
-    }
-    
     export namespace Node2 {
         
         export type name = string
         
         export namespace _ltype {
             
-            export type composite = T.Composite
+            export type composite = T.Value
             
-            export type leaf = T.Leaf
+            export namespace leaf {
+                
+                export type hasTextContent = boolean
+            }
+            
+            export type leaf = {
+                readonly 'hasTextContent': boolean
+            }
         }
         
         export type _ltype = 
-            | ['composite', T.Composite]
-            | ['leaf', T.Leaf]
+            | ['composite', T.Value]
+            | ['leaf', {
+                readonly 'hasTextContent': boolean
+            }]
     }
     
     export type Node2 = {
         readonly 'name': string
         readonly 'type': 
-            | ['composite', T.Composite]
-            | ['leaf', T.Leaf]
-    }
-    
-    export namespace Options {
-        
-        export type D = T.Value
-    }
-    
-    export type Options = pt.Dictionary<T.Value>
-    
-    export namespace SequenceElement {
-        
-        export type name = string
-        
-        export type value = T.Value
-    }
-    
-    export type SequenceElement = {
-        readonly 'name': string
-        readonly 'value': T.Value
+            | ['composite', T.Value]
+            | ['leaf', {
+                readonly 'hasTextContent': boolean
+            }]
     }
     
     export namespace Value {
         
-        export type cardinality = T.Cardinality
+        export namespace cardinality {
+            
+            export namespace array {}
+            
+            export type array = {}
+            
+            export namespace one {}
+            
+            export type one = {}
+            
+            export namespace optional {}
+            
+            export type optional = {}
+        }
+        
+        export type cardinality = 
+            | ['array', {}]
+            | ['one', {}]
+            | ['optional', {}]
         
         export type _ltype = T.ValueType
     }
     
     export type Value = {
-        readonly 'cardinality'?: T.Cardinality
+        readonly 'cardinality'?: 
+            | ['array', {}]
+            | ['one', {}]
+            | ['optional', {}]
         readonly 'type': T.ValueType
     }
     
@@ -109,11 +92,16 @@ export namespace T {
         
         export namespace choice {
             
-            export type options = T.Options
+            export namespace options {
+                
+                export type D = T.Value
+            }
+            
+            export type options = pt.Dictionary<T.Value>
         }
         
         export type choice = {
-            readonly 'options': T.Options
+            readonly 'options': pt.Dictionary<T.Value>
         }
         
         export type node = T.Node2
@@ -131,26 +119,45 @@ export namespace T {
             
             export namespace elements {
                 
-                export type A = T.SequenceElement
+                export namespace A {
+                    
+                    export type name = string
+                    
+                    export type value = T.Value
+                }
+                
+                export type A = {
+                    readonly 'name': string
+                    readonly 'value': T.Value
+                }
             }
             
-            export type elements = pt.Array<T.SequenceElement>
+            export type elements = pt.Array<{
+                readonly 'name': string
+                readonly 'value': T.Value
+            }>
         }
         
         export type sequence = {
-            readonly 'elements': pt.Array<T.SequenceElement>
+            readonly 'elements': pt.Array<{
+                readonly 'name': string
+                readonly 'value': T.Value
+            }>
         }
     }
     
     export type ValueType = 
         | ['choice', {
-            readonly 'options': T.Options
+            readonly 'options': pt.Dictionary<T.Value>
         }]
         | ['node', T.Node2]
         | ['reference', {
             readonly 'name': string
         }]
         | ['sequence', {
-            readonly 'elements': pt.Array<T.SequenceElement>
+            readonly 'elements': pt.Array<{
+                readonly 'name': string
+                readonly 'value': T.Value
+            }>
         }]
 }

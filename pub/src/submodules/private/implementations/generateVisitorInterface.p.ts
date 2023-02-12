@@ -12,12 +12,13 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
 
             $w.line(`import * as pt from 'pareto-core-types'`)
             $w.line(`import * as types from "../types/ts_api"`)
+            $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export type IVisitor = {`)
                 $w.indent(($w) => {
 
                     function generateNode(
-                        $: mdefinition.TNode2,
+                        $: mdefinition.T.Node2,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
@@ -65,7 +66,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                         })
                     }
                     function generateValueType(
-                        $: mdefinition.TValueType,
+                        $: mdefinition.T.ValueType,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
@@ -118,7 +119,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
 
                     }
                     function generateValue(
-                        $: mdefinition.TValue,
+                        $: mdefinition.T.Value,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,

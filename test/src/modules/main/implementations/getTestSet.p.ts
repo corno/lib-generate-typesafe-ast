@@ -8,43 +8,32 @@ import * as pub from "../../../../../pub"
 
 import * as mtest from "lib-pareto-test"
 
+import { $ as grammar } from "../../../data/typescriptGrammar.data"
+
 export const $$: api.CgetTestSet = ($) => {
+
+
+    pub.$a.serialize({})(grammar)
 
     pub.$a.generateInterface(
         {
             rootPath: [$.testDirectory, "out", "src", "interface"],
-            fpSettings: config.config.fp,
             generation: {
-                grammar: config.grammar,
+                grammar: grammar,
             },
         },
-        // {
-        //     onError: ($) => {
-        //         pl.panic(`write file stream error: ${$.error[0]}, ${$.error[1]}, ${$.path}`)
-        //     }
-        // },
-        $d,
-        $a,
     )
-    // pub.p_generateImplementation(
-    //     {
-    //         rootPath: [$.testDirectory, "out", "src", "imp"],
-    //         fpSettings: config.config.fp,
-    //         generation: {
-    //             grammar: config.grammar,
-    //             pathToInterface: "../interface",
-    //         },
-    //     },
-    //     // {
-    //     //     onError: ($) => {
-    //     //         pl.panic(`write file stream error: ${$.error[0]}, ${$.error[1]}, ${$.path}`)
-    //     //     }
-    //     // },
-    //     $d,
-    //     $a,
-    // )
+    pub.$a.generateImplementation(
+        {
+            rootPath: [$.testDirectory, "out", "src", "imp"],
+            generation: {
+                grammar: grammar,
+                pathToInterface: "../interface",
+            },
+        },
+    )
 
-    const builder = pm.createUnsafeDictionaryBuilder<mtest.TTestElement>()
+    const builder = pm.createUnsafeDictionaryBuilder<mtest.T.TestElement>()
     function createTest(name: string, actual: string, expected: string) {
         builder.add(name, {
             type: ["test", {
