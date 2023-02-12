@@ -1,18 +1,18 @@
 
-import * as pl from "pareto-core-lib"
-import * as pm from "pareto-core-state"
-import * as pr from "pareto-core-raw"
+import * as pl from 'pareto-core-lib'
+import * as pm from 'pareto-core-state'
+import * as pr from 'pareto-core-raw'
 
 import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
-import * as mmain from "../../../main"
+import * as mdefinition from "../../definition"
 
 export const $$: api.CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
-            $: mmain.TValueType,
+            $: mdefinition.TValueType,
             onToken: (token: string) => void,
             onEnd: () => void,
         ) {
@@ -82,8 +82,8 @@ export const $$: api.CgenerateParser = ($d) => {
             }
         }
         pl.cc($i, ($w) => {
-            $w.line(`import * as pl from "pareto-core-lib"`)
-            $w.line(`import * as pm from "pareto-core-state"`)
+            $w.line(`import * as pl from 'pareto-core-lib'`)
+            $w.line(`import * as pm from 'pareto-core-state'`)
             $w.line(`import * as uast from "api-untyped-ast"`)
 
             $w.line(`import * as api from "${$.pathToInterface}"`)
@@ -119,7 +119,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                     $w.line(`const $x = $i`)
                     function generateNode(
-                        $: mmain.TNode2,
+                        $: mdefinition.TNode2,
                         path: string,
                         $w: mfp.IBlock,
                         call: ($w: mfp.ILine) => void
@@ -212,7 +212,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                     }
                     function generateValue(
-                        $: mmain.TValue,
+                        $: mdefinition.TValue,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -397,7 +397,7 @@ export const $$: api.CgenerateParser = ($d) => {
                         }
                     }
                     function generateValueType(
-                        $: mmain.TValueType,
+                        $: mdefinition.TValueType,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -500,7 +500,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                             $w.line(`token: nextChild,`)
                                                                             $w.nestedLine(($w) => {
                                                                                 $w.snippet(`expected: "${$d.getKeysAsString({
-                                                                                    dictionary: possibleTokens.getDictionary(),
+                                                                                    dictionary: possibleTokens.getDictionary().map(() => null),
                                                                                     separator: ",",
                                                                                 })}",`)
                                                                             })
@@ -527,7 +527,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                             $w.line(`path: "${path}",`)
                                                             $w.nestedLine(($w) => {
                                                                 $w.snippet(`kindNameOptions: "${$d.getKeysAsString({
-                                                                    dictionary: possibleTokens.getDictionary(),
+                                                                    dictionary: possibleTokens.getDictionary().map(() => null),
                                                                     separator: ", ",
                                                                 })}",`)
                                                             })
@@ -567,7 +567,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     function generateElements(
-                                        elements: pm.Stack<mmain.TSequenceElement>,
+                                        elements: pm.Stack<mdefinition.TSequenceElement>,
                                         $w: mfp.IBlock,
                                     ) {
                                         elements.pop(

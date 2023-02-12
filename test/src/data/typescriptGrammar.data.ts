@@ -1,15 +1,14 @@
 
-import * as pw from "pareto-core-raw"
+import * as pw from 'pareto-core-raw'
 
-import * as gr from "../../../pub/dist"
+import * as gr from "../../../pub/dist/submodules/definition"
 
-
-export const _typescriptGrammar: gr.TGrammar = {
+export const $: gr.TGrammar = {
     'globalValueTypes': pw.wrapRawDictionary({
         'block': ["node", {
             'name': `Block`,
             'type': ["composite", {
-                'cardinality': ["array", null],
+                'cardinality': ["array", {}],
                 'type': ["reference", { 'name': `statement` }]
             }],
         }],
@@ -19,7 +18,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `ArrayLiteralExpression`,
                         'type': ["composite", {
-                            'cardinality': ["array", null],
+                            'cardinality': ["array", {}],
                             'type': ["reference", { 'name': `expression` }],
                         }],
                     }]
@@ -33,7 +32,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", {
                                                 'name': `parameter`
                                             }]
@@ -42,7 +41,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `returnType`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["reference", { 'name': `type` }],
                                         }
                                     },
@@ -184,21 +183,21 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `function`,
                                         'value': {
-                                            "cardinality": ["one", null],
+                                            "cardinality": ["one", {}],
                                             'type': ["reference", { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `typeParameters`,
                                         'value': {
-                                            "cardinality": ["array", null],
+                                            "cardinality": ["array", {}],
                                             'type': ["reference", { 'name': `type` }],
                                         }
                                     },
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            "cardinality": ["array", null],
+                                            "cardinality": ["array", {}],
                                             'type': ["reference", { 'name': `expression` }]
                                         }
                                     },
@@ -305,7 +304,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `expression` }],
                                         }
                                     },
@@ -335,7 +334,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `ObjectLiteralExpression`,
                         'type': ["composite", {
-                            'cardinality': ["array", null],
+                            'cardinality': ["array", {}],
                             'type': ["node", {
                                 'name': `PropertyAssignment`,
                                 'type': ["composite", {
@@ -448,7 +447,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `spans`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["node", {
                                                 'name': `TemplateSpan`,
                                                 'type': ["composite", {
@@ -505,7 +504,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 {
                     'name': `typeParameters`,
                     'value': {
-                        'cardinality': ["array", null],
+                        'cardinality': ["array", {}],
                         'type': ["reference", {
                             'name': `typeParameter`
                         }]
@@ -514,7 +513,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 {
                     'name': `parameters`,
                     'value': {
-                        'cardinality': ["array", null],
+                        'cardinality': ["array", {}],
                         'type': ["reference", {
                             'name': `parameter`
                         }]
@@ -523,7 +522,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                 {
                     'name': `returnType`,
                     'value': {
-                        'cardinality': ["optional", null],
+                        'cardinality': ["optional", {}],
                         'type': ["reference", { 'name': `type` }],
                     },
                 },
@@ -590,7 +589,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                         {
                             'name': `questionToken`,
                             'value': {
-                                'cardinality': ["optional", null],
+                                'cardinality': ["optional", {}],
                                 'type': ["node", {
                                     'name': `QuestionToken`,
                                     'type': ["leaf", { 'hasTextContent': false }],
@@ -600,7 +599,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                         {
                             'name': `type`,
                             'value': {
-                                'cardinality': ["optional", null],
+                                'cardinality': ["optional", {}],
                                 'type': ["reference", { 'name': `type` }],
                             }
                         }
@@ -619,7 +618,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `BreakStatement`,
                         'type': ["composite", {
-                            'cardinality': ["optional", null],
+                            'cardinality': ["optional", {}],
                             'type': ["reference", {
                                 'name': `identifier`
                             }],
@@ -653,7 +652,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `initializer`,
                                         'value': {
-                                            "cardinality": ["one", null],
+                                            "cardinality": ["one", {}],
                                             'type': ["reference", {
                                                 'name': `variableDeclarationList`
                                             }]
@@ -662,21 +661,21 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `condition`,
                                         'value': {
-                                            "cardinality": ["one", null],
+                                            "cardinality": ["one", {}],
                                             'type': ["reference", { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `incrementer`,
                                         'value': {
-                                            "cardinality": ["one", null],
+                                            "cardinality": ["one", {}],
                                             'type': ["reference", { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `block`,
                                         'value': {
-                                            "cardinality": ["one", null],
+                                            "cardinality": ["one", {}],
                                             'type': ["reference", {
                                                 'name': `block`,
                                             }]
@@ -696,7 +695,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `modifier` }]
                                         },
                                     },
@@ -719,7 +718,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `block`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["reference", {
                                                 'name': `block`
                                             }]
@@ -751,7 +750,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `elseStatement`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["reference", { 'name': `statement` }],
                                         },
                                     },
@@ -788,7 +787,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                                                 'type': ["node", {
                                                                     'name': `NamedImports`,
                                                                     'type': ["composite", {
-                                                                        'cardinality': ["array", null],
+                                                                        'cardinality': ["array", {}],
                                                                         'type': ["node", {
                                                                             'name': `ImportSpecifier`,
                                                                             'type': ["composite", {
@@ -805,7 +804,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                                                                         {
                                                                                             'name': `as`,
                                                                                             'value': {
-                                                                                                'cardinality': ["optional", null],
+                                                                                                'cardinality': ["optional", {}],
                                                                                                 'type': ["reference", {
                                                                                                     'name': `identifier`
                                                                                                 }],
@@ -846,7 +845,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `modifier` }]
                                         },
                                     },
@@ -861,7 +860,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `typeParameters`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", {
                                                 'name': `typeParameter`
                                             }]
@@ -870,7 +869,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `signature`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `typeSignature` }]
                                         },
                                     },
@@ -908,7 +907,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `ReturnStatement`,
                         'type': ["composite", {
-                            'cardinality': ["optional", null],
+                            'cardinality': ["optional", {}],
                             'type': ["reference", { 'name': `expression` }],
                         }],
                     }]
@@ -931,7 +930,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                             'type': ["node", {
                                                 'name': `CaseBlock`,
                                                 'type': ["composite", {
-                                                    'cardinality': ["array", null],
+                                                    'cardinality': ["array", {}],
                                                     'type': ["choice", {
                                                         'options': pw.wrapRawDictionary({
                                                             "case": {
@@ -949,7 +948,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                                                                 {
                                                                                     'name': `statements`,
                                                                                     'value': {
-                                                                                        'cardinality': ["array", null],
+                                                                                        'cardinality': ["array", {}],
                                                                                         'type': ["reference", { 'name': `statement` }]
                                                                                     },
                                                                                 }
@@ -962,7 +961,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                                                 'type': ["node", {
                                                                     'name': `DefaultClause`,
                                                                     'type': ["composite", {
-                                                                        'cardinality': ["array", null],
+                                                                        'cardinality': ["array", {}],
                                                                         'type': ["reference", { 'name': `statement` }]
                                                                     }]
                                                                 }]
@@ -1044,7 +1043,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `modifier` }]
                                         },
                                     },
@@ -1059,7 +1058,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `typeParameters`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", {
                                                 'name': `typeParameter`
                                             }]
@@ -1085,7 +1084,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `modifier` }]
                                         },
                                     },
@@ -1164,7 +1163,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", {
                                                 'name': `parameter`
                                             }]
@@ -1173,7 +1172,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `returnType`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["reference", { 'name': `type` }],
                                         },
                                     }
@@ -1236,7 +1235,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `TupleType`,
                         'type': ["composite", {
-                            'cardinality': ["array", null],
+                            'cardinality': ["array", {}],
                             'type': ["reference", { 'name': `type` }],
                         }],
                     }]
@@ -1245,7 +1244,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `TypeLiteral`,
                         'type': ["composite", {
-                            'cardinality': ["array", null],
+                            'cardinality': ["array", {}],
                             'type': ["reference", { 'name': `typeSignature` }],
                         }],
                     }]
@@ -1265,7 +1264,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `x`,
                                         'value': {
-                                            "cardinality": ["one", null],
+                                            "cardinality": ["one", {}],
                                             'type': ["choice", {
                                                 'options': pw.wrapRawDictionary({
                                                     "identifier": {
@@ -1307,7 +1306,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            "cardinality": ["array", null],
+                                            "cardinality": ["array", {}],
                                             'type': ["reference", { 'name': `type` }],
                                         }
                                     },
@@ -1326,7 +1325,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     'type': ["node", {
                         'name': `UnionType`,
                         'type': ["composite", {
-                            'cardinality': ["array", null],
+                            'cardinality': ["array", {}],
                             'type': ["reference", { 'name': `type` }],
                         }],
                     }]
@@ -1358,7 +1357,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", {
                                                 'name': `parameter`
                                             }]
@@ -1386,7 +1385,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `modifier` }]
                                         },
                                     },
@@ -1401,7 +1400,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `type`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["reference", { 'name': `type` }],
                                         },
                                     },
@@ -1446,7 +1445,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", null],
+                                            'cardinality': ["array", {}],
                                             'type': ["reference", { 'name': `modifier` }]
                                         },
                                     },
@@ -1459,7 +1458,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `quesionToken`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["node", {
                                                 'name': `QuestionToken`,
                                                 'type': ["leaf", { 'hasTextContent': false }],
@@ -1469,7 +1468,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                                     {
                                         'name': `type`,
                                         'value': {
-                                            'cardinality': ["optional", null],
+                                            'cardinality': ["optional", {}],
                                             'type': ["reference", { 'name': `type` }],
                                         },
                                     }
@@ -1496,14 +1495,14 @@ export const _typescriptGrammar: gr.TGrammar = {
                         {
                             'name': `type`,
                             'value': {
-                                'cardinality': ["optional", null],
+                                'cardinality': ["optional", {}],
                                 'type': ["reference", { 'name': `type` }],
                             },
                         },
                         {
                             'name': `expression`,
                             'value': {
-                                'cardinality': ["optional", null],
+                                'cardinality': ["optional", {}],
                                 'type': ["reference", { 'name': `expression` }],
                             },
                         },
@@ -1514,7 +1513,7 @@ export const _typescriptGrammar: gr.TGrammar = {
         'variableDeclarationList': ["node", {
             'name': `VariableDeclarationList`,
             'type': ["composite", {
-                'cardinality': ["array", null],
+                'cardinality': ["array", {}],
                 'type': ["reference", {
                     'name': `variableDeclaration`
                 }]
@@ -1529,7 +1528,7 @@ export const _typescriptGrammar: gr.TGrammar = {
                     {
                         'name': `statements`,
                         'value': {
-                            'cardinality': ["array", null],
+                            'cardinality': ["array", {}],
                             'type': ["reference", { 'name': `statement` }]
                         },
                     },

@@ -4,6 +4,7 @@ import * as glo from "./glossary"
 
 import * as mforeach from "res-pareto-foreach"
 import * as mfp from "lib-fountain-pen"
+import * as mtostring from "res-pareto-tostring"
 
 export type CgenerateCreateDefaultVisitor = ($d: {
     readonly 'sortedForEach': mforeach.FDictionaryForEach
@@ -16,10 +17,12 @@ export type CgenerateImplementationIndex = glo.FGenerateImplementationFile
 export type CgenerateInterfaceIndex = glo.FGenerateInterfaceFile
 
 export type CgenerateParser = ($d: {
+    readonly 'getKeysAsString': mtostring.FGetKeysAsString
     readonly 'sortedForEach': mforeach.FDictionaryForEach
 }) => glo.FGenerateImplementationFile
 
 export type CgenerateTypes = ($d: {
+    readonly 'joinNestedStrings': mtostring.FJoinNestedStrings
     readonly 'sortedForEach': mforeach.FDictionaryForEach
 }) => glo.FGenerateInterfaceFile
 

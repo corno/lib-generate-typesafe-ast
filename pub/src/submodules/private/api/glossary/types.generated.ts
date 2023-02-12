@@ -1,17 +1,28 @@
 import * as pt from 'pareto-core-types'
 
+import * as mdefinition from "../../../definition"
 import * as mfp from "lib-fountain-pen"
-import * as mmain from "../../../../main"
 
-export namespace GGenerateImplementationFileData {}
-export type GGenerateImplementationFileData = {
-    readonly 'grammar': mmain.TGrammar
-    readonly 'pathToInterface': string
+export namespace T {
+    
+    export namespace GenerateImplementationFileData {
+        
+        export type grammar = mdefinition.T.Grammar
+        
+        export type pathToInterface = string
+    }
+    
+    export type GenerateImplementationFileData = {
+        readonly 'grammar': mdefinition.T.Grammar
+        readonly 'pathToInterface': string
+    }
+    
+    export namespace GenerateInterfaceFileData {
+        
+        export type grammar = mdefinition.T.Grammar
+    }
+    
+    export type GenerateInterfaceFileData = {
+        readonly 'grammar': mdefinition.T.Grammar
+    }
 }
-export type UGenerateImplementationFileData = GGenerateImplementationFileData
-
-export namespace GGenerateInterfaceFileData {}
-export type GGenerateInterfaceFileData = {
-    readonly 'grammar': mmain.TGrammar
-}
-export type UGenerateInterfaceFileData = GGenerateInterfaceFileData

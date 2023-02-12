@@ -1,15 +1,15 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
-import * as mmain from "../../../main"
+import * as mdefinition from "../../definition"
 
 export const $$: api.CgenerateTypes = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function generateTypesForNode(
-            $: mmain.TNode2,
+            $: mdefinition.TNode2,
             $w: mfp.IBlock,
             path: string
         ) {
@@ -57,7 +57,7 @@ export const $$: api.CgenerateTypes = ($d) => {
 
         }
         function generateTypesForValueType(
-            $: mmain.TValueType,
+            $: mdefinition.TValueType,
             $w: mfp.IBlock,
             path: string,
         ) {
@@ -153,7 +153,7 @@ export const $$: api.CgenerateTypes = ($d) => {
             })
         }
         function generateTypesForValue(
-            $: mmain.TValue,
+            $: mdefinition.TValue,
             $w: mfp.IBlock,
             path: string,
         ) {
@@ -191,7 +191,7 @@ export const $$: api.CgenerateTypes = ($d) => {
         }
         pl.cc($i, ($w) => {
 
-            $w.line(`import * as pt from "pareto-core-types"`)
+            $w.line(`import * as pt from 'pareto-core-types'`)
             $w.nestedLine(($w) => {
             })
 

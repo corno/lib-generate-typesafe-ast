@@ -1,77 +1,26 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 import * as api from "../api"
 
-import * as mfp from "lib-fountain-pen"
-import * as mcommon from "glo-pareto-common"
-import * as mprivate from "../../submodules/private"
-
 export const $$: api.CgenerateInterface = ($d) => {
-    return ($) => {
-
-        const conf = $
-
-        function generateFile(
-            $: mcommon.TPath,
-            $x: {
-                func: mprivate.XGenerateInterfaceFile,
-            }
-        ) {
-
-            $d.createWriteStream(
-                {
-                    path: $,
-                    createContainingDirectories: true,
-                },
-                ($i) => {
-                    mfp.$a.createUnboundFountainPen(
-                        conf.fpSettings,
-                        ($i) => {
-                            $x.func(
-                                conf.generation,
-                                {
-                                    block: $i,
-                                },
-                                $d.generateInf
-                            )
-
-                        },
-                        $i,
-                        $d.fp,
-
-                    )
-                },
-                {
-                    onError: ($) => {
-                        pl.implementMe("@#@#$@")
-                    }
-                },
-            )
-        }
-
-        generateFile(
-            'types/ts_api.generated.ts',
-            {
-                func: mprivate.$a.generateTypes
-            },
-        )
-        generateFile(
-            'interfaces/visitor.generated.ts',
-            {
-                func: mprivate.$a.generateVisitorInterface
-            },
-        )
-        generateFile(
-            'algorithms/algorithms.generated.ts',
-            {
-                func: mprivate.$a.generateVisitorInterface
-            },
-        )
-        generateFile(
-            'index.ts',
-            {
-                func: mprivate.$a.generateInterfaceIndex
-            },
-        )
+    return ($, $i) => {
+        $i.directory("types", ($i) => {
+            $i.file("ts_api.generated.ts", ($i) => {
+                $d.generateTypes($.generation, $i)
+            })
+        })
+        $i.directory("interfaces", ($i) => {
+            $i.file("visitor.generated.ts", ($i) => {
+                $d.generateVisitorInterface($.generation, $i)
+            })
+        })
+        $i.directory("algorithms", ($i) => {
+            $i.file("algorithms.generated.ts", ($i) => {
+                $d.generateVisitorInterface($.generation, $i)
+            })
+        })
+        $i.file("index.ts", ($i) => {
+            $d.generateInterfaceIndex($.generation, $i)
+        })
     }
 }

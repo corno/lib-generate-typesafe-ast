@@ -1,4 +1,4 @@
-import * as pt from "pareto-core-types"
+import * as pt from 'pareto-core-types'
 import * as types from "../types/ts_api"
 
 export type IVisitor = {

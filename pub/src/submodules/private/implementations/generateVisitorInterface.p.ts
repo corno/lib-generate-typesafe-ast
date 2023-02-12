@@ -1,8 +1,8 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 import * as api from "../api"
 
-import * as mmain from "../../../main"
+import * as mdefinition from "../../definition"
 import * as mfp from "lib-fountain-pen"
 
 export const $$: api.CgenerateVisitorInterface = ($d) => {
@@ -10,14 +10,14 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {
 
-            $w.line(`import * as pt from "pareto-core-types"`)
+            $w.line(`import * as pt from 'pareto-core-types'`)
             $w.line(`import * as types from "../types/ts_api"`)
             $w.nestedLine(($w) => {
                 $w.snippet(`export type IVisitor = {`)
                 $w.indent(($w) => {
 
                     function generateNode(
-                        $: mmain.TNode2,
+                        $: mdefinition.TNode2,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
@@ -65,7 +65,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                         })
                     }
                     function generateValueType(
-                        $: mmain.TValueType,
+                        $: mdefinition.TValueType,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
@@ -118,7 +118,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
 
                     }
                     function generateValue(
-                        $: mmain.TValue,
+                        $: mdefinition.TValue,
                         $w: mfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
