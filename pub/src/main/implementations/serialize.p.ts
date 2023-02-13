@@ -17,14 +17,13 @@ export const $$: api.Cserialize = ($d) => {
             'reportSuperfluousNode': ($) => {
                 pl.logDebugMessage("SDSFS")
             },
-        })([], ($i) => {
-            $i.file("FOOOBAR.ts", ($i) => {
-                pl.logDebugMessage("JA HOOR")
+        })([$.rootPath], ($i) => {
+            $i.file("serialized.data.ts", ($i) => {
                 def.$a.serialize({
                     "dictionaryForEach": mforeach.$a.createDictionaryForEach({
                         "compare": mcollation.$a.localeIsABeforeB
                     })
-                })($, $i)
+                })($.grammar, $i)
             })
         })
     }

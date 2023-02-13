@@ -13,7 +13,10 @@ import { $ as grammar } from "../../../data/typescriptGrammar.data"
 export const $$: api.CgetTestSet = ($) => {
 
 
-    pub.$a.serialize({})(grammar)
+    pub.$a.serialize({})({
+        'rootPath': [$.testDirectory, "serialized"],
+        'grammar': grammar
+    })
 
     pub.$a.generateInterface(
         {

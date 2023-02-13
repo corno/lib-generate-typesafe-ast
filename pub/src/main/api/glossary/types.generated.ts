@@ -51,4 +51,16 @@ export namespace T {
         }
         readonly 'rootPath': mcommon.T.Path
     }
+    
+    export namespace SerializeData {
+        
+        export type grammar = mdefinition.T.Grammar
+        
+        export type rootPath = mcommon.T.Path
+    }
+    
+    export type SerializeData = {
+        readonly 'grammar': mdefinition.T.Grammar
+        readonly 'rootPath': mcommon.T.Path
+    }
 }

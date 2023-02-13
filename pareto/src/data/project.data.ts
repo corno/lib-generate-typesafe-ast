@@ -39,7 +39,7 @@ export const project: mproject.T.Project = {
                         // "Config": group({
                         //     "fountainPen": member(reference("fp", "Configuration"))
                         // }),
-                        "GenerateImplementationData": type( group({
+                        "GenerateImplementationData": type(group({
                             "rootPath": member(reference("common", "Path")),
                             //"fpSettings": member(reference("fp", "Configuration")),
                             "generation": member(group({
@@ -47,35 +47,24 @@ export const project: mproject.T.Project = {
                                 "pathToInterface": member(string()),
                             })),
                         })),
-                        "GenerateInterfaceData": type( group({
+                        "GenerateInterfaceData": type(group({
                             "rootPath": member(reference("common", "Path")),
                             //"fpSettings": member(reference("fp", "Configuration")),
                             "generation": member(group({
                                 "grammar": member(reference("definition", "Grammar")),
                             })),
                         })),
-
-
-                        // export type FGenerateImplementation = (
-                        //     $: {
-                        //         readonly "rootPath": fs.TPath,
-                        //         readonly "fpSettings": fp.TConfiguration,
-                        //         readonly "generation": {
-                        //             readonly "grammar": TGrammar
-                        //             readonly "pathToInterface": string
-                        //         }
-
-                        //     },
-                        //     $d: DDependencies,
-                        //     $a: pt.ProcessAsyncValue,
-                        // ) => void
+                        "SerializeData": type(group({
+                            "rootPath": member(reference("common", "Path")),
+                            "grammar": member(reference("definition", "Grammar")),
+                        })),
                     }),
                     'functions': d({
                         "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, null, null),
                         "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, null, null),
                         "GenerateImplementation2": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Writer"), null),
                         "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Writer"), null),
-                        "Serialize": func(typeReference("definition", "Grammar"), null, null, null)
+                        "Serialize": func(typeReference("SerializeData"), null, null, null)
                     }),
                     'interfaces': d({}),
                 },
@@ -95,7 +84,7 @@ export const project: mproject.T.Project = {
                             "generateVisit": definitionReference("private", {}, "GenerateImplementationFile"),
                         })),
                         "unboundGenerateInterface": algorithm(definitionReference("GenerateInterface2"), constructor(null, {
-                            "generateFunctions": definitionReference("private",  {}, "GenerateInterfaceFile"),
+                            "generateFunctions": definitionReference("private", {}, "GenerateInterfaceFile"),
                             "generateInterfaceIndex": definitionReference("private", {}, "GenerateInterfaceFile"),
                             "generateTypes": definitionReference("private", {}, "GenerateInterfaceFile"),
                             "generateVisitorInterface": definitionReference("private", {}, "GenerateInterfaceFile"),
@@ -117,7 +106,7 @@ export const project: mproject.T.Project = {
                         }),
                         'parameters': d({}),
                         'types': d({
-                            "ValueType": type( taggedUnion({
+                            "ValueType": type(taggedUnion({
                                 "reference": group({
                                     "name": member(string())
                                 }),
@@ -132,7 +121,7 @@ export const project: mproject.T.Project = {
                                     })))
                                 })
                             })),
-                            "Value": type( group({
+                            "Value": type(group({
                                 "cardinality": member(taggedUnion({
                                     "one": group({}),
                                     "optional": group({}),
@@ -140,11 +129,11 @@ export const project: mproject.T.Project = {
                                 }), true),
                                 "type": member(reference("ValueType")),
                             })),
-                            "Grammar": type( group({
+                            "Grammar": type(group({
                                 "globalValueTypes": member(dictionary(reference("ValueType"))),
                                 "root": member(reference("Node2"))
                             })),
-                            "Node2": type( group({
+                            "Node2": type(group({
                                 "name": member(string()),
                                 "type": member(taggedUnion({
                                     "composite": reference("Value"),
@@ -180,10 +169,10 @@ export const project: mproject.T.Project = {
                         }),
                         'parameters': d({}),
                         'types': d({
-                            "GenerateInterfaceFileData": type( group({
+                            "GenerateInterfaceFileData": type(group({
                                 "grammar": member(reference("definition", "Grammar")),
                             })),
-                            "GenerateImplementationFileData": type( group({
+                            "GenerateImplementationFileData": type(group({
                                 "grammar": member(reference("definition", "Grammar")),
                                 "pathToInterface": member(string()),
                             })),
