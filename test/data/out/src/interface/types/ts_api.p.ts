@@ -1,9 +1,9 @@
 import * as pt from 'pareto-core-types'
 
-import * as uast from "api-untyped-ast"
+import * as uast from "glo-typescript-untyped-ast"
 
-export type TAnnotatedString = { readonly "tokenDetails": uast.TDetails; readonly "value": string }
-export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.TDetails; readonly "content": Type }
+export type TAnnotatedString = { readonly "tokenDetails": uast.T.Details; readonly "value": string }
+export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.T.Details; readonly "content": Type }
 export type TVTGblock$ = TGstatement
 export type TVGblock$ = pt.Array<TVTGblock$>
 
@@ -21,7 +21,7 @@ export type TVGexpression_arrowFunction$_parameters = pt.Array<TVTGexpression_ar
 export type TVTGexpression_arrowFunction$_returnType = TGtype
 export type TVGexpression_arrowFunction$_returnType = null | TVTGexpression_arrowFunction$_returnType
 
-export type TNGexpression_arrowFunction$_equalsGreaterThan$ = uast.TDetails
+export type TNGexpression_arrowFunction$_equalsGreaterThan$ = uast.T.Details
 export type TVTGexpression_arrowFunction$_equalsGreaterThan = TNGexpression_arrowFunction$_equalsGreaterThan$
 export type TVGexpression_arrowFunction$_equalsGreaterThan = TVTGexpression_arrowFunction$_equalsGreaterThan
 export type TVTGexpression_arrowFunction$_implementation_block = TGblock
@@ -46,47 +46,47 @@ export type TVGexpression_arrowFunction = TVTGexpression_arrowFunction
 export type TVTGexpression_binary$_leftHandSide = TGexpression
 export type TVGexpression_binary$_leftHandSide = TVTGexpression_binary$_leftHandSide
 
-export type TNGexpression_binary$_operator_ampersandAmpersand$ = uast.TDetails
+export type TNGexpression_binary$_operator_ampersandAmpersand$ = uast.T.Details
 export type TVTGexpression_binary$_operator_ampersandAmpersand = TNGexpression_binary$_operator_ampersandAmpersand$
 export type TVGexpression_binary$_operator_ampersandAmpersand = TVTGexpression_binary$_operator_ampersandAmpersand
 
-export type TNGexpression_binary$_operator_barBar$ = uast.TDetails
+export type TNGexpression_binary$_operator_barBar$ = uast.T.Details
 export type TVTGexpression_binary$_operator_barBar = TNGexpression_binary$_operator_barBar$
 export type TVGexpression_binary$_operator_barBar = TVTGexpression_binary$_operator_barBar
 
-export type TNGexpression_binary$_operator_equals$ = uast.TDetails
+export type TNGexpression_binary$_operator_equals$ = uast.T.Details
 export type TVTGexpression_binary$_operator_equals = TNGexpression_binary$_operator_equals$
 export type TVGexpression_binary$_operator_equals = TVTGexpression_binary$_operator_equals
 
-export type TNGexpression_binary$_operator_equalsEqualsEquals$ = uast.TDetails
+export type TNGexpression_binary$_operator_equalsEqualsEquals$ = uast.T.Details
 export type TVTGexpression_binary$_operator_equalsEqualsEquals = TNGexpression_binary$_operator_equalsEqualsEquals$
 export type TVGexpression_binary$_operator_equalsEqualsEquals = TVTGexpression_binary$_operator_equalsEqualsEquals
 
-export type TNGexpression_binary$_operator_exclamationEqualsEquals$ = uast.TDetails
+export type TNGexpression_binary$_operator_exclamationEqualsEquals$ = uast.T.Details
 export type TVTGexpression_binary$_operator_exclamationEqualsEquals = TNGexpression_binary$_operator_exclamationEqualsEquals$
 export type TVGexpression_binary$_operator_exclamationEqualsEquals = TVTGexpression_binary$_operator_exclamationEqualsEquals
 
-export type TNGexpression_binary$_operator_greaterThan$ = uast.TDetails
+export type TNGexpression_binary$_operator_greaterThan$ = uast.T.Details
 export type TVTGexpression_binary$_operator_greaterThan = TNGexpression_binary$_operator_greaterThan$
 export type TVGexpression_binary$_operator_greaterThan = TVTGexpression_binary$_operator_greaterThan
 
-export type TNGexpression_binary$_operator_lessThan$ = uast.TDetails
+export type TNGexpression_binary$_operator_lessThan$ = uast.T.Details
 export type TVTGexpression_binary$_operator_lessThan = TNGexpression_binary$_operator_lessThan$
 export type TVGexpression_binary$_operator_lessThan = TVTGexpression_binary$_operator_lessThan
 
-export type TNGexpression_binary$_operator_minus$ = uast.TDetails
+export type TNGexpression_binary$_operator_minus$ = uast.T.Details
 export type TVTGexpression_binary$_operator_minus = TNGexpression_binary$_operator_minus$
 export type TVGexpression_binary$_operator_minus = TVTGexpression_binary$_operator_minus
 
-export type TNGexpression_binary$_operator_minusEquals$ = uast.TDetails
+export type TNGexpression_binary$_operator_minusEquals$ = uast.T.Details
 export type TVTGexpression_binary$_operator_minusEquals = TNGexpression_binary$_operator_minusEquals$
 export type TVGexpression_binary$_operator_minusEquals = TVTGexpression_binary$_operator_minusEquals
 
-export type TNGexpression_binary$_operator_plus$ = uast.TDetails
+export type TNGexpression_binary$_operator_plus$ = uast.T.Details
 export type TVTGexpression_binary$_operator_plus = TNGexpression_binary$_operator_plus$
 export type TVGexpression_binary$_operator_plus = TVTGexpression_binary$_operator_plus
 
-export type TNGexpression_binary$_operator_plusEquals$ = uast.TDetails
+export type TNGexpression_binary$_operator_plusEquals$ = uast.T.Details
 export type TVTGexpression_binary$_operator_plusEquals = TNGexpression_binary$_operator_plusEquals$
 export type TVGexpression_binary$_operator_plusEquals = TVTGexpression_binary$_operator_plusEquals
 export type TVTGexpression_binary$_operator = 
@@ -133,13 +133,13 @@ export type TVGexpression_call = TVTGexpression_call
 export type TVTGexpression_conditional$_test = TGexpression
 export type TVGexpression_conditional$_test = TVTGexpression_conditional$_test
 
-export type TNGexpression_conditional$_questionToken$ = uast.TDetails
+export type TNGexpression_conditional$_questionToken$ = uast.T.Details
 export type TVTGexpression_conditional$_questionToken = TNGexpression_conditional$_questionToken$
 export type TVGexpression_conditional$_questionToken = TVTGexpression_conditional$_questionToken
 export type TVTGexpression_conditional$_ifExpression = TGexpression
 export type TVGexpression_conditional$_ifExpression = TVTGexpression_conditional$_ifExpression
 
-export type TNGexpression_conditional$_colonToken$ = uast.TDetails
+export type TNGexpression_conditional$_colonToken$ = uast.T.Details
 export type TVTGexpression_conditional$_colonToken = TNGexpression_conditional$_colonToken$
 export type TVGexpression_conditional$_colonToken = TVTGexpression_conditional$_colonToken
 export type TVTGexpression_conditional$_elseExpression = TGexpression
@@ -170,7 +170,7 @@ export type TNGexpression_elementAccess$ = TAnnotatedType<TVGexpression_elementA
 export type TVTGexpression_elementAccess = TNGexpression_elementAccess$
 export type TVGexpression_elementAccess = TVTGexpression_elementAccess
 
-export type TNGexpression_false$ = uast.TDetails
+export type TNGexpression_false$ = uast.T.Details
 export type TVTGexpression_false = TNGexpression_false$
 export type TVGexpression_false = TVTGexpression_false
 export type TVTGexpression_identifier = TGidentifier
@@ -189,11 +189,11 @@ export type TNGexpression_new$ = TAnnotatedType<TVGexpression_new$>
 export type TVTGexpression_new = TNGexpression_new$
 export type TVGexpression_new = TVTGexpression_new
 
-export type TNGexpression_noSubstitutionTemplateLiteral$ = uast.TDetails
+export type TNGexpression_noSubstitutionTemplateLiteral$ = uast.T.Details
 export type TVTGexpression_noSubstitutionTemplateLiteral = TNGexpression_noSubstitutionTemplateLiteral$
 export type TVGexpression_noSubstitutionTemplateLiteral = TVTGexpression_noSubstitutionTemplateLiteral
 
-export type TNGexpression_nullKeyword$ = uast.TDetails
+export type TNGexpression_nullKeyword$ = uast.T.Details
 export type TVTGexpression_nullKeyword = TNGexpression_nullKeyword$
 export type TVGexpression_nullKeyword = TVTGexpression_nullKeyword
 export type TVTGexpression_numericLiteral = TGnumericLiteral
@@ -294,7 +294,7 @@ export type TNGexpression_template$ = TAnnotatedType<TVGexpression_template$>
 export type TVTGexpression_template = TNGexpression_template$
 export type TVGexpression_template = TVTGexpression_template
 
-export type TNGexpression_true$ = uast.TDetails
+export type TNGexpression_true$ = uast.T.Details
 export type TVTGexpression_true = TNGexpression_true$
 export type TVGexpression_true = TVTGexpression_true
 export type TVTGexpression = 
@@ -344,15 +344,15 @@ export type TVTGidentifierOrStringLiteral =
     | [ "stringLiteral", TVGidentifierOrStringLiteral_stringLiteral]
 export type TGidentifierOrStringLiteral = TVTGidentifierOrStringLiteral
 
-export type TNGmodifier_declare$ = uast.TDetails
+export type TNGmodifier_declare$ = uast.T.Details
 export type TVTGmodifier_declare = TNGmodifier_declare$
 export type TVGmodifier_declare = TVTGmodifier_declare
 
-export type TNGmodifier_export$ = uast.TDetails
+export type TNGmodifier_export$ = uast.T.Details
 export type TVTGmodifier_export = TNGmodifier_export$
 export type TVGmodifier_export = TVTGmodifier_export
 
-export type TNGmodifier_readonly$ = uast.TDetails
+export type TNGmodifier_readonly$ = uast.T.Details
 export type TVTGmodifier_readonly = TNGmodifier_readonly$
 export type TVGmodifier_readonly = TVTGmodifier_readonly
 export type TVTGmodifier = 
@@ -367,7 +367,7 @@ export type TGnumericLiteral = TVTGnumericLiteral
 export type TVTGparameter$_name = TGidentifier
 export type TVGparameter$_name = TVTGparameter$_name
 
-export type TNGparameter$_questionToken$ = uast.TDetails
+export type TNGparameter$_questionToken$ = uast.T.Details
 export type TVTGparameter$_questionToken = TNGparameter$_questionToken$
 export type TVGparameter$_questionToken = null | TVTGparameter$_questionToken
 export type TVTGparameter$_type = TGtype
@@ -673,7 +673,7 @@ export type TNGstringLiteral$ = TAnnotatedString
 export type TVTGstringLiteral = TNGstringLiteral$
 export type TGstringLiteral = TVTGstringLiteral
 
-export type TNGtype_any$ = uast.TDetails
+export type TNGtype_any$ = uast.T.Details
 export type TVTGtype_any = TNGtype_any$
 export type TVGtype_any = TVTGtype_any
 export type TVTGtype_array$ = TGtype
@@ -683,7 +683,7 @@ export type TNGtype_array$ = TAnnotatedType<TVGtype_array$>
 export type TVTGtype_array = TNGtype_array$
 export type TVGtype_array = TVTGtype_array
 
-export type TNGtype_boolean$ = uast.TDetails
+export type TNGtype_boolean$ = uast.T.Details
 export type TVTGtype_boolean = TNGtype_boolean$
 export type TVGtype_boolean = TVTGtype_boolean
 export type TVTGtype_function$_parameters = TGparameter
@@ -700,7 +700,7 @@ export type TNGtype_function$ = TAnnotatedType<TVGtype_function$>
 export type TVTGtype_function = TNGtype_function$
 export type TVGtype_function = TVTGtype_function
 
-export type TNGtype_literal$_null$ = uast.TDetails
+export type TNGtype_literal$_null$ = uast.T.Details
 export type TVTGtype_literal$_null = TNGtype_literal$_null$
 export type TVGtype_literal$_null = TVTGtype_literal$_null
 export type TVTGtype_literal$_string = TGstringLiteral
@@ -714,11 +714,11 @@ export type TNGtype_literal$ = TAnnotatedType<TVGtype_literal$>
 export type TVTGtype_literal = TNGtype_literal$
 export type TVGtype_literal = TVTGtype_literal
 
-export type TNGtype_never$ = uast.TDetails
+export type TNGtype_never$ = uast.T.Details
 export type TVTGtype_never = TNGtype_never$
 export type TVGtype_never = TVTGtype_never
 
-export type TNGtype_number$ = uast.TDetails
+export type TNGtype_number$ = uast.T.Details
 export type TVTGtype_number = TNGtype_number$
 export type TVGtype_number = TVTGtype_number
 export type TVTGtype_optional$ = TGtype
@@ -734,7 +734,7 @@ export type TNGtype_parenthesized$ = TAnnotatedType<TVGtype_parenthesized$>
 export type TVTGtype_parenthesized = TNGtype_parenthesized$
 export type TVGtype_parenthesized = TVTGtype_parenthesized
 
-export type TNGtype_string$ = uast.TDetails
+export type TNGtype_string$ = uast.T.Details
 export type TVTGtype_string = TNGtype_string$
 export type TVGtype_string = TVTGtype_string
 export type TVTGtype_tuple$ = TGtype
@@ -780,7 +780,7 @@ export type TNGtype_typeReference$ = TAnnotatedType<TVGtype_typeReference$>
 export type TVTGtype_typeReference = TNGtype_typeReference$
 export type TVGtype_typeReference = TVTGtype_typeReference
 
-export type TNGtype_undefined$ = uast.TDetails
+export type TNGtype_undefined$ = uast.T.Details
 export type TVTGtype_undefined = TNGtype_undefined$
 export type TVGtype_undefined = TVTGtype_undefined
 export type TVTGtype_union$ = TGtype
@@ -790,7 +790,7 @@ export type TNGtype_union$ = TAnnotatedType<TVGtype_union$>
 export type TVTGtype_union = TNGtype_union$
 export type TVGtype_union = TVTGtype_union
 
-export type TNGtype_void$ = uast.TDetails
+export type TNGtype_void$ = uast.T.Details
 export type TVTGtype_void = TNGtype_void$
 export type TVGtype_void = TVTGtype_void
 export type TVTGtype = 
@@ -864,7 +864,7 @@ export type TVGtypeSignature_property$_modifiers = pt.Array<TVTGtypeSignature_pr
 export type TVTGtypeSignature_property$_name = TGidentifierOrStringLiteral
 export type TVGtypeSignature_property$_name = TVTGtypeSignature_property$_name
 
-export type TNGtypeSignature_property$_quesionToken$ = uast.TDetails
+export type TNGtypeSignature_property$_quesionToken$ = uast.T.Details
 export type TVTGtypeSignature_property$_quesionToken = TNGtypeSignature_property$_quesionToken$
 export type TVGtypeSignature_property$_quesionToken = null | TVTGtypeSignature_property$_quesionToken
 export type TVTGtypeSignature_property$_type = TGtype
@@ -911,7 +911,7 @@ export type TGvariableDeclarationList = TVTGvariableDeclarationList
 export type TVTroot_statements = TGstatement
 export type TVroot_statements = pt.Array<TVTroot_statements>
 
-export type TNroot_endOfFile$ = uast.TDetails
+export type TNroot_endOfFile$ = uast.T.Details
 export type TVTroot_endOfFile = TNroot_endOfFile$
 export type TVroot_endOfFile = TVTroot_endOfFile
 export type TVTroot = {

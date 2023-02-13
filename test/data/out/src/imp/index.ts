@@ -1,3 +1,3 @@
-export * from "./public/parse.generated"
-export * from "./public/visit.generated"
-export * from "./createDefaultVisitor.generated"
+export * from "./parse.generated"
+export * from "./visit.generated"
+export * from "./createDefaultVisitor.p"

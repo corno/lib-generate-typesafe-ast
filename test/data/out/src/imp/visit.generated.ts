@@ -1,6 +1,10 @@
 import * as pl from 'pareto-core-lib'
 import * as api from "../interface"
 
+function isNotNull<T>($: null | T): $ is T {
+    return $ !== null
+}
+
 
 export function visit(
     $: api.TNroot,
@@ -56,7 +60,7 @@ export function visit(
                                 })
                             })
                             pl.cc($["returnType"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     X_type($)
                                 } else {
                                     //FIXME??
@@ -573,7 +577,7 @@ export function visit(
             })
         })
         pl.cc($["returnType"], ($) => {
-            if (pl.isNotNull($)) {
+            if (isNotNull($)) {
                 X_type($)
             } else {
                 //FIXME??
@@ -666,7 +670,7 @@ export function visit(
                     X_identifier($)
                 })
                 pl.cc($["questionToken"], ($) => {
-                    if (pl.isNotNull($)) {
+                    if (isNotNull($)) {
                         ((
                             $: api.TNGparameter$_questionToken$,
                         ) => {
@@ -677,7 +681,7 @@ export function visit(
                     }
                 })
                 pl.cc($["type"], ($) => {
-                    if (pl.isNotNull($)) {
+                    if (isNotNull($)) {
                         X_type($)
                     } else {
                         //FIXME??
@@ -704,7 +708,7 @@ export function visit(
                     ) => {
                         if (pl.isNotUndefined($i.visitor["$statement/?break/*BreakStatement"])) { $i.visitor["$statement/?break/*BreakStatement"].begin($) }
                         pl.cc($.content, ($) => {
-                            if (pl.isNotNull($)) {
+                            if (isNotNull($)) {
                                 X_identifier($)
                             } else {
                                 //FIXME??
@@ -787,7 +791,7 @@ export function visit(
                                 X_functionDefinition($)
                             })
                             pl.cc($["block"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     X_block($)
                                 } else {
                                     //FIXME??
@@ -813,7 +817,7 @@ export function visit(
                                 X_statement($)
                             })
                             pl.cc($["elseStatement"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     X_statement($)
                                 } else {
                                     //FIXME??
@@ -856,7 +860,7 @@ export function visit(
                                                                             X_identifier($)
                                                                         })
                                                                         pl.cc($["as"], ($) => {
-                                                                            if (pl.isNotNull($)) {
+                                                                            if (isNotNull($)) {
                                                                                 X_identifier($)
                                                                             } else {
                                                                                 //FIXME??
@@ -958,7 +962,7 @@ export function visit(
                     ) => {
                         if (pl.isNotUndefined($i.visitor["$statement/?return/*ReturnStatement"])) { $i.visitor["$statement/?return/*ReturnStatement"].begin($) }
                         pl.cc($.content, ($) => {
-                            if (pl.isNotNull($)) {
+                            if (isNotNull($)) {
                                 X_expression($)
                             } else {
                                 //FIXME??
@@ -1215,7 +1219,7 @@ export function visit(
                                 })
                             })
                             pl.cc($["returnType"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     X_type($)
                                 } else {
                                     //FIXME??
@@ -1490,7 +1494,7 @@ export function visit(
                                 X_parameter($)
                             })
                             pl.cc($["type"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     X_type($)
                                 } else {
                                     //FIXME??
@@ -1537,7 +1541,7 @@ export function visit(
                                 X_identifierOrStringLiteral($)
                             })
                             pl.cc($["quesionToken"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     ((
                                         $: api.TNGtypeSignature_property$_quesionToken$,
                                     ) => {
@@ -1548,7 +1552,7 @@ export function visit(
                                 }
                             })
                             pl.cc($["type"], ($) => {
-                                if (pl.isNotNull($)) {
+                                if (isNotNull($)) {
                                     X_type($)
                                 } else {
                                     //FIXME??
@@ -1575,14 +1579,14 @@ export function visit(
                     X_identifier($)
                 })
                 pl.cc($["type"], ($) => {
-                    if (pl.isNotNull($)) {
+                    if (isNotNull($)) {
                         X_type($)
                     } else {
                         //FIXME??
                     }
                 })
                 pl.cc($["expression"], ($) => {
-                    if (pl.isNotNull($)) {
+                    if (isNotNull($)) {
                         X_expression($)
                     } else {
                         //FIXME??

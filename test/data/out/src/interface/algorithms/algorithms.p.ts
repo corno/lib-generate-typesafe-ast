@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core-types'
-import * as types from "../types/ts_api"
+import * as types from "../types/ts_api.p"
 
 export type IVisitor = {
     readonly "$block/*Block"?: {

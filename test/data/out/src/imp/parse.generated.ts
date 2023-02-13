@@ -1,14 +1,19 @@
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-state'
-import * as uast from "api-untyped-ast"
+import * as uast from "glo-typescript-untyped-ast"
 import * as api from "../interface"
 
+function isNotNull<T>($: null | T): $ is T {
+    return $ !== null
+}
+
+
 export function parse(
-    $: uast.TUntypedNode,
+    $: uast.T.UntypedNode,
     $i: {
         callback: ($: api.TRoot) => void,
-        reportUnexpectedToken: ($: { path: string, token: uast.TUntypedNode, expected: null | string }) => void,
-        reportMissingToken: ($: { parentDetails: uast.TDetails, path: string, kindNameOptions: string, }) => void,
+        reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,
+        reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,
     },
     $d: {
         doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,
@@ -18,15 +23,15 @@ export function parse(
 ): void {
     const $x = $i
     function Gblock(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGblock) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Block")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGblock$) => void,
                     ): void => {
                         const node = $
@@ -136,8 +141,8 @@ export function parse(
         )
     }
     function Gexpression(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGexpression) => void,
     ): void {
         const choiceEnd_Gexpression = ($: api.TVTGexpression) => {
@@ -150,7 +155,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrayLiteralExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_arrayLiteral$) => void,
                                 ): void => {
                                     const node = $
@@ -273,7 +278,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrowFunction")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_arrowFunction$) => void,
                                 ): void => {
                                     const node = $
@@ -370,7 +375,7 @@ export function parse(
                                                 (currentChild) => {
                                                     if ($d.stringsAreEqual(currentChild.kindName, "EqualsGreaterThanToken")) {
                                                         ((
-                                                            $: uast.TUntypedNode,
+                                                            $: uast.T.UntypedNode,
                                                             callback: ($: api.TNGexpression_arrowFunction$_equalsGreaterThan$) => void,
                                                         ): void => {
                                                             const node = $
@@ -571,7 +576,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "BinaryExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_binary$) => void,
                                 ): void => {
                                     const node = $
@@ -602,7 +607,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "AmpersandAmpersandToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_ampersandAmpersand$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -646,7 +651,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "BarBarToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_barBar$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -690,7 +695,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "EqualsToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_equals$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -734,7 +739,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "EqualsEqualsEqualsToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_equalsEqualsEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -778,7 +783,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "ExclamationEqualsEqualsToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_exclamationEqualsEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -822,7 +827,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "GreaterThanToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_greaterThan$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -866,7 +871,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "LessThanToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_lessThan$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -910,7 +915,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "MinusToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_minus$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -954,7 +959,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "MinusEqualsToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_minusEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -998,7 +1003,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "PlusToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_plus$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -1042,7 +1047,7 @@ export function parse(
                                                         (currentChild) => {
                                                             if ($d.stringsAreEqual(currentChild.kindName, "PlusEqualsToken")) {
                                                                 ((
-                                                                    $: uast.TUntypedNode,
+                                                                    $: uast.T.UntypedNode,
                                                                     callback: ($: api.TNGexpression_binary$_operator_plusEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
@@ -1182,7 +1187,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "CallExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_call$) => void,
                                 ): void => {
                                     const node = $
@@ -1381,7 +1386,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ConditionalExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_conditional$) => void,
                                 ): void => {
                                     const node = $
@@ -1398,7 +1403,7 @@ export function parse(
                                             (currentChild) => {
                                                 if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                                     ((
-                                                        $: uast.TUntypedNode,
+                                                        $: uast.T.UntypedNode,
                                                         callback: ($: api.TNGexpression_conditional$_questionToken$) => void,
                                                     ): void => {
                                                         const node = $
@@ -1424,7 +1429,7 @@ export function parse(
                                                                     (currentChild) => {
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "ColonToken")) {
                                                                             ((
-                                                                                $: uast.TUntypedNode,
+                                                                                $: uast.T.UntypedNode,
                                                                                 callback: ($: api.TNGexpression_conditional$_colonToken$) => void,
                                                                             ): void => {
                                                                                 const node = $
@@ -1530,7 +1535,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ElementAccessExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_elementAccess$) => void,
                                 ): void => {
                                     const node = $
@@ -1589,7 +1594,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "FalseKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_false$) => void,
                                 ): void => {
                                     const node = $
@@ -1638,7 +1643,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "NewExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_new$) => void,
                                 ): void => {
                                     const node = $
@@ -1771,7 +1776,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "NoSubstitutionTemplateLiteral")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_noSubstitutionTemplateLiteral$) => void,
                                 ): void => {
                                     const node = $
@@ -1815,7 +1820,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "NullKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_nullKeyword$) => void,
                                 ): void => {
                                     const node = $
@@ -1864,7 +1869,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ObjectLiteralExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_objectLiteral$) => void,
                                 ): void => {
                                     const node = $
@@ -1875,7 +1880,7 @@ export function parse(
                                             (currentChild) => {
                                                 if ($d.stringsAreEqual(currentChild.kindName, "PropertyAssignment")) {
                                                     ((
-                                                        $: uast.TUntypedNode,
+                                                        $: uast.T.UntypedNode,
                                                         callback: ($: api.TNGexpression_objectLiteral$$) => void,
                                                     ): void => {
                                                         const node = $
@@ -2031,7 +2036,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ParenthesizedExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_parenthesizedExpression$) => void,
                                 ): void => {
                                     const node = $
@@ -2080,7 +2085,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "PostfixUnaryExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_postfixUnary$) => void,
                                 ): void => {
                                     const node = $
@@ -2129,7 +2134,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "PrefixUnaryExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_prefixUnary$) => void,
                                 ): void => {
                                     const node = $
@@ -2178,7 +2183,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "PropertyAccessExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_propertyAccess$) => void,
                                 ): void => {
                                     const node = $
@@ -2242,7 +2247,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TemplateExpression")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_template$) => void,
                                 ): void => {
                                     const node = $
@@ -2257,7 +2262,7 @@ export function parse(
                                         (currentChild) => {
                                             if ($d.stringsAreEqual(currentChild.kindName, "TemplateHead")) {
                                                 ((
-                                                    $: uast.TUntypedNode,
+                                                    $: uast.T.UntypedNode,
                                                     callback: ($: api.TNGexpression_template$_head$) => void,
                                                 ): void => {
                                                     const node = $
@@ -2286,7 +2291,7 @@ export function parse(
                                                                 (currentChild) => {
                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateSpan")) {
                                                                         ((
-                                                                            $: uast.TUntypedNode,
+                                                                            $: uast.T.UntypedNode,
                                                                             callback: ($: api.TNGexpression_template$_spans$) => void,
                                                                         ): void => {
                                                                             const node = $
@@ -2313,7 +2318,7 @@ export function parse(
                                                                                                 (currentChild) => {
                                                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateMiddle")) {
                                                                                                         ((
-                                                                                                            $: uast.TUntypedNode,
+                                                                                                            $: uast.T.UntypedNode,
                                                                                                             callback: ($: api.TNGexpression_template$_spans$_x_middle$) => void,
                                                                                                         ): void => {
                                                                                                             const node = $
@@ -2360,7 +2365,7 @@ export function parse(
                                                                                                 (currentChild) => {
                                                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateTail")) {
                                                                                                         ((
-                                                                                                            $: uast.TUntypedNode,
+                                                                                                            $: uast.T.UntypedNode,
                                                                                                             callback: ($: api.TNGexpression_template$_spans$_x_tail$) => void,
                                                                                                         ): void => {
                                                                                                             const node = $
@@ -2536,7 +2541,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TrueKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGexpression_true$) => void,
                                 ): void => {
                                     const node = $
@@ -2675,8 +2680,8 @@ export function parse(
         )
     }
     function GfunctionDefinition(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGfunctionDefinition) => void,
     ): void {
         const sequenceEnd = ($: api.TVTGfunctionDefinition) => {
@@ -2793,15 +2798,15 @@ export function parse(
         })
     }
     function Gidentifier(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGidentifier) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Identifier")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGidentifier$) => void,
                     ): void => {
                         const node = $
@@ -2844,8 +2849,8 @@ export function parse(
         )
     }
     function GidentifierOrStringLiteral(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGidentifierOrStringLiteral) => void,
     ): void {
         const choiceEnd_GidentifierOrStringLiteral = ($: api.TVTGidentifierOrStringLiteral) => {
@@ -2891,8 +2896,8 @@ export function parse(
         )
     }
     function Gmodifier(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGmodifier) => void,
     ): void {
         const choiceEnd_Gmodifier = ($: api.TVTGmodifier) => {
@@ -2905,7 +2910,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "DeclareKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGmodifier_declare$) => void,
                                 ): void => {
                                     const node = $
@@ -2949,7 +2954,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ExportKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGmodifier_export$) => void,
                                 ): void => {
                                     const node = $
@@ -2993,7 +2998,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ReadonlyKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGmodifier_readonly$) => void,
                                 ): void => {
                                     const node = $
@@ -3064,15 +3069,15 @@ export function parse(
         )
     }
     function GnumericLiteral(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGnumericLiteral) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "NumericLiteral")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGnumericLiteral$) => void,
                     ): void => {
                         const node = $
@@ -3115,15 +3120,15 @@ export function parse(
         )
     }
     function Gparameter(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGparameter) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Parameter")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGparameter$) => void,
                     ): void => {
                         const node = $
@@ -3142,7 +3147,7 @@ export function parse(
                                     (currentChild) => {
                                         if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                             ((
-                                                $: uast.TUntypedNode,
+                                                $: uast.T.UntypedNode,
                                                 callback: ($: api.TNGparameter$_questionToken$) => void,
                                             ): void => {
                                                 const node = $
@@ -3298,8 +3303,8 @@ export function parse(
         )
     }
     function Gstatement(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGstatement) => void,
     ): void {
         const choiceEnd_Gstatement = ($: api.TVTGstatement) => {
@@ -3317,7 +3322,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "BreakStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_break$) => void,
                                 ): void => {
                                     const node = $
@@ -3382,7 +3387,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ExportDeclaration")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_export$) => void,
                                 ): void => {
                                     const node = $
@@ -3431,7 +3436,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ExpressionStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_expression$) => void,
                                 ): void => {
                                     const node = $
@@ -3480,7 +3485,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ForStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_for$) => void,
                                 ): void => {
                                     const node = $
@@ -3547,7 +3552,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "FunctionDeclaration")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_function$) => void,
                                 ): void => {
                                     const node = $
@@ -3653,7 +3658,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "IfStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_if$) => void,
                                 ): void => {
                                     const node = $
@@ -3780,7 +3785,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ImportDeclaration")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_import$) => void,
                                 ): void => {
                                     const node = $
@@ -3795,7 +3800,7 @@ export function parse(
                                         (currentChild) => {
                                             if ($d.stringsAreEqual(currentChild.kindName, "ImportClause")) {
                                                 ((
-                                                    $: uast.TUntypedNode,
+                                                    $: uast.T.UntypedNode,
                                                     callback: ($: api.TNGstatement_import$_clause$) => void,
                                                 ): void => {
                                                     const node = $
@@ -3813,7 +3818,7 @@ export function parse(
                                                                     (currentChild) => {
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "NamedImports")) {
                                                                             ((
-                                                                                $: uast.TUntypedNode,
+                                                                                $: uast.T.UntypedNode,
                                                                                 callback: ($: api.TNGstatement_import$_clause$_named$) => void,
                                                                             ): void => {
                                                                                 const node = $
@@ -3824,7 +3829,7 @@ export function parse(
                                                                                         (currentChild) => {
                                                                                             if ($d.stringsAreEqual(currentChild.kindName, "ImportSpecifier")) {
                                                                                                 ((
-                                                                                                    $: uast.TUntypedNode,
+                                                                                                    $: uast.T.UntypedNode,
                                                                                                     callback: ($: api.TNGstatement_import$_clause$_named$$) => void,
                                                                                                 ): void => {
                                                                                                     const node = $
@@ -3949,7 +3954,7 @@ export function parse(
                                                                     (currentChild) => {
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "NamespaceImport")) {
                                                                             ((
-                                                                                $: uast.TUntypedNode,
+                                                                                $: uast.T.UntypedNode,
                                                                                 callback: ($: api.TNGstatement_import$_clause$_namespace$) => void,
                                                                             ): void => {
                                                                                 const node = $
@@ -4096,7 +4101,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "InterfaceDeclaration")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_interface$) => void,
                                 ): void => {
                                     const node = $
@@ -4229,7 +4234,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "LabeledStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_labeled$) => void,
                                 ): void => {
                                     const node = $
@@ -4288,7 +4293,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ReturnStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_return$) => void,
                                 ): void => {
                                     const node = $
@@ -4410,7 +4415,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "SwitchStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_switch$) => void,
                                 ): void => {
                                     const node = $
@@ -4427,7 +4432,7 @@ export function parse(
                                             (currentChild) => {
                                                 if ($d.stringsAreEqual(currentChild.kindName, "CaseBlock")) {
                                                     ((
-                                                        $: uast.TUntypedNode,
+                                                        $: uast.T.UntypedNode,
                                                         callback: ($: api.TNGstatement_switch$_caseBlock$) => void,
                                                     ): void => {
                                                         const node = $
@@ -4444,7 +4449,7 @@ export function parse(
                                                                             (currentChild) => {
                                                                                 if ($d.stringsAreEqual(currentChild.kindName, "CaseClause")) {
                                                                                     ((
-                                                                                        $: uast.TUntypedNode,
+                                                                                        $: uast.T.UntypedNode,
                                                                                         callback: ($: api.TNGstatement_switch$_caseBlock$_case$) => void,
                                                                                     ): void => {
                                                                                         const node = $
@@ -4568,7 +4573,7 @@ export function parse(
                                                                             (currentChild) => {
                                                                                 if ($d.stringsAreEqual(currentChild.kindName, "DefaultClause")) {
                                                                                     ((
-                                                                                        $: uast.TUntypedNode,
+                                                                                        $: uast.T.UntypedNode,
                                                                                         callback: ($: api.TNGstatement_switch$_caseBlock$_default$) => void,
                                                                                     ): void => {
                                                                                         const node = $
@@ -4799,7 +4804,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ThrowStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_throw$) => void,
                                 ): void => {
                                     const node = $
@@ -4848,7 +4853,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TryStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_try$) => void,
                                 ): void => {
                                     const node = $
@@ -4865,7 +4870,7 @@ export function parse(
                                             (currentChild) => {
                                                 if ($d.stringsAreEqual(currentChild.kindName, "CatchClause")) {
                                                     ((
-                                                        $: uast.TUntypedNode,
+                                                        $: uast.T.UntypedNode,
                                                         callback: ($: api.TNGstatement_try$_catchClause$) => void,
                                                     ): void => {
                                                         const node = $
@@ -4961,7 +4966,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeAliasDeclaration")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_typeAlias$) => void,
                                 ): void => {
                                     const node = $
@@ -5068,7 +5073,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "VariableStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_variable$) => void,
                                 ): void => {
                                     const node = $
@@ -5150,7 +5155,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "WhileStatement")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGstatement_while$) => void,
                                 ): void => {
                                     const node = $
@@ -5292,15 +5297,15 @@ export function parse(
         )
     }
     function GstringLiteral(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGstringLiteral) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "StringLiteral")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGstringLiteral$) => void,
                     ): void => {
                         const node = $
@@ -5343,8 +5348,8 @@ export function parse(
         )
     }
     function Gtype(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGtype) => void,
     ): void {
         const choiceEnd_Gtype = ($: api.TVTGtype) => {
@@ -5357,7 +5362,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "AnyKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_any$) => void,
                                 ): void => {
                                     const node = $
@@ -5401,7 +5406,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrayType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_array$) => void,
                                 ): void => {
                                     const node = $
@@ -5450,7 +5455,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "BooleanKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_boolean$) => void,
                                 ): void => {
                                     const node = $
@@ -5494,7 +5499,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "FunctionType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_function$) => void,
                                 ): void => {
                                     const node = $
@@ -5631,7 +5636,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "LiteralType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_literal$) => void,
                                 ): void => {
                                     const node = $
@@ -5649,7 +5654,7 @@ export function parse(
                                                     (currentChild) => {
                                                         if ($d.stringsAreEqual(currentChild.kindName, "NullKeyword")) {
                                                             ((
-                                                                $: uast.TUntypedNode,
+                                                                $: uast.T.UntypedNode,
                                                                 callback: ($: api.TNGtype_literal$_null$) => void,
                                                             ): void => {
                                                                 const node = $
@@ -5757,7 +5762,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "NeverKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_never$) => void,
                                 ): void => {
                                     const node = $
@@ -5801,7 +5806,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "NumberKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_number$) => void,
                                 ): void => {
                                     const node = $
@@ -5845,7 +5850,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "OptionalType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_optional$) => void,
                                 ): void => {
                                     const node = $
@@ -5894,7 +5899,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ParenthesizedType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_parenthesized$) => void,
                                 ): void => {
                                     const node = $
@@ -5943,7 +5948,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "StringKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_string$) => void,
                                 ): void => {
                                     const node = $
@@ -5987,7 +5992,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TupleType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_tuple$) => void,
                                 ): void => {
                                     const node = $
@@ -6098,7 +6103,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeLiteral")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_typeLiteral$) => void,
                                 ): void => {
                                     const node = $
@@ -6173,7 +6178,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeReference")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_typeReference$) => void,
                                 ): void => {
                                     const node = $
@@ -6268,7 +6273,7 @@ export function parse(
                                                     (currentChild) => {
                                                         if ($d.stringsAreEqual(currentChild.kindName, "QualifiedName")) {
                                                             ((
-                                                                $: uast.TUntypedNode,
+                                                                $: uast.T.UntypedNode,
                                                                 callback: ($: api.TNGtype_typeReference$_x_qualifiedName$) => void,
                                                             ): void => {
                                                                 const node = $
@@ -6386,7 +6391,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "UndefinedKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_undefined$) => void,
                                 ): void => {
                                     const node = $
@@ -6430,7 +6435,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "UnionType")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_union$) => void,
                                 ): void => {
                                     const node = $
@@ -6541,7 +6546,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "VoidKeyword")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtype_void$) => void,
                                 ): void => {
                                     const node = $
@@ -6664,15 +6669,15 @@ export function parse(
         )
     }
     function GtypeParameter(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGtypeParameter) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "TypeParameter")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGtypeParameter$) => void,
                     ): void => {
                         const node = $
@@ -6717,8 +6722,8 @@ export function parse(
         )
     }
     function GtypeSignature(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGtypeSignature) => void,
     ): void {
         const choiceEnd_GtypeSignature = ($: api.TVTGtypeSignature) => {
@@ -6731,7 +6736,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "ConstructSignature")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtypeSignature_construct$) => void,
                                 ): void => {
                                     const node = $
@@ -6807,7 +6812,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "IndexSignature")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtypeSignature_index$) => void,
                                 ): void => {
                                     const node = $
@@ -6954,7 +6959,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "MethodSignature")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtypeSignature_method$) => void,
                                 ): void => {
                                     const node = $
@@ -7013,7 +7018,7 @@ export function parse(
                         (currentChild) => {
                             if ($d.stringsAreEqual(currentChild.kindName, "PropertySignature")) {
                                 ((
-                                    $: uast.TUntypedNode,
+                                    $: uast.T.UntypedNode,
                                     callback: ($: api.TNGtypeSignature_property$) => void,
                                 ): void => {
                                     const node = $
@@ -7057,7 +7062,7 @@ export function parse(
                                                     (currentChild) => {
                                                         if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                                             ((
-                                                                $: uast.TUntypedNode,
+                                                                $: uast.T.UntypedNode,
                                                                 callback: ($: api.TNGtypeSignature_property$_quesionToken$) => void,
                                                             ): void => {
                                                                 const node = $
@@ -7250,15 +7255,15 @@ export function parse(
         )
     }
     function GvariableDeclaration(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGvariableDeclaration) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "VariableDeclaration")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGvariableDeclaration$) => void,
                     ): void => {
                         const node = $
@@ -7451,15 +7456,15 @@ export function parse(
         )
     }
     function GvariableDeclarationList(
-        node: uast.TUntypedNode,
-        children: pm.Stack<uast.TUntypedNode>,
+        node: uast.T.UntypedNode,
+        children: pm.Stack<uast.T.UntypedNode>,
         callback: ($: api.TGvariableDeclarationList) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "VariableDeclarationList")) {
                     ((
-                        $: uast.TUntypedNode,
+                        $: uast.T.UntypedNode,
                         callback: ($: api.TNGvariableDeclarationList$) => void,
                     ): void => {
                         const node = $
@@ -7522,7 +7527,7 @@ export function parse(
     }
     if ($d.stringsAreEqual($.kindName, "SourceFile")) {
         ((
-            $: uast.TUntypedNode,
+            $: uast.T.UntypedNode,
             callback: ($: api.TNroot) => void,
         ): void => {
             const node = $
@@ -7604,7 +7609,7 @@ export function parse(
                     (currentChild) => {
                         if ($d.stringsAreEqual(currentChild.kindName, "EndOfFileToken")) {
                             ((
-                                $: uast.TUntypedNode,
+                                $: uast.T.UntypedNode,
                                 callback: ($: api.TNroot_endOfFile$) => void,
                             ): void => {
                                 const node = $
