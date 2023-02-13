@@ -15,6 +15,9 @@ export const $$: api.CgenerateVisit = ($d) => {
             $w.line(`import * as api from "${$.pathToInterface}"`)
 
             $w.line(``)
+            $w.line(`function isNotNull<T>($: null | T): $ is T {`)
+            $w.line(`    return $ !== null`)
+            $w.line(`}`)
 
             $w.line(``)
             $w.nestedLine(($w) => {
@@ -197,7 +200,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                                 case "optional":
                                     pl.cc($.cardinality[1], ($) => {
                                         $w.nestedLine(($w) => {
-                                            $w.snippet(`if (pl.isNotNull($)) {`)
+                                            $w.snippet(`if (isNotNull($)) {`)
                                             $w.indent(($w) => {
                                                 generateValueType(
                                                     symbol.type,

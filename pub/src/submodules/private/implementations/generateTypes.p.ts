@@ -45,7 +45,7 @@ export const $$: api.CgenerateTypes = ($d) => {
                             if ($.hasTextContent) {
                                 $w.snippet(`TAnnotatedString`)
                             } else {
-                                $w.snippet(`uast.TDetails`)
+                                $w.snippet(`uast.T.Details`)
 
                             }
                         })
@@ -195,12 +195,12 @@ export const $$: api.CgenerateTypes = ($d) => {
             $w.nestedLine(($w) => {
             })
 
-            $w.line(`import * as uast from "api-untyped-ast"`)
+            $w.line(`import * as uast from "glo-typescript-untyped-ast"`)
             $w.nestedLine(($w) => {
             })
 
-            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": uast.TDetails; readonly "value": string }`)
-            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.TDetails; readonly "content": Type }`)
+            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": uast.T.Details; readonly "value": string }`)
+            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.T.Details; readonly "content": Type }`)
 
             $d.sortedForEach(
                 grammar.globalValueTypes,

@@ -5,7 +5,6 @@ function isNotNull<T>($: null | T): $ is T {
     return $ !== null
 }
 
-
 export function visit(
     $: api.TNroot,
     $i: {

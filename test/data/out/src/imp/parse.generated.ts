@@ -3,11 +3,6 @@ import * as pm from 'pareto-core-state'
 import * as uast from "glo-typescript-untyped-ast"
 import * as api from "../interface"
 
-function isNotNull<T>($: null | T): $ is T {
-    return $ !== null
-}
-
-
 export function parse(
     $: uast.T.UntypedNode,
     $i: {

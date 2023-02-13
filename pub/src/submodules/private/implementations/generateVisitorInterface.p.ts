@@ -11,7 +11,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
         pl.cc(($i), $w => {
 
             $w.line(`import * as pt from 'pareto-core-types'`)
-            $w.line(`import * as types from "../types/ts_api"`)
+            $w.line(`import * as types from "../types/ts_api.p"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export type IVisitor = {`)

@@ -84,7 +84,7 @@ export const $$: api.CgenerateParser = ($d) => {
         pl.cc($i, ($w) => {
             $w.line(`import * as pl from 'pareto-core-lib'`)
             $w.line(`import * as pm from 'pareto-core-state'`)
-            $w.line(`import * as uast from "api-untyped-ast"`)
+            $w.line(`import * as uast from "glo-typescript-untyped-ast"`)
 
             $w.line(`import * as api from "${$.pathToInterface}"`)
 
@@ -93,14 +93,14 @@ export const $$: api.CgenerateParser = ($d) => {
             $w.nestedLine(($w) => {
                 $w.snippet(`export function parse(`)
                 $w.indent(($w) => {
-                    $w.line(`$: uast.TUntypedNode,`)
+                    $w.line(`$: uast.T.UntypedNode,`)
 
                     $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
                             $w.line(`callback: ($: api.TRoot) => void,`)
-                            $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.TUntypedNode, expected: null | string }) => void,`)
-                            $w.line(`reportMissingToken: ($: { parentDetails: uast.TDetails, path: string, kindNameOptions: string, }) => void,`)
+                            $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,`)
+                            $w.line(`reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,`)
                         })
                         $w.snippet(`},`)
                     })
@@ -129,7 +129,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                             $w.snippet(`((`)
                             $w.indent(($w) => {
-                                $w.line(`$: uast.TUntypedNode,`)
+                                $w.line(`$: uast.T.UntypedNode,`)
                                 $w.line(`callback: ($: api.TN${path}) => void,`)
                             })
                             $w.snippet(`): void => {`)
@@ -686,8 +686,8 @@ export const $$: api.CgenerateParser = ($d) => {
 
                                 $w.snippet(`function G${$.key}(`)
                                 $w.indent(($w) => {
-                                    $w.line(`node: uast.TUntypedNode,`)
-                                    $w.line(`children: pm.Stack<uast.TUntypedNode>,`)
+                                    $w.line(`node: uast.T.UntypedNode,`)
+                                    $w.line(`children: pm.Stack<uast.T.UntypedNode>,`)
                                     $w.line(`callback: ($: api.TG${$.key}) => void,`)
                                 })
                                 $w.snippet(`): void {`)

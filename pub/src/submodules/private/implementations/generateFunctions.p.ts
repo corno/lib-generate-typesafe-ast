@@ -10,21 +10,21 @@ export const $$: api.CgenerateFunctions = ($d) => {
             $w.line(`import * as pt from 'pareto-core-types'`)
             $w.line(``)
 
-            $w.line(`import * as uast from "api-untyped-ast"`)
+            $w.line(`import * as uast from "glo-typescript-untyped-ast"`)
             $w.line(``)
 
 
             $w.nestedLine(($w) => {
                 $w.snippet(`export type XParse = (`)
                 $w.indent(($w) => {
-                    $w.line(`$: uast.TUntypedNode,`)
+                    $w.line(`$: uast.T.UntypedNode,`)
 
                     $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
                             $w.line(`callback: ($: api.TRoot) => void,`)
-                            $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.TUntypedNode, expected: null | string }) => void,`)
-                            $w.line(`reportMissingToken: ($: { parentDetails: uast.TDetails, path: string, kindNameOptions: string, }) => void,`)
+                            $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,`)
+                            $w.line(`reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,`)
                         })
                         $w.snippet(`},`)
                     })
