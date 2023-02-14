@@ -30,7 +30,10 @@ export const $$: api.CgenerateImplementation = ($) => {
             }),
             'generateImplementationIndex': mprivate.$a.generateImplementationIndex,
             'generateParser': mprivate.$a.generateParser({
-                'getKeysAsString': mtostring.$a.getKeysAsString,
+                'getKeysAsString': mtostring.$a.getKeysAsString({
+                    'maximum': [false],
+                    'separator': ", ",
+                }, {}),
                 'sortedForEach': dfe,
             }),
             'generateVisit': mprivate.$a.generateVisit({

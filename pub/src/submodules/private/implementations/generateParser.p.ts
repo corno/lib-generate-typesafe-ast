@@ -499,10 +499,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                             $w.line(`path: "${path}",`)
                                                                             $w.line(`token: nextChild,`)
                                                                             $w.nestedLine(($w) => {
-                                                                                $w.snippet(`expected: "${$d.getKeysAsString({
-                                                                                    dictionary: possibleTokens.getDictionary().map(() => null),
-                                                                                    separator: ", ",
-                                                                                })}",`)
+                                                                                $w.snippet(`expected: "${$d.getKeysAsString(possibleTokens.getDictionary().map(() => null))}",`)
                                                                             })
                                                                         })
                                                                         $w.snippet(`})`)
@@ -526,10 +523,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                             $w.line(`parentDetails: node.details,`)
                                                             $w.line(`path: "${path}",`)
                                                             $w.nestedLine(($w) => {
-                                                                $w.snippet(`kindNameOptions: "${$d.getKeysAsString({
-                                                                    dictionary: possibleTokens.getDictionary().map(() => null),
-                                                                    separator: ", ",
-                                                                })}",`)
+                                                                $w.snippet(`kindNameOptions: "${$d.getKeysAsString(possibleTokens.getDictionary().map(() => null))}",`)
                                                             })
                                                         })
                                                         $w.snippet(`})`)
