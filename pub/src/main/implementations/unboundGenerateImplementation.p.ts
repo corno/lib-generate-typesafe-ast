@@ -4,7 +4,7 @@ import * as api from "../api"
 
 export const $$: api.CunboundGenerateImplementation = ($d) => {
     return ($, $i) => {
-        $i.file("createDefaultVisitor.p.ts", ($i) => {
+        $i.file("createDefaultVisitor.generated.ts", ($i) => {
             $d.generateCreateDefaultVisitor($.generation, $i)
         })
         $i.file("parse.generated.ts", ($i) => {

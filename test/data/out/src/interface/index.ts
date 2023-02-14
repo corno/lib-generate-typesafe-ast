@@ -1,2 +1,2 @@
-export * from "./types/ts_api.p"
-export * from "./interfaces/visitor.p"
+export * from "./types/ts_api.generated"
+export * from "./interfaces/visitor.generated"

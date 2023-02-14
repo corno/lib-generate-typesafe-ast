@@ -7,6 +7,6 @@ export const $$: api.CgenerateImplementationIndex = ($, $i) => {
 
         $w.line(`export * from "./parse.generated"`)
         $w.line(`export * from "./visit.generated"`)
-        $w.line(`export * from "./createDefaultVisitor.p"`)
+        $w.line(`export * from "./createDefaultVisitor.generated"`)
     })
 }
