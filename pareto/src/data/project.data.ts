@@ -18,7 +18,7 @@ export const project: mproject.T.Project = {
     'description': "generates a typescript parser that provides a typed AST",
     'license': "ISC",
 
-    'pubdependencies': d({
+    'dependencies': d({
         "glo-pareto-common": {},
         "lib-fountain-pen": {},
         "res-pareto-foreach": {},
@@ -220,6 +220,13 @@ export const project: mproject.T.Project = {
         'test': {
             'dependencies': d({
             }),
+            'glossary': {
+                'functions': d({}),
+                'imports': d({}),
+                'parameters': d({}),
+                'types': d({}),
+                'interfaces': d({}),
+            },
         }
     }],
 }
