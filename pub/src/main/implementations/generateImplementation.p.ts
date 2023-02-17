@@ -40,7 +40,7 @@ export const $$: api.CgenerateImplementation = ($) => {
             'generateVisit': mprivate.$a.generateVisit({
                 'sortedForEach': dfe,
             }),
-            'resolve': mresolved.$a.resolve({}),
+            'resolve': mresolved.$a.resolve,
         })($, $i)
     })
 }

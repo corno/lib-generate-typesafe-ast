@@ -4,7 +4,7 @@ import {
     reference,
     boolean,
     array,
-    dictionary, group, member, taggedUnion, types, typeReference, func, interfaceReference, type, data, optional, computed,
+    dictionary, group, member, taggedUnion, types, typeReference, func, interfaceReference, type, data, optional, computed, method,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands.p"
 
 import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands.p"
@@ -209,10 +209,17 @@ export const project: mproject.T.Project = {
                                 }))
                             })),
                             "OptionalGrammar": type(optional(reference("Grammar"))),
+                            "ResolveError": type(group({
+                                "type": member(taggedUnion({
+                                    "no such global value type": string(),
+                                }))
+                            }))
                         }),
-                        'interfaces': d({}),
+                        'interfaces': d({
+                            "OnResolveError": method(typeReference("ResolveError"))
+                        }),
                         'functions': d({
-                            "Resolve": func(typeReference("definition", "Grammar"), null, null, data(typeReference("OptionalGrammar"), false))
+                            "Resolve": func(typeReference("definition", "Grammar"), null, interfaceReference("OnResolveError"), data(typeReference("OptionalGrammar"), false))
                         }),
                     },
                     "api": {
@@ -220,8 +227,7 @@ export const project: mproject.T.Project = {
                             "foreach": "res-pareto-foreach",
                         }),
                         'algorithms': d({
-                            "resolve": algorithm(definitionReference("Resolve"), constructor(null, {
-                            }))
+                            "resolve": algorithm(definitionReference("Resolve"))
                         })
                     },
                 },

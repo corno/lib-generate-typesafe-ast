@@ -63,6 +63,22 @@ export namespace T {
     
     export type OptionalGrammar = [ false ] | [ true, T.Grammar]
     
+    export namespace ResolveError {
+        
+        export namespace _ltype {
+            
+            export type no__such__global__value__type = string
+        }
+        
+        export type _ltype = 
+            | ['no such global value type', string]
+    }
+    
+    export type ResolveError = {
+        readonly 'type': 
+            | ['no such global value type', string]
+    }
+    
     export namespace Value {
         
         export namespace cardinality {

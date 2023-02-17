@@ -7,7 +7,9 @@ import * as mprivate from "../../submodules/private"
 export const $$: api.CunboundGenerateImplementation = ($d) => {
 
     return ($, $i) => {
-        const grammar = $d.resolve($.generation.grammar)
+        const grammar = $d.resolve($.generation.grammar, ($) => {
+            pl.implementMe("CREATE ERROR MESSAGE")
+        })
         if (grammar[0] === true) {
             const generation: mprivate.T.GenerateImplementationFileData = {
                 'pathToInterface': $.generation.pathToInterface,
