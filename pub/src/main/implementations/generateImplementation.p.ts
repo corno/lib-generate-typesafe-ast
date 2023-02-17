@@ -6,6 +6,7 @@ import * as mfp from "lib-fountain-pen"
 
 import { $$ as ugImp } from "./unboundGenerateImplementation.p"
 
+import * as mresolved from "../../submodules/resolved"
 import * as mprivate from "../../submodules/private"
 import * as mforeach from "res-pareto-foreach"
 import * as mcoll from "res-pareto-collation"
@@ -38,7 +39,8 @@ export const $$: api.CgenerateImplementation = ($) => {
             }),
             'generateVisit': mprivate.$a.generateVisit({
                 'sortedForEach': dfe,
-            })
+            }),
+            'resolve': mresolved.$a.resolve({}),
         })($, $i)
     })
 }

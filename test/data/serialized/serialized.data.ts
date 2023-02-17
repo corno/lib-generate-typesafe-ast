@@ -1,8 +1,8 @@
-import * as pw from 'pareto-core-raw'
+import * as pd from 'pareto-core-data'
 
 import * as mgr from "../../../pub/dist/submodules/definition"
 
-const d = pw.wrapRawDictionary
+const d = pd.wrapRawDictionary
 
 export const $: mgr.T.Grammar = {
     'globalValueTypes': d({

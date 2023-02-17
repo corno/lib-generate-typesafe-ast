@@ -1,17 +1,17 @@
-import * as pr from 'pareto-core-raw'
+import * as pd from 'pareto-core-data'
 import {
     string,
     reference,
     boolean,
     array,
-    dictionary, group, member, taggedUnion, types, typeReference, func, interfaceReference, type,
+    dictionary, group, member, taggedUnion, types, typeReference, func, interfaceReference, type, data, optional, computed,
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands.p"
 
 import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands.p"
 
 import * as mproject from "lib-pareto-typescript-project/dist/submodules/project"
 
-const d = pr.wrapRawDictionary
+const d = pd.wrapRawDictionary
 
 export const project: mproject.T.Project = {
     'author': "Corno",
@@ -62,7 +62,7 @@ export const project: mproject.T.Project = {
                     'functions': d({
                         "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, null, null),
                         "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, null, null),
-                        "GenerateImplementation2": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Writer"), null),
+                        "GenerateUnboundImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Writer"), null),
                         "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Writer"), null),
                         "Serialize": func(typeReference("SerializeData"), null, null, null)
                     }),
@@ -71,17 +71,19 @@ export const project: mproject.T.Project = {
                 "api": {
                     'imports': d({
                         "definition": "../../submodules/definition",
+                        "resolved": "../../submodules/resolved",
                         "fp": "lib-fountain-pen",
                         "private": "../../submodules/private",
                     }),
                     'algorithms': d({
                         "generateImplementation": algorithm(definitionReference("GenerateImplementation")),
                         "generateInterface": algorithm(definitionReference("GenerateInterface")),
-                        "unboundGenerateImplementation": algorithm(definitionReference("GenerateImplementation2"), constructor(null, {
+                        "unboundGenerateImplementation": algorithm(definitionReference("GenerateUnboundImplementation"), constructor(null, {
                             "generateImplementationIndex": definitionReference("private", {}, "GenerateImplementationFile"),
                             "generateParser": definitionReference("private", {}, "GenerateImplementationFile"),
                             "generateCreateDefaultVisitor": definitionReference("private", {}, "GenerateImplementationFile"),
                             "generateVisit": definitionReference("private", {}, "GenerateImplementationFile"),
+                            "resolve": definitionReference("resolved", {}, "Resolve"),
                         })),
                         "unboundGenerateInterface": algorithm(definitionReference("GenerateInterface2"), constructor(null, {
                             "generateFunctions": definitionReference("private", {}, "GenerateInterfaceFile"),
@@ -160,7 +162,7 @@ export const project: mproject.T.Project = {
                     },
                 },
             },
-            "private": {
+            "resolved": {
                 'definition': {
                     'glossary': {
                         'imports': d({
@@ -169,11 +171,76 @@ export const project: mproject.T.Project = {
                         }),
                         'parameters': d({}),
                         'types': d({
+                            "ValueType": type(taggedUnion({
+                                "reference": group({
+                                    "referencee": member(computed(reference("ValueType"))),
+                                    "name": member(string())
+                                }),
+                                "choice": group({
+                                    "options": member(dictionary(reference("Value")))
+                                }),
+                                "node": reference("Node2"),
+                                "sequence": group({
+                                    "elements": member(array(group({
+                                        "name": member(string()),
+                                        "value": member(reference("Value"))
+                                    })))
+                                })
+                            })),
+                            "Value": type(group({
+                                "cardinality": member(taggedUnion({
+                                    "one": group({}),
+                                    "optional": group({}),
+                                    "array": group({}),
+                                }), true),
+                                "type": member(reference("ValueType")),
+                            })),
+                            "Grammar": type(group({
+                                "globalValueTypes": member(dictionary(reference("ValueType"))),
+                                "root": member(reference("Node2"))
+                            })),
+                            "Node2": type(group({
+                                "name": member(string()),
+                                "type": member(taggedUnion({
+                                    "composite": reference("Value"),
+                                    "leaf": group({
+                                        "hasTextContent": member(boolean()),
+                                    }),
+                                }))
+                            })),
+                            "OptionalGrammar": type(optional(reference("Grammar"))),
+                        }),
+                        'interfaces': d({}),
+                        'functions': d({
+                            "Resolve": func(typeReference("definition", "Grammar"), null, null, data(typeReference("OptionalGrammar"), false))
+                        }),
+                    },
+                    "api": {
+                        'imports': d({
+                            "foreach": "res-pareto-foreach",
+                        }),
+                        'algorithms': d({
+                            "resolve": algorithm(definitionReference("Resolve"), constructor(null, {
+                            }))
+                        })
+                    },
+                },
+            },
+            "private": {
+                'definition': {
+                    'glossary': {
+                        'imports': d({
+                            "fp": "lib-fountain-pen",
+                            "definition": "../../../definition",
+                            "resolved": "../../../resolved",
+                        }),
+                        'parameters': d({}),
+                        'types': d({
                             "GenerateInterfaceFileData": type(group({
                                 "grammar": member(reference("definition", "Grammar")),
                             })),
                             "GenerateImplementationFileData": type(group({
-                                "grammar": member(reference("definition", "Grammar")),
+                                "grammar": member(reference("resolved", "Grammar")),
                                 "pathToInterface": member(string()),
                             })),
                         }),

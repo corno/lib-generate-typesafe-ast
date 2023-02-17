@@ -109,11 +109,11 @@ export const $$: api.Cserialize = ($d) => {
         }
 
 
-        $i.line(`import * as pw from 'pareto-core-raw'`)
+        $i.line(`import * as pd from 'pareto-core-data'`)
         $i.line(``)
         $i.line(`import * as mgr from "../../../pub/dist/submodules/definition"`)
         $i.line(``)
-        $i.line(`const d = pw.wrapRawDictionary`)
+        $i.line(`const d = pd.wrapRawDictionary`)
         $i.line(``)
         $i.nestedLine(($i) => {
             $i.snippet(`export const $: mgr.T.Grammar = {`)

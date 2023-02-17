@@ -1,5 +1,5 @@
 import * as pl from 'pareto-core-lib'
-import * as pr from 'pareto-core-raw'
+import * as pd from 'pareto-core-data'
 
 import * as t from "./api"
 
@@ -14,7 +14,7 @@ export function array(vt: t.T.ValueType): t.T.Value {
 }
 
 export function choice(options: RawDictionary<t.T.Value>): t.T.ValueType {
-    return ['choice', { 'options': pr.wrapRawDictionary(options) }]
+    return ['choice', { 'options': pd.wrapRawDictionary(options) }]
 }
 
 export function node(node: t.T.Node2): t.T.ValueType {
@@ -71,6 +71,6 @@ export function reference(name: string): t.T.ValueType {
 
 export function sequence(elements: t.T.ValueType.sequence.elements.A[]): t.T.ValueType {
     return ['sequence', {
-        'elements': pr.wrapRawArray(elements),
+        'elements': pd.wrapRawArray(elements),
     }]
 }

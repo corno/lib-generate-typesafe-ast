@@ -5,6 +5,7 @@ import * as glo from "./glossary"
 import * as mdefinition from "../../submodules/definition"
 import * as mfp from "lib-fountain-pen"
 import * as mprivate from "../../submodules/private"
+import * as mresolved from "../../submodules/resolved"
 
 export type CgenerateImplementation = glo.FGenerateImplementation
 
@@ -17,7 +18,8 @@ export type CunboundGenerateImplementation = ($d: {
     readonly 'generateImplementationIndex': mprivate.FGenerateImplementationFile
     readonly 'generateParser': mprivate.FGenerateImplementationFile
     readonly 'generateVisit': mprivate.FGenerateImplementationFile
-}) => glo.FGenerateImplementation2
+    readonly 'resolve': mresolved.FResolve
+}) => glo.FGenerateUnboundImplementation
 
 export type CunboundGenerateInterface = ($d: {
     readonly 'generateFunctions': mprivate.FGenerateInterfaceFile

@@ -1,4 +1,4 @@
-import * as pw from 'pareto-core-raw'
+import * as pd from 'pareto-core-data'
 
 import * as mgr from "../../../pub/dist/submodules/definition"
 
@@ -13,9 +13,9 @@ import {
     optional,
     reference,
     sequence,
-} from "../../../pub/dist/submodules/definition/shorthands.p"
+} from "../../../pub/dist/submodules/definition/shorthands"
 
-const d = pw.wrapRawDictionary
+const d = pd.wrapRawDictionary
 
 export const $: mgr.T.Grammar = {
     'globalValueTypes': d({

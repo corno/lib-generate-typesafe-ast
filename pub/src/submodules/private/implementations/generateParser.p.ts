@@ -1,18 +1,18 @@
 
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-state'
-import * as pr from 'pareto-core-raw'
+import * as pd from 'pareto-core-data'
 
 import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
-import * as mdefinition from "../../definition"
+import * as mresolved from "../../resolved"
 
 export const $$: api.CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
-            $: mdefinition.T.ValueType,
+            $: mresolved.T.ValueType,
             onToken: (token: string) => void,
             onEnd: () => void,
         ) {
@@ -32,20 +32,20 @@ export const $$: api.CgenerateParser = ($d) => {
                     break
                 case "reference":
                     pl.cc($[1], ($) => {
-                        pr.getEntry(
-                            grammar.globalValueTypes,
-                            $.name,
-                            (x) => {
-                                findNextPossibleTokensInSymbolType(
-                                    x,
-                                    onToken,
-                                    onEnd,
-                                )
-                            },
-                            () => {
-                                pl.panic(`no such value type: '${$.name}'`)
-                            }
+                        findNextPossibleTokensInSymbolType(
+                            $.referencee(),
+                            onToken,
+                            onEnd,
                         )
+                        // pr.getEntry(
+                        //     grammar.globalValueTypes,
+                        //     $.name,
+                        //     (x) => {
+                        //     },
+                        //     () => {
+                        //         pl.panic(`no such value type: '${$.name}'`)
+                        //     }
+                        // )
                     })
                     break
                 case "sequence":
@@ -119,7 +119,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                     $w.line(`const $x = $i`)
                     function generateNode(
-                        $: mdefinition.T.Node2,
+                        $: mresolved.T.Node2,
                         path: string,
                         $w: mfp.IBlock,
                         call: ($w: mfp.ILine) => void
@@ -212,7 +212,7 @@ export const $$: api.CgenerateParser = ($d) => {
 
                     }
                     function generateValue(
-                        $: mdefinition.T.Value,
+                        $: mresolved.T.Value,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -397,7 +397,7 @@ export const $$: api.CgenerateParser = ($d) => {
                         }
                     }
                     function generateValueType(
-                        $: mdefinition.T.ValueType,
+                        $: mresolved.T.ValueType,
                         path: string,
                         $w: mfp.IBlock,
                         endCallback: (
@@ -561,7 +561,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     function generateElements(
-                                        elements: pm.Stack<mdefinition.T.ValueType.sequence.elements.A>,
+                                        elements: pm.Stack<mresolved.T.ValueType.sequence.elements.A>,
                                         $w: mfp.IBlock,
                                     ) {
                                         elements.pop(
