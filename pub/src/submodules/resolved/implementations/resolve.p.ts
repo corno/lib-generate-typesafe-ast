@@ -8,6 +8,35 @@ import * as api from "../api"
 import * as mdefinition from "../../definition"
 
 
+function buildArrayREPLACE_BY_mapAndSubscribe<T>($c: (add: (value: T) => void) => void): pt.Array<T> {
+    const temp = ps.createArrayBuilder<T>()
+    $c((value) => {
+        temp.push(value)
+    })
+    return temp.getArray()
+}
+
+function mapAndSubscribe<T, RT>(
+    dict: pt.Dictionary<T>,
+    callback: (value: T, key: string, subscribe: Subscribe<RT>) => RT,
+    onNotFound: ($: string) => void
+): pt.Dictionary<RT> {
+    const temp = ps.createUnsafeDictionaryBuilder<RT>()
+    const subscribers = createSubscribers<RT>()
+
+    dict.forEach(() => false, ($, key) => {
+        temp.add(key, callback($, key, (key, cb) => {
+            subscribers.push({
+                'name': key,
+                'subscriber': cb
+            })
+        }))
+    })
+    const out = temp.getDictionary()
+    resolve(subscribers, out, onNotFound)
+    return out
+}
+
 type Subscribe<T> = (key: string, cb: IResolvedCallback<T>) => void
 type IResolvedCallback<T> = ($: T) => void
 type Subscription<T> = {
@@ -204,7 +233,19 @@ export const $$: api.Cresolve = ($, $i) => {
                 'context': $.root,
             },
             {
-                'gt': createSubscribeFunction(subscribers)
+                'gt': (keyX, cb) => {
+                    let found = false
+                    gvt.forEach(() => false, (value, key) => {
+                        if (keyX === key) {
+                            found = true
+                            cb(value)
+                        }
+                    })
+                    if (!found) {
+                        pl.logDebugMessage("NOT FOUND")
+                        hasError = true
+                    }
+                }
             },
         ),
     }

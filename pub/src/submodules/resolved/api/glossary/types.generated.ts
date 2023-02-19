@@ -56,12 +56,12 @@ export namespace T {
             }]
     }
     
-    export namespace OptionalGrammar {
+    export namespace PossibleGrammar {
         
         export type O = T.Grammar
     }
     
-    export type OptionalGrammar = [ false ] | [ true, T.Grammar]
+    export type PossibleGrammar = [ false ] | [ true, T.Grammar]
     
     export namespace ResolveError {
         

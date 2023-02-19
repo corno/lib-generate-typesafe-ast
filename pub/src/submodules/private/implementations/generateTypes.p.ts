@@ -70,10 +70,7 @@ export const $$: api.CgenerateTypes = ($d) => {
                                 generateTypesForValue(
                                     $.value,
                                     $w,
-                                    $d.joinNestedStrings({
-                                        strings: [path, $.key],
-                                        separator: "_",
-                                    })
+                                    $d.joinNestedStrings([path, $.key])
                                 )
                             })
                     })
@@ -89,10 +86,7 @@ export const $$: api.CgenerateTypes = ($d) => {
                             generateTypesForValue(
                                 $.value,
                                 $w,
-                                $d.joinNestedStrings({
-                                    strings: [path, $.name],
-                                    separator: "_",
-                                })
+                                $d.joinNestedStrings([path, $.name])
                             )
                         })
                     })

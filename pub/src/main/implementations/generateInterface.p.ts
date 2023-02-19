@@ -30,7 +30,10 @@ export const $$: api.CgenerateInterface = ($) => {
             }),
             'generateInterfaceIndex': mprivate.$a.generateInterfaceIndex,
             'generateTypes': mprivate.$a.generateTypes({
-                'joinNestedStrings': mtostring.$a.joinNestedStrings,
+                'joinNestedStrings': mtostring.$a.joinNestedStrings({
+                    'separator': "_",
+                    'maximum': [false],
+                }, {}),
                 'sortedForEach': dfe,
             }),
             'generateVisitorInterface': mprivate.$a.generateVisitorInterface({

@@ -1,5 +1,6 @@
 
 import * as pl from 'pareto-core-lib'
+import * as pt from 'pareto-core-types'
 import * as pm from 'pareto-core-state'
 import * as pd from 'pareto-core-data'
 
@@ -7,6 +8,19 @@ import * as api from "../api"
 
 import * as mfp from "lib-fountain-pen"
 import * as mresolved from "../../resolved"
+
+function buildDictionary<T>($c: (add: (key: string, value: T) => void) => void): pt.Dictionary<T> {
+    const temp = pm.createDictionaryBuilder<T>(
+        ["ignore", {}],
+        () => {
+            //allow duplicates???
+        }
+    )
+    $c((key, value) => {
+        temp.add(key, value)
+    })
+    return temp.getDictionary()
+}
 
 export const $$: api.CgenerateParser = ($d) => {
     return ($, $i) => {
@@ -224,7 +238,7 @@ export const $$: api.CgenerateParser = ($d) => {
                             switch ($.cardinality[0]) {
                                 case "array":
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(`const elements = pm.createArrayBuilder<api.TVT${path}>()`)
+                                        $w.line(`const elements = pm.createArrayBuilderFIXME<api.TVT${path}>()`)
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`const processElement = () => {`)
                                             $w.indent(($w) => {
@@ -250,23 +264,18 @@ export const $$: api.CgenerateParser = ($d) => {
                                                             $w.snippet(`switch (nextChild.kindName) {`)
                                                             $w.indent(($w) => {
 
-                                                                const possibleTokens = pm.createDictionaryBuilder<null>(
-                                                                    ["ignore", {}],
-                                                                    () => {
-                                                                        //accept double keys?
-                                                                    }
-                                                                )
-                                                                findNextPossibleTokensInSymbolType(
-                                                                    symbol.type,
-                                                                    ($) => {
-                                                                        possibleTokens.add($, null)
-                                                                    },
-                                                                    () => {
-                                                                        pl.panic("IMPLEMENT ME 4")
-                                                                    }
-                                                                )
                                                                 $d.sortedForEach(
-                                                                    possibleTokens.getDictionary(),
+                                                                    buildDictionary((add) => {
+                                                                        findNextPossibleTokensInSymbolType(
+                                                                            symbol.type,
+                                                                            ($) => {
+                                                                                add($, null)
+                                                                            },
+                                                                            () => {
+                                                                                pl.panic("IMPLEMENT ME 4")
+                                                                            }
+                                                                        )
+                                                                    }),
                                                                     ($) => {
                                                                         $w.nestedLine(($w) => {
                                                                             $w.snippet(`case "${$.key}":`)
@@ -333,24 +342,18 @@ export const $$: api.CgenerateParser = ($d) => {
                                                         $w.nestedLine(($w) => {
                                                             $w.snippet(`switch (nextChild.kindName) {`)
                                                             $w.indent(($w) => {
-
-                                                                const possibleTokens = pm.createDictionaryBuilder<null>(
-                                                                    ["ignore", {}],
-                                                                    () => {
-                                                                        //allow duplicates???
-                                                                    }
-                                                                )
-                                                                findNextPossibleTokensInSymbolType(
-                                                                    symbol.type,
-                                                                    ($) => {
-                                                                        possibleTokens.add($, null)
-                                                                    },
-                                                                    () => {
-                                                                        pl.panic("IMPLEMENT ME 5")
-                                                                    }
-                                                                )
                                                                 $d.sortedForEach(
-                                                                    possibleTokens.getDictionary(),
+                                                                    buildDictionary((add) => {
+                                                                        findNextPossibleTokensInSymbolType(
+                                                                            symbol.type,
+                                                                            ($) => {
+                                                                                add($, null)
+                                                                            },
+                                                                            () => {
+                                                                                pl.panic("IMPLEMENT ME 5")
+                                                                            }
+                                                                        )
+                                                                    }),
                                                                     ($) => {
                                                                         $w.nestedLine(($w) => {
                                                                             $w.snippet(`case "${$.key}":`)
@@ -697,7 +700,8 @@ export const $$: api.CgenerateParser = ($d) => {
                                 })
                                 $w.snippet(`}`)
                             })
-                        })
+                        }
+                    )
 
                     $w.nestedLine(($w) => {
                         $w.snippet(`if ($d.stringsAreEqual($.kindName, "${grammar.root.name}")) {`)

@@ -8,6 +8,11 @@ export type Cserialize = ($d: {
     readonly 'dictionaryForEach': mforeach.FDictionaryForEach
 }) => glo.FSerialize
 
+export type CserializeToNew = ($d: {
+    readonly 'dictionaryForEach': mforeach.FDictionaryForEach
+}) => glo.FSerialize
+
 export type API = {
     serialize: Cserialize
+    serializeToNew: CserializeToNew
 }

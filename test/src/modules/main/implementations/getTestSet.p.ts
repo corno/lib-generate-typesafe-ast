@@ -18,6 +18,11 @@ export const $$: api.CgetTestSet = ($) => {
         'grammar': grammar
     })
 
+    pub.$a.serializeToNew({})({
+        'rootPath': [$.testDirectory, "serialized"],
+        'grammar': grammar
+    })
+
     pub.$a.generateInterface(
         {
             rootPath: [$.testDirectory, "out", "src", "interface"],

@@ -7,4 +7,4 @@ import * as mfp from "lib-fountain-pen"
 
 export type IOnResolveError = ($: T.ResolveError, ) => void
 
-export type FResolve = ($: mdefinition.T.Grammar, $i: IOnResolveError,) => T.OptionalGrammar
+export type FResolve = ($: mdefinition.T.Grammar, $i: IOnResolveError,) => T.PossibleGrammar

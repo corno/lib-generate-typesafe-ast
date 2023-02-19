@@ -31,7 +31,7 @@ export function parse(
                     ): void => {
                         const node = $
                         const children = pm.createStack($.children)
-                        const elements = pm.createArrayBuilder<api.TVTGblock$>()
+                        const elements = pm.createArrayBuilderFIXME<api.TVTGblock$>()
                         const processElement = () => {
                             Gstatement(node, children, ($) => {
                                 elements.push($)
@@ -155,7 +155,7 @@ export function parse(
                                 ): void => {
                                     const node = $
                                     const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilder<api.TVTGexpression_arrayLiteral$>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_arrayLiteral$>()
                                     const processElement = () => {
                                         Gexpression(node, children, ($) => {
                                             elements.push($)
@@ -284,7 +284,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGexpression_arrowFunction$_parameters>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_arrowFunction$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -1195,7 +1195,7 @@ export function parse(
                                     }
                                     Gexpression(node, children, ($) => {
                                         const _function = $
-                                        const elements = pm.createArrayBuilder<api.TVTGexpression_call$_typeParameters>()
+                                        const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_call$_typeParameters>()
                                         const processElement = () => {
                                             Gtype(node, children, ($) => {
                                                 elements.push($)
@@ -1259,7 +1259,7 @@ export function parse(
                                         )
                                         pl.cc(elements.getArray(), ($) => {
                                             const _typeParameters = $
-                                            const elements = pm.createArrayBuilder<api.TVTGexpression_call$_parameters>()
+                                            const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_call$_parameters>()
                                             const processElement = () => {
                                                 Gexpression(node, children, ($) => {
                                                     elements.push($)
@@ -1651,7 +1651,7 @@ export function parse(
                                     }
                                     Gidentifier(node, children, ($) => {
                                         const _class = $
-                                        const elements = pm.createArrayBuilder<api.TVTGexpression_new$_parameters>()
+                                        const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_new$_parameters>()
                                         const processElement = () => {
                                             Gexpression(node, children, ($) => {
                                                 elements.push($)
@@ -1869,7 +1869,7 @@ export function parse(
                                 ): void => {
                                     const node = $
                                     const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilder<api.TVTGexpression_objectLiteral$>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_objectLiteral$>()
                                     const processElement = () => {
                                         children.pop(
                                             (currentChild) => {
@@ -2280,7 +2280,7 @@ export function parse(
                                                     currentChild,
                                                     ($) => {
                                                         const _head = $
-                                                        const elements = pm.createArrayBuilder<api.TVTGexpression_template$_spans>()
+                                                        const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_template$_spans>()
                                                         const processElement = () => {
                                                             children.pop(
                                                                 (currentChild) => {
@@ -2682,7 +2682,7 @@ export function parse(
         const sequenceEnd = ($: api.TVTGfunctionDefinition) => {
             callback($)
         }
-        const elements = pm.createArrayBuilder<api.TVTGfunctionDefinition_typeParameters>()
+        const elements = pm.createArrayBuilderFIXME<api.TVTGfunctionDefinition_typeParameters>()
         const processElement = () => {
             GtypeParameter(node, children, ($) => {
                 elements.push($)
@@ -2701,7 +2701,7 @@ export function parse(
         )
         pl.cc(elements.getArray(), ($) => {
             const _typeParameters = $
-            const elements = pm.createArrayBuilder<api.TVTGfunctionDefinition_parameters>()
+            const elements = pm.createArrayBuilderFIXME<api.TVTGfunctionDefinition_parameters>()
             const processElement = () => {
                 Gparameter(node, children, ($) => {
                     elements.push($)
@@ -3558,7 +3558,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGstatement_function$_modifiers>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_function$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -3818,7 +3818,7 @@ export function parse(
                                                                             ): void => {
                                                                                 const node = $
                                                                                 const children = pm.createStack($.children)
-                                                                                const elements = pm.createArrayBuilder<api.TVTGstatement_import$_clause$_named$>()
+                                                                                const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_import$_clause$_named$>()
                                                                                 const processElement = () => {
                                                                                     children.pop(
                                                                                         (currentChild) => {
@@ -4107,7 +4107,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGstatement_interface$_modifiers>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_interface$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -4134,7 +4134,7 @@ export function parse(
                                         const _modifiers = $
                                         Gidentifier(node, children, ($) => {
                                             const _name = $
-                                            const elements = pm.createArrayBuilder<api.TVTGstatement_interface$_typeParameters>()
+                                            const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_interface$_typeParameters>()
                                             const processElement = () => {
                                                 GtypeParameter(node, children, ($) => {
                                                     elements.push($)
@@ -4153,7 +4153,7 @@ export function parse(
                                             )
                                             pl.cc(elements.getArray(), ($) => {
                                                 const _typeParameters = $
-                                                const elements = pm.createArrayBuilder<api.TVTGstatement_interface$_signature>()
+                                                const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_interface$_signature>()
                                                 const processElement = () => {
                                                     GtypeSignature(node, children, ($) => {
                                                         elements.push($)
@@ -4432,7 +4432,7 @@ export function parse(
                                                     ): void => {
                                                         const node = $
                                                         const children = pm.createStack($.children)
-                                                        const elements = pm.createArrayBuilder<api.TVTGstatement_switch$_caseBlock$>()
+                                                        const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_switch$_caseBlock$>()
                                                         const processElement = () => {
                                                             const choiceEnd_Gstatement_switch$_caseBlock$ = ($: api.TVTGstatement_switch$_caseBlock$) => {
                                                                 elements.push($)
@@ -4457,7 +4457,7 @@ export function parse(
                                                                                         }
                                                                                         Gexpression(node, children, ($) => {
                                                                                             const _case = $
-                                                                                            const elements = pm.createArrayBuilder<api.TVTGstatement_switch$_caseBlock$_case$_statements>()
+                                                                                            const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_switch$_caseBlock$_case$_statements>()
                                                                                             const processElement = () => {
                                                                                                 Gstatement(node, children, ($) => {
                                                                                                     elements.push($)
@@ -4573,7 +4573,7 @@ export function parse(
                                                                                     ): void => {
                                                                                         const node = $
                                                                                         const children = pm.createStack($.children)
-                                                                                        const elements = pm.createArrayBuilder<api.TVTGstatement_switch$_caseBlock$_default$>()
+                                                                                        const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_switch$_caseBlock$_default$>()
                                                                                         const processElement = () => {
                                                                                             Gstatement(node, children, ($) => {
                                                                                                 elements.push($)
@@ -4972,7 +4972,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGstatement_typeAlias$_modifiers>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_typeAlias$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -4999,7 +4999,7 @@ export function parse(
                                         const _modifiers = $
                                         Gidentifier(node, children, ($) => {
                                             const _name = $
-                                            const elements = pm.createArrayBuilder<api.TVTGstatement_typeAlias$_typeParameters>()
+                                            const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_typeAlias$_typeParameters>()
                                             const processElement = () => {
                                                 GtypeParameter(node, children, ($) => {
                                                     elements.push($)
@@ -5079,7 +5079,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGstatement_variable$_modifiers>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_variable$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -5505,7 +5505,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGtype_function$_parameters>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_function$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -5992,7 +5992,7 @@ export function parse(
                                 ): void => {
                                     const node = $
                                     const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilder<api.TVTGtype_tuple$>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_tuple$>()
                                     const processElement = () => {
                                         Gtype(node, children, ($) => {
                                             elements.push($)
@@ -6103,7 +6103,7 @@ export function parse(
                                 ): void => {
                                     const node = $
                                     const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilder<api.TVTGtype_typeLiteral$>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_typeLiteral$>()
                                     const processElement = () => {
                                         GtypeSignature(node, children, ($) => {
                                             elements.push($)
@@ -6186,7 +6186,7 @@ export function parse(
                                     }
                                     const choiceEnd_Gtype_typeReference$_x = ($: api.TVTGtype_typeReference$_x) => {
                                         const _x = $
-                                        const elements = pm.createArrayBuilder<api.TVTGtype_typeReference$_parameters>()
+                                        const elements = pm.createArrayBuilderFIXME<api.TVTGtype_typeReference$_parameters>()
                                         const processElement = () => {
                                             Gtype(node, children, ($) => {
                                                 elements.push($)
@@ -6435,7 +6435,7 @@ export function parse(
                                 ): void => {
                                     const node = $
                                     const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilder<api.TVTGtype_union$>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_union$>()
                                     const processElement = () => {
                                         Gtype(node, children, ($) => {
                                             elements.push($)
@@ -6742,7 +6742,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGtypeSignature_construct$_parameters>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtypeSignature_construct$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -6818,7 +6818,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGtypeSignature_index$_modifiers>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtypeSignature_index$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -7024,7 +7024,7 @@ export function parse(
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilder<api.TVTGtypeSignature_property$_modifiers>()
+                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtypeSignature_property$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -7464,7 +7464,7 @@ export function parse(
                     ): void => {
                         const node = $
                         const children = pm.createStack($.children)
-                        const elements = pm.createArrayBuilder<api.TVTGvariableDeclarationList$>()
+                        const elements = pm.createArrayBuilderFIXME<api.TVTGvariableDeclarationList$>()
                         const processElement = () => {
                             GvariableDeclaration(node, children, ($) => {
                                 elements.push($)
@@ -7533,7 +7533,7 @@ export function parse(
                     content: $,
                 })
             }
-            const elements = pm.createArrayBuilder<api.TVTroot_statements>()
+            const elements = pm.createArrayBuilderFIXME<api.TVTroot_statements>()
             const processElement = () => {
                 Gstatement(node, children, ($) => {
                     elements.push($)

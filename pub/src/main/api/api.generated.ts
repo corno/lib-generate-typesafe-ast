@@ -13,6 +13,8 @@ export type CgenerateInterface = glo.FGenerateInterface
 
 export type Cserialize = ($d: {}) => glo.FSerialize
 
+export type CserializeToNew = ($d: {}) => glo.FSerialize
+
 export type CunboundGenerateImplementation = ($d: {
     readonly 'generateCreateDefaultVisitor': mprivate.FGenerateImplementationFile
     readonly 'generateImplementationIndex': mprivate.FGenerateImplementationFile
@@ -32,6 +34,7 @@ export type API = {
     generateImplementation: CgenerateImplementation
     generateInterface: CgenerateInterface
     serialize: Cserialize
+    serializeToNew: CserializeToNew
     unboundGenerateImplementation: CunboundGenerateImplementation
     unboundGenerateInterface: CunboundGenerateInterface
 }

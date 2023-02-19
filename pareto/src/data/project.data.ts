@@ -94,6 +94,10 @@ export const project: mproject.T.Project = {
                         "serialize": algorithm(definitionReference("Serialize"), constructor(null, {
                             // "createFountainPen": definitionReference("fp", {}, "CreateWriter"),
                             // "serialize": definitionReference("definition", {}, "Serialize"),
+                        })),
+                        "serializeToNew": algorithm(definitionReference("Serialize"), constructor(null, {
+                            // "createFountainPen": definitionReference("fp", {}, "CreateWriter"),
+                            // "serialize": definitionReference("definition", {}, "Serialize"),
                         }))
                     })
                 },
@@ -157,6 +161,9 @@ export const project: mproject.T.Project = {
                         'algorithms': d({
                             "serialize": algorithm(definitionReference("Serialize"), constructor(null, {
                                 "dictionaryForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                            })),
+                            "serializeToNew": algorithm(definitionReference("Serialize"), constructor(null, {
+                                "dictionaryForEach": definitionReference("foreach", {}, "DictionaryForEach"),
                             }))
                         })
                     },
@@ -208,7 +215,7 @@ export const project: mproject.T.Project = {
                                     }),
                                 }))
                             })),
-                            "OptionalGrammar": type(optional(reference("Grammar"))),
+                            "PossibleGrammar": type(optional(reference("Grammar"))),
                             "ResolveError": type(group({
                                 "type": member(taggedUnion({
                                     "no such global value type": string(),
@@ -219,7 +226,7 @@ export const project: mproject.T.Project = {
                             "OnResolveError": method(typeReference("ResolveError"))
                         }),
                         'functions': d({
-                            "Resolve": func(typeReference("definition", "Grammar"), null, interfaceReference("OnResolveError"), data(typeReference("OptionalGrammar"), false))
+                            "Resolve": func(typeReference("definition", "Grammar"), null, interfaceReference("OnResolveError"), data(typeReference("PossibleGrammar"), false))
                         }),
                     },
                     "api": {
