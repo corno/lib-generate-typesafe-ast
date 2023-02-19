@@ -2,6 +2,7 @@
 import * as pt from 'pareto-core-types'
 import * as pl from 'pareto-core-lib'
 import * as ps from 'pareto-core-state'
+import * as pv from 'pareto-core-dev'
 
 import * as api from "../api"
 
@@ -71,7 +72,7 @@ function resolve<T>(
             }
         })
         if (!found) {
-            pl.logDebugMessage("NOT FOUND")
+            pv.logDebugMessage("NOT FOUND")
             onNotFound($.name)
         }
     })
@@ -242,7 +243,7 @@ export const $$: api.Cresolve = ($, $i) => {
                         }
                     })
                     if (!found) {
-                        pl.logDebugMessage("NOT FOUND")
+                        pv.logDebugMessage("NOT FOUND")
                         hasError = true
                     }
                 }

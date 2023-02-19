@@ -13,7 +13,7 @@ import {
     optional
 } from "../../../pub/dist/submodules/definitionNew/shorthands"
 
-const d = pd.wrapRawDictionary
+const d = pd.d
 
 export const $: mgr.T.Grammar<pd.SourceLocation> = {
     'types': d({
@@ -95,7 +95,7 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
                 "head": member(node("TemplateHead", true)),
                 "spans": member(array(node("TemplateSpan", group({
                     "expression": member(component("expression")),
-                    "x": member(choice({
+                    "type": member(choice({
                         "middle": node("TemplateMiddle", true),
                         "tail": node("TemplateTail", true),
                     })),
@@ -221,7 +221,7 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
             "tuple": node("TupleType", array(component("type"))),
             "typeLiteral": node("TypeLiteral", component("typeSignatures")),
             "typeReference": node("TypeReference", group({
-                "x": member(choice({
+                "id": member(choice({
                     "identifier": component("identifier"),
                     "qualifiedName": node("QualifiedName", group({
                         "context": member(component("identifier")),

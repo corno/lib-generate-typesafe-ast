@@ -4,7 +4,7 @@ import * as pd from 'pareto-core-data'
 import * as gr from "../../../pub/dist/submodules/definition"
 
 export const $: gr.T.Grammar = {
-    'globalValueTypes': pd.wrapRawDictionary({
+    'globalValueTypes': pd.d({
         'block': ["node", {
             'name': `Block`,
             'type': ["composite", {
@@ -13,7 +13,7 @@ export const $: gr.T.Grammar = {
             }],
         }],
         'expression': ["choice", {
-            'options': pd.wrapRawDictionary({
+            'options': pd.d({
                 'arrayLiteral': {
                     'type': ["node", {
                         'name': `ArrayLiteralExpression`,
@@ -28,7 +28,7 @@ export const $: gr.T.Grammar = {
                         'name': `ArrowFunction`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `parameters`,
                                         'value': {
@@ -58,7 +58,7 @@ export const $: gr.T.Grammar = {
                                         'name': `implementation`,
                                         'value': {
                                             'type': ["choice", {
-                                                'options': pd.wrapRawDictionary({
+                                                'options': pd.d({
                                                     "block": {
                                                         'type': ["reference", {
                                                             'name': `block`,
@@ -81,7 +81,7 @@ export const $: gr.T.Grammar = {
                         'name': `BinaryExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `leftHandSide`,
                                         'value': {
@@ -92,7 +92,7 @@ export const $: gr.T.Grammar = {
                                         'name': `operator`,
                                         'value': {
                                             'type': ["choice", {
-                                                'options': pd.wrapRawDictionary({
+                                                'options': pd.d({
                                                     'ampersandAmpersand': {
                                                         'type': ["node", {
                                                             'name': `AmpersandAmpersandToken`,
@@ -179,7 +179,7 @@ export const $: gr.T.Grammar = {
                         'name': `CallExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `function`,
                                         'value': {
@@ -211,7 +211,7 @@ export const $: gr.T.Grammar = {
                         'name': `ConditionalExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `test`,
                                         'value': {
@@ -258,7 +258,7 @@ export const $: gr.T.Grammar = {
                         'name': `ElementAccessExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `array`,
                                         'value': {
@@ -292,7 +292,7 @@ export const $: gr.T.Grammar = {
                         'name': `NewExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `class`,
                                         'value': {
@@ -339,12 +339,12 @@ export const $: gr.T.Grammar = {
                                 'name': `PropertyAssignment`,
                                 'type': ["composite", {
                                     'type': ["sequence", {
-                                        'elements': pd.wrapRawArray([
+                                        'elements': pd.a([
                                             {
                                                 'name': `name`,
                                                 'value': {
                                                     'type': ["choice", {
-                                                        'options': pd.wrapRawDictionary({
+                                                        'options': pd.d({
                                                             'identifier': {
                                                                 'type': ["reference", {
                                                                     'name': `identifier`
@@ -406,7 +406,7 @@ export const $: gr.T.Grammar = {
                         'name': `PropertyAccessExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `object`,
                                         'value': {
@@ -434,7 +434,7 @@ export const $: gr.T.Grammar = {
                         'name': `TemplateExpression`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `head`,
                                         'value': {
@@ -452,7 +452,7 @@ export const $: gr.T.Grammar = {
                                                 'name': `TemplateSpan`,
                                                 'type': ["composite", {
                                                     'type': ["sequence", {
-                                                        'elements': pd.wrapRawArray([
+                                                        'elements': pd.a([
                                                             {
                                                                 'name': `expression`,
                                                                 'value': {
@@ -463,7 +463,7 @@ export const $: gr.T.Grammar = {
                                                                 'name': `x`,
                                                                 'value': {
                                                                     'type': ["choice", {
-                                                                        'options': pd.wrapRawDictionary({
+                                                                        'options': pd.d({
                                                                             'middle': {
                                                                                 'type': ["node", {
                                                                                     'name': `TemplateMiddle`,
@@ -500,7 +500,7 @@ export const $: gr.T.Grammar = {
             })
         }],
         'functionDefinition': ["sequence", {
-            'elements': pd.wrapRawArray([
+            'elements': pd.a([
                 {
                     'name': `typeParameters`,
                     'value': {
@@ -533,7 +533,7 @@ export const $: gr.T.Grammar = {
             'type': ["leaf", { 'hasTextContent': true }]
         }],
         'identifierOrStringLiteral': ["choice", {
-            'options': pd.wrapRawDictionary({
+            'options': pd.d({
                 'identifier': {
                     'type': ["reference", {
                         'name': `identifier`
@@ -548,7 +548,7 @@ export const $: gr.T.Grammar = {
         }],
         'modifier': ["choice", {
             //AbstractKeyword | AsyncKeyword | ConstKeyword | DeclareKeyword | DefaultKeyword | ExportKeyword | PrivateKeyword | ProtectedKeyword | PublicKeyword | OverrideKeyword | ReadonlyKeyword | StaticKeyword;
-            'options': pd.wrapRawDictionary({
+            'options': pd.d({
                 'declare': {
                     'type': ["node", {
                         'name': `DeclareKeyword`,
@@ -577,7 +577,7 @@ export const $: gr.T.Grammar = {
             'name': `Parameter`,
             'type': ["composite", {
                 'type': ["sequence", {
-                    'elements': pd.wrapRawArray([
+                    'elements': pd.a([
                         {
                             'name': `name`,
                             'value': {
@@ -608,7 +608,7 @@ export const $: gr.T.Grammar = {
             }]
         }],
         'statement': ["choice", {
-            'options': pd.wrapRawDictionary({
+            'options': pd.d({
                 'block': {
                     'type': ["reference", {
                         'name': `block`
@@ -648,7 +648,7 @@ export const $: gr.T.Grammar = {
                         'name': `ForStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `initializer`,
                                         'value': {
@@ -691,7 +691,7 @@ export const $: gr.T.Grammar = {
                         'name': `FunctionDeclaration`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -734,7 +734,7 @@ export const $: gr.T.Grammar = {
                         'name': `IfStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `expression`,
                                         'value': {
@@ -764,7 +764,7 @@ export const $: gr.T.Grammar = {
                         'name': `ImportDeclaration`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `clause`,
                                         'value': {
@@ -772,7 +772,7 @@ export const $: gr.T.Grammar = {
                                                 'name': `ImportClause`,
                                                 'type': ["composite", {
                                                     'type': ["choice", {
-                                                        'options': pd.wrapRawDictionary({
+                                                        'options': pd.d({
                                                             'namespace': {
                                                                 'type': ["node", {
                                                                     'name': `NamespaceImport`,
@@ -792,7 +792,7 @@ export const $: gr.T.Grammar = {
                                                                             'name': `ImportSpecifier`,
                                                                             'type': ["composite", {
                                                                                 'type': ["sequence", {
-                                                                                    'elements': pd.wrapRawArray([
+                                                                                    'elements': pd.a([
                                                                                         {
                                                                                             'name': `name`,
                                                                                             'value': {
@@ -841,7 +841,7 @@ export const $: gr.T.Grammar = {
                         'name': `InterfaceDeclaration`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -883,7 +883,7 @@ export const $: gr.T.Grammar = {
                         'name': `LabeledStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `label`,
                                         'value': {
@@ -917,7 +917,7 @@ export const $: gr.T.Grammar = {
                         'name': `SwitchStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `expression`,
                                         'value': {
@@ -932,13 +932,13 @@ export const $: gr.T.Grammar = {
                                                 'type': ["composite", {
                                                     'cardinality': ["array", {}],
                                                     'type': ["choice", {
-                                                        'options': pd.wrapRawDictionary({
+                                                        'options': pd.d({
                                                             "case": {
                                                                 'type': ["node", {
                                                                     'name': `CaseClause`,
                                                                     'type': ["composite", {
                                                                         'type': ["sequence", {
-                                                                            'elements': pd.wrapRawArray([
+                                                                            'elements': pd.a([
                                                                                 {
                                                                                     'name': `case`,
                                                                                     'value': {
@@ -990,7 +990,7 @@ export const $: gr.T.Grammar = {
                         'name': `TryStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `block`,
                                         'value': {
@@ -1006,7 +1006,7 @@ export const $: gr.T.Grammar = {
                                                 'name': `CatchClause`,
                                                 'type': ["composite", {
                                                     'type': ["sequence", {
-                                                        'elements': pd.wrapRawArray([
+                                                        'elements': pd.a([
                                                             {
                                                                 'name': `variable`,
                                                                 'value': {
@@ -1039,7 +1039,7 @@ export const $: gr.T.Grammar = {
                         'name': `TypeAliasDeclaration`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -1080,7 +1080,7 @@ export const $: gr.T.Grammar = {
                         'name': `VariableStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -1106,7 +1106,7 @@ export const $: gr.T.Grammar = {
                         'name': `WhileStatement`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `condition`,
                                         'value': {
@@ -1133,7 +1133,7 @@ export const $: gr.T.Grammar = {
             'type': ["leaf", { 'hasTextContent': true }]
         }],
         'type': ["choice", {
-            'options': pd.wrapRawDictionary({
+            'options': pd.d({
                 'any': {
                     'type': ["node", {
                         'name': `AnyKeyword`,
@@ -1159,7 +1159,7 @@ export const $: gr.T.Grammar = {
                         'name': `FunctionType`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `parameters`,
                                         'value': {
@@ -1186,7 +1186,7 @@ export const $: gr.T.Grammar = {
                         'name': `LiteralType`,
                         'type': ["composite", {
                             'type': ["choice", {
-                                'options': pd.wrapRawDictionary({
+                                'options': pd.d({
                                     'null': {
                                         'type': ["node", {
                                             'name': `NullKeyword`,
@@ -1260,13 +1260,13 @@ export const $: gr.T.Grammar = {
                         'name': `TypeReference`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `x`,
                                         'value': {
                                             "cardinality": ["one", {}],
                                             'type': ["choice", {
-                                                'options': pd.wrapRawDictionary({
+                                                'options': pd.d({
                                                     "identifier": {
                                                         'type': ["reference", {
                                                             'name': `identifier`
@@ -1277,7 +1277,7 @@ export const $: gr.T.Grammar = {
                                                             'name': `QualifiedName`,
                                                             'type': ["composite", {
                                                                 'type': ["sequence", {
-                                                                    'elements': pd.wrapRawArray([
+                                                                    'elements': pd.a([
                                                                         {
                                                                             'name': `context`,
                                                                             'value': {
@@ -1347,13 +1347,13 @@ export const $: gr.T.Grammar = {
             }]
         }],
         'typeSignature': ["choice", {
-            'options': pd.wrapRawDictionary({
+            'options': pd.d({
                 'construct': {
                     'type': ["node", {
                         'name': `ConstructSignature`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `parameters`,
                                         'value': {
@@ -1381,7 +1381,7 @@ export const $: gr.T.Grammar = {
                         'name': `IndexSignature`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -1414,7 +1414,7 @@ export const $: gr.T.Grammar = {
                         'name': `MethodSignature`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `name`,
                                         'value': {
@@ -1441,7 +1441,7 @@ export const $: gr.T.Grammar = {
                         'name': `PropertySignature`,
                         'type': ["composite", {
                             'type': ["sequence", {
-                                'elements': pd.wrapRawArray([
+                                'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -1483,7 +1483,7 @@ export const $: gr.T.Grammar = {
             'name': `VariableDeclaration`,
             'type': ["composite", {
                 'type': ["sequence", {
-                    'elements': pd.wrapRawArray([
+                    'elements': pd.a([
                         {
                             'name': `name`,
                             'value': {
@@ -1524,7 +1524,7 @@ export const $: gr.T.Grammar = {
         'name': `SourceFile`,
         'type': ["composite", {
             'type': ["sequence", {
-                'elements': pd.wrapRawArray([
+                'elements': pd.a([
                     {
                         'name': `statements`,
                         'value': {

@@ -10,7 +10,7 @@ export function array(vt: t.T.Value<pd.SourceLocation>): t.T.Value<pd.SourceLoca
 }
 
 export function choice(options: RawDictionary<t.T.Value<pd.SourceLocation>>): t.T.Value<pd.SourceLocation> {
-    return ['choice', { 'options': pd.wrapRawDictionary(options) }]
+    return ['choice', { 'options': pd.d(options) }]
 }
 
 export function node(name: string, content: boolean | t.T.Value<pd.SourceLocation>): t.T.Value<pd.SourceLocation> {
@@ -47,6 +47,6 @@ export function component(name: string): t.T.Value<pd.SourceLocation> {
 
 export function group(members: RawDictionary< t.T.Value.group.members.D<pd.SourceLocation>>): t.T.Value<pd.SourceLocation> {
     return ['group', {
-        'members': pd.wrapRawDictionary(members),
+        'members': pd.d(members),
     }]
 }

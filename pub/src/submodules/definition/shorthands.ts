@@ -14,7 +14,7 @@ export function array(vt: t.T.ValueType): t.T.Value {
 }
 
 export function choice(options: RawDictionary<t.T.Value>): t.T.ValueType {
-    return ['choice', { 'options': pd.wrapRawDictionary(options) }]
+    return ['choice', { 'options': pd.d(options) }]
 }
 
 export function node(node: t.T.Node2): t.T.ValueType {
@@ -71,6 +71,6 @@ export function reference(name: string): t.T.ValueType {
 
 export function sequence(elements: t.T.ValueType.sequence.elements.A[]): t.T.ValueType {
     return ['sequence', {
-        'elements': pd.wrapRawArray(elements),
+        'elements': pd.a(elements),
     }]
 }

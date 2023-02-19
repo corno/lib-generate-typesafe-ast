@@ -1,4 +1,12 @@
-import * as exe from 'pareto-core-exe'
-import * as mmain from "../modules/main"
+import * as pe from 'pareto-core-exe'
 
-exe.runProgram(mmain.$a.main)
+import * as mpareto from "lib-pareto-typescript-project"
+
+import { $ as project } from "../data/project.data"
+
+pe.runProgram(($) => {
+    mpareto.$a.generateProject({
+        project: project,
+        mainData: $,
+    })
+})

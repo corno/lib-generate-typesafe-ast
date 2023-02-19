@@ -7,9 +7,9 @@ import { algorithm, constructor, definitionReference } from "lib-pareto-typescri
 
 import * as mproject from "lib-pareto-typescript-project/dist/submodules/project"
 
-const d = pd.wrapRawDictionary
+const d = pd.d
 
-export const project: mproject.T.Project<pd.SourceLocation> = {
+export const $: mproject.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "generates a typescript parser that provides a typed AST",
     'license': "ISC",

@@ -1,4 +1,4 @@
-import * as pl from 'pareto-core-lib'
+import * as pv from 'pareto-core-dev'
 
 import * as api from "../api"
 
@@ -12,10 +12,10 @@ export const $$: api.Cserialize = ($d) => {
     return ($) => {
         mfp.$a.createWriter({
             'onError': ($) => {
-                pl.logDebugMessage("FSDFSDSFDFSDFS")
+                pv.logDebugMessage("FSDFSDSFDFSDFS")
             },
             'reportSuperfluousNode': ($) => {
-                pl.logDebugMessage("SDSFS")
+                pv.logDebugMessage("SDSFS")
             },
         })([$.rootPath], ($i) => {
             $i.file("serialized.data.ts", ($i) => {

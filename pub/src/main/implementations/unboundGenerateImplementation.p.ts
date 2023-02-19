@@ -1,4 +1,4 @@
-import * as pl from 'pareto-core-lib'
+import * as pv from 'pareto-core-dev'
 
 import * as api from "../api"
 
@@ -8,7 +8,7 @@ export const $$: api.CunboundGenerateImplementation = ($d) => {
 
     return ($, $i) => {
         const grammar = $d.resolve($.generation.grammar, ($) => {
-            pl.implementMe("CREATE ERROR MESSAGE")
+            pv.implementMe("CREATE ERROR MESSAGE")
         })
         if (grammar[0] === true) {
             const generation: mprivate.T.GenerateImplementationFileData = {
@@ -31,7 +31,7 @@ export const $$: api.CunboundGenerateImplementation = ($d) => {
                 $d.generateImplementationIndex(generation, $i)
             })
         } else {
-            pl.implementMe("RESOLVE GRAMMAR")
+            pv.implementMe("RESOLVE GRAMMAR")
         }
     }
 }
