@@ -1,11 +1,7 @@
-import * as pd from 'pareto-core-data'
 import {
-    string,
-    reference,
-    boolean,
-    array,
-    dictionary, group, member, taggedUnion, types, typeReference, func, interfaceReference, type, data, optional, computed, method,
+    array, boolean, computed, data, dictionary, func, glossaryParameter, group, interfaceReference, member, method, optional, reference, string, taggedUnion, type, typeReference, types
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
+import * as pd from 'pareto-core-data'
 
 import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
 
@@ -13,7 +9,7 @@ import * as mproject from "lib-pareto-typescript-project/dist/submodules/project
 
 const d = pd.wrapRawDictionary
 
-export const project: mproject.T.Project = {
+export const project: mproject.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "generates a typescript parser that provides a typed AST",
     'license': "ISC",
@@ -165,6 +161,61 @@ export const project: mproject.T.Project = {
                             "serializeToNew": algorithm(definitionReference("Serialize"), constructor(null, {
                                 "dictionaryForEach": definitionReference("foreach", {}, "DictionaryForEach"),
                             }))
+                        })
+                    },
+                },
+            },
+            "definitionNew": {
+                'definition': {
+                    'glossary': {
+                        'imports': d({
+                            "fp": "lib-fountain-pen",
+                        }),
+                        'parameters': d({
+                            "Annotation": {},
+                        }),
+                        'types': d({
+                            "Annotation": type(glossaryParameter("Annotation")),
+                            "Value": type(taggedUnion({
+                                "component": group({
+                                    "name": member(string()),
+                                    "annotation": member(reference("Annotation")),
+                                }),
+                                "choice": group({
+                                    "options": member(dictionary(reference("Value")))
+                                }),
+                                "node": group({
+                                    "name": member(string()),
+                                    "type": member(taggedUnion({
+                                        "composite": reference("Value"),
+                                        "leaf": group({
+                                            "hasTextContent": member(boolean()),
+                                        }),
+                                    }))
+                                }),
+                                "group": group({
+                                    "members": member(dictionary(group({
+                                        "value": member(reference("Value"))
+                                    })))
+                                }),
+                                "array": reference("Value"),
+                                "optional": reference("Value"),
+                            })),
+                            "Grammar": type(group({
+                                "types": member(dictionary(reference("Value"))),
+                                "root": member(string())
+                            })),
+                        }),
+                        'interfaces': d({}),
+                        'functions': d({
+                            "Serialize": func(typeReference("Grammar"), null, interfaceReference("fp", "Block"), null)
+                        }),
+                    },
+                    "api": {
+                        'imports': d({
+                            "foreach": "res-pareto-foreach",
+                        }),
+                        'algorithms': d({
                         })
                     },
                 },

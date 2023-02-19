@@ -8,7 +8,7 @@ import * as pub from "../../../../../pub"
 
 import * as mtest from "lib-pareto-test"
 
-import { $ as grammar } from "../../../data/typescriptGrammar.data"
+import { $ as grammar } from "../../../data/typescriptGrammar_old.data"
 
 export const $$: api.CgetTestSet = ($) => {
 
