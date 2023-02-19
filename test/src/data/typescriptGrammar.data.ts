@@ -2,7 +2,6 @@ import * as pd from 'pareto-core-data'
 
 import * as mgr from "../../../pub/dist/submodules/definitionNew"
 
-
 import {
     array,
     choice,
@@ -127,6 +126,10 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
         })),
         "parameters": array(component("parameter")),
         "questionToken": node("QuestionToken", false),
+        "sourceFile": node("SourceFile", group({
+            "statements": member(component("statements")),
+            "endOfFile": member(node("EndOfFile", false)),
+        })),
         "statement": choice({
             "block": component("block"),
             "break": node("BreakStatement", optional(component("identifier"))),
@@ -173,7 +176,7 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
             "switch": node("SwitchStatement", group({
                 "expression": member(component("expression")),
                 "caseClauses": member(component("caseClauses")),
-                "default": member( node("DefaultClause", component("statements"))),
+                "default": member(node("DefaultClause", component("statements"))),
                 "trailingCaseClauses": member(component("caseClauses")),
             })),
             "throw": node("ThrowStatement", component("expression")),
