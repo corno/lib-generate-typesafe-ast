@@ -72,7 +72,7 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
                 "parameters": member(array(component("expression"))),
             })),
             "noSubstitutionTemplateLiteral": node("NoSubstitutionTemplateLiteral", false),
-            "nullKeyword": node("NullKeyword", false),
+            "nullKeyword": component("nullKeyword"),
             "numericLiteral": component("numericLiteral"),
             "objectLiteral": node("ObjectLiteralExpression", array(node("PropertyAssignment", group({
                 "name": member(choice({
@@ -117,7 +117,7 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
             "export": node("ExportKeyword", false),
             "readonly": node("ReadonlyKeyword", false),
         })),
-        "nullKeyword": component("nullKeyword"),
+        "nullKeyword": node("NullKeyword", false),
         "numericLiteral": node("NumericLiteral", true),
         "parameter": node("Parameter", group({
             "name": member(component("identifier")),
@@ -176,7 +176,7 @@ export const $: mgr.T.Grammar<pd.SourceLocation> = {
             "switch": node("SwitchStatement", group({
                 "expression": member(component("expression")),
                 "caseClauses": member(component("caseClauses")),
-                "default": member(node("DefaultClause", component("statements"))),
+                "default": member(optional(node("DefaultClause", component("statements")))),
                 "trailingCaseClauses": member(component("caseClauses")),
             })),
             "throw": node("ThrowStatement", component("expression")),
