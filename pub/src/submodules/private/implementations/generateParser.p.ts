@@ -586,7 +586,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                 $w.nestedLine(($w) => {
                                                     $w.snippet(`sequenceEnd({`)
                                                     $w.indent(($w) => {
-                                                        $.elements.forEach(($) => {
+                                                        $.elements.__forEach(($) => {
                                                             $w.line(`"${$.name}": _${$.name},`)
                                                         })
                                                     })

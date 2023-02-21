@@ -14,7 +14,7 @@ export const $$: api.CgenerateTypes = ($d) => {
             path: string
         ) {
             switch ($.type[0]) {
-                case "composite":
+                case 'composite':
                     pl.cc($.type[1], ($) => {
                         generateTypesForValue(
                             $,
@@ -23,7 +23,7 @@ export const $$: api.CgenerateTypes = ($d) => {
                         )
                     })
                     break
-                case "leaf":
+                case 'leaf':
                     pl.cc($.type[1], ($) => {
 
                     })
@@ -35,12 +35,12 @@ export const $$: api.CgenerateTypes = ($d) => {
             $w.nestedLine(($w) => {
                 $w.snippet(`export type TN${path} = `)
                 switch ($.type[0]) {
-                    case "composite":
+                    case 'composite':
                         pl.cc($.type[1], ($) => {
                             $w.snippet(`TAnnotatedType<TV${path}>`)
                         })
                         break
-                    case "leaf":
+                    case 'leaf':
                         pl.cc($.type[1], ($) => {
                             if ($.hasTextContent) {
                                 $w.snippet(`TAnnotatedString`)
@@ -62,7 +62,7 @@ export const $$: api.CgenerateTypes = ($d) => {
             path: string,
         ) {
             switch ($[0]) {
-                case "choice":
+                case 'choice':
                     pl.cc($[1], ($) => {
                         $d.sortedForEach(
                             $.options,
@@ -75,14 +75,14 @@ export const $$: api.CgenerateTypes = ($d) => {
                             })
                     })
                     break
-                case "reference":
+                case 'reference':
                     pl.cc($[1], ($) => {
                         //
                     })
                     break
-                case "sequence":
+                case 'sequence':
                     pl.cc($[1], ($) => {
-                        $.elements.forEach(($) => {
+                        $.elements.__forEach(($) => {
                             generateTypesForValue(
                                 $.value,
                                 $w,
@@ -91,7 +91,7 @@ export const $$: api.CgenerateTypes = ($d) => {
                         })
                     })
                     break
-                case "node":
+                case 'node':
                     pl.cc($[1], ($) => {
                         generateTypesForNode(
                             $,
@@ -107,7 +107,7 @@ export const $$: api.CgenerateTypes = ($d) => {
                 $w.snippet(`export type TVT${path} = `)
 
                 switch ($[0]) {
-                    case "choice":
+                    case 'choice':
                         pl.cc($[1], ($) => {
 
                             $w.indent(($w) => {
@@ -120,23 +120,23 @@ export const $$: api.CgenerateTypes = ($d) => {
                             })
                         })
                         break
-                    case "reference":
+                    case 'reference':
                         pl.cc($[1], ($) => {
                             $w.snippet(`TG${$.name}`)
                         })
                         break
-                    case "sequence":
+                    case 'sequence':
                         pl.cc($[1], ($) => {
                             $w.snippet(`{`)
                             $w.indent(($w) => {
-                                $.elements.forEach(($) => {
+                                $.elements.__forEach(($) => {
                                     $w.line(`readonly "${$.name}":  TV${path}_${$.name}`)
                                 })
                             })
                             $w.snippet(`}`)
                         })
                         break
-                    case "node":
+                    case 'node':
                         pl.cc($[1], ($) => {
                             $w.snippet(`TN${path}$`)
                         })
@@ -160,17 +160,17 @@ export const $$: api.CgenerateTypes = ($d) => {
                 $w.snippet(`export type TV${path} = `)
                 if (pl.isNotUndefined($.cardinality)) {
                     switch ($.cardinality[0]) {
-                        case "array":
+                        case 'array':
                             pl.cc($.cardinality[1], ($) => {
                                 $w.snippet(`pt.Array<TVT${path}>`)
                             })
                             break
-                        case "one":
+                        case 'one':
                             pl.cc($.cardinality[1], ($) => {
                                 $w.snippet(`TVT${path}`)
                             })
                             break
-                        case "optional":
+                        case 'optional':
                             pl.cc($.cardinality[1], ($) => {
                                 $w.snippet(`null | TVT${path}`)
                             })
@@ -209,7 +209,7 @@ export const $$: api.CgenerateTypes = ($d) => {
             generateTypesForNode(
                 grammar.root,
                 $w,
-                "root",
+                `root`,
             )
 
             $w.line(`export type TRoot = TNroot`)

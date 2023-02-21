@@ -25,7 +25,7 @@ function mapAndSubscribe<T, RT>(
     const temp = ps.createUnsafeDictionaryBuilder<RT>()
     const subscribers = createSubscribers<RT>()
 
-    dict.forEach(() => false, ($, key) => {
+    dict.__forEach(() => false, ($, key) => {
         temp.add(key, callback($, key, (key, cb) => {
             subscribers.push({
                 'name': key,
@@ -63,9 +63,9 @@ function resolve<T>(
     onNotFound: ($: string) => void
 ) {
 
-    subscribers.getArray().forEach(($) => {
+    subscribers.getArray().__forEach(($) => {
         let found = false
-        dict.forEach(() => false, (value, key) => {
+        dict.__forEach(() => false, (value, key) => {
             if ($.name === key) {
                 found = true
                 $.subscriber(value)
@@ -236,7 +236,7 @@ export const $$: api.Cresolve = ($, $i) => {
             {
                 'gt': (keyX, cb) => {
                     let found = false
-                    gvt.forEach(() => false, (value, key) => {
+                    gvt.__forEach(() => false, (value, key) => {
                         if (keyX === key) {
                             found = true
                             cb(value)

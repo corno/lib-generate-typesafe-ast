@@ -130,7 +130,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                                 break
                             case "sequence":
                                 pl.cc($[1], ($) => {
-                                    $.elements.forEach(($) => {
+                                    $.elements.__forEach(($) => {
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`pl.cc($["${$.name}"], ($) => {`)
                                             $w.indent(($w) => {

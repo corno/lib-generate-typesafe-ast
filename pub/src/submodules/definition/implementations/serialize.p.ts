@@ -93,7 +93,7 @@ export const $$: api.Cserialize = ($d) => {
                     pl.cc($[1], ($) => {
                         $i.snippet(`sequence([`)
                         $i.indent(($i) => {
-                            $.elements.forEach(($) => {
+                            $.elements.__forEach(($) => {
                                 $i.nestedLine(($i) => {
                                     $i.snippet(`e("${$.name}", `)
                                     serializeValue($.value, $i)

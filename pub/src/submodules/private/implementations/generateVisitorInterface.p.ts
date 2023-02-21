@@ -25,7 +25,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                     ) {
 
                         switch ($.type[0]) {
-                            case "composite":
+                            case 'composite':
                                 pl.cc($.type[1], ($) => {
                                     generateValue(
                                         $,
@@ -35,7 +35,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                                     )
                                 })
                                 break
-                            case "leaf":
+                            case 'leaf':
                                 pl.cc($.type[1], ($) => {
                                 })
                                 break
@@ -45,7 +45,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                         $w.nestedLine(($w) => {
                             $w.snippet(`readonly "${pathForReporting}"?: `)
                             switch ($.type[0]) {
-                                case "composite":
+                                case 'composite':
                                     pl.cc($.type[1], ($) => {
                                         $w.snippet(`{`)
                                         $w.indent(($w) => {
@@ -55,7 +55,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     break
-                                case "leaf":
+                                case 'leaf':
                                     pl.cc($.type[1], ($) => {
                                         $w.snippet(`($: types.TN${pathForCode}) => void`)
                                     })
@@ -72,7 +72,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                         pathForReporting: string,
                     ) {
                         switch ($[0]) {
-                            case "choice":
+                            case 'choice':
                                 pl.cc($[1], ($) => {
                                     $d.sortedForEach(
                                         $.options,
@@ -86,14 +86,14 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                                         })
                                 })
                                 break
-                            case "reference":
+                            case 'reference':
                                 pl.cc($[1], ($) => {
 
                                 })
                                 break
-                            case "sequence":
+                            case 'sequence':
                                 pl.cc($[1], ($) => {
-                                    $.elements.forEach(($) => {
+                                    $.elements.__forEach(($) => {
                                         generateValue(
                                             $.value,
                                             $w,
@@ -103,7 +103,7 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                                     })
                                 })
                                 break
-                            case "node":
+                            case 'node':
                                 pl.cc($[1], ($) => {
                                     generateNode(
                                         $,
@@ -146,8 +146,8 @@ export const $$: api.CgenerateVisitorInterface = ($d) => {
                     generateNode(
                         grammar.root,
                         $w,
-                        "root",
-                        "",
+                        `root`,
+                        ``,
                     )
                 })
                 $w.snippet(`}`)

@@ -102,7 +102,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                         break
                                     case "sequence":
                                         pl.cc($[1], ($) => {
-                                            $.elements.forEach(($) => {
+                                            $.elements.__forEach(($) => {
                                                 generateValue(
                                                     $.value,
                                                     $w,
