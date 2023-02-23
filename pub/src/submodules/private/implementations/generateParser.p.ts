@@ -4,7 +4,6 @@ import * as pt from 'pareto-core-types'
 import * as ps from 'pareto-core-state'
 import * as pd from 'pareto-core-dev'
 
-
 import * as gfp from "lib-fountain-pen"
 import * as gresolved from "../../resolved"
 

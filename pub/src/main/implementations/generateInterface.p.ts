@@ -1,6 +1,5 @@
 import * as pd from 'pareto-core-dev'
 
-
 import * as gfp from "lib-fountain-pen"
 import * as gprivate from "../../submodules/private"
 import * as gforeach from "res-pareto-foreach"

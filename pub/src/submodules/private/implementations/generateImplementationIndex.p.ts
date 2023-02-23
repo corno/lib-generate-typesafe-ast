@@ -1,7 +1,5 @@
 import * as pl from 'pareto-core-lib'
 
-
-
 import { CgenerateImplementationIndex } from "../api"
 
 export const $$:CgenerateImplementationIndex = ($, $i) => {

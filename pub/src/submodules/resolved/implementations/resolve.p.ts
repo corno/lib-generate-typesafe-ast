@@ -4,10 +4,8 @@ import * as pl from 'pareto-core-lib'
 import * as ps from 'pareto-core-state'
 import * as pv from 'pareto-core-dev'
 
-
 import * as gdefinition from "../../definition"
 import * as gapi from "../api"
-
 
 function buildArrayREPLACE_BY_mapAndSubscribe<T>($c: (add: (value: T) => void) => void): pt.Array<T> {
     const temp = ps.createArrayBuilder<T>()

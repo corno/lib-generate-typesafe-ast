@@ -1,7 +1,5 @@
 import * as pl from 'pareto-core-lib'
 
-
-
 import { CgenerateFunctions } from "../api"
 
 export const $$:CgenerateFunctions = ($d) => {
@@ -41,7 +39,6 @@ export const $$:CgenerateFunctions = ($d) => {
 
             })
 
-
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export type XVisit = (`)
@@ -57,7 +54,6 @@ export const $$:CgenerateFunctions = ($d) => {
                 })
                 $w.snippet(`) => void`)
             })
-
 
             $w.line(``)
             $w.nestedLine(($w) => {
