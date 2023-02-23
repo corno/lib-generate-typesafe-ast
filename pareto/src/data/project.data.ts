@@ -5,11 +5,11 @@ import * as pd from 'pareto-core-data'
 
 import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
 
-import * as mproject from "lib-pareto-typescript-project/dist/submodules/project"
+import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 const d = pd.d
 
-export const $: mproject.T.Project<pd.SourceLocation> = {
+export const $: gproject.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "generates a typescript parser that provides a typed AST",
     'license': "ISC",

@@ -1,10 +1,12 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../api"
-import * as mdefinition from "../../definition"
-import * as mfp from "lib-fountain-pen"
 
-export const $$: mapi.CgenerateVisitorInterface = ($d) => {
+import * as gdefinition from "../../definition"
+import * as gfp from "lib-fountain-pen"
+
+import { CgenerateVisitorInterface } from "../api"
+
+export const $$:CgenerateVisitorInterface = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {
@@ -17,8 +19,8 @@ export const $$: mapi.CgenerateVisitorInterface = ($d) => {
                 $w.indent(($w) => {
 
                     function generateNode(
-                        $: mdefinition.T.Node2,
-                        $w: mfp.IBlock,
+                        $: gdefinition.T.Node2,
+                        $w: gfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
                     ) {
@@ -65,8 +67,8 @@ export const $$: mapi.CgenerateVisitorInterface = ($d) => {
                         })
                     }
                     function generateValueType(
-                        $: mdefinition.T.ValueType,
-                        $w: mfp.IBlock,
+                        $: gdefinition.T.ValueType,
+                        $w: gfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
                     ) {
@@ -118,8 +120,8 @@ export const $$: mapi.CgenerateVisitorInterface = ($d) => {
 
                     }
                     function generateValue(
-                        $: mdefinition.T.Value,
-                        $w: mfp.IBlock,
+                        $: gdefinition.T.Value,
+                        $w: gfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
                     ) {

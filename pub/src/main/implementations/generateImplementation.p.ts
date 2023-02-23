@@ -1,21 +1,23 @@
 import * as pd from 'pareto-core-dev'
 
-import * as mapi from "../api"
-import * as mfp from "lib-fountain-pen"
-import * as mresolved from "../../submodules/resolved"
-import * as mprivate from "../../submodules/private"
-import * as mforeach from "res-pareto-foreach"
-import * as mcoll from "res-pareto-collation"
-import * as mtostring from "res-pareto-tostring"
+
+import * as gfp from "lib-fountain-pen"
+import * as gresolved from "../../submodules/resolved"
+import * as gprivate from "../../submodules/private"
+import * as gforeach from "res-pareto-foreach"
+import * as gcoll from "res-pareto-collation"
+import * as gtostring from "res-pareto-tostring"
 
 import { $$ as ugImp } from "./unboundGenerateImplementation.p"
 
-export const $$: mapi.CgenerateImplementation = ($) => {
+import { CgenerateImplementation } from "../api"
 
-    const dfe = mforeach.$a.createDictionaryForEach({
-        'compare': mcoll.$a.localeIsABeforeB,
+export const $$:CgenerateImplementation = ($) => {
+
+    const dfe = gforeach.$a.createDictionaryForEach({
+        'compare': gcoll.$a.localeIsABeforeB,
     })
-    mfp.$a.createWriter({
+    gfp.$a.createWriter({
         'onError': ($) => {
             pd.logDebugMessage("FSDFSDSFDFSDFS")
         },
@@ -24,21 +26,21 @@ export const $$: mapi.CgenerateImplementation = ($) => {
         },
     })([$.rootPath], ($i) => {
         ugImp({
-            'generateCreateDefaultVisitor': mprivate.$a.generateCreateDefaultVisitor({
+            'generateCreateDefaultVisitor': gprivate.$a.generateCreateDefaultVisitor({
                 'sortedForEach': dfe
             }),
-            'generateImplementationIndex': mprivate.$a.generateImplementationIndex,
-            'generateParser': mprivate.$a.generateParser({
-                'getKeysAsString': mtostring.$a.getKeysAsString({
+            'generateImplementationIndex': gprivate.$a.generateImplementationIndex,
+            'generateParser': gprivate.$a.generateParser({
+                'getKeysAsString': gtostring.$a.getKeysAsString({
                     'maximum': [false],
                     'separator': ", ",
                 }, {}),
                 'sortedForEach': dfe,
             }),
-            'generateVisit': mprivate.$a.generateVisit({
+            'generateVisit': gprivate.$a.generateVisit({
                 'sortedForEach': dfe,
             }),
-            'resolve': mresolved.$a.resolve,
+            'resolve': gresolved.$a.resolve,
         })($, $i)
     })
 }

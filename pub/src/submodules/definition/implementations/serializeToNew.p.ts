@@ -1,11 +1,13 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../api"
-import * as mfp from "lib-fountain-pen"
+import * as gapi from "../api"
+import * as gfp from "lib-fountain-pen"
 
-export const $$: mapi.Cserialize = ($d) => {
+import { Cserialize } from "../api"
+
+export const $$:Cserialize = ($d) => {
     return ($, $i) => {
-        function serializeNode2($: mapi.T.Node2, $i: mfp.ILine) {
+        function serializeNode2($: gapi.T.Node2, $i: gfp.ILine) {
             const name = $.name
             switch ($.type[0]) {
                 case 'composite':
@@ -24,7 +26,7 @@ export const $$: mapi.Cserialize = ($d) => {
             }
         }
 
-        function serializeValue($: mapi.T.Value, $i: mfp.ILine) {
+        function serializeValue($: gapi.T.Value, $i: gfp.ILine) {
             const val = $.type
             if ($.cardinality === undefined) {
                 serializeValueType(val, $i)
@@ -55,7 +57,7 @@ export const $$: mapi.Cserialize = ($d) => {
             }
         }
 
-        function serializeValueType($: mapi.T.ValueType, $i: mfp.ILine) {
+        function serializeValueType($: gapi.T.ValueType, $i: gfp.ILine) {
             switch ($[0]) {
                 case 'choice':
                     pl.cc($[1], ($) => {
@@ -104,7 +106,7 @@ export const $$: mapi.Cserialize = ($d) => {
 
         $i.line(`import * as pd from 'pareto-core-data'`)
         $i.line(``)
-        $i.line(`import * as mgr from "../../../pub/dist/submodules/definition"`)
+        $i.line(`import * as ggr from "../../../pub/dist/submodules/definition"`)
         $i.line(``)
         $i.line(`const d = pd.wrapRawDictionary`)
         $i.line(``)

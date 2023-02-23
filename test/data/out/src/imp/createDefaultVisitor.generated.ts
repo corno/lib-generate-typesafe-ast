@@ -1,11 +1,11 @@
 import * as pt from 'pareto-core-types'
-import * as mapi from "../interface"
+import * as gapi from "../interface"
 
 export function createDefaultVisistor(
     $i: {
         log: ($: string) => void
     }
-): mapi.IVisitor {
+): gapi.IVisitor {
     return {
         "$block/*Block": {
             begin: ($) => { $i.log("$block/*Block begin") },

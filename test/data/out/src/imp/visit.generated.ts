@@ -1,6 +1,6 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../interface"
+import * as gapi from "../interface"
 
 export function visit(
     $: api.TNroot,

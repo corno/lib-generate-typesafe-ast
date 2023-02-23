@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as mgr from "../../../pub/dist/submodules/definitionNew"
+import * as ggr from "../../../pub/dist/submodules/definitionNew"
 
 import {
     array,
@@ -14,7 +14,7 @@ import {
 
 const d = pd.d
 
-export const $: mgr.T.Grammar<pd.SourceLocation> = {
+export const $: ggr.T.Grammar<pd.SourceLocation> = {
     'types': d({
         "block": node("Block", component("statements")),
         "caseClauses": array(node("CaseClause", group({

@@ -1,14 +1,16 @@
 import * as pv from 'pareto-core-dev'
 
-import * as mapi from "../api"
-import * as mdef from "../../submodules/definition"
-import * as mfp from "lib-fountain-pen"
-import * as mforeach from "res-pareto-foreach"
-import * as mcollation from "res-pareto-collation"
 
-export const $$: mapi.Cserialize = ($d) => {
+import * as gdef from "../../submodules/definition"
+import * as gfp from "lib-fountain-pen"
+import * as gforeach from "res-pareto-foreach"
+import * as gcollation from "res-pareto-collation"
+
+import { Cserialize } from "../api"
+
+export const $$:Cserialize = ($d) => {
     return ($) => {
-        mfp.$a.createWriter({
+        gfp.$a.createWriter({
             'onError': ($) => {
                 pv.logDebugMessage("FSDFSDSFDFSDFS")
             },
@@ -17,9 +19,9 @@ export const $$: mapi.Cserialize = ($d) => {
             },
         })([$.rootPath], ($i) => {
             $i.file("newserialized.data.ts", ($i) => {
-                mdef.$a.serializeToNew({
-                    "dictionaryForEach": mforeach.$a.createDictionaryForEach({
-                        "compare": mcollation.$a.localeIsABeforeB
+                gdef.$a.serializeToNew({
+                    "dictionaryForEach": gforeach.$a.createDictionaryForEach({
+                        "compare": gcollation.$a.localeIsABeforeB
                     })
                 })($.grammar, $i)
             })

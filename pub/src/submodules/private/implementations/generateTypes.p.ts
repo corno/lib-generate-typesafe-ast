@@ -1,15 +1,17 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../api"
-import * as mfp from "lib-fountain-pen"
-import * as mdefinition from "../../definition"
 
-export const $$: mapi.CgenerateTypes = ($d) => {
+import * as gfp from "lib-fountain-pen"
+import * as gdefinition from "../../definition"
+
+import { CgenerateTypes } from "../api"
+
+export const $$:CgenerateTypes = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function generateTypesForNode(
-            $: mdefinition.T.Node2,
-            $w: mfp.IBlock,
+            $: gdefinition.T.Node2,
+            $w: gfp.IBlock,
             path: string
         ) {
             switch ($.type[0]) {
@@ -56,8 +58,8 @@ export const $$: mapi.CgenerateTypes = ($d) => {
 
         }
         function generateTypesForValueType(
-            $: mdefinition.T.ValueType,
-            $w: mfp.IBlock,
+            $: gdefinition.T.ValueType,
+            $w: gfp.IBlock,
             path: string,
         ) {
             switch ($[0]) {
@@ -146,8 +148,8 @@ export const $$: mapi.CgenerateTypes = ($d) => {
             })
         }
         function generateTypesForValue(
-            $: mdefinition.T.Value,
-            $w: mfp.IBlock,
+            $: gdefinition.T.Value,
+            $w: gfp.IBlock,
             path: string,
         ) {
             generateTypesForValueType(
@@ -188,12 +190,12 @@ export const $$: mapi.CgenerateTypes = ($d) => {
             $w.nestedLine(($w) => {
             })
 
-            $w.line(`import * as muast from "glo-typescript-untyped-ast"`)
+            $w.line(`import * as guast from "glo-typescript-untyped-ast"`)
             $w.nestedLine(($w) => {
             })
 
-            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": muast.T.Details; readonly "value": string }`)
-            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": muast.T.Details; readonly "content": Type }`)
+            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": guast.T.Details; readonly "value": string }`)
+            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": guast.T.Details; readonly "content": Type }`)
 
             $d.sortedForEach(
                 grammar.globalValueTypes,

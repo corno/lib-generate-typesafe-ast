@@ -1,10 +1,12 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../api"
-import * as mdefinition from "../../definition"
-import * as mfp from "lib-fountain-pen"
 
-export const $$: mapi.CgenerateVisit = ($d) => {
+import * as gdefinition from "../../definition"
+import * as gfp from "lib-fountain-pen"
+
+import { CgenerateVisit } from "../api"
+
+export const $$:CgenerateVisit = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
 
@@ -12,7 +14,7 @@ export const $$: mapi.CgenerateVisit = ($d) => {
 
             $w.line(`import * as pl from 'pareto-core-lib'`)
             $w.line(``)
-            $w.line(`import * as mapi from "${$.pathToInterface}"`)
+            $w.line(`import * as gapi from "${$.pathToInterface}"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export function visit(`)
@@ -30,8 +32,8 @@ export const $$: mapi.CgenerateVisit = ($d) => {
                 $w.indent(($w) => {
 
                     function generateNode(
-                        $: mdefinition.T.Node2,
-                        $w: mfp.IBlock,
+                        $: gdefinition.T.Node2,
+                        $w: gfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
                     ) {
@@ -75,8 +77,8 @@ export const $$: mapi.CgenerateVisit = ($d) => {
                         })
                     }
                     function generateValueType(
-                        $: mdefinition.T.ValueType,
-                        $w: mfp.IBlock,
+                        $: gdefinition.T.ValueType,
+                        $w: gfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
                     ) {
@@ -156,8 +158,8 @@ export const $$: mapi.CgenerateVisit = ($d) => {
 
                     }
                     function generateValue(
-                        $: mdefinition.T.Value,
-                        $w: mfp.IBlock,
+                        $: gdefinition.T.Value,
+                        $w: gfp.IBlock,
                         pathForCode: string,
                         pathForReporting: string,
                     ) {

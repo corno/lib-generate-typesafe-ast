@@ -1,16 +1,18 @@
 import * as pv from 'pareto-core-dev'
 
-import * as mapi from "../api"
-import * as mprivate from "../../submodules/private"
 
-export const $$: mapi.CunboundGenerateImplementation = ($d) => {
+import * as gprivate from "../../submodules/private"
+
+import { CunboundGenerateImplementation } from "../api"
+
+export const $$:CunboundGenerateImplementation = ($d) => {
 
     return ($, $i) => {
         const grammar = $d.resolve($.generation.grammar, ($) => {
             pv.implementMe("CREATE ERROR MESSAGE")
         })
         if (grammar[0] === true) {
-            const generation: mprivate.T.GenerateImplementationFileData = {
+            const generation: gprivate.T.GenerateImplementationFileData = {
                 'pathToInterface': $.generation.pathToInterface,
                 'grammar': grammar[1],
             }

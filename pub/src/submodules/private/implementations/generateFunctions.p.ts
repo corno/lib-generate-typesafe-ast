@@ -1,15 +1,17 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../api"
 
-export const $$: mapi.CgenerateFunctions = ($d) => {
+
+import { CgenerateFunctions } from "../api"
+
+export const $$:CgenerateFunctions = ($d) => {
     return ($, $i) => {
         //const grammar = $.grammar
         pl.cc($i, ($w) => {
 
             $w.line(`import * as pt from 'pareto-core-types'`)
             $w.line(``)
-            $w.line(`import * as muast from "glo-typescript-untyped-ast"`)
+            $w.line(`import * as guast from "glo-typescript-untyped-ast"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export type XParse = (`)

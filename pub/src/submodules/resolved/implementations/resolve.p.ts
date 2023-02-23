@@ -4,8 +4,9 @@ import * as pl from 'pareto-core-lib'
 import * as ps from 'pareto-core-state'
 import * as pv from 'pareto-core-dev'
 
-import * as mapi from "../api"
-import * as mdefinition from "../../definition"
+
+import * as gdefinition from "../../definition"
+import * as gapi from "../api"
 
 
 function buildArrayREPLACE_BY_mapAndSubscribe<T>($c: (add: (value: T) => void) => void): pt.Array<T> {
@@ -77,18 +78,20 @@ function resolve<T>(
     })
 }
 
-export const $$: mapi.Cresolve = ($, $i) => {
+import { Cresolve } from "../api"
+
+export const $$:Cresolve = ($, $i) => {
 
     let hasError = false
 
     function mapNode2(
         $: {
-            'context': mdefinition.T.Node2,
+            'context': gdefinition.T.Node2,
         },
         parameters: {
-            'gt': Subscribe<mapi.T.ValueType>
+            'gt': Subscribe<gapi.T.ValueType>
         }
-    ): mapi.T.Node2 {
+    ): gapi.T.Node2 {
         return pl.cc(($.context), ($) => {
 
             return {
@@ -120,12 +123,12 @@ export const $$: mapi.Cresolve = ($, $i) => {
     }
     function mapValue(
         $: {
-            'context': mdefinition.T.Value,
+            'context': gdefinition.T.Value,
         },
         parameters: {
-            'gt': Subscribe<mapi.T.ValueType>
+            'gt': Subscribe<gapi.T.ValueType>
         }
-    ): mapi.T.Value {
+    ): gapi.T.Value {
         return pl.cc(($.context), ($) => {
             return {
                 'cardinality': $.cardinality,
@@ -142,12 +145,12 @@ export const $$: mapi.Cresolve = ($, $i) => {
     }
     function mapValueType(
         $: {
-            'context': mdefinition.T.ValueType,
+            'context': gdefinition.T.ValueType,
         },
         parameters: {
-            'gt': Subscribe<mapi.T.ValueType>
+            'gt': Subscribe<gapi.T.ValueType>
         }
-    ): mapi.T.ValueType {
+    ): gapi.T.ValueType {
         return pl.cc(($.context), ($) => {
 
             switch ($[0]) {
@@ -179,7 +182,7 @@ export const $$: mapi.Cresolve = ($, $i) => {
                     })
                 case 'reference':
                     return pl.cc($[1], ($) => {
-                        let x: null | mapi.T.ValueType = null
+                        let x: null | gapi.T.ValueType = null
                         parameters.gt($.name, ($) => {
                             x = $
                         })
@@ -215,7 +218,7 @@ export const $$: mapi.Cresolve = ($, $i) => {
             }
         })
     }
-    const subscribers = createSubscribers<mapi.T.ValueType>()
+    const subscribers = createSubscribers<gapi.T.ValueType>()
     const gvt = $.globalValueTypes.map(($) => {
         return mapValueType(
             {
@@ -226,7 +229,7 @@ export const $$: mapi.Cresolve = ($, $i) => {
             }
         )
     })
-    const out: mapi.T.Grammar = {
+    const out: gapi.T.Grammar = {
         'globalValueTypes': gvt,
         'root': mapNode2(
             {

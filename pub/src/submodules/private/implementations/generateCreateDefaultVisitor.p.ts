@@ -1,17 +1,19 @@
 import * as pl from 'pareto-core-lib'
 
-import * as mapi from "../api"
-import * as mfp from "lib-fountain-pen"
-import * as mdefinition from "../../definition"
+
+import * as gfp from "lib-fountain-pen"
+import * as gdefinition from "../../definition"
 
 
-export const $$: mapi.CgenerateCreateDefaultVisitor = ($d) => {
+import { CgenerateCreateDefaultVisitor } from "../api"
+
+export const $$:CgenerateCreateDefaultVisitor = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {
 
             $w.line(`import * as pt from 'pareto-core-types'`)
-            $w.line(`import * as mapi from "${$.pathToInterface}"`)
+            $w.line(`import * as gapi from "${$.pathToInterface}"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export function createDefaultVisistor(`)
@@ -24,14 +26,14 @@ export const $$: mapi.CgenerateCreateDefaultVisitor = ($d) => {
                         $w.snippet(`}`)
                     })
                 })
-                $w.snippet(`): mapi.IVisitor {`)
+                $w.snippet(`): gapi.IVisitor {`)
                 $w.indent(($w) => {
                     $w.nestedLine(($w) => {
                         $w.snippet(`return {`)
                         $w.indent(($w) => {
                             function generateNode(
-                                $: mdefinition.T.Node2,
-                                $w: mfp.IBlock,
+                                $: gdefinition.T.Node2,
+                                $w: gfp.IBlock,
                                 path: string,
                             ) {
                                 switch ($.type[0]) {
@@ -76,8 +78,8 @@ export const $$: mapi.CgenerateCreateDefaultVisitor = ($d) => {
 
                             }
                             function generateValueType(
-                                $: mdefinition.T.ValueType,
-                                $w: mfp.IBlock,
+                                $: gdefinition.T.ValueType,
+                                $w: gfp.IBlock,
                                 path: string,
                             ) {
                                 switch ($[0]) {
@@ -125,8 +127,8 @@ export const $$: mapi.CgenerateCreateDefaultVisitor = ($d) => {
 
                             }
                             function generateValue(
-                                $: mdefinition.T.Value,
-                                $w: mfp.IBlock,
+                                $: gdefinition.T.Value,
+                                $w: gfp.IBlock,
                                 path: string,
                             ) {
                                 const symbol = $

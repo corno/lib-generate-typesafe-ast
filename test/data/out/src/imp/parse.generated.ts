@@ -1,13 +1,13 @@
 import * as pl from 'pareto-core-lib'
 import * as ps from 'pareto-core-state'
 
-import * as muast from "glo-typescript-untyped-ast"
-import * as mapi from "../interface"
+import * as guast from "glo-typescript-untyped-ast"
+import * as gapi from "../interface"
 
 export function parse(
     $: uast.T.UntypedNode,
     $i: {
-        callback: ($: mapi.TRoot) => void,
+        callback: ($: gapi.TRoot) => void,
         reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,
         reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,
     },
@@ -21,18 +21,18 @@ export function parse(
     function Gblock(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGblock) => void,
+        callback: ($: gapi.TGblock) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Block")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGblock$) => void,
+                        callback: ($: gapi.TNGblock$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
-                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGblock$>()
+                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGblock$>()
                         const processElement = () => {
                             Gstatement(node, children, ($) => {
                                 elements.push($)
@@ -139,9 +139,9 @@ export function parse(
     function Gexpression(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGexpression) => void,
+        callback: ($: gapi.TGexpression) => void,
     ): void {
-        const choiceEnd_Gexpression = ($: mapi.TVTGexpression) => {
+        const choiceEnd_Gexpression = ($: gapi.TVTGexpression) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -152,11 +152,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrayLiteralExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_arrayLiteral$) => void,
+                                    callback: ($: gapi.TNGexpression_arrayLiteral$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_arrayLiteral$>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_arrayLiteral$>()
                                     const processElement = () => {
                                         Gexpression(node, children, ($) => {
                                             elements.push($)
@@ -275,17 +275,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrowFunction")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_arrowFunction$) => void,
+                                    callback: ($: gapi.TNGexpression_arrowFunction$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_arrowFunction$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_arrowFunction$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_arrowFunction$_parameters>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_arrowFunction$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -304,7 +304,7 @@ export function parse(
                                     )
                                     pl.cc(elements.getArray(), ($) => {
                                         const _parameters = $
-                                        let optional: null | mapi.TVTGexpression_arrowFunction$_returnType = null
+                                        let optional: null | gapi.TVTGexpression_arrowFunction$_returnType = null
                                         const setOptional = () => {
                                             Gtype(node, children, ($) => {
                                                 optional = $
@@ -372,7 +372,7 @@ export function parse(
                                                     if ($d.stringsAreEqual(currentChild.kindName, "EqualsGreaterThanToken")) {
                                                         ((
                                                             $: uast.T.UntypedNode,
-                                                            callback: ($: mapi.TNGexpression_arrowFunction$_equalsGreaterThan$) => void,
+                                                            callback: ($: gapi.TNGexpression_arrowFunction$_equalsGreaterThan$) => void,
                                                         ): void => {
                                                             const node = $
                                                             const children = ps.createStack($.children)
@@ -391,7 +391,7 @@ export function parse(
                                                             currentChild,
                                                             ($) => {
                                                                 const _equalsGreaterThan = $
-                                                                const choiceEnd_Gexpression_arrowFunction$_implementation = ($: mapi.TVTGexpression_arrowFunction$_implementation) => {
+                                                                const choiceEnd_Gexpression_arrowFunction$_implementation = ($: gapi.TVTGexpression_arrowFunction$_implementation) => {
                                                                     const _implementation = $
                                                                     sequenceEnd({
                                                                         "parameters": _parameters,
@@ -573,11 +573,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "BinaryExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_binary$) => void,
+                                    callback: ($: gapi.TNGexpression_binary$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_binary$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_binary$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -585,7 +585,7 @@ export function parse(
                                     }
                                     Gexpression(node, children, ($) => {
                                         const _leftHandSide = $
-                                        const choiceEnd_Gexpression_binary$_operator = ($: mapi.TVTGexpression_binary$_operator) => {
+                                        const choiceEnd_Gexpression_binary$_operator = ($: gapi.TVTGexpression_binary$_operator) => {
                                             const _operator = $
                                             Gexpression(node, children, ($) => {
                                                 const _rightHandSide = $
@@ -604,7 +604,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "AmpersandAmpersandToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_ampersandAmpersand$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_ampersandAmpersand$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -648,7 +648,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "BarBarToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_barBar$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_barBar$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -692,7 +692,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "EqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_equals$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_equals$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -736,7 +736,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "EqualsEqualsEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_equalsEqualsEquals$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_equalsEqualsEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -780,7 +780,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "ExclamationEqualsEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_exclamationEqualsEquals$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_exclamationEqualsEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -824,7 +824,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "GreaterThanToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_greaterThan$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_greaterThan$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -868,7 +868,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "LessThanToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_lessThan$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_lessThan$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -912,7 +912,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "MinusToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_minus$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_minus$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -956,7 +956,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "MinusEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_minusEquals$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_minusEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -1000,7 +1000,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "PlusToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_plus$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_plus$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -1044,7 +1044,7 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "PlusEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: mapi.TNGexpression_binary$_operator_plusEquals$) => void,
+                                                                    callback: ($: gapi.TNGexpression_binary$_operator_plusEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
                                                                     const children = ps.createStack($.children)
@@ -1184,11 +1184,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "CallExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_call$) => void,
+                                    callback: ($: gapi.TNGexpression_call$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_call$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_call$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1196,7 +1196,7 @@ export function parse(
                                     }
                                     Gexpression(node, children, ($) => {
                                         const _function = $
-                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_call$_typeParameters>()
+                                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_call$_typeParameters>()
                                         const processElement = () => {
                                             Gtype(node, children, ($) => {
                                                 elements.push($)
@@ -1260,7 +1260,7 @@ export function parse(
                                         )
                                         pl.cc(elements.getArray(), ($) => {
                                             const _typeParameters = $
-                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_call$_parameters>()
+                                            const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_call$_parameters>()
                                             const processElement = () => {
                                                 Gexpression(node, children, ($) => {
                                                     elements.push($)
@@ -1383,11 +1383,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ConditionalExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_conditional$) => void,
+                                    callback: ($: gapi.TNGexpression_conditional$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_conditional$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_conditional$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1400,7 +1400,7 @@ export function parse(
                                                 if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: mapi.TNGexpression_conditional$_questionToken$) => void,
+                                                        callback: ($: gapi.TNGexpression_conditional$_questionToken$) => void,
                                                     ): void => {
                                                         const node = $
                                                         const children = ps.createStack($.children)
@@ -1426,7 +1426,7 @@ export function parse(
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "ColonToken")) {
                                                                             ((
                                                                                 $: uast.T.UntypedNode,
-                                                                                callback: ($: mapi.TNGexpression_conditional$_colonToken$) => void,
+                                                                                callback: ($: gapi.TNGexpression_conditional$_colonToken$) => void,
                                                                             ): void => {
                                                                                 const node = $
                                                                                 const children = ps.createStack($.children)
@@ -1532,11 +1532,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ElementAccessExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_elementAccess$) => void,
+                                    callback: ($: gapi.TNGexpression_elementAccess$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_elementAccess$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_elementAccess$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1591,7 +1591,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "FalseKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_false$) => void,
+                                    callback: ($: gapi.TNGexpression_false$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -1640,11 +1640,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NewExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_new$) => void,
+                                    callback: ($: gapi.TNGexpression_new$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_new$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_new$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1652,7 +1652,7 @@ export function parse(
                                     }
                                     Gidentifier(node, children, ($) => {
                                         const _class = $
-                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_new$_parameters>()
+                                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_new$_parameters>()
                                         const processElement = () => {
                                             Gexpression(node, children, ($) => {
                                                 elements.push($)
@@ -1773,7 +1773,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NoSubstitutionTemplateLiteral")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_noSubstitutionTemplateLiteral$) => void,
+                                    callback: ($: gapi.TNGexpression_noSubstitutionTemplateLiteral$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -1817,7 +1817,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NullKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_nullKeyword$) => void,
+                                    callback: ($: gapi.TNGexpression_nullKeyword$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -1866,28 +1866,28 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ObjectLiteralExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_objectLiteral$) => void,
+                                    callback: ($: gapi.TNGexpression_objectLiteral$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_objectLiteral$>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_objectLiteral$>()
                                     const processElement = () => {
                                         children.pop(
                                             (currentChild) => {
                                                 if ($d.stringsAreEqual(currentChild.kindName, "PropertyAssignment")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: mapi.TNGexpression_objectLiteral$$) => void,
+                                                        callback: ($: gapi.TNGexpression_objectLiteral$$) => void,
                                                     ): void => {
                                                         const node = $
                                                         const children = ps.createStack($.children)
-                                                        const sequenceEnd = ($: mapi.TVTGexpression_objectLiteral$$) => {
+                                                        const sequenceEnd = ($: gapi.TVTGexpression_objectLiteral$$) => {
                                                             callback({
                                                                 tokenDetails: node.details,
                                                                 content: $,
                                                             })
                                                         }
-                                                        const choiceEnd_Gexpression_objectLiteral$$_name = ($: mapi.TVTGexpression_objectLiteral$$_name) => {
+                                                        const choiceEnd_Gexpression_objectLiteral$$_name = ($: gapi.TVTGexpression_objectLiteral$$_name) => {
                                                             const _name = $
                                                             Gexpression(node, children, ($) => {
                                                                 const _expression = $
@@ -2033,7 +2033,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ParenthesizedExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_parenthesizedExpression$) => void,
+                                    callback: ($: gapi.TNGexpression_parenthesizedExpression$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -2082,7 +2082,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PostfixUnaryExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_postfixUnary$) => void,
+                                    callback: ($: gapi.TNGexpression_postfixUnary$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -2131,7 +2131,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PrefixUnaryExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_prefixUnary$) => void,
+                                    callback: ($: gapi.TNGexpression_prefixUnary$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -2180,11 +2180,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PropertyAccessExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_propertyAccess$) => void,
+                                    callback: ($: gapi.TNGexpression_propertyAccess$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_propertyAccess$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_propertyAccess$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -2244,11 +2244,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TemplateExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_template$) => void,
+                                    callback: ($: gapi.TNGexpression_template$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGexpression_template$) => {
+                                    const sequenceEnd = ($: gapi.TVTGexpression_template$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -2259,7 +2259,7 @@ export function parse(
                                             if ($d.stringsAreEqual(currentChild.kindName, "TemplateHead")) {
                                                 ((
                                                     $: uast.T.UntypedNode,
-                                                    callback: ($: mapi.TNGexpression_template$_head$) => void,
+                                                    callback: ($: gapi.TNGexpression_template$_head$) => void,
                                                 ): void => {
                                                     const node = $
                                                     const children = ps.createStack($.children)
@@ -2281,18 +2281,18 @@ export function parse(
                                                     currentChild,
                                                     ($) => {
                                                         const _head = $
-                                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_template$_spans>()
+                                                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGexpression_template$_spans>()
                                                         const processElement = () => {
                                                             children.pop(
                                                                 (currentChild) => {
                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateSpan")) {
                                                                         ((
                                                                             $: uast.T.UntypedNode,
-                                                                            callback: ($: mapi.TNGexpression_template$_spans$) => void,
+                                                                            callback: ($: gapi.TNGexpression_template$_spans$) => void,
                                                                         ): void => {
                                                                             const node = $
                                                                             const children = ps.createStack($.children)
-                                                                            const sequenceEnd = ($: mapi.TVTGexpression_template$_spans$) => {
+                                                                            const sequenceEnd = ($: gapi.TVTGexpression_template$_spans$) => {
                                                                                 callback({
                                                                                     tokenDetails: node.details,
                                                                                     content: $,
@@ -2300,7 +2300,7 @@ export function parse(
                                                                             }
                                                                             Gexpression(node, children, ($) => {
                                                                                 const _expression = $
-                                                                                const choiceEnd_Gexpression_template$_spans$_x = ($: mapi.TVTGexpression_template$_spans$_x) => {
+                                                                                const choiceEnd_Gexpression_template$_spans$_x = ($: gapi.TVTGexpression_template$_spans$_x) => {
                                                                                     const _x = $
                                                                                     sequenceEnd({
                                                                                         "expression": _expression,
@@ -2315,7 +2315,7 @@ export function parse(
                                                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateMiddle")) {
                                                                                                         ((
                                                                                                             $: uast.T.UntypedNode,
-                                                                                                            callback: ($: mapi.TNGexpression_template$_spans$_x_middle$) => void,
+                                                                                                            callback: ($: gapi.TNGexpression_template$_spans$_x_middle$) => void,
                                                                                                         ): void => {
                                                                                                             const node = $
                                                                                                             const children = ps.createStack($.children)
@@ -2362,7 +2362,7 @@ export function parse(
                                                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateTail")) {
                                                                                                         ((
                                                                                                             $: uast.T.UntypedNode,
-                                                                                                            callback: ($: mapi.TNGexpression_template$_spans$_x_tail$) => void,
+                                                                                                            callback: ($: gapi.TNGexpression_template$_spans$_x_tail$) => void,
                                                                                                         ): void => {
                                                                                                             const node = $
                                                                                                             const children = ps.createStack($.children)
@@ -2538,7 +2538,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TrueKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGexpression_true$) => void,
+                                    callback: ($: gapi.TNGexpression_true$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -2678,12 +2678,12 @@ export function parse(
     function GfunctionDefinition(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGfunctionDefinition) => void,
+        callback: ($: gapi.TGfunctionDefinition) => void,
     ): void {
-        const sequenceEnd = ($: mapi.TVTGfunctionDefinition) => {
+        const sequenceEnd = ($: gapi.TVTGfunctionDefinition) => {
             callback($)
         }
-        const elements = ps.createArrayBuilderFIXME<mapi.TVTGfunctionDefinition_typeParameters>()
+        const elements = ps.createArrayBuilderFIXME<gapi.TVTGfunctionDefinition_typeParameters>()
         const processElement = () => {
             GtypeParameter(node, children, ($) => {
                 elements.push($)
@@ -2702,7 +2702,7 @@ export function parse(
         )
         pl.cc(elements.getArray(), ($) => {
             const _typeParameters = $
-            const elements = ps.createArrayBuilderFIXME<mapi.TVTGfunctionDefinition_parameters>()
+            const elements = ps.createArrayBuilderFIXME<gapi.TVTGfunctionDefinition_parameters>()
             const processElement = () => {
                 Gparameter(node, children, ($) => {
                     elements.push($)
@@ -2721,7 +2721,7 @@ export function parse(
             )
             pl.cc(elements.getArray(), ($) => {
                 const _parameters = $
-                let optional: null | mapi.TVTGfunctionDefinition_returnType = null
+                let optional: null | gapi.TVTGfunctionDefinition_returnType = null
                 const setOptional = () => {
                     Gtype(node, children, ($) => {
                         optional = $
@@ -2796,14 +2796,14 @@ export function parse(
     function Gidentifier(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGidentifier) => void,
+        callback: ($: gapi.TGidentifier) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Identifier")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGidentifier$) => void,
+                        callback: ($: gapi.TNGidentifier$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
@@ -2847,9 +2847,9 @@ export function parse(
     function GidentifierOrStringLiteral(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGidentifierOrStringLiteral) => void,
+        callback: ($: gapi.TGidentifierOrStringLiteral) => void,
     ): void {
-        const choiceEnd_GidentifierOrStringLiteral = ($: mapi.TVTGidentifierOrStringLiteral) => {
+        const choiceEnd_GidentifierOrStringLiteral = ($: gapi.TVTGidentifierOrStringLiteral) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -2894,9 +2894,9 @@ export function parse(
     function Gmodifier(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGmodifier) => void,
+        callback: ($: gapi.TGmodifier) => void,
     ): void {
-        const choiceEnd_Gmodifier = ($: mapi.TVTGmodifier) => {
+        const choiceEnd_Gmodifier = ($: gapi.TVTGmodifier) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -2907,7 +2907,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "DeclareKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGmodifier_declare$) => void,
+                                    callback: ($: gapi.TNGmodifier_declare$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -2951,7 +2951,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ExportKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGmodifier_export$) => void,
+                                    callback: ($: gapi.TNGmodifier_export$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -2995,7 +2995,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ReadonlyKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGmodifier_readonly$) => void,
+                                    callback: ($: gapi.TNGmodifier_readonly$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -3067,14 +3067,14 @@ export function parse(
     function GnumericLiteral(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGnumericLiteral) => void,
+        callback: ($: gapi.TGnumericLiteral) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "NumericLiteral")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGnumericLiteral$) => void,
+                        callback: ($: gapi.TNGnumericLiteral$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
@@ -3118,18 +3118,18 @@ export function parse(
     function Gparameter(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGparameter) => void,
+        callback: ($: gapi.TGparameter) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Parameter")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGparameter$) => void,
+                        callback: ($: gapi.TNGparameter$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
-                        const sequenceEnd = ($: mapi.TVTGparameter$) => {
+                        const sequenceEnd = ($: gapi.TVTGparameter$) => {
                             callback({
                                 tokenDetails: node.details,
                                 content: $,
@@ -3137,14 +3137,14 @@ export function parse(
                         }
                         Gidentifier(node, children, ($) => {
                             const _name = $
-                            let optional: null | mapi.TVTGparameter$_questionToken = null
+                            let optional: null | gapi.TVTGparameter$_questionToken = null
                             const setOptional = () => {
                                 children.pop(
                                     (currentChild) => {
                                         if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                             ((
                                                 $: uast.T.UntypedNode,
-                                                callback: ($: mapi.TNGparameter$_questionToken$) => void,
+                                                callback: ($: gapi.TNGparameter$_questionToken$) => void,
                                             ): void => {
                                                 const node = $
                                                 const children = ps.createStack($.children)
@@ -3194,7 +3194,7 @@ export function parse(
                             )
                             pl.cc(optional, ($) => {
                                 const _questionToken = $
-                                let optional: null | mapi.TVTGparameter$_type = null
+                                let optional: null | gapi.TVTGparameter$_type = null
                                 const setOptional = () => {
                                     Gtype(node, children, ($) => {
                                         optional = $
@@ -3301,9 +3301,9 @@ export function parse(
     function Gstatement(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGstatement) => void,
+        callback: ($: gapi.TGstatement) => void,
     ): void {
-        const choiceEnd_Gstatement = ($: mapi.TVTGstatement) => {
+        const choiceEnd_Gstatement = ($: gapi.TVTGstatement) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -3319,11 +3319,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "BreakStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_break$) => void,
+                                    callback: ($: gapi.TNGstatement_break$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    let optional: null | mapi.TVTGstatement_break$ = null
+                                    let optional: null | gapi.TVTGstatement_break$ = null
                                     const setOptional = () => {
                                         Gidentifier(node, children, ($) => {
                                             optional = $
@@ -3384,7 +3384,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ExportDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_export$) => void,
+                                    callback: ($: gapi.TNGstatement_export$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -3433,7 +3433,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ExpressionStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_expression$) => void,
+                                    callback: ($: gapi.TNGstatement_expression$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -3482,11 +3482,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ForStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_for$) => void,
+                                    callback: ($: gapi.TNGstatement_for$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_for$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_for$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -3549,17 +3549,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "FunctionDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_function$) => void,
+                                    callback: ($: gapi.TNGstatement_function$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_function$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_function$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_function$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_function$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -3588,7 +3588,7 @@ export function parse(
                                             const _name = $
                                             GfunctionDefinition(node, children, ($) => {
                                                 const _definition = $
-                                                let optional: null | mapi.TVTGstatement_function$_block = null
+                                                let optional: null | gapi.TVTGstatement_function$_block = null
                                                 const setOptional = () => {
                                                     Gblock(node, children, ($) => {
                                                         optional = $
@@ -3655,11 +3655,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "IfStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_if$) => void,
+                                    callback: ($: gapi.TNGstatement_if$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_if$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_if$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -3669,7 +3669,7 @@ export function parse(
                                         const _expression = $
                                         Gstatement(node, children, ($) => {
                                             const _thenStatement = $
-                                            let optional: null | mapi.TVTGstatement_if$_elseStatement = null
+                                            let optional: null | gapi.TVTGstatement_if$_elseStatement = null
                                             const setOptional = () => {
                                                 Gstatement(node, children, ($) => {
                                                     optional = $
@@ -3782,11 +3782,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ImportDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_import$) => void,
+                                    callback: ($: gapi.TNGstatement_import$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_import$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_import$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -3797,11 +3797,11 @@ export function parse(
                                             if ($d.stringsAreEqual(currentChild.kindName, "ImportClause")) {
                                                 ((
                                                     $: uast.T.UntypedNode,
-                                                    callback: ($: mapi.TNGstatement_import$_clause$) => void,
+                                                    callback: ($: gapi.TNGstatement_import$_clause$) => void,
                                                 ): void => {
                                                     const node = $
                                                     const children = ps.createStack($.children)
-                                                    const choiceEnd_Gstatement_import$_clause$ = ($: mapi.TVTGstatement_import$_clause$) => {
+                                                    const choiceEnd_Gstatement_import$_clause$ = ($: gapi.TVTGstatement_import$_clause$) => {
                                                         callback({
                                                             tokenDetails: node.details,
                                                             content: $,
@@ -3815,22 +3815,22 @@ export function parse(
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "NamedImports")) {
                                                                             ((
                                                                                 $: uast.T.UntypedNode,
-                                                                                callback: ($: mapi.TNGstatement_import$_clause$_named$) => void,
+                                                                                callback: ($: gapi.TNGstatement_import$_clause$_named$) => void,
                                                                             ): void => {
                                                                                 const node = $
                                                                                 const children = ps.createStack($.children)
-                                                                                const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_import$_clause$_named$>()
+                                                                                const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_import$_clause$_named$>()
                                                                                 const processElement = () => {
                                                                                     children.pop(
                                                                                         (currentChild) => {
                                                                                             if ($d.stringsAreEqual(currentChild.kindName, "ImportSpecifier")) {
                                                                                                 ((
                                                                                                     $: uast.T.UntypedNode,
-                                                                                                    callback: ($: mapi.TNGstatement_import$_clause$_named$$) => void,
+                                                                                                    callback: ($: gapi.TNGstatement_import$_clause$_named$$) => void,
                                                                                                 ): void => {
                                                                                                     const node = $
                                                                                                     const children = ps.createStack($.children)
-                                                                                                    const sequenceEnd = ($: mapi.TVTGstatement_import$_clause$_named$$) => {
+                                                                                                    const sequenceEnd = ($: gapi.TVTGstatement_import$_clause$_named$$) => {
                                                                                                         callback({
                                                                                                             tokenDetails: node.details,
                                                                                                             content: $,
@@ -3838,7 +3838,7 @@ export function parse(
                                                                                                     }
                                                                                                     Gidentifier(node, children, ($) => {
                                                                                                         const _name = $
-                                                                                                        let optional: null | mapi.TVTGstatement_import$_clause$_named$$_as = null
+                                                                                                        let optional: null | gapi.TVTGstatement_import$_clause$_named$$_as = null
                                                                                                         const setOptional = () => {
                                                                                                             Gidentifier(node, children, ($) => {
                                                                                                                 optional = $
@@ -3951,7 +3951,7 @@ export function parse(
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "NamespaceImport")) {
                                                                             ((
                                                                                 $: uast.T.UntypedNode,
-                                                                                callback: ($: mapi.TNGstatement_import$_clause$_namespace$) => void,
+                                                                                callback: ($: gapi.TNGstatement_import$_clause$_namespace$) => void,
                                                                             ): void => {
                                                                                 const node = $
                                                                                 const children = ps.createStack($.children)
@@ -4098,17 +4098,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "InterfaceDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_interface$) => void,
+                                    callback: ($: gapi.TNGstatement_interface$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_interface$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_interface$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_interface$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_interface$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -4135,7 +4135,7 @@ export function parse(
                                         const _modifiers = $
                                         Gidentifier(node, children, ($) => {
                                             const _name = $
-                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_interface$_typeParameters>()
+                                            const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_interface$_typeParameters>()
                                             const processElement = () => {
                                                 GtypeParameter(node, children, ($) => {
                                                     elements.push($)
@@ -4154,7 +4154,7 @@ export function parse(
                                             )
                                             pl.cc(elements.getArray(), ($) => {
                                                 const _typeParameters = $
-                                                const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_interface$_signature>()
+                                                const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_interface$_signature>()
                                                 const processElement = () => {
                                                     GtypeSignature(node, children, ($) => {
                                                         elements.push($)
@@ -4231,11 +4231,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "LabeledStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_labeled$) => void,
+                                    callback: ($: gapi.TNGstatement_labeled$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_labeled$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_labeled$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -4290,11 +4290,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ReturnStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_return$) => void,
+                                    callback: ($: gapi.TNGstatement_return$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    let optional: null | mapi.TVTGstatement_return$ = null
+                                    let optional: null | gapi.TVTGstatement_return$ = null
                                     const setOptional = () => {
                                         Gexpression(node, children, ($) => {
                                             optional = $
@@ -4412,11 +4412,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "SwitchStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_switch$) => void,
+                                    callback: ($: gapi.TNGstatement_switch$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_switch$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_switch$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -4429,13 +4429,13 @@ export function parse(
                                                 if ($d.stringsAreEqual(currentChild.kindName, "CaseBlock")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: mapi.TNGstatement_switch$_caseBlock$) => void,
+                                                        callback: ($: gapi.TNGstatement_switch$_caseBlock$) => void,
                                                     ): void => {
                                                         const node = $
                                                         const children = ps.createStack($.children)
-                                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_switch$_caseBlock$>()
+                                                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_switch$_caseBlock$>()
                                                         const processElement = () => {
-                                                            const choiceEnd_Gstatement_switch$_caseBlock$ = ($: mapi.TVTGstatement_switch$_caseBlock$) => {
+                                                            const choiceEnd_Gstatement_switch$_caseBlock$ = ($: gapi.TVTGstatement_switch$_caseBlock$) => {
                                                                 elements.push($)
                                                             }
                                                             $d.lookAhead(children, 
@@ -4446,11 +4446,11 @@ export function parse(
                                                                                 if ($d.stringsAreEqual(currentChild.kindName, "CaseClause")) {
                                                                                     ((
                                                                                         $: uast.T.UntypedNode,
-                                                                                        callback: ($: mapi.TNGstatement_switch$_caseBlock$_case$) => void,
+                                                                                        callback: ($: gapi.TNGstatement_switch$_caseBlock$_case$) => void,
                                                                                     ): void => {
                                                                                         const node = $
                                                                                         const children = ps.createStack($.children)
-                                                                                        const sequenceEnd = ($: mapi.TVTGstatement_switch$_caseBlock$_case$) => {
+                                                                                        const sequenceEnd = ($: gapi.TVTGstatement_switch$_caseBlock$_case$) => {
                                                                                             callback({
                                                                                                 tokenDetails: node.details,
                                                                                                 content: $,
@@ -4458,7 +4458,7 @@ export function parse(
                                                                                         }
                                                                                         Gexpression(node, children, ($) => {
                                                                                             const _case = $
-                                                                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_switch$_caseBlock$_case$_statements>()
+                                                                                            const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_switch$_caseBlock$_case$_statements>()
                                                                                             const processElement = () => {
                                                                                                 Gstatement(node, children, ($) => {
                                                                                                     elements.push($)
@@ -4570,11 +4570,11 @@ export function parse(
                                                                                 if ($d.stringsAreEqual(currentChild.kindName, "DefaultClause")) {
                                                                                     ((
                                                                                         $: uast.T.UntypedNode,
-                                                                                        callback: ($: mapi.TNGstatement_switch$_caseBlock$_default$) => void,
+                                                                                        callback: ($: gapi.TNGstatement_switch$_caseBlock$_default$) => void,
                                                                                     ): void => {
                                                                                         const node = $
                                                                                         const children = ps.createStack($.children)
-                                                                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_switch$_caseBlock$_default$>()
+                                                                                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_switch$_caseBlock$_default$>()
                                                                                         const processElement = () => {
                                                                                             Gstatement(node, children, ($) => {
                                                                                                 elements.push($)
@@ -4801,7 +4801,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ThrowStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_throw$) => void,
+                                    callback: ($: gapi.TNGstatement_throw$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -4850,11 +4850,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TryStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_try$) => void,
+                                    callback: ($: gapi.TNGstatement_try$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_try$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_try$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -4867,11 +4867,11 @@ export function parse(
                                                 if ($d.stringsAreEqual(currentChild.kindName, "CatchClause")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: mapi.TNGstatement_try$_catchClause$) => void,
+                                                        callback: ($: gapi.TNGstatement_try$_catchClause$) => void,
                                                     ): void => {
                                                         const node = $
                                                         const children = ps.createStack($.children)
-                                                        const sequenceEnd = ($: mapi.TVTGstatement_try$_catchClause$) => {
+                                                        const sequenceEnd = ($: gapi.TVTGstatement_try$_catchClause$) => {
                                                             callback({
                                                                 tokenDetails: node.details,
                                                                 content: $,
@@ -4963,17 +4963,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeAliasDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_typeAlias$) => void,
+                                    callback: ($: gapi.TNGstatement_typeAlias$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_typeAlias$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_typeAlias$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_typeAlias$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_typeAlias$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -5000,7 +5000,7 @@ export function parse(
                                         const _modifiers = $
                                         Gidentifier(node, children, ($) => {
                                             const _name = $
-                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_typeAlias$_typeParameters>()
+                                            const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_typeAlias$_typeParameters>()
                                             const processElement = () => {
                                                 GtypeParameter(node, children, ($) => {
                                                     elements.push($)
@@ -5070,17 +5070,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "VariableStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_variable$) => void,
+                                    callback: ($: gapi.TNGstatement_variable$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_variable$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_variable$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_variable$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGstatement_variable$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -5152,11 +5152,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "WhileStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGstatement_while$) => void,
+                                    callback: ($: gapi.TNGstatement_while$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGstatement_while$) => {
+                                    const sequenceEnd = ($: gapi.TVTGstatement_while$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -5295,14 +5295,14 @@ export function parse(
     function GstringLiteral(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGstringLiteral) => void,
+        callback: ($: gapi.TGstringLiteral) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "StringLiteral")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGstringLiteral$) => void,
+                        callback: ($: gapi.TNGstringLiteral$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
@@ -5346,9 +5346,9 @@ export function parse(
     function Gtype(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGtype) => void,
+        callback: ($: gapi.TGtype) => void,
     ): void {
-        const choiceEnd_Gtype = ($: mapi.TVTGtype) => {
+        const choiceEnd_Gtype = ($: gapi.TVTGtype) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -5359,7 +5359,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "AnyKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_any$) => void,
+                                    callback: ($: gapi.TNGtype_any$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5403,7 +5403,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrayType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_array$) => void,
+                                    callback: ($: gapi.TNGtype_array$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5452,7 +5452,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "BooleanKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_boolean$) => void,
+                                    callback: ($: gapi.TNGtype_boolean$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5496,17 +5496,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "FunctionType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_function$) => void,
+                                    callback: ($: gapi.TNGtype_function$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGtype_function$) => {
+                                    const sequenceEnd = ($: gapi.TVTGtype_function$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_function$_parameters>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtype_function$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -5525,7 +5525,7 @@ export function parse(
                                     )
                                     pl.cc(elements.getArray(), ($) => {
                                         const _parameters = $
-                                        let optional: null | mapi.TVTGtype_function$_returnType = null
+                                        let optional: null | gapi.TVTGtype_function$_returnType = null
                                         const setOptional = () => {
                                             Gtype(node, children, ($) => {
                                                 optional = $
@@ -5633,11 +5633,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "LiteralType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_literal$) => void,
+                                    callback: ($: gapi.TNGtype_literal$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const choiceEnd_Gtype_literal$ = ($: mapi.TVTGtype_literal$) => {
+                                    const choiceEnd_Gtype_literal$ = ($: gapi.TVTGtype_literal$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -5651,7 +5651,7 @@ export function parse(
                                                         if ($d.stringsAreEqual(currentChild.kindName, "NullKeyword")) {
                                                             ((
                                                                 $: uast.T.UntypedNode,
-                                                                callback: ($: mapi.TNGtype_literal$_null$) => void,
+                                                                callback: ($: gapi.TNGtype_literal$_null$) => void,
                                                             ): void => {
                                                                 const node = $
                                                                 const children = ps.createStack($.children)
@@ -5759,7 +5759,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NeverKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_never$) => void,
+                                    callback: ($: gapi.TNGtype_never$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5803,7 +5803,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NumberKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_number$) => void,
+                                    callback: ($: gapi.TNGtype_number$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5847,7 +5847,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "OptionalType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_optional$) => void,
+                                    callback: ($: gapi.TNGtype_optional$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5896,7 +5896,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ParenthesizedType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_parenthesized$) => void,
+                                    callback: ($: gapi.TNGtype_parenthesized$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5945,7 +5945,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "StringKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_string$) => void,
+                                    callback: ($: gapi.TNGtype_string$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -5989,11 +5989,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TupleType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_tuple$) => void,
+                                    callback: ($: gapi.TNGtype_tuple$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_tuple$>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtype_tuple$>()
                                     const processElement = () => {
                                         Gtype(node, children, ($) => {
                                             elements.push($)
@@ -6100,11 +6100,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeLiteral")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_typeLiteral$) => void,
+                                    callback: ($: gapi.TNGtype_typeLiteral$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_typeLiteral$>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtype_typeLiteral$>()
                                     const processElement = () => {
                                         GtypeSignature(node, children, ($) => {
                                             elements.push($)
@@ -6175,19 +6175,19 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeReference")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_typeReference$) => void,
+                                    callback: ($: gapi.TNGtype_typeReference$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGtype_typeReference$) => {
+                                    const sequenceEnd = ($: gapi.TVTGtype_typeReference$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const choiceEnd_Gtype_typeReference$_x = ($: mapi.TVTGtype_typeReference$_x) => {
+                                    const choiceEnd_Gtype_typeReference$_x = ($: gapi.TVTGtype_typeReference$_x) => {
                                         const _x = $
-                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_typeReference$_parameters>()
+                                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGtype_typeReference$_parameters>()
                                         const processElement = () => {
                                             Gtype(node, children, ($) => {
                                                 elements.push($)
@@ -6270,11 +6270,11 @@ export function parse(
                                                         if ($d.stringsAreEqual(currentChild.kindName, "QualifiedName")) {
                                                             ((
                                                                 $: uast.T.UntypedNode,
-                                                                callback: ($: mapi.TNGtype_typeReference$_x_qualifiedName$) => void,
+                                                                callback: ($: gapi.TNGtype_typeReference$_x_qualifiedName$) => void,
                                                             ): void => {
                                                                 const node = $
                                                                 const children = ps.createStack($.children)
-                                                                const sequenceEnd = ($: mapi.TVTGtype_typeReference$_x_qualifiedName$) => {
+                                                                const sequenceEnd = ($: gapi.TVTGtype_typeReference$_x_qualifiedName$) => {
                                                                     callback({
                                                                         tokenDetails: node.details,
                                                                         content: $,
@@ -6388,7 +6388,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "UndefinedKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_undefined$) => void,
+                                    callback: ($: gapi.TNGtype_undefined$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -6432,11 +6432,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "UnionType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_union$) => void,
+                                    callback: ($: gapi.TNGtype_union$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_union$>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtype_union$>()
                                     const processElement = () => {
                                         Gtype(node, children, ($) => {
                                             elements.push($)
@@ -6543,7 +6543,7 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "VoidKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtype_void$) => void,
+                                    callback: ($: gapi.TNGtype_void$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
@@ -6667,14 +6667,14 @@ export function parse(
     function GtypeParameter(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGtypeParameter) => void,
+        callback: ($: gapi.TGtypeParameter) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "TypeParameter")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGtypeParameter$) => void,
+                        callback: ($: gapi.TNGtypeParameter$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
@@ -6720,9 +6720,9 @@ export function parse(
     function GtypeSignature(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGtypeSignature) => void,
+        callback: ($: gapi.TGtypeSignature) => void,
     ): void {
-        const choiceEnd_GtypeSignature = ($: mapi.TVTGtypeSignature) => {
+        const choiceEnd_GtypeSignature = ($: gapi.TVTGtypeSignature) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -6733,17 +6733,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ConstructSignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtypeSignature_construct$) => void,
+                                    callback: ($: gapi.TNGtypeSignature_construct$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_construct$) => {
+                                    const sequenceEnd = ($: gapi.TVTGtypeSignature_construct$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtypeSignature_construct$_parameters>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtypeSignature_construct$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -6809,17 +6809,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "IndexSignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtypeSignature_index$) => void,
+                                    callback: ($: gapi.TNGtypeSignature_index$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_index$) => {
+                                    const sequenceEnd = ($: gapi.TVTGtypeSignature_index$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtypeSignature_index$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtypeSignature_index$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -6846,7 +6846,7 @@ export function parse(
                                         const _modifiers = $
                                         Gparameter(node, children, ($) => {
                                             const _parameter = $
-                                            let optional: null | mapi.TVTGtypeSignature_index$_type = null
+                                            let optional: null | gapi.TVTGtypeSignature_index$_type = null
                                             const setOptional = () => {
                                                 Gtype(node, children, ($) => {
                                                     optional = $
@@ -6956,11 +6956,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "MethodSignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtypeSignature_method$) => void,
+                                    callback: ($: gapi.TNGtypeSignature_method$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_method$) => {
+                                    const sequenceEnd = ($: gapi.TVTGtypeSignature_method$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -7015,17 +7015,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PropertySignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: mapi.TNGtypeSignature_property$) => void,
+                                    callback: ($: gapi.TNGtypeSignature_property$) => void,
                                 ): void => {
                                     const node = $
                                     const children = ps.createStack($.children)
-                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_property$) => {
+                                    const sequenceEnd = ($: gapi.TVTGtypeSignature_property$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtypeSignature_property$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<gapi.TVTGtypeSignature_property$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -7052,14 +7052,14 @@ export function parse(
                                         const _modifiers = $
                                         GidentifierOrStringLiteral(node, children, ($) => {
                                             const _name = $
-                                            let optional: null | mapi.TVTGtypeSignature_property$_quesionToken = null
+                                            let optional: null | gapi.TVTGtypeSignature_property$_quesionToken = null
                                             const setOptional = () => {
                                                 children.pop(
                                                     (currentChild) => {
                                                         if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                                             ((
                                                                 $: uast.T.UntypedNode,
-                                                                callback: ($: mapi.TNGtypeSignature_property$_quesionToken$) => void,
+                                                                callback: ($: gapi.TNGtypeSignature_property$_quesionToken$) => void,
                                                             ): void => {
                                                                 const node = $
                                                                 const children = ps.createStack($.children)
@@ -7109,7 +7109,7 @@ export function parse(
                                             )
                                             pl.cc(optional, ($) => {
                                                 const _quesionToken = $
-                                                let optional: null | mapi.TVTGtypeSignature_property$_type = null
+                                                let optional: null | gapi.TVTGtypeSignature_property$_type = null
                                                 const setOptional = () => {
                                                     Gtype(node, children, ($) => {
                                                         optional = $
@@ -7253,18 +7253,18 @@ export function parse(
     function GvariableDeclaration(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGvariableDeclaration) => void,
+        callback: ($: gapi.TGvariableDeclaration) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "VariableDeclaration")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGvariableDeclaration$) => void,
+                        callback: ($: gapi.TNGvariableDeclaration$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
-                        const sequenceEnd = ($: mapi.TVTGvariableDeclaration$) => {
+                        const sequenceEnd = ($: gapi.TVTGvariableDeclaration$) => {
                             callback({
                                 tokenDetails: node.details,
                                 content: $,
@@ -7272,7 +7272,7 @@ export function parse(
                         }
                         Gidentifier(node, children, ($) => {
                             const _name = $
-                            let optional: null | mapi.TVTGvariableDeclaration$_type = null
+                            let optional: null | gapi.TVTGvariableDeclaration$_type = null
                             const setOptional = () => {
                                 Gtype(node, children, ($) => {
                                     optional = $
@@ -7335,7 +7335,7 @@ export function parse(
                             )
                             pl.cc(optional, ($) => {
                                 const _type = $
-                                let optional: null | mapi.TVTGvariableDeclaration$_expression = null
+                                let optional: null | gapi.TVTGvariableDeclaration$_expression = null
                                 const setOptional = () => {
                                     Gexpression(node, children, ($) => {
                                         optional = $
@@ -7454,18 +7454,18 @@ export function parse(
     function GvariableDeclarationList(
         node: uast.T.UntypedNode,
         children: ps.Stack<uast.T.UntypedNode>,
-        callback: ($: mapi.TGvariableDeclarationList) => void,
+        callback: ($: gapi.TGvariableDeclarationList) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "VariableDeclarationList")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: mapi.TNGvariableDeclarationList$) => void,
+                        callback: ($: gapi.TNGvariableDeclarationList$) => void,
                     ): void => {
                         const node = $
                         const children = ps.createStack($.children)
-                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGvariableDeclarationList$>()
+                        const elements = ps.createArrayBuilderFIXME<gapi.TVTGvariableDeclarationList$>()
                         const processElement = () => {
                             GvariableDeclaration(node, children, ($) => {
                                 elements.push($)
@@ -7524,17 +7524,17 @@ export function parse(
     if ($d.stringsAreEqual($.kindName, "SourceFile")) {
         ((
             $: uast.T.UntypedNode,
-            callback: ($: mapi.TNroot) => void,
+            callback: ($: gapi.TNroot) => void,
         ): void => {
             const node = $
             const children = ps.createStack($.children)
-            const sequenceEnd = ($: mapi.TVTroot) => {
+            const sequenceEnd = ($: gapi.TVTroot) => {
                 callback({
                     tokenDetails: node.details,
                     content: $,
                 })
             }
-            const elements = ps.createArrayBuilderFIXME<mapi.TVTroot_statements>()
+            const elements = ps.createArrayBuilderFIXME<gapi.TVTroot_statements>()
             const processElement = () => {
                 Gstatement(node, children, ($) => {
                     elements.push($)
@@ -7606,7 +7606,7 @@ export function parse(
                         if ($d.stringsAreEqual(currentChild.kindName, "EndOfFileToken")) {
                             ((
                                 $: uast.T.UntypedNode,
-                                callback: ($: mapi.TNroot_endOfFile$) => void,
+                                callback: ($: gapi.TNroot_endOfFile$) => void,
                             ): void => {
                                 const node = $
                                 const children = ps.createStack($.children)

@@ -1,6 +1,8 @@
-import * as mapi from "../api"
 
-export const $$: mapi.CunboundGenerateInterface = ($d) => {
+
+import { CunboundGenerateInterface } from "../api"
+
+export const $$:CunboundGenerateInterface = ($d) => {
     return ($, $i) => {
         $i.directory("types", ($i) => {
             $i.file("ts_api.generated.ts", ($i) => {

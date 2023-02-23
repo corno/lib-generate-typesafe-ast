@@ -4,9 +4,9 @@ import * as pt from 'pareto-core-types'
 import * as ps from 'pareto-core-state'
 import * as pd from 'pareto-core-dev'
 
-import * as mapi from "../api"
-import * as mfp from "lib-fountain-pen"
-import * as mresolved from "../../resolved"
+
+import * as gfp from "lib-fountain-pen"
+import * as gresolved from "../../resolved"
 
 function buildDictionary<T>($c: (add: (key: string, value: T) => void) => void): pt.Dictionary<T> {
     const temp = ps.createDictionaryBuilder<T>(
@@ -21,11 +21,13 @@ function buildDictionary<T>($c: (add: (key: string, value: T) => void) => void):
     return temp.getDictionary()
 }
 
-export const $$: mapi.CgenerateParser = ($d) => {
+import { CgenerateParser } from "../api"
+
+export const $$:CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
-            $: mresolved.T.ValueType,
+            $: gresolved.T.ValueType,
             onToken: (token: string) => void,
             onEnd: () => void,
         ) {
@@ -98,8 +100,8 @@ export const $$: mapi.CgenerateParser = ($d) => {
             $w.line(`import * as pl from 'pareto-core-lib'`)
             $w.line(`import * as ps from 'pareto-core-state'`)
             $w.line(``)
-            $w.line(`import * as muast from "glo-typescript-untyped-ast"`)
-            $w.line(`import * as mapi from "${$.pathToInterface}"`)
+            $w.line(`import * as guast from "glo-typescript-untyped-ast"`)
+            $w.line(`import * as gapi from "${$.pathToInterface}"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export function parse(`)
@@ -109,7 +111,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                     $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
-                            $w.line(`callback: ($: mapi.TRoot) => void,`)
+                            $w.line(`callback: ($: gapi.TRoot) => void,`)
                             $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,`)
                             $w.line(`reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,`)
                         })
@@ -130,10 +132,10 @@ export const $$: mapi.CgenerateParser = ($d) => {
 
                     $w.line(`const $x = $i`)
                     function generateNode(
-                        $: mresolved.T.Node2,
+                        $: gresolved.T.Node2,
                         path: string,
-                        $w: mfp.IBlock,
-                        call: ($w: mfp.ILine) => void
+                        $w: gfp.IBlock,
+                        call: ($w: gfp.ILine) => void
                     ) {
 
                         $w.nestedLine(($w) => {
@@ -141,7 +143,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                             $w.snippet(`((`)
                             $w.indent(($w) => {
                                 $w.line(`$: uast.T.UntypedNode,`)
-                                $w.line(`callback: ($: mapi.TN${path}) => void,`)
+                                $w.line(`callback: ($: gapi.TN${path}) => void,`)
                             })
                             $w.snippet(`): void => {`)
                             $w.indent(($w) => {
@@ -223,11 +225,11 @@ export const $$: mapi.CgenerateParser = ($d) => {
 
                     }
                     function generateValue(
-                        $: mresolved.T.Value,
+                        $: gresolved.T.Value,
                         path: string,
-                        $w: mfp.IBlock,
+                        $w: gfp.IBlock,
                         endCallback: (
-                            $w: mfp.IBlock,
+                            $w: gfp.IBlock,
                         ) => void,
                     ) {
                         const symbol = $
@@ -235,7 +237,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                             switch ($.cardinality[0]) {
                                 case 'array':
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(`const elements = ps.createArrayBuilderFIXME<mapi.TVT${path}>()`)
+                                        $w.line(`const elements = ps.createArrayBuilderFIXME<gapi.TVT${path}>()`)
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`const processElement = () => {`)
                                             $w.indent(($w) => {
@@ -314,7 +316,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                                     break
                                 case 'optional':
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(`let optional: null | mapi.TVT${path} = null`)
+                                        $w.line(`let optional: null | gapi.TVT${path} = null`)
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`const setOptional = () => {`)
                                             $w.indent(($w) => {
@@ -397,11 +399,11 @@ export const $$: mapi.CgenerateParser = ($d) => {
                         }
                     }
                     function generateValueType(
-                        $: mresolved.T.ValueType,
+                        $: gresolved.T.ValueType,
                         path: string,
-                        $w: mfp.IBlock,
+                        $w: gfp.IBlock,
                         endCallback: (
-                            $w: mfp.IBlock,
+                            $w: gfp.IBlock,
                         ) => void,
                     ) {
                         switch ($[0]) {
@@ -424,7 +426,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                                             )
                                         })
                                     $w.nestedLine(($w) => {
-                                        $w.snippet(`const choiceEnd_${path} = ($: mapi.TVT${path}) => {`)
+                                        $w.snippet(`const choiceEnd_${path} = ($: gapi.TVT${path}) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
                                                 $w,
@@ -552,7 +554,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                             case 'sequence':
                                 pl.cc($[1], ($) => {
                                     $w.nestedLine(($w) => {
-                                        $w.snippet(`const sequenceEnd = ($: mapi.TVT${path}) => {`)
+                                        $w.snippet(`const sequenceEnd = ($: gapi.TVT${path}) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
                                                 $w,
@@ -561,8 +563,8 @@ export const $$: mapi.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     function generateElements(
-                                        elements: ps.Stack<mresolved.T.ValueType.sequence.elements.A>,
-                                        $w: mfp.IBlock,
+                                        elements: ps.Stack<gresolved.T.ValueType.sequence.elements.A>,
+                                        $w: gfp.IBlock,
                                     ) {
                                         elements.pop(
                                             ($) => {
@@ -682,7 +684,7 @@ export const $$: mapi.CgenerateParser = ($d) => {
                                 $w.indent(($w) => {
                                     $w.line(`node: uast.T.UntypedNode,`)
                                     $w.line(`children: ps.Stack<uast.T.UntypedNode>,`)
-                                    $w.line(`callback: ($: mapi.TG${$.key}) => void,`)
+                                    $w.line(`callback: ($: gapi.TG${$.key}) => void,`)
                                 })
                                 $w.snippet(`): void {`)
                                 $w.indent(($w) => {

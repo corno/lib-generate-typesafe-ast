@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as mgr from "../../../pub/dist/submodules/definition"
+import * as ggr from "../../../pub/dist/submodules/definition"
 
 const d = pd.wrapRawDictionary
 
