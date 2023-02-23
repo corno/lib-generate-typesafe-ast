@@ -1,10 +1,9 @@
 import * as pv from 'pareto-core-dev'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mprivate from "../../submodules/private"
 
-export const $$: api.CunboundGenerateImplementation = ($d) => {
+export const $$: mapi.CunboundGenerateImplementation = ($d) => {
 
     return ($, $i) => {
         const grammar = $d.resolve($.generation.grammar, ($) => {

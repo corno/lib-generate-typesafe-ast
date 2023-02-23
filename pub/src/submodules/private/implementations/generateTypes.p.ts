@@ -1,11 +1,10 @@
 import * as pl from 'pareto-core-lib'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mfp from "lib-fountain-pen"
 import * as mdefinition from "../../definition"
 
-export const $$: api.CgenerateTypes = ($d) => {
+export const $$: mapi.CgenerateTypes = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function generateTypesForNode(
@@ -158,7 +157,7 @@ export const $$: api.CgenerateTypes = ($d) => {
             )
             $w.nestedLine(($w) => {
                 $w.snippet(`export type TV${path} = `)
-                if (pl.isNotUndefined($.cardinality)) {
+                if ($.cardinality !== undefined) {
                     switch ($.cardinality[0]) {
                         case 'array':
                             pl.cc($.cardinality[1], ($) => {
@@ -189,12 +188,12 @@ export const $$: api.CgenerateTypes = ($d) => {
             $w.nestedLine(($w) => {
             })
 
-            $w.line(`import * as uast from "glo-typescript-untyped-ast"`)
+            $w.line(`import * as muast from "glo-typescript-untyped-ast"`)
             $w.nestedLine(($w) => {
             })
 
-            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": uast.T.Details; readonly "value": string }`)
-            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.T.Details; readonly "content": Type }`)
+            $w.line(`export type TAnnotatedString = { readonly "tokenDetails": muast.T.Details; readonly "value": string }`)
+            $w.line(`export type TAnnotatedType<Type> = { readonly "tokenDetails": muast.T.Details; readonly "content": Type }`)
 
             $d.sortedForEach(
                 grammar.globalValueTypes,

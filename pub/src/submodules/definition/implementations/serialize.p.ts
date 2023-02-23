@@ -1,12 +1,11 @@
 import * as pl from 'pareto-core-lib'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mfp from "lib-fountain-pen"
 
-export const $$: api.Cserialize = ($d) => {
+export const $$: mapi.Cserialize = ($d) => {
     return ($, $i) => {
-        function serializeNode2($: api.T.Node2, $i: mfp.ILine) {
+        function serializeNode2($: mapi.T.Node2, $i: mfp.ILine) {
             const name = $.name
             switch ($.type[0]) {
                 case 'composite':
@@ -25,7 +24,7 @@ export const $$: api.Cserialize = ($d) => {
             }
         }
 
-        function serializeValue($: api.T.Value, $i: mfp.ILine) {
+        function serializeValue($: mapi.T.Value, $i: mfp.ILine) {
             const val = $.type
             if ($.cardinality === undefined) {
                 $i.snippet(`one(`)
@@ -60,7 +59,7 @@ export const $$: api.Cserialize = ($d) => {
             }
         }
 
-        function serializeValueType($: api.T.ValueType, $i: mfp.ILine) {
+        function serializeValueType($: mapi.T.ValueType, $i: mfp.ILine) {
             switch ($[0]) {
                 case 'choice':
                     pl.cc($[1], ($) => {

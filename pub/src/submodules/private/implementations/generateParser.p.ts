@@ -1,16 +1,16 @@
 
 import * as pl from 'pareto-core-lib'
 import * as pt from 'pareto-core-types'
-import * as pm from 'pareto-core-state'
+import * as ps from 'pareto-core-state'
+import * as pd from 'pareto-core-dev'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mfp from "lib-fountain-pen"
 import * as mresolved from "../../resolved"
 
 function buildDictionary<T>($c: (add: (key: string, value: T) => void) => void): pt.Dictionary<T> {
-    const temp = pm.createDictionaryBuilder<T>(
-        ["ignore", {}],
+    const temp = ps.createDictionaryBuilder<T>(
+        ['ignore', {}],
         () => {
             //allow duplicates???
         }
@@ -21,7 +21,7 @@ function buildDictionary<T>($c: (add: (key: string, value: T) => void) => void):
     return temp.getDictionary()
 }
 
-export const $$: api.CgenerateParser = ($d) => {
+export const $$: mapi.CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
@@ -30,7 +30,7 @@ export const $$: api.CgenerateParser = ($d) => {
             onEnd: () => void,
         ) {
             switch ($[0]) {
-                case "choice":
+                case 'choice':
                     pl.cc($[1], ($) => {
                         $d.sortedForEach(
                             $.options,
@@ -43,7 +43,7 @@ export const $$: api.CgenerateParser = ($d) => {
                             })
                     })
                     break
-                case "reference":
+                case 'reference':
                     pl.cc($[1], ($) => {
                         findNextPossibleTokensInSymbolType(
                             $.referencee(),
@@ -61,9 +61,9 @@ export const $$: api.CgenerateParser = ($d) => {
                         // )
                     })
                     break
-                case "sequence":
+                case 'sequence':
                     pl.cc($[1], ($) => {
-                        const elementsStack = pm.createStack($.elements)
+                        const elementsStack = ps.createStack($.elements)
                         function doNextElement() {
                             elementsStack.pop(
                                 ($) => {
@@ -85,7 +85,7 @@ export const $$: api.CgenerateParser = ($d) => {
                         doNextElement()
                     })
                     break
-                case "node":
+                case 'node':
                     pl.cc($[1], ($) => {
                         onToken($.name)
                     })
@@ -96,13 +96,11 @@ export const $$: api.CgenerateParser = ($d) => {
         }
         pl.cc($i, ($w) => {
             $w.line(`import * as pl from 'pareto-core-lib'`)
-            $w.line(`import * as pm from 'pareto-core-state'`)
-            $w.line(`import * as uast from "glo-typescript-untyped-ast"`)
-
-            $w.line(`import * as api from "${$.pathToInterface}"`)
-
+            $w.line(`import * as ps from 'pareto-core-state'`)
             $w.line(``)
-
+            $w.line(`import * as muast from "glo-typescript-untyped-ast"`)
+            $w.line(`import * as mapi from "${$.pathToInterface}"`)
+            $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export function parse(`)
                 $w.indent(($w) => {
@@ -111,7 +109,7 @@ export const $$: api.CgenerateParser = ($d) => {
                     $w.nestedLine(($w) => {
                         $w.snippet(`$i: {`)
                         $w.indent(($w) => {
-                            $w.line(`callback: ($: api.TRoot) => void,`)
+                            $w.line(`callback: ($: mapi.TRoot) => void,`)
                             $w.line(`reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,`)
                             $w.line(`reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,`)
                         })
@@ -120,8 +118,8 @@ export const $$: api.CgenerateParser = ($d) => {
                     $w.nestedLine(($w) => {
                         $w.snippet(`$d: {`)
                         $w.indent(($w) => {
-                            $w.line(`doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,`)
-                            $w.line(`lookAhead: <T>(stack: pm.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,`)
+                            $w.line(`doUntil: <T>(stack: ps.Stack<T>, callback: ($: T) => boolean) => void,`)
+                            $w.line(`lookAhead: <T>(stack: ps.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,`)
                             $w.line(`stringsAreEqual: (a: string, b: string) => boolean,`)
                         })
                         $w.snippet(`},`)
@@ -143,14 +141,14 @@ export const $$: api.CgenerateParser = ($d) => {
                             $w.snippet(`((`)
                             $w.indent(($w) => {
                                 $w.line(`$: uast.T.UntypedNode,`)
-                                $w.line(`callback: ($: api.TN${path}) => void,`)
+                                $w.line(`callback: ($: mapi.TN${path}) => void,`)
                             })
                             $w.snippet(`): void => {`)
                             $w.indent(($w) => {
                                 $w.line(`const node = $`)
-                                $w.line(`const children = pm.createStack($.children)`)
+                                $w.line(`const children = ps.createStack($.children)`)
                                 switch ($.type[0]) {
-                                    case "composite":
+                                    case 'composite':
                                         pl.cc($.type[1], ($) => {
                                             generateValue(
                                                 $,
@@ -169,7 +167,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                             )
                                         })
                                         break
-                                    case "leaf":
+                                    case 'leaf':
                                         pl.cc($.type[1], ($) => {
                                             $w.nestedLine(($w) => {
                                                 $w.snippet(`callback(`)
@@ -233,11 +231,11 @@ export const $$: api.CgenerateParser = ($d) => {
                         ) => void,
                     ) {
                         const symbol = $
-                        if (pl.isNotUndefined($.cardinality)) {
+                        if ($.cardinality !== undefined) {
                             switch ($.cardinality[0]) {
-                                case "array":
+                                case 'array':
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(`const elements = pm.createArrayBuilderFIXME<api.TVT${path}>()`)
+                                        $w.line(`const elements = ps.createArrayBuilderFIXME<mapi.TVT${path}>()`)
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`const processElement = () => {`)
                                             $w.indent(($w) => {
@@ -271,13 +269,13 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                                 add($, null)
                                                                             },
                                                                             () => {
-                                                                                pl.panic("IMPLEMENT ME 4")
+                                                                                pd.implementMe("IMPLEMENT ME 4")
                                                                             }
                                                                         )
                                                                     }),
                                                                     ($) => {
                                                                         $w.nestedLine(($w) => {
-                                                                            $w.snippet(`case "${$.key}":`)
+                                                                            $w.snippet(`case '${$.key}':`)
                                                                             $w.indent(($w) => {
                                                                                 $w.line(`processElement()`)
                                                                                 $w.line(`return true`)
@@ -304,7 +302,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                         })
                                     })
                                     break
-                                case "one":
+                                case 'one':
                                     pl.cc($.cardinality[1], ($) => {
                                         generateValueType(
                                             symbol.type,
@@ -314,9 +312,9 @@ export const $$: api.CgenerateParser = ($d) => {
                                         )
                                     })
                                     break
-                                case "optional":
+                                case 'optional':
                                     pl.cc($.cardinality[1], ($) => {
-                                        $w.line(`let optional: null | api.TVT${path} = null`)
+                                        $w.line(`let optional: null | mapi.TVT${path} = null`)
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`const setOptional = () => {`)
                                             $w.indent(($w) => {
@@ -355,7 +353,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                     }),
                                                                     ($) => {
                                                                         $w.nestedLine(($w) => {
-                                                                            $w.snippet(`case "${$.key}":`)
+                                                                            $w.snippet(`case '${$.key}':`)
                                                                             $w.indent(($w) => {
                                                                                 $w.line(`setOptional()`)
                                                                                 $w.line(`break`)
@@ -407,9 +405,9 @@ export const $$: api.CgenerateParser = ($d) => {
                         ) => void,
                     ) {
                         switch ($[0]) {
-                            case "choice":
+                            case 'choice':
                                 pl.cc($[1], ($) => {
-                                    const possibleTokens = pm.createUnsafeDictionaryBuilder<string>()
+                                    const possibleTokens = ps.createUnsafeDictionaryBuilder<string>()
                                     $d.sortedForEach(
                                         $.options,
                                         ($) => {
@@ -426,7 +424,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                             )
                                         })
                                     $w.nestedLine(($w) => {
-                                        $w.snippet(`const choiceEnd_${path} = ($: api.TVT${path}) => {`)
+                                        $w.snippet(`const choiceEnd_${path} = ($: mapi.TVT${path}) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
                                                 $w,
@@ -454,7 +452,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                         `${path}_${$.key}`,
                                                                         $w,
                                                                         ($w) => {
-                                                                            $w.line(`choiceEnd_${path}(["${$.key}", $])`)
+                                                                            $w.line(`choiceEnd_${path}(['${$.key}', $])`)
                                                                         }
                                                                     )
                                                                 })
@@ -464,7 +462,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                     $w.nestedLine(($w) => {
                                                         $w.snippet(`switch (nextChild.kindName) {`)
                                                         $w.indent(($w) => {
-                                                            const possibleTokens = pm.createUnsafeDictionaryBuilder<string>()
+                                                            const possibleTokens = ps.createUnsafeDictionaryBuilder<string>()
                                                             $d.sortedForEach(
                                                                 $.options,
                                                                 ($) => {
@@ -484,7 +482,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                                                 possibleTokens.getDictionary(),
                                                                 (optionKey) => {
                                                                     $w.nestedLine(($w) => {
-                                                                        $w.snippet(`case "${optionKey.key}": /*Y*/ {`)
+                                                                        $w.snippet(`case '${optionKey.key}': /*Y*/ {`)
                                                                         $w.indent(($w) => {
                                                                             $w.line(`choose_${optionKey.value}()`)
                                                                             $w.line(`break`)
@@ -538,7 +536,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                     })
                                 })
                                 break
-                            case "reference":
+                            case 'reference':
                                 pl.cc($[1], ($) => {
                                     $w.nestedLine(($w) => {
                                         $w.snippet(`G${$.name}(node, children, ($) => {`)
@@ -551,10 +549,10 @@ export const $$: api.CgenerateParser = ($d) => {
                                     })
                                 })
                                 break
-                            case "sequence":
+                            case 'sequence':
                                 pl.cc($[1], ($) => {
                                     $w.nestedLine(($w) => {
-                                        $w.snippet(`const sequenceEnd = ($: api.TVT${path}) => {`)
+                                        $w.snippet(`const sequenceEnd = ($: mapi.TVT${path}) => {`)
                                         $w.indent(($w) => {
                                             endCallback(
                                                 $w,
@@ -563,7 +561,7 @@ export const $$: api.CgenerateParser = ($d) => {
                                         $w.snippet(`}`)
                                     })
                                     function generateElements(
-                                        elements: pm.Stack<mresolved.T.ValueType.sequence.elements.A>,
+                                        elements: ps.Stack<mresolved.T.ValueType.sequence.elements.A>,
                                         $w: mfp.IBlock,
                                     ) {
                                         elements.pop(
@@ -596,12 +594,12 @@ export const $$: api.CgenerateParser = ($d) => {
                                         )
                                     }
                                     generateElements(
-                                        pm.createStack($.elements),
+                                        ps.createStack($.elements),
                                         $w,
                                     )
                                 })
                                 break
-                            case "node":
+                            case 'node':
                                 pl.cc($[1], ($) => {
                                     $w.nestedLine(($w) => {
                                         $w.snippet(`children.pop(`)
@@ -683,8 +681,8 @@ export const $$: api.CgenerateParser = ($d) => {
                                 $w.snippet(`function G${$.key}(`)
                                 $w.indent(($w) => {
                                     $w.line(`node: uast.T.UntypedNode,`)
-                                    $w.line(`children: pm.Stack<uast.T.UntypedNode>,`)
-                                    $w.line(`callback: ($: api.TG${$.key}) => void,`)
+                                    $w.line(`children: ps.Stack<uast.T.UntypedNode>,`)
+                                    $w.line(`callback: ($: mapi.TG${$.key}) => void,`)
                                 })
                                 $w.snippet(`): void {`)
                                 $w.indent(($w) => {

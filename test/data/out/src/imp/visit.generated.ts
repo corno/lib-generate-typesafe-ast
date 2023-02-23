@@ -1,9 +1,6 @@
 import * as pl from 'pareto-core-lib'
-import * as api from "../interface"
 
-function isNotNull<T>($: null | T): $ is T {
-    return $ !== null
-}
+import * as mapi from "../interface"
 
 export function visit(
     $: api.TNroot,
@@ -30,7 +27,7 @@ export function visit(
         $: api.TGexpression,
     ) {
         switch ($[0]) {
-            case "arrayLiteral": {
+            case 'arrayLiteral': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_arrayLiteral$,
@@ -46,7 +43,7 @@ export function visit(
                 })
                 break
             }
-            case "arrowFunction": {
+            case 'arrowFunction': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_arrowFunction$,
@@ -74,13 +71,13 @@ export function visit(
                             })
                             pl.cc($["implementation"], ($) => {
                                 switch ($[0]) {
-                                    case "block": {
+                                    case 'block': {
                                         pl.cc($[1], ($) => {
                                             X_block($)
                                         })
                                         break
                                     }
-                                    case "expression": {
+                                    case 'expression': {
                                         pl.cc($[1], ($) => {
                                             X_expression($)
                                         })
@@ -95,7 +92,7 @@ export function visit(
                 })
                 break
             }
-            case "binary": {
+            case 'binary': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_binary$,
@@ -107,7 +104,7 @@ export function visit(
                             })
                             pl.cc($["operator"], ($) => {
                                 switch ($[0]) {
-                                    case "ampersandAmpersand": {
+                                    case 'ampersandAmpersand': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_ampersandAmpersand$,
@@ -117,7 +114,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "barBar": {
+                                    case 'barBar': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_barBar$,
@@ -127,7 +124,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "equals": {
+                                    case 'equals': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_equals$,
@@ -137,7 +134,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "equalsEqualsEquals": {
+                                    case 'equalsEqualsEquals': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_equalsEqualsEquals$,
@@ -147,7 +144,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "exclamationEqualsEquals": {
+                                    case 'exclamationEqualsEquals': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_exclamationEqualsEquals$,
@@ -157,7 +154,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "greaterThan": {
+                                    case 'greaterThan': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_greaterThan$,
@@ -167,7 +164,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "lessThan": {
+                                    case 'lessThan': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_lessThan$,
@@ -177,7 +174,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "minus": {
+                                    case 'minus': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_minus$,
@@ -187,7 +184,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "minusEquals": {
+                                    case 'minusEquals': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_minusEquals$,
@@ -197,7 +194,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "plus": {
+                                    case 'plus': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_plus$,
@@ -207,7 +204,7 @@ export function visit(
                                         })
                                         break
                                     }
-                                    case "plusEquals": {
+                                    case 'plusEquals': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGexpression_binary$_operator_plusEquals$,
@@ -229,7 +226,7 @@ export function visit(
                 })
                 break
             }
-            case "call": {
+            case 'call': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_call$,
@@ -255,7 +252,7 @@ export function visit(
                 })
                 break
             }
-            case "conditional": {
+            case 'conditional': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_conditional$,
@@ -291,7 +288,7 @@ export function visit(
                 })
                 break
             }
-            case "elementAccess": {
+            case 'elementAccess': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_elementAccess$,
@@ -310,7 +307,7 @@ export function visit(
                 })
                 break
             }
-            case "false": {
+            case 'false': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_false$,
@@ -320,13 +317,13 @@ export function visit(
                 })
                 break
             }
-            case "identifier": {
+            case 'identifier': {
                 pl.cc($[1], ($) => {
                     X_identifier($)
                 })
                 break
             }
-            case "new": {
+            case 'new': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_new$,
@@ -347,7 +344,7 @@ export function visit(
                 })
                 break
             }
-            case "noSubstitutionTemplateLiteral": {
+            case 'noSubstitutionTemplateLiteral': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_noSubstitutionTemplateLiteral$,
@@ -357,7 +354,7 @@ export function visit(
                 })
                 break
             }
-            case "nullKeyword": {
+            case 'nullKeyword': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_nullKeyword$,
@@ -367,13 +364,13 @@ export function visit(
                 })
                 break
             }
-            case "numericLiteral": {
+            case 'numericLiteral': {
                 pl.cc($[1], ($) => {
                     X_numericLiteral($)
                 })
                 break
             }
-            case "objectLiteral": {
+            case 'objectLiteral': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_objectLiteral$,
@@ -388,19 +385,19 @@ export function visit(
                                     pl.cc($.content, ($) => {
                                         pl.cc($["name"], ($) => {
                                             switch ($[0]) {
-                                                case "identifier": {
+                                                case 'identifier': {
                                                     pl.cc($[1], ($) => {
                                                         X_identifier($)
                                                     })
                                                     break
                                                 }
-                                                case "numericLiteral": {
+                                                case 'numericLiteral': {
                                                     pl.cc($[1], ($) => {
                                                         X_numericLiteral($)
                                                     })
                                                     break
                                                 }
-                                                case "stringLiteral": {
+                                                case 'stringLiteral': {
                                                     pl.cc($[1], ($) => {
                                                         X_stringLiteral($)
                                                     })
@@ -422,7 +419,7 @@ export function visit(
                 })
                 break
             }
-            case "parenthesizedExpression": {
+            case 'parenthesizedExpression': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_parenthesizedExpression$,
@@ -436,7 +433,7 @@ export function visit(
                 })
                 break
             }
-            case "postfixUnary": {
+            case 'postfixUnary': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_postfixUnary$,
@@ -450,7 +447,7 @@ export function visit(
                 })
                 break
             }
-            case "prefixUnary": {
+            case 'prefixUnary': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_prefixUnary$,
@@ -464,7 +461,7 @@ export function visit(
                 })
                 break
             }
-            case "propertyAccess": {
+            case 'propertyAccess': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_propertyAccess$,
@@ -483,13 +480,13 @@ export function visit(
                 })
                 break
             }
-            case "stringLiteral": {
+            case 'stringLiteral': {
                 pl.cc($[1], ($) => {
                     X_stringLiteral($)
                 })
                 break
             }
-            case "template": {
+            case 'template': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_template$,
@@ -515,7 +512,7 @@ export function visit(
                                             })
                                             pl.cc($["x"], ($) => {
                                                 switch ($[0]) {
-                                                    case "middle": {
+                                                    case 'middle': {
                                                         pl.cc($[1], ($) => {
                                                             ((
                                                                 $: api.TNGexpression_template$_spans$_x_middle$,
@@ -525,7 +522,7 @@ export function visit(
                                                         })
                                                         break
                                                     }
-                                                    case "tail": {
+                                                    case 'tail': {
                                                         pl.cc($[1], ($) => {
                                                             ((
                                                                 $: api.TNGexpression_template$_spans$_x_tail$,
@@ -549,7 +546,7 @@ export function visit(
                 })
                 break
             }
-            case "true": {
+            case 'true': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGexpression_true$,
@@ -596,13 +593,13 @@ export function visit(
         $: api.TGidentifierOrStringLiteral,
     ) {
         switch ($[0]) {
-            case "identifier": {
+            case 'identifier': {
                 pl.cc($[1], ($) => {
                     X_identifier($)
                 })
                 break
             }
-            case "stringLiteral": {
+            case 'stringLiteral': {
                 pl.cc($[1], ($) => {
                     X_stringLiteral($)
                 })
@@ -615,7 +612,7 @@ export function visit(
         $: api.TGmodifier,
     ) {
         switch ($[0]) {
-            case "declare": {
+            case 'declare': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGmodifier_declare$,
@@ -625,7 +622,7 @@ export function visit(
                 })
                 break
             }
-            case "export": {
+            case 'export': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGmodifier_export$,
@@ -635,7 +632,7 @@ export function visit(
                 })
                 break
             }
-            case "readonly": {
+            case 'readonly': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGmodifier_readonly$,
@@ -694,13 +691,13 @@ export function visit(
         $: api.TGstatement,
     ) {
         switch ($[0]) {
-            case "block": {
+            case 'block': {
                 pl.cc($[1], ($) => {
                     X_block($)
                 })
                 break
             }
-            case "break": {
+            case 'break': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_break$,
@@ -718,7 +715,7 @@ export function visit(
                 })
                 break
             }
-            case "export": {
+            case 'export': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_export$,
@@ -732,7 +729,7 @@ export function visit(
                 })
                 break
             }
-            case "expression": {
+            case 'expression': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_expression$,
@@ -746,7 +743,7 @@ export function visit(
                 })
                 break
             }
-            case "for": {
+            case 'for': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_for$,
@@ -771,7 +768,7 @@ export function visit(
                 })
                 break
             }
-            case "function": {
+            case 'function': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_function$,
@@ -802,7 +799,7 @@ export function visit(
                 })
                 break
             }
-            case "if": {
+            case 'if': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_if$,
@@ -828,7 +825,7 @@ export function visit(
                 })
                 break
             }
-            case "import": {
+            case 'import': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_import$,
@@ -842,7 +839,7 @@ export function visit(
                                     if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"].begin($) }
                                     pl.cc($.content, ($) => {
                                         switch ($[0]) {
-                                            case "named": {
+                                            case 'named': {
                                                 pl.cc($[1], ($) => {
                                                     ((
                                                         $: api.TNGstatement_import$_clause$_named$,
@@ -875,7 +872,7 @@ export function visit(
                                                 })
                                                 break
                                             }
-                                            case "namespace": {
+                                            case 'namespace': {
                                                 pl.cc($[1], ($) => {
                                                     ((
                                                         $: api.TNGstatement_import$_clause$_namespace$,
@@ -904,7 +901,7 @@ export function visit(
                 })
                 break
             }
-            case "interface": {
+            case 'interface': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_interface$,
@@ -935,7 +932,7 @@ export function visit(
                 })
                 break
             }
-            case "labeled": {
+            case 'labeled': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_labeled$,
@@ -954,7 +951,7 @@ export function visit(
                 })
                 break
             }
-            case "return": {
+            case 'return': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_return$,
@@ -972,7 +969,7 @@ export function visit(
                 })
                 break
             }
-            case "switch": {
+            case 'switch': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_switch$,
@@ -990,7 +987,7 @@ export function visit(
                                     pl.cc($.content, ($) => {
                                         $.forEach(($) => {
                                             switch ($[0]) {
-                                                case "case": {
+                                                case 'case': {
                                                     pl.cc($[1], ($) => {
                                                         ((
                                                             $: api.TNGstatement_switch$_caseBlock$_case$,
@@ -1011,7 +1008,7 @@ export function visit(
                                                     })
                                                     break
                                                 }
-                                                case "default": {
+                                                case 'default': {
                                                     pl.cc($[1], ($) => {
                                                         ((
                                                             $: api.TNGstatement_switch$_caseBlock$_default$,
@@ -1040,7 +1037,7 @@ export function visit(
                 })
                 break
             }
-            case "throw": {
+            case 'throw': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_throw$,
@@ -1054,7 +1051,7 @@ export function visit(
                 })
                 break
             }
-            case "try": {
+            case 'try': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_try$,
@@ -1086,7 +1083,7 @@ export function visit(
                 })
                 break
             }
-            case "typeAlias": {
+            case 'typeAlias': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_typeAlias$,
@@ -1115,7 +1112,7 @@ export function visit(
                 })
                 break
             }
-            case "variable": {
+            case 'variable': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_variable$,
@@ -1136,7 +1133,7 @@ export function visit(
                 })
                 break
             }
-            case "while": {
+            case 'while': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGstatement_while$,
@@ -1171,7 +1168,7 @@ export function visit(
         $: api.TGtype,
     ) {
         switch ($[0]) {
-            case "any": {
+            case 'any': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_any$,
@@ -1181,7 +1178,7 @@ export function visit(
                 })
                 break
             }
-            case "array": {
+            case 'array': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_array$,
@@ -1195,7 +1192,7 @@ export function visit(
                 })
                 break
             }
-            case "boolean": {
+            case 'boolean': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_boolean$,
@@ -1205,7 +1202,7 @@ export function visit(
                 })
                 break
             }
-            case "function": {
+            case 'function': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_function$,
@@ -1230,7 +1227,7 @@ export function visit(
                 })
                 break
             }
-            case "literal": {
+            case 'literal': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_literal$,
@@ -1238,7 +1235,7 @@ export function visit(
                         if (pl.isNotUndefined($i.visitor["$type/?literal/*LiteralType"])) { $i.visitor["$type/?literal/*LiteralType"].begin($) }
                         pl.cc($.content, ($) => {
                             switch ($[0]) {
-                                case "null": {
+                                case 'null': {
                                     pl.cc($[1], ($) => {
                                         ((
                                             $: api.TNGtype_literal$_null$,
@@ -1248,7 +1245,7 @@ export function visit(
                                     })
                                     break
                                 }
-                                case "string": {
+                                case 'string': {
                                     pl.cc($[1], ($) => {
                                         X_stringLiteral($)
                                     })
@@ -1262,7 +1259,7 @@ export function visit(
                 })
                 break
             }
-            case "never": {
+            case 'never': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_never$,
@@ -1272,7 +1269,7 @@ export function visit(
                 })
                 break
             }
-            case "number": {
+            case 'number': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_number$,
@@ -1282,7 +1279,7 @@ export function visit(
                 })
                 break
             }
-            case "optional": {
+            case 'optional': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_optional$,
@@ -1296,7 +1293,7 @@ export function visit(
                 })
                 break
             }
-            case "parenthesized": {
+            case 'parenthesized': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_parenthesized$,
@@ -1310,7 +1307,7 @@ export function visit(
                 })
                 break
             }
-            case "string": {
+            case 'string': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_string$,
@@ -1320,7 +1317,7 @@ export function visit(
                 })
                 break
             }
-            case "tuple": {
+            case 'tuple': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_tuple$,
@@ -1336,7 +1333,7 @@ export function visit(
                 })
                 break
             }
-            case "typeLiteral": {
+            case 'typeLiteral': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_typeLiteral$,
@@ -1352,7 +1349,7 @@ export function visit(
                 })
                 break
             }
-            case "typeReference": {
+            case 'typeReference': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_typeReference$,
@@ -1361,13 +1358,13 @@ export function visit(
                         pl.cc($.content, ($) => {
                             pl.cc($["x"], ($) => {
                                 switch ($[0]) {
-                                    case "identifier": {
+                                    case 'identifier': {
                                         pl.cc($[1], ($) => {
                                             X_identifier($)
                                         })
                                         break
                                     }
-                                    case "qualifiedName": {
+                                    case 'qualifiedName': {
                                         pl.cc($[1], ($) => {
                                             ((
                                                 $: api.TNGtype_typeReference$_x_qualifiedName$,
@@ -1400,7 +1397,7 @@ export function visit(
                 })
                 break
             }
-            case "undefined": {
+            case 'undefined': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_undefined$,
@@ -1410,7 +1407,7 @@ export function visit(
                 })
                 break
             }
-            case "union": {
+            case 'union': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_union$,
@@ -1426,7 +1423,7 @@ export function visit(
                 })
                 break
             }
-            case "void": {
+            case 'void': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtype_void$,
@@ -1456,7 +1453,7 @@ export function visit(
         $: api.TGtypeSignature,
     ) {
         switch ($[0]) {
-            case "construct": {
+            case 'construct': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtypeSignature_construct$,
@@ -1477,7 +1474,7 @@ export function visit(
                 })
                 break
             }
-            case "index": {
+            case 'index': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtypeSignature_index$,
@@ -1505,7 +1502,7 @@ export function visit(
                 })
                 break
             }
-            case "method": {
+            case 'method': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtypeSignature_method$,
@@ -1524,7 +1521,7 @@ export function visit(
                 })
                 break
             }
-            case "property": {
+            case 'property': {
                 pl.cc($[1], ($) => {
                     ((
                         $: api.TNGtypeSignature_property$,

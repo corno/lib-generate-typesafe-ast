@@ -1,9 +1,9 @@
 import * as pt from 'pareto-core-types'
 
-import * as uast from "glo-typescript-untyped-ast"
+import * as muast from "glo-typescript-untyped-ast"
 
-export type TAnnotatedString = { readonly "tokenDetails": uast.T.Details; readonly "value": string }
-export type TAnnotatedType<Type> = { readonly "tokenDetails": uast.T.Details; readonly "content": Type }
+export type TAnnotatedString = { readonly "tokenDetails": muast.T.Details; readonly "value": string }
+export type TAnnotatedType<Type> = { readonly "tokenDetails": muast.T.Details; readonly "content": Type }
 export type TVTGblock$ = TGstatement
 export type TVGblock$ = pt.Array<TVTGblock$>
 

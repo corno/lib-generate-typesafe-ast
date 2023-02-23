@@ -1,8 +1,6 @@
-import * as pl from 'pareto-core-lib'
+import * as mapi from "../api"
 
-import * as api from "../api"
-
-export const $$: api.CunboundGenerateInterface = ($d) => {
+export const $$: mapi.CunboundGenerateInterface = ($d) => {
     return ($, $i) => {
         $i.directory("types", ($i) => {
             $i.file("ts_api.generated.ts", ($i) => {

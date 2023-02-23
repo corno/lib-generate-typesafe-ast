@@ -1,28 +1,26 @@
-import * as pv from 'pareto-core-dev'
+import * as pd from 'pareto-core-dev'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mfp from "lib-fountain-pen"
-
-import { $$ as ugImp } from "./unboundGenerateImplementation.p"
-
 import * as mresolved from "../../submodules/resolved"
 import * as mprivate from "../../submodules/private"
 import * as mforeach from "res-pareto-foreach"
 import * as mcoll from "res-pareto-collation"
 import * as mtostring from "res-pareto-tostring"
 
-export const $$: api.CgenerateImplementation = ($) => {
+import { $$ as ugImp } from "./unboundGenerateImplementation.p"
+
+export const $$: mapi.CgenerateImplementation = ($) => {
 
     const dfe = mforeach.$a.createDictionaryForEach({
         'compare': mcoll.$a.localeIsABeforeB,
     })
     mfp.$a.createWriter({
         'onError': ($) => {
-            pv.logDebugMessage("FSDFSDSFDFSDFS")
+            pd.logDebugMessage("FSDFSDSFDFSDFS")
         },
         'reportSuperfluousNode': ($) => {
-            pv.logDebugMessage("SDSFS")
+            pd.logDebugMessage("SDSFS")
         },
     })([$.rootPath], ($i) => {
         ugImp({

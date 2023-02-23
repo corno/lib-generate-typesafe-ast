@@ -1,18 +1,17 @@
 import * as pl from 'pareto-core-lib'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mfp from "lib-fountain-pen"
 import * as mdefinition from "../../definition"
 
 
-export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
+export const $$: mapi.CgenerateCreateDefaultVisitor = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {
 
             $w.line(`import * as pt from 'pareto-core-types'`)
-            $w.line(`import * as api from "${$.pathToInterface}"`)
+            $w.line(`import * as mapi from "${$.pathToInterface}"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export function createDefaultVisistor(`)
@@ -25,7 +24,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                         $w.snippet(`}`)
                     })
                 })
-                $w.snippet(`): api.IVisitor {`)
+                $w.snippet(`): mapi.IVisitor {`)
                 $w.indent(($w) => {
                     $w.nestedLine(($w) => {
                         $w.snippet(`return {`)
@@ -36,7 +35,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                 path: string,
                             ) {
                                 switch ($.type[0]) {
-                                    case "composite":
+                                    case 'composite':
                                         pl.cc($.type[1], ($) => {
                                             generateValue(
                                                 $,
@@ -45,7 +44,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                             )
                                         })
                                         break
-                                    case "leaf":
+                                    case 'leaf':
                                         pl.cc($.type[1], ($) => {
                                         })
                                         break
@@ -55,7 +54,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                 $w.nestedLine(($w) => {
                                     $w.snippet(`"${path}": `)
                                     switch ($.type[0]) {
-                                        case "composite":
+                                        case 'composite':
                                             pl.cc($.type[1], ($) => {
                                                 $w.snippet(`{`)
                                                 $w.indent(($w) => {
@@ -65,7 +64,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                                 $w.snippet(`},`)
                                             })
                                             break
-                                        case "leaf":
+                                        case 'leaf':
                                             pl.cc($.type[1], ($) => {
                                                 $w.snippet(`($) => { $i.log("${path}") },`)
                                             })
@@ -82,7 +81,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                 path: string,
                             ) {
                                 switch ($[0]) {
-                                    case "choice":
+                                    case 'choice':
                                         pl.cc($[1], ($) => {
                                             $d.sortedForEach(
                                                 $.options,
@@ -95,12 +94,12 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                                 })
                                         })
                                         break
-                                    case "reference":
+                                    case 'reference':
                                         pl.cc($[1], ($) => {
 
                                         })
                                         break
-                                    case "sequence":
+                                    case 'sequence':
                                         pl.cc($[1], ($) => {
                                             $.elements.__forEach(($) => {
                                                 generateValue(
@@ -111,7 +110,7 @@ export const $$: api.CgenerateCreateDefaultVisitor = ($d) => {
                                             })
                                         })
                                         break
-                                    case "node":
+                                    case 'node':
                                         pl.cc($[1], ($) => {
                                             generateNode(
                                                 $,

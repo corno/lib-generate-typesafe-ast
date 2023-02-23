@@ -1,37 +1,38 @@
 import * as pl from 'pareto-core-lib'
-import * as pm from 'pareto-core-state'
-import * as uast from "glo-typescript-untyped-ast"
-import * as api from "../interface"
+import * as ps from 'pareto-core-state'
+
+import * as muast from "glo-typescript-untyped-ast"
+import * as mapi from "../interface"
 
 export function parse(
     $: uast.T.UntypedNode,
     $i: {
-        callback: ($: api.TRoot) => void,
+        callback: ($: mapi.TRoot) => void,
         reportUnexpectedToken: ($: { path: string, token: uast.T.UntypedNode, expected: null | string }) => void,
         reportMissingToken: ($: { parentDetails: uast.T.Details, path: string, kindNameOptions: string, }) => void,
     },
     $d: {
-        doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,
-        lookAhead: <T>(stack: pm.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,
+        doUntil: <T>(stack: ps.Stack<T>, callback: ($: T) => boolean) => void,
+        lookAhead: <T>(stack: ps.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,
         stringsAreEqual: (a: string, b: string) => boolean,
     },
 ): void {
     const $x = $i
     function Gblock(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGblock) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGblock) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Block")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGblock$) => void,
+                        callback: ($: mapi.TNGblock$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
-                        const elements = pm.createArrayBuilderFIXME<api.TVTGblock$>()
+                        const children = ps.createStack($.children)
+                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGblock$>()
                         const processElement = () => {
                             Gstatement(node, children, ($) => {
                                 elements.push($)
@@ -41,55 +42,55 @@ export function parse(
                             children,
                             (nextChild) => {
                                 switch (nextChild.kindName) {
-                                    case "Block":
+                                    case 'Block':
                                         processElement()
                                         return true
-                                    case "BreakStatement":
+                                    case 'BreakStatement':
                                         processElement()
                                         return true
-                                    case "ExportDeclaration":
+                                    case 'ExportDeclaration':
                                         processElement()
                                         return true
-                                    case "ExpressionStatement":
+                                    case 'ExpressionStatement':
                                         processElement()
                                         return true
-                                    case "ForStatement":
+                                    case 'ForStatement':
                                         processElement()
                                         return true
-                                    case "FunctionDeclaration":
+                                    case 'FunctionDeclaration':
                                         processElement()
                                         return true
-                                    case "IfStatement":
+                                    case 'IfStatement':
                                         processElement()
                                         return true
-                                    case "ImportDeclaration":
+                                    case 'ImportDeclaration':
                                         processElement()
                                         return true
-                                    case "InterfaceDeclaration":
+                                    case 'InterfaceDeclaration':
                                         processElement()
                                         return true
-                                    case "LabeledStatement":
+                                    case 'LabeledStatement':
                                         processElement()
                                         return true
-                                    case "ReturnStatement":
+                                    case 'ReturnStatement':
                                         processElement()
                                         return true
-                                    case "SwitchStatement":
+                                    case 'SwitchStatement':
                                         processElement()
                                         return true
-                                    case "ThrowStatement":
+                                    case 'ThrowStatement':
                                         processElement()
                                         return true
-                                    case "TryStatement":
+                                    case 'TryStatement':
                                         processElement()
                                         return true
-                                    case "TypeAliasDeclaration":
+                                    case 'TypeAliasDeclaration':
                                         processElement()
                                         return true
-                                    case "VariableStatement":
+                                    case 'VariableStatement':
                                         processElement()
                                         return true
-                                    case "WhileStatement":
+                                    case 'WhileStatement':
                                         processElement()
                                         return true
                                     default: return false
@@ -137,10 +138,10 @@ export function parse(
     }
     function Gexpression(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGexpression) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGexpression) => void,
     ): void {
-        const choiceEnd_Gexpression = ($: api.TVTGexpression) => {
+        const choiceEnd_Gexpression = ($: mapi.TVTGexpression) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -151,11 +152,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrayLiteralExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_arrayLiteral$) => void,
+                                    callback: ($: mapi.TNGexpression_arrayLiteral$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_arrayLiteral$>()
+                                    const children = ps.createStack($.children)
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_arrayLiteral$>()
                                     const processElement = () => {
                                         Gexpression(node, children, ($) => {
                                             elements.push($)
@@ -165,64 +166,64 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "ArrayLiteralExpression":
+                                                case 'ArrayLiteralExpression':
                                                     processElement()
                                                     return true
-                                                case "ArrowFunction":
+                                                case 'ArrowFunction':
                                                     processElement()
                                                     return true
-                                                case "BinaryExpression":
+                                                case 'BinaryExpression':
                                                     processElement()
                                                     return true
-                                                case "CallExpression":
+                                                case 'CallExpression':
                                                     processElement()
                                                     return true
-                                                case "ConditionalExpression":
+                                                case 'ConditionalExpression':
                                                     processElement()
                                                     return true
-                                                case "ElementAccessExpression":
+                                                case 'ElementAccessExpression':
                                                     processElement()
                                                     return true
-                                                case "FalseKeyword":
+                                                case 'FalseKeyword':
                                                     processElement()
                                                     return true
-                                                case "Identifier":
+                                                case 'Identifier':
                                                     processElement()
                                                     return true
-                                                case "NewExpression":
+                                                case 'NewExpression':
                                                     processElement()
                                                     return true
-                                                case "NoSubstitutionTemplateLiteral":
+                                                case 'NoSubstitutionTemplateLiteral':
                                                     processElement()
                                                     return true
-                                                case "NullKeyword":
+                                                case 'NullKeyword':
                                                     processElement()
                                                     return true
-                                                case "NumericLiteral":
+                                                case 'NumericLiteral':
                                                     processElement()
                                                     return true
-                                                case "ObjectLiteralExpression":
+                                                case 'ObjectLiteralExpression':
                                                     processElement()
                                                     return true
-                                                case "ParenthesizedExpression":
+                                                case 'ParenthesizedExpression':
                                                     processElement()
                                                     return true
-                                                case "PostfixUnaryExpression":
+                                                case 'PostfixUnaryExpression':
                                                     processElement()
                                                     return true
-                                                case "PrefixUnaryExpression":
+                                                case 'PrefixUnaryExpression':
                                                     processElement()
                                                     return true
-                                                case "PropertyAccessExpression":
+                                                case 'PropertyAccessExpression':
                                                     processElement()
                                                     return true
-                                                case "StringLiteral":
+                                                case 'StringLiteral':
                                                     processElement()
                                                     return true
-                                                case "TemplateExpression":
+                                                case 'TemplateExpression':
                                                     processElement()
                                                     return true
-                                                case "TrueKeyword":
+                                                case 'TrueKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -248,7 +249,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["arrayLiteral", $])
+                                        choiceEnd_Gexpression(['arrayLiteral', $])
                                     }
                                 )
                             } else {
@@ -274,17 +275,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrowFunction")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_arrowFunction$) => void,
+                                    callback: ($: mapi.TNGexpression_arrowFunction$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_arrowFunction$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_arrowFunction$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_arrowFunction$_parameters>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_arrowFunction$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -294,7 +295,7 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "Parameter":
+                                                case 'Parameter':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -303,7 +304,7 @@ export function parse(
                                     )
                                     pl.cc(elements.getArray(), ($) => {
                                         const _parameters = $
-                                        let optional: null | api.TVTGexpression_arrowFunction$_returnType = null
+                                        let optional: null | mapi.TVTGexpression_arrowFunction$_returnType = null
                                         const setOptional = () => {
                                             Gtype(node, children, ($) => {
                                                 optional = $
@@ -312,52 +313,52 @@ export function parse(
                                         $d.lookAhead(children, 
                                             (nextChild) => {
                                                 switch (nextChild.kindName) {
-                                                    case "AnyKeyword":
+                                                    case 'AnyKeyword':
                                                         setOptional()
                                                         break
-                                                    case "ArrayType":
+                                                    case 'ArrayType':
                                                         setOptional()
                                                         break
-                                                    case "BooleanKeyword":
+                                                    case 'BooleanKeyword':
                                                         setOptional()
                                                         break
-                                                    case "FunctionType":
+                                                    case 'FunctionType':
                                                         setOptional()
                                                         break
-                                                    case "LiteralType":
+                                                    case 'LiteralType':
                                                         setOptional()
                                                         break
-                                                    case "NeverKeyword":
+                                                    case 'NeverKeyword':
                                                         setOptional()
                                                         break
-                                                    case "NumberKeyword":
+                                                    case 'NumberKeyword':
                                                         setOptional()
                                                         break
-                                                    case "OptionalType":
+                                                    case 'OptionalType':
                                                         setOptional()
                                                         break
-                                                    case "ParenthesizedType":
+                                                    case 'ParenthesizedType':
                                                         setOptional()
                                                         break
-                                                    case "StringKeyword":
+                                                    case 'StringKeyword':
                                                         setOptional()
                                                         break
-                                                    case "TupleType":
+                                                    case 'TupleType':
                                                         setOptional()
                                                         break
-                                                    case "TypeLiteral":
+                                                    case 'TypeLiteral':
                                                         setOptional()
                                                         break
-                                                    case "TypeReference":
+                                                    case 'TypeReference':
                                                         setOptional()
                                                         break
-                                                    case "UndefinedKeyword":
+                                                    case 'UndefinedKeyword':
                                                         setOptional()
                                                         break
-                                                    case "UnionType":
+                                                    case 'UnionType':
                                                         setOptional()
                                                         break
-                                                    case "VoidKeyword":
+                                                    case 'VoidKeyword':
                                                         setOptional()
                                                         break
                                                 }
@@ -371,10 +372,10 @@ export function parse(
                                                     if ($d.stringsAreEqual(currentChild.kindName, "EqualsGreaterThanToken")) {
                                                         ((
                                                             $: uast.T.UntypedNode,
-                                                            callback: ($: api.TNGexpression_arrowFunction$_equalsGreaterThan$) => void,
+                                                            callback: ($: mapi.TNGexpression_arrowFunction$_equalsGreaterThan$) => void,
                                                         ): void => {
                                                             const node = $
-                                                            const children = pm.createStack($.children)
+                                                            const children = ps.createStack($.children)
                                                             callback($.details)
                                                             children.pop(
                                                                 (nextChild) => {
@@ -390,7 +391,7 @@ export function parse(
                                                             currentChild,
                                                             ($) => {
                                                                 const _equalsGreaterThan = $
-                                                                const choiceEnd_Gexpression_arrowFunction$_implementation = ($: api.TVTGexpression_arrowFunction$_implementation) => {
+                                                                const choiceEnd_Gexpression_arrowFunction$_implementation = ($: mapi.TVTGexpression_arrowFunction$_implementation) => {
                                                                     const _implementation = $
                                                                     sequenceEnd({
                                                                         "parameters": _parameters,
@@ -403,96 +404,96 @@ export function parse(
                                                                     (nextChild) => {
                                                                         const choose_block = () => {
                                                                             Gblock(node, children, ($) => {
-                                                                                choiceEnd_Gexpression_arrowFunction$_implementation(["block", $])
+                                                                                choiceEnd_Gexpression_arrowFunction$_implementation(['block', $])
                                                                             })
                                                                         }
                                                                         const choose_expression = () => {
                                                                             Gexpression(node, children, ($) => {
-                                                                                choiceEnd_Gexpression_arrowFunction$_implementation(["expression", $])
+                                                                                choiceEnd_Gexpression_arrowFunction$_implementation(['expression', $])
                                                                             })
                                                                         }
                                                                         switch (nextChild.kindName) {
-                                                                            case "ArrayLiteralExpression": /*Y*/ {
+                                                                            case 'ArrayLiteralExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "ArrowFunction": /*Y*/ {
+                                                                            case 'ArrowFunction': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "BinaryExpression": /*Y*/ {
+                                                                            case 'BinaryExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "Block": /*Y*/ {
+                                                                            case 'Block': /*Y*/ {
                                                                                 choose_block()
                                                                                 break
                                                                             }
-                                                                            case "CallExpression": /*Y*/ {
+                                                                            case 'CallExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "ConditionalExpression": /*Y*/ {
+                                                                            case 'ConditionalExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "ElementAccessExpression": /*Y*/ {
+                                                                            case 'ElementAccessExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "FalseKeyword": /*Y*/ {
+                                                                            case 'FalseKeyword': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "Identifier": /*Y*/ {
+                                                                            case 'Identifier': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "NewExpression": /*Y*/ {
+                                                                            case 'NewExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "NoSubstitutionTemplateLiteral": /*Y*/ {
+                                                                            case 'NoSubstitutionTemplateLiteral': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "NullKeyword": /*Y*/ {
+                                                                            case 'NullKeyword': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "NumericLiteral": /*Y*/ {
+                                                                            case 'NumericLiteral': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "ObjectLiteralExpression": /*Y*/ {
+                                                                            case 'ObjectLiteralExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "ParenthesizedExpression": /*Y*/ {
+                                                                            case 'ParenthesizedExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "PostfixUnaryExpression": /*Y*/ {
+                                                                            case 'PostfixUnaryExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "PrefixUnaryExpression": /*Y*/ {
+                                                                            case 'PrefixUnaryExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "PropertyAccessExpression": /*Y*/ {
+                                                                            case 'PropertyAccessExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "StringLiteral": /*Y*/ {
+                                                                            case 'StringLiteral': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "TemplateExpression": /*Y*/ {
+                                                                            case 'TemplateExpression': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
-                                                                            case "TrueKeyword": /*Y*/ {
+                                                                            case 'TrueKeyword': /*Y*/ {
                                                                                 choose_expression()
                                                                                 break
                                                                             }
@@ -546,7 +547,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["arrowFunction", $])
+                                        choiceEnd_Gexpression(['arrowFunction', $])
                                     }
                                 )
                             } else {
@@ -572,11 +573,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "BinaryExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_binary$) => void,
+                                    callback: ($: mapi.TNGexpression_binary$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_binary$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_binary$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -584,7 +585,7 @@ export function parse(
                                     }
                                     Gexpression(node, children, ($) => {
                                         const _leftHandSide = $
-                                        const choiceEnd_Gexpression_binary$_operator = ($: api.TVTGexpression_binary$_operator) => {
+                                        const choiceEnd_Gexpression_binary$_operator = ($: mapi.TVTGexpression_binary$_operator) => {
                                             const _operator = $
                                             Gexpression(node, children, ($) => {
                                                 const _rightHandSide = $
@@ -603,10 +604,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "AmpersandAmpersandToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_ampersandAmpersand$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_ampersandAmpersand$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -621,7 +622,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["ampersandAmpersand", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['ampersandAmpersand', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -647,10 +648,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "BarBarToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_barBar$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_barBar$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -665,7 +666,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["barBar", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['barBar', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -691,10 +692,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "EqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_equals$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_equals$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -709,7 +710,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["equals", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['equals', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -735,10 +736,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "EqualsEqualsEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_equalsEqualsEquals$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_equalsEqualsEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -753,7 +754,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["equalsEqualsEquals", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['equalsEqualsEquals', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -779,10 +780,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "ExclamationEqualsEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_exclamationEqualsEquals$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_exclamationEqualsEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -797,7 +798,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["exclamationEqualsEquals", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['exclamationEqualsEquals', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -823,10 +824,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "GreaterThanToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_greaterThan$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_greaterThan$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -841,7 +842,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["greaterThan", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['greaterThan', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -867,10 +868,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "LessThanToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_lessThan$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_lessThan$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -885,7 +886,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["lessThan", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['lessThan', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -911,10 +912,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "MinusToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_minus$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_minus$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -929,7 +930,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["minus", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['minus', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -955,10 +956,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "MinusEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_minusEquals$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_minusEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -973,7 +974,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["minusEquals", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['minusEquals', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -999,10 +1000,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "PlusToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_plus$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_plus$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -1017,7 +1018,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["plus", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['plus', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -1043,10 +1044,10 @@ export function parse(
                                                             if ($d.stringsAreEqual(currentChild.kindName, "PlusEqualsToken")) {
                                                                 ((
                                                                     $: uast.T.UntypedNode,
-                                                                    callback: ($: api.TNGexpression_binary$_operator_plusEquals$) => void,
+                                                                    callback: ($: mapi.TNGexpression_binary$_operator_plusEquals$) => void,
                                                                 ): void => {
                                                                     const node = $
-                                                                    const children = pm.createStack($.children)
+                                                                    const children = ps.createStack($.children)
                                                                     callback($.details)
                                                                     children.pop(
                                                                         (nextChild) => {
@@ -1061,7 +1062,7 @@ export function parse(
                                                                 })(
                                                                     currentChild,
                                                                     ($) => {
-                                                                        choiceEnd_Gexpression_binary$_operator(["plusEquals", $])
+                                                                        choiceEnd_Gexpression_binary$_operator(['plusEquals', $])
                                                                     }
                                                                 )
                                                             } else {
@@ -1082,47 +1083,47 @@ export function parse(
                                                     )
                                                 }
                                                 switch (nextChild.kindName) {
-                                                    case "AmpersandAmpersandToken": /*Y*/ {
+                                                    case 'AmpersandAmpersandToken': /*Y*/ {
                                                         choose_ampersandAmpersand()
                                                         break
                                                     }
-                                                    case "BarBarToken": /*Y*/ {
+                                                    case 'BarBarToken': /*Y*/ {
                                                         choose_barBar()
                                                         break
                                                     }
-                                                    case "EqualsEqualsEqualsToken": /*Y*/ {
+                                                    case 'EqualsEqualsEqualsToken': /*Y*/ {
                                                         choose_equalsEqualsEquals()
                                                         break
                                                     }
-                                                    case "EqualsToken": /*Y*/ {
+                                                    case 'EqualsToken': /*Y*/ {
                                                         choose_equals()
                                                         break
                                                     }
-                                                    case "ExclamationEqualsEqualsToken": /*Y*/ {
+                                                    case 'ExclamationEqualsEqualsToken': /*Y*/ {
                                                         choose_exclamationEqualsEquals()
                                                         break
                                                     }
-                                                    case "GreaterThanToken": /*Y*/ {
+                                                    case 'GreaterThanToken': /*Y*/ {
                                                         choose_greaterThan()
                                                         break
                                                     }
-                                                    case "LessThanToken": /*Y*/ {
+                                                    case 'LessThanToken': /*Y*/ {
                                                         choose_lessThan()
                                                         break
                                                     }
-                                                    case "MinusEqualsToken": /*Y*/ {
+                                                    case 'MinusEqualsToken': /*Y*/ {
                                                         choose_minusEquals()
                                                         break
                                                     }
-                                                    case "MinusToken": /*Y*/ {
+                                                    case 'MinusToken': /*Y*/ {
                                                         choose_minus()
                                                         break
                                                     }
-                                                    case "PlusEqualsToken": /*Y*/ {
+                                                    case 'PlusEqualsToken': /*Y*/ {
                                                         choose_plusEquals()
                                                         break
                                                     }
-                                                    case "PlusToken": /*Y*/ {
+                                                    case 'PlusToken': /*Y*/ {
                                                         choose_plus()
                                                         break
                                                     }
@@ -1157,7 +1158,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["binary", $])
+                                        choiceEnd_Gexpression(['binary', $])
                                     }
                                 )
                             } else {
@@ -1183,11 +1184,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "CallExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_call$) => void,
+                                    callback: ($: mapi.TNGexpression_call$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_call$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_call$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1195,7 +1196,7 @@ export function parse(
                                     }
                                     Gexpression(node, children, ($) => {
                                         const _function = $
-                                        const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_call$_typeParameters>()
+                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_call$_typeParameters>()
                                         const processElement = () => {
                                             Gtype(node, children, ($) => {
                                                 elements.push($)
@@ -1205,52 +1206,52 @@ export function parse(
                                             children,
                                             (nextChild) => {
                                                 switch (nextChild.kindName) {
-                                                    case "AnyKeyword":
+                                                    case 'AnyKeyword':
                                                         processElement()
                                                         return true
-                                                    case "ArrayType":
+                                                    case 'ArrayType':
                                                         processElement()
                                                         return true
-                                                    case "BooleanKeyword":
+                                                    case 'BooleanKeyword':
                                                         processElement()
                                                         return true
-                                                    case "FunctionType":
+                                                    case 'FunctionType':
                                                         processElement()
                                                         return true
-                                                    case "LiteralType":
+                                                    case 'LiteralType':
                                                         processElement()
                                                         return true
-                                                    case "NeverKeyword":
+                                                    case 'NeverKeyword':
                                                         processElement()
                                                         return true
-                                                    case "NumberKeyword":
+                                                    case 'NumberKeyword':
                                                         processElement()
                                                         return true
-                                                    case "OptionalType":
+                                                    case 'OptionalType':
                                                         processElement()
                                                         return true
-                                                    case "ParenthesizedType":
+                                                    case 'ParenthesizedType':
                                                         processElement()
                                                         return true
-                                                    case "StringKeyword":
+                                                    case 'StringKeyword':
                                                         processElement()
                                                         return true
-                                                    case "TupleType":
+                                                    case 'TupleType':
                                                         processElement()
                                                         return true
-                                                    case "TypeLiteral":
+                                                    case 'TypeLiteral':
                                                         processElement()
                                                         return true
-                                                    case "TypeReference":
+                                                    case 'TypeReference':
                                                         processElement()
                                                         return true
-                                                    case "UndefinedKeyword":
+                                                    case 'UndefinedKeyword':
                                                         processElement()
                                                         return true
-                                                    case "UnionType":
+                                                    case 'UnionType':
                                                         processElement()
                                                         return true
-                                                    case "VoidKeyword":
+                                                    case 'VoidKeyword':
                                                         processElement()
                                                         return true
                                                     default: return false
@@ -1259,7 +1260,7 @@ export function parse(
                                         )
                                         pl.cc(elements.getArray(), ($) => {
                                             const _typeParameters = $
-                                            const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_call$_parameters>()
+                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_call$_parameters>()
                                             const processElement = () => {
                                                 Gexpression(node, children, ($) => {
                                                     elements.push($)
@@ -1269,64 +1270,64 @@ export function parse(
                                                 children,
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
-                                                        case "ArrayLiteralExpression":
+                                                        case 'ArrayLiteralExpression':
                                                             processElement()
                                                             return true
-                                                        case "ArrowFunction":
+                                                        case 'ArrowFunction':
                                                             processElement()
                                                             return true
-                                                        case "BinaryExpression":
+                                                        case 'BinaryExpression':
                                                             processElement()
                                                             return true
-                                                        case "CallExpression":
+                                                        case 'CallExpression':
                                                             processElement()
                                                             return true
-                                                        case "ConditionalExpression":
+                                                        case 'ConditionalExpression':
                                                             processElement()
                                                             return true
-                                                        case "ElementAccessExpression":
+                                                        case 'ElementAccessExpression':
                                                             processElement()
                                                             return true
-                                                        case "FalseKeyword":
+                                                        case 'FalseKeyword':
                                                             processElement()
                                                             return true
-                                                        case "Identifier":
+                                                        case 'Identifier':
                                                             processElement()
                                                             return true
-                                                        case "NewExpression":
+                                                        case 'NewExpression':
                                                             processElement()
                                                             return true
-                                                        case "NoSubstitutionTemplateLiteral":
+                                                        case 'NoSubstitutionTemplateLiteral':
                                                             processElement()
                                                             return true
-                                                        case "NullKeyword":
+                                                        case 'NullKeyword':
                                                             processElement()
                                                             return true
-                                                        case "NumericLiteral":
+                                                        case 'NumericLiteral':
                                                             processElement()
                                                             return true
-                                                        case "ObjectLiteralExpression":
+                                                        case 'ObjectLiteralExpression':
                                                             processElement()
                                                             return true
-                                                        case "ParenthesizedExpression":
+                                                        case 'ParenthesizedExpression':
                                                             processElement()
                                                             return true
-                                                        case "PostfixUnaryExpression":
+                                                        case 'PostfixUnaryExpression':
                                                             processElement()
                                                             return true
-                                                        case "PrefixUnaryExpression":
+                                                        case 'PrefixUnaryExpression':
                                                             processElement()
                                                             return true
-                                                        case "PropertyAccessExpression":
+                                                        case 'PropertyAccessExpression':
                                                             processElement()
                                                             return true
-                                                        case "StringLiteral":
+                                                        case 'StringLiteral':
                                                             processElement()
                                                             return true
-                                                        case "TemplateExpression":
+                                                        case 'TemplateExpression':
                                                             processElement()
                                                             return true
-                                                        case "TrueKeyword":
+                                                        case 'TrueKeyword':
                                                             processElement()
                                                             return true
                                                         default: return false
@@ -1356,7 +1357,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["call", $])
+                                        choiceEnd_Gexpression(['call', $])
                                     }
                                 )
                             } else {
@@ -1382,11 +1383,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ConditionalExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_conditional$) => void,
+                                    callback: ($: mapi.TNGexpression_conditional$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_conditional$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_conditional$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1399,10 +1400,10 @@ export function parse(
                                                 if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: api.TNGexpression_conditional$_questionToken$) => void,
+                                                        callback: ($: mapi.TNGexpression_conditional$_questionToken$) => void,
                                                     ): void => {
                                                         const node = $
-                                                        const children = pm.createStack($.children)
+                                                        const children = ps.createStack($.children)
                                                         callback($.details)
                                                         children.pop(
                                                             (nextChild) => {
@@ -1425,10 +1426,10 @@ export function parse(
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "ColonToken")) {
                                                                             ((
                                                                                 $: uast.T.UntypedNode,
-                                                                                callback: ($: api.TNGexpression_conditional$_colonToken$) => void,
+                                                                                callback: ($: mapi.TNGexpression_conditional$_colonToken$) => void,
                                                                             ): void => {
                                                                                 const node = $
-                                                                                const children = pm.createStack($.children)
+                                                                                const children = ps.createStack($.children)
                                                                                 callback($.details)
                                                                                 children.pop(
                                                                                     (nextChild) => {
@@ -1505,7 +1506,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["conditional", $])
+                                        choiceEnd_Gexpression(['conditional', $])
                                     }
                                 )
                             } else {
@@ -1531,11 +1532,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ElementAccessExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_elementAccess$) => void,
+                                    callback: ($: mapi.TNGexpression_elementAccess$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_elementAccess$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_elementAccess$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1564,7 +1565,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["elementAccess", $])
+                                        choiceEnd_Gexpression(['elementAccess', $])
                                     }
                                 )
                             } else {
@@ -1590,10 +1591,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "FalseKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_false$) => void,
+                                    callback: ($: mapi.TNGexpression_false$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -1608,7 +1609,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["false", $])
+                                        choiceEnd_Gexpression(['false', $])
                                     }
                                 )
                             } else {
@@ -1630,7 +1631,7 @@ export function parse(
                 }
                 const choose_identifier = () => {
                     Gidentifier(node, children, ($) => {
-                        choiceEnd_Gexpression(["identifier", $])
+                        choiceEnd_Gexpression(['identifier', $])
                     })
                 }
                 const choose_new = () => {
@@ -1639,11 +1640,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NewExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_new$) => void,
+                                    callback: ($: mapi.TNGexpression_new$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_new$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_new$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -1651,7 +1652,7 @@ export function parse(
                                     }
                                     Gidentifier(node, children, ($) => {
                                         const _class = $
-                                        const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_new$_parameters>()
+                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_new$_parameters>()
                                         const processElement = () => {
                                             Gexpression(node, children, ($) => {
                                                 elements.push($)
@@ -1661,64 +1662,64 @@ export function parse(
                                             children,
                                             (nextChild) => {
                                                 switch (nextChild.kindName) {
-                                                    case "ArrayLiteralExpression":
+                                                    case 'ArrayLiteralExpression':
                                                         processElement()
                                                         return true
-                                                    case "ArrowFunction":
+                                                    case 'ArrowFunction':
                                                         processElement()
                                                         return true
-                                                    case "BinaryExpression":
+                                                    case 'BinaryExpression':
                                                         processElement()
                                                         return true
-                                                    case "CallExpression":
+                                                    case 'CallExpression':
                                                         processElement()
                                                         return true
-                                                    case "ConditionalExpression":
+                                                    case 'ConditionalExpression':
                                                         processElement()
                                                         return true
-                                                    case "ElementAccessExpression":
+                                                    case 'ElementAccessExpression':
                                                         processElement()
                                                         return true
-                                                    case "FalseKeyword":
+                                                    case 'FalseKeyword':
                                                         processElement()
                                                         return true
-                                                    case "Identifier":
+                                                    case 'Identifier':
                                                         processElement()
                                                         return true
-                                                    case "NewExpression":
+                                                    case 'NewExpression':
                                                         processElement()
                                                         return true
-                                                    case "NoSubstitutionTemplateLiteral":
+                                                    case 'NoSubstitutionTemplateLiteral':
                                                         processElement()
                                                         return true
-                                                    case "NullKeyword":
+                                                    case 'NullKeyword':
                                                         processElement()
                                                         return true
-                                                    case "NumericLiteral":
+                                                    case 'NumericLiteral':
                                                         processElement()
                                                         return true
-                                                    case "ObjectLiteralExpression":
+                                                    case 'ObjectLiteralExpression':
                                                         processElement()
                                                         return true
-                                                    case "ParenthesizedExpression":
+                                                    case 'ParenthesizedExpression':
                                                         processElement()
                                                         return true
-                                                    case "PostfixUnaryExpression":
+                                                    case 'PostfixUnaryExpression':
                                                         processElement()
                                                         return true
-                                                    case "PrefixUnaryExpression":
+                                                    case 'PrefixUnaryExpression':
                                                         processElement()
                                                         return true
-                                                    case "PropertyAccessExpression":
+                                                    case 'PropertyAccessExpression':
                                                         processElement()
                                                         return true
-                                                    case "StringLiteral":
+                                                    case 'StringLiteral':
                                                         processElement()
                                                         return true
-                                                    case "TemplateExpression":
+                                                    case 'TemplateExpression':
                                                         processElement()
                                                         return true
-                                                    case "TrueKeyword":
+                                                    case 'TrueKeyword':
                                                         processElement()
                                                         return true
                                                     default: return false
@@ -1746,7 +1747,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["new", $])
+                                        choiceEnd_Gexpression(['new', $])
                                     }
                                 )
                             } else {
@@ -1772,10 +1773,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NoSubstitutionTemplateLiteral")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_noSubstitutionTemplateLiteral$) => void,
+                                    callback: ($: mapi.TNGexpression_noSubstitutionTemplateLiteral$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -1790,7 +1791,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["noSubstitutionTemplateLiteral", $])
+                                        choiceEnd_Gexpression(['noSubstitutionTemplateLiteral', $])
                                     }
                                 )
                             } else {
@@ -1816,10 +1817,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NullKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_nullKeyword$) => void,
+                                    callback: ($: mapi.TNGexpression_nullKeyword$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -1834,7 +1835,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["nullKeyword", $])
+                                        choiceEnd_Gexpression(['nullKeyword', $])
                                     }
                                 )
                             } else {
@@ -1856,7 +1857,7 @@ export function parse(
                 }
                 const choose_numericLiteral = () => {
                     GnumericLiteral(node, children, ($) => {
-                        choiceEnd_Gexpression(["numericLiteral", $])
+                        choiceEnd_Gexpression(['numericLiteral', $])
                     })
                 }
                 const choose_objectLiteral = () => {
@@ -1865,28 +1866,28 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ObjectLiteralExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_objectLiteral$) => void,
+                                    callback: ($: mapi.TNGexpression_objectLiteral$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_objectLiteral$>()
+                                    const children = ps.createStack($.children)
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_objectLiteral$>()
                                     const processElement = () => {
                                         children.pop(
                                             (currentChild) => {
                                                 if ($d.stringsAreEqual(currentChild.kindName, "PropertyAssignment")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: api.TNGexpression_objectLiteral$$) => void,
+                                                        callback: ($: mapi.TNGexpression_objectLiteral$$) => void,
                                                     ): void => {
                                                         const node = $
-                                                        const children = pm.createStack($.children)
-                                                        const sequenceEnd = ($: api.TVTGexpression_objectLiteral$$) => {
+                                                        const children = ps.createStack($.children)
+                                                        const sequenceEnd = ($: mapi.TVTGexpression_objectLiteral$$) => {
                                                             callback({
                                                                 tokenDetails: node.details,
                                                                 content: $,
                                                             })
                                                         }
-                                                        const choiceEnd_Gexpression_objectLiteral$$_name = ($: api.TVTGexpression_objectLiteral$$_name) => {
+                                                        const choiceEnd_Gexpression_objectLiteral$$_name = ($: mapi.TVTGexpression_objectLiteral$$_name) => {
                                                             const _name = $
                                                             Gexpression(node, children, ($) => {
                                                                 const _expression = $
@@ -1900,29 +1901,29 @@ export function parse(
                                                             (nextChild) => {
                                                                 const choose_identifier = () => {
                                                                     Gidentifier(node, children, ($) => {
-                                                                        choiceEnd_Gexpression_objectLiteral$$_name(["identifier", $])
+                                                                        choiceEnd_Gexpression_objectLiteral$$_name(['identifier', $])
                                                                     })
                                                                 }
                                                                 const choose_numericLiteral = () => {
                                                                     GnumericLiteral(node, children, ($) => {
-                                                                        choiceEnd_Gexpression_objectLiteral$$_name(["numericLiteral", $])
+                                                                        choiceEnd_Gexpression_objectLiteral$$_name(['numericLiteral', $])
                                                                     })
                                                                 }
                                                                 const choose_stringLiteral = () => {
                                                                     GstringLiteral(node, children, ($) => {
-                                                                        choiceEnd_Gexpression_objectLiteral$$_name(["stringLiteral", $])
+                                                                        choiceEnd_Gexpression_objectLiteral$$_name(['stringLiteral', $])
                                                                     })
                                                                 }
                                                                 switch (nextChild.kindName) {
-                                                                    case "Identifier": /*Y*/ {
+                                                                    case 'Identifier': /*Y*/ {
                                                                         choose_identifier()
                                                                         break
                                                                     }
-                                                                    case "NumericLiteral": /*Y*/ {
+                                                                    case 'NumericLiteral': /*Y*/ {
                                                                         choose_numericLiteral()
                                                                         break
                                                                     }
-                                                                    case "StringLiteral": /*Y*/ {
+                                                                    case 'StringLiteral': /*Y*/ {
                                                                         choose_stringLiteral()
                                                                         break
                                                                     }
@@ -1980,7 +1981,7 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "PropertyAssignment":
+                                                case 'PropertyAssignment':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -2006,7 +2007,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["objectLiteral", $])
+                                        choiceEnd_Gexpression(['objectLiteral', $])
                                     }
                                 )
                             } else {
@@ -2032,10 +2033,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ParenthesizedExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_parenthesizedExpression$) => void,
+                                    callback: ($: mapi.TNGexpression_parenthesizedExpression$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gexpression(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -2055,7 +2056,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["parenthesizedExpression", $])
+                                        choiceEnd_Gexpression(['parenthesizedExpression', $])
                                     }
                                 )
                             } else {
@@ -2081,10 +2082,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PostfixUnaryExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_postfixUnary$) => void,
+                                    callback: ($: mapi.TNGexpression_postfixUnary$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gexpression(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -2104,7 +2105,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["postfixUnary", $])
+                                        choiceEnd_Gexpression(['postfixUnary', $])
                                     }
                                 )
                             } else {
@@ -2130,10 +2131,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PrefixUnaryExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_prefixUnary$) => void,
+                                    callback: ($: mapi.TNGexpression_prefixUnary$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gexpression(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -2153,7 +2154,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["prefixUnary", $])
+                                        choiceEnd_Gexpression(['prefixUnary', $])
                                     }
                                 )
                             } else {
@@ -2179,11 +2180,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PropertyAccessExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_propertyAccess$) => void,
+                                    callback: ($: mapi.TNGexpression_propertyAccess$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_propertyAccess$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_propertyAccess$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -2212,7 +2213,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["propertyAccess", $])
+                                        choiceEnd_Gexpression(['propertyAccess', $])
                                     }
                                 )
                             } else {
@@ -2234,7 +2235,7 @@ export function parse(
                 }
                 const choose_stringLiteral = () => {
                     GstringLiteral(node, children, ($) => {
-                        choiceEnd_Gexpression(["stringLiteral", $])
+                        choiceEnd_Gexpression(['stringLiteral', $])
                     })
                 }
                 const choose_template = () => {
@@ -2243,11 +2244,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TemplateExpression")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_template$) => void,
+                                    callback: ($: mapi.TNGexpression_template$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGexpression_template$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGexpression_template$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -2258,10 +2259,10 @@ export function parse(
                                             if ($d.stringsAreEqual(currentChild.kindName, "TemplateHead")) {
                                                 ((
                                                     $: uast.T.UntypedNode,
-                                                    callback: ($: api.TNGexpression_template$_head$) => void,
+                                                    callback: ($: mapi.TNGexpression_template$_head$) => void,
                                                 ): void => {
                                                     const node = $
-                                                    const children = pm.createStack($.children)
+                                                    const children = ps.createStack($.children)
                                                     callback({
                                                         tokenDetails: $.details,
                                                         value: $.value
@@ -2280,18 +2281,18 @@ export function parse(
                                                     currentChild,
                                                     ($) => {
                                                         const _head = $
-                                                        const elements = pm.createArrayBuilderFIXME<api.TVTGexpression_template$_spans>()
+                                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGexpression_template$_spans>()
                                                         const processElement = () => {
                                                             children.pop(
                                                                 (currentChild) => {
                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateSpan")) {
                                                                         ((
                                                                             $: uast.T.UntypedNode,
-                                                                            callback: ($: api.TNGexpression_template$_spans$) => void,
+                                                                            callback: ($: mapi.TNGexpression_template$_spans$) => void,
                                                                         ): void => {
                                                                             const node = $
-                                                                            const children = pm.createStack($.children)
-                                                                            const sequenceEnd = ($: api.TVTGexpression_template$_spans$) => {
+                                                                            const children = ps.createStack($.children)
+                                                                            const sequenceEnd = ($: mapi.TVTGexpression_template$_spans$) => {
                                                                                 callback({
                                                                                     tokenDetails: node.details,
                                                                                     content: $,
@@ -2299,7 +2300,7 @@ export function parse(
                                                                             }
                                                                             Gexpression(node, children, ($) => {
                                                                                 const _expression = $
-                                                                                const choiceEnd_Gexpression_template$_spans$_x = ($: api.TVTGexpression_template$_spans$_x) => {
+                                                                                const choiceEnd_Gexpression_template$_spans$_x = ($: mapi.TVTGexpression_template$_spans$_x) => {
                                                                                     const _x = $
                                                                                     sequenceEnd({
                                                                                         "expression": _expression,
@@ -2314,10 +2315,10 @@ export function parse(
                                                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateMiddle")) {
                                                                                                         ((
                                                                                                             $: uast.T.UntypedNode,
-                                                                                                            callback: ($: api.TNGexpression_template$_spans$_x_middle$) => void,
+                                                                                                            callback: ($: mapi.TNGexpression_template$_spans$_x_middle$) => void,
                                                                                                         ): void => {
                                                                                                             const node = $
-                                                                                                            const children = pm.createStack($.children)
+                                                                                                            const children = ps.createStack($.children)
                                                                                                             callback({
                                                                                                                 tokenDetails: $.details,
                                                                                                                 value: $.value
@@ -2335,7 +2336,7 @@ export function parse(
                                                                                                         })(
                                                                                                             currentChild,
                                                                                                             ($) => {
-                                                                                                                choiceEnd_Gexpression_template$_spans$_x(["middle", $])
+                                                                                                                choiceEnd_Gexpression_template$_spans$_x(['middle', $])
                                                                                                             }
                                                                                                         )
                                                                                                     } else {
@@ -2361,10 +2362,10 @@ export function parse(
                                                                                                     if ($d.stringsAreEqual(currentChild.kindName, "TemplateTail")) {
                                                                                                         ((
                                                                                                             $: uast.T.UntypedNode,
-                                                                                                            callback: ($: api.TNGexpression_template$_spans$_x_tail$) => void,
+                                                                                                            callback: ($: mapi.TNGexpression_template$_spans$_x_tail$) => void,
                                                                                                         ): void => {
                                                                                                             const node = $
-                                                                                                            const children = pm.createStack($.children)
+                                                                                                            const children = ps.createStack($.children)
                                                                                                             callback({
                                                                                                                 tokenDetails: $.details,
                                                                                                                 value: $.value
@@ -2382,7 +2383,7 @@ export function parse(
                                                                                                         })(
                                                                                                             currentChild,
                                                                                                             ($) => {
-                                                                                                                choiceEnd_Gexpression_template$_spans$_x(["tail", $])
+                                                                                                                choiceEnd_Gexpression_template$_spans$_x(['tail', $])
                                                                                                             }
                                                                                                         )
                                                                                                     } else {
@@ -2403,11 +2404,11 @@ export function parse(
                                                                                             )
                                                                                         }
                                                                                         switch (nextChild.kindName) {
-                                                                                            case "TemplateMiddle": /*Y*/ {
+                                                                                            case 'TemplateMiddle': /*Y*/ {
                                                                                                 choose_middle()
                                                                                                 break
                                                                                             }
-                                                                                            case "TemplateTail": /*Y*/ {
+                                                                                            case 'TemplateTail': /*Y*/ {
                                                                                                 choose_tail()
                                                                                                 break
                                                                                             }
@@ -2466,7 +2467,7 @@ export function parse(
                                                             children,
                                                             (nextChild) => {
                                                                 switch (nextChild.kindName) {
-                                                                    case "TemplateSpan":
+                                                                    case 'TemplateSpan':
                                                                         processElement()
                                                                         return true
                                                                     default: return false
@@ -2511,7 +2512,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["template", $])
+                                        choiceEnd_Gexpression(['template', $])
                                     }
                                 )
                             } else {
@@ -2537,10 +2538,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TrueKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGexpression_true$) => void,
+                                    callback: ($: mapi.TNGexpression_true$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -2555,7 +2556,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gexpression(["true", $])
+                                        choiceEnd_Gexpression(['true', $])
                                     }
                                 )
                             } else {
@@ -2576,83 +2577,83 @@ export function parse(
                     )
                 }
                 switch (nextChild.kindName) {
-                    case "ArrayLiteralExpression": /*Y*/ {
+                    case 'ArrayLiteralExpression': /*Y*/ {
                         choose_arrayLiteral()
                         break
                     }
-                    case "ArrowFunction": /*Y*/ {
+                    case 'ArrowFunction': /*Y*/ {
                         choose_arrowFunction()
                         break
                     }
-                    case "BinaryExpression": /*Y*/ {
+                    case 'BinaryExpression': /*Y*/ {
                         choose_binary()
                         break
                     }
-                    case "CallExpression": /*Y*/ {
+                    case 'CallExpression': /*Y*/ {
                         choose_call()
                         break
                     }
-                    case "ConditionalExpression": /*Y*/ {
+                    case 'ConditionalExpression': /*Y*/ {
                         choose_conditional()
                         break
                     }
-                    case "ElementAccessExpression": /*Y*/ {
+                    case 'ElementAccessExpression': /*Y*/ {
                         choose_elementAccess()
                         break
                     }
-                    case "FalseKeyword": /*Y*/ {
+                    case 'FalseKeyword': /*Y*/ {
                         choose_false()
                         break
                     }
-                    case "Identifier": /*Y*/ {
+                    case 'Identifier': /*Y*/ {
                         choose_identifier()
                         break
                     }
-                    case "NewExpression": /*Y*/ {
+                    case 'NewExpression': /*Y*/ {
                         choose_new()
                         break
                     }
-                    case "NoSubstitutionTemplateLiteral": /*Y*/ {
+                    case 'NoSubstitutionTemplateLiteral': /*Y*/ {
                         choose_noSubstitutionTemplateLiteral()
                         break
                     }
-                    case "NullKeyword": /*Y*/ {
+                    case 'NullKeyword': /*Y*/ {
                         choose_nullKeyword()
                         break
                     }
-                    case "NumericLiteral": /*Y*/ {
+                    case 'NumericLiteral': /*Y*/ {
                         choose_numericLiteral()
                         break
                     }
-                    case "ObjectLiteralExpression": /*Y*/ {
+                    case 'ObjectLiteralExpression': /*Y*/ {
                         choose_objectLiteral()
                         break
                     }
-                    case "ParenthesizedExpression": /*Y*/ {
+                    case 'ParenthesizedExpression': /*Y*/ {
                         choose_parenthesizedExpression()
                         break
                     }
-                    case "PostfixUnaryExpression": /*Y*/ {
+                    case 'PostfixUnaryExpression': /*Y*/ {
                         choose_postfixUnary()
                         break
                     }
-                    case "PrefixUnaryExpression": /*Y*/ {
+                    case 'PrefixUnaryExpression': /*Y*/ {
                         choose_prefixUnary()
                         break
                     }
-                    case "PropertyAccessExpression": /*Y*/ {
+                    case 'PropertyAccessExpression': /*Y*/ {
                         choose_propertyAccess()
                         break
                     }
-                    case "StringLiteral": /*Y*/ {
+                    case 'StringLiteral': /*Y*/ {
                         choose_stringLiteral()
                         break
                     }
-                    case "TemplateExpression": /*Y*/ {
+                    case 'TemplateExpression': /*Y*/ {
                         choose_template()
                         break
                     }
-                    case "TrueKeyword": /*Y*/ {
+                    case 'TrueKeyword': /*Y*/ {
                         choose_true()
                         break
                     }
@@ -2676,13 +2677,13 @@ export function parse(
     }
     function GfunctionDefinition(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGfunctionDefinition) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGfunctionDefinition) => void,
     ): void {
-        const sequenceEnd = ($: api.TVTGfunctionDefinition) => {
+        const sequenceEnd = ($: mapi.TVTGfunctionDefinition) => {
             callback($)
         }
-        const elements = pm.createArrayBuilderFIXME<api.TVTGfunctionDefinition_typeParameters>()
+        const elements = ps.createArrayBuilderFIXME<mapi.TVTGfunctionDefinition_typeParameters>()
         const processElement = () => {
             GtypeParameter(node, children, ($) => {
                 elements.push($)
@@ -2692,7 +2693,7 @@ export function parse(
             children,
             (nextChild) => {
                 switch (nextChild.kindName) {
-                    case "TypeParameter":
+                    case 'TypeParameter':
                         processElement()
                         return true
                     default: return false
@@ -2701,7 +2702,7 @@ export function parse(
         )
         pl.cc(elements.getArray(), ($) => {
             const _typeParameters = $
-            const elements = pm.createArrayBuilderFIXME<api.TVTGfunctionDefinition_parameters>()
+            const elements = ps.createArrayBuilderFIXME<mapi.TVTGfunctionDefinition_parameters>()
             const processElement = () => {
                 Gparameter(node, children, ($) => {
                     elements.push($)
@@ -2711,7 +2712,7 @@ export function parse(
                 children,
                 (nextChild) => {
                     switch (nextChild.kindName) {
-                        case "Parameter":
+                        case 'Parameter':
                             processElement()
                             return true
                         default: return false
@@ -2720,7 +2721,7 @@ export function parse(
             )
             pl.cc(elements.getArray(), ($) => {
                 const _parameters = $
-                let optional: null | api.TVTGfunctionDefinition_returnType = null
+                let optional: null | mapi.TVTGfunctionDefinition_returnType = null
                 const setOptional = () => {
                     Gtype(node, children, ($) => {
                         optional = $
@@ -2729,52 +2730,52 @@ export function parse(
                 $d.lookAhead(children, 
                     (nextChild) => {
                         switch (nextChild.kindName) {
-                            case "AnyKeyword":
+                            case 'AnyKeyword':
                                 setOptional()
                                 break
-                            case "ArrayType":
+                            case 'ArrayType':
                                 setOptional()
                                 break
-                            case "BooleanKeyword":
+                            case 'BooleanKeyword':
                                 setOptional()
                                 break
-                            case "FunctionType":
+                            case 'FunctionType':
                                 setOptional()
                                 break
-                            case "LiteralType":
+                            case 'LiteralType':
                                 setOptional()
                                 break
-                            case "NeverKeyword":
+                            case 'NeverKeyword':
                                 setOptional()
                                 break
-                            case "NumberKeyword":
+                            case 'NumberKeyword':
                                 setOptional()
                                 break
-                            case "OptionalType":
+                            case 'OptionalType':
                                 setOptional()
                                 break
-                            case "ParenthesizedType":
+                            case 'ParenthesizedType':
                                 setOptional()
                                 break
-                            case "StringKeyword":
+                            case 'StringKeyword':
                                 setOptional()
                                 break
-                            case "TupleType":
+                            case 'TupleType':
                                 setOptional()
                                 break
-                            case "TypeLiteral":
+                            case 'TypeLiteral':
                                 setOptional()
                                 break
-                            case "TypeReference":
+                            case 'TypeReference':
                                 setOptional()
                                 break
-                            case "UndefinedKeyword":
+                            case 'UndefinedKeyword':
                                 setOptional()
                                 break
-                            case "UnionType":
+                            case 'UnionType':
                                 setOptional()
                                 break
-                            case "VoidKeyword":
+                            case 'VoidKeyword':
                                 setOptional()
                                 break
                         }
@@ -2794,18 +2795,18 @@ export function parse(
     }
     function Gidentifier(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGidentifier) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGidentifier) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Identifier")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGidentifier$) => void,
+                        callback: ($: mapi.TNGidentifier$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
+                        const children = ps.createStack($.children)
                         callback({
                             tokenDetails: $.details,
                             value: $.value
@@ -2845,30 +2846,30 @@ export function parse(
     }
     function GidentifierOrStringLiteral(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGidentifierOrStringLiteral) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGidentifierOrStringLiteral) => void,
     ): void {
-        const choiceEnd_GidentifierOrStringLiteral = ($: api.TVTGidentifierOrStringLiteral) => {
+        const choiceEnd_GidentifierOrStringLiteral = ($: mapi.TVTGidentifierOrStringLiteral) => {
             callback($)
         }
         $d.lookAhead(children, 
             (nextChild) => {
                 const choose_identifier = () => {
                     Gidentifier(node, children, ($) => {
-                        choiceEnd_GidentifierOrStringLiteral(["identifier", $])
+                        choiceEnd_GidentifierOrStringLiteral(['identifier', $])
                     })
                 }
                 const choose_stringLiteral = () => {
                     GstringLiteral(node, children, ($) => {
-                        choiceEnd_GidentifierOrStringLiteral(["stringLiteral", $])
+                        choiceEnd_GidentifierOrStringLiteral(['stringLiteral', $])
                     })
                 }
                 switch (nextChild.kindName) {
-                    case "Identifier": /*Y*/ {
+                    case 'Identifier': /*Y*/ {
                         choose_identifier()
                         break
                     }
-                    case "StringLiteral": /*Y*/ {
+                    case 'StringLiteral': /*Y*/ {
                         choose_stringLiteral()
                         break
                     }
@@ -2892,10 +2893,10 @@ export function parse(
     }
     function Gmodifier(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGmodifier) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGmodifier) => void,
     ): void {
-        const choiceEnd_Gmodifier = ($: api.TVTGmodifier) => {
+        const choiceEnd_Gmodifier = ($: mapi.TVTGmodifier) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -2906,10 +2907,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "DeclareKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGmodifier_declare$) => void,
+                                    callback: ($: mapi.TNGmodifier_declare$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -2924,7 +2925,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gmodifier(["declare", $])
+                                        choiceEnd_Gmodifier(['declare', $])
                                     }
                                 )
                             } else {
@@ -2950,10 +2951,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ExportKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGmodifier_export$) => void,
+                                    callback: ($: mapi.TNGmodifier_export$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -2968,7 +2969,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gmodifier(["export", $])
+                                        choiceEnd_Gmodifier(['export', $])
                                     }
                                 )
                             } else {
@@ -2994,10 +2995,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ReadonlyKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGmodifier_readonly$) => void,
+                                    callback: ($: mapi.TNGmodifier_readonly$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -3012,7 +3013,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gmodifier(["readonly", $])
+                                        choiceEnd_Gmodifier(['readonly', $])
                                     }
                                 )
                             } else {
@@ -3033,15 +3034,15 @@ export function parse(
                     )
                 }
                 switch (nextChild.kindName) {
-                    case "DeclareKeyword": /*Y*/ {
+                    case 'DeclareKeyword': /*Y*/ {
                         choose_declare()
                         break
                     }
-                    case "ExportKeyword": /*Y*/ {
+                    case 'ExportKeyword': /*Y*/ {
                         choose_export()
                         break
                     }
-                    case "ReadonlyKeyword": /*Y*/ {
+                    case 'ReadonlyKeyword': /*Y*/ {
                         choose_readonly()
                         break
                     }
@@ -3065,18 +3066,18 @@ export function parse(
     }
     function GnumericLiteral(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGnumericLiteral) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGnumericLiteral) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "NumericLiteral")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGnumericLiteral$) => void,
+                        callback: ($: mapi.TNGnumericLiteral$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
+                        const children = ps.createStack($.children)
                         callback({
                             tokenDetails: $.details,
                             value: $.value
@@ -3116,19 +3117,19 @@ export function parse(
     }
     function Gparameter(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGparameter) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGparameter) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "Parameter")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGparameter$) => void,
+                        callback: ($: mapi.TNGparameter$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
-                        const sequenceEnd = ($: api.TVTGparameter$) => {
+                        const children = ps.createStack($.children)
+                        const sequenceEnd = ($: mapi.TVTGparameter$) => {
                             callback({
                                 tokenDetails: node.details,
                                 content: $,
@@ -3136,17 +3137,17 @@ export function parse(
                         }
                         Gidentifier(node, children, ($) => {
                             const _name = $
-                            let optional: null | api.TVTGparameter$_questionToken = null
+                            let optional: null | mapi.TVTGparameter$_questionToken = null
                             const setOptional = () => {
                                 children.pop(
                                     (currentChild) => {
                                         if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                             ((
                                                 $: uast.T.UntypedNode,
-                                                callback: ($: api.TNGparameter$_questionToken$) => void,
+                                                callback: ($: mapi.TNGparameter$_questionToken$) => void,
                                             ): void => {
                                                 const node = $
-                                                const children = pm.createStack($.children)
+                                                const children = ps.createStack($.children)
                                                 callback($.details)
                                                 children.pop(
                                                     (nextChild) => {
@@ -3184,7 +3185,7 @@ export function parse(
                             $d.lookAhead(children, 
                                 (nextChild) => {
                                     switch (nextChild.kindName) {
-                                        case "QuestionToken":
+                                        case 'QuestionToken':
                                             setOptional()
                                             break
                                     }
@@ -3193,7 +3194,7 @@ export function parse(
                             )
                             pl.cc(optional, ($) => {
                                 const _questionToken = $
-                                let optional: null | api.TVTGparameter$_type = null
+                                let optional: null | mapi.TVTGparameter$_type = null
                                 const setOptional = () => {
                                     Gtype(node, children, ($) => {
                                         optional = $
@@ -3202,52 +3203,52 @@ export function parse(
                                 $d.lookAhead(children, 
                                     (nextChild) => {
                                         switch (nextChild.kindName) {
-                                            case "AnyKeyword":
+                                            case 'AnyKeyword':
                                                 setOptional()
                                                 break
-                                            case "ArrayType":
+                                            case 'ArrayType':
                                                 setOptional()
                                                 break
-                                            case "BooleanKeyword":
+                                            case 'BooleanKeyword':
                                                 setOptional()
                                                 break
-                                            case "FunctionType":
+                                            case 'FunctionType':
                                                 setOptional()
                                                 break
-                                            case "LiteralType":
+                                            case 'LiteralType':
                                                 setOptional()
                                                 break
-                                            case "NeverKeyword":
+                                            case 'NeverKeyword':
                                                 setOptional()
                                                 break
-                                            case "NumberKeyword":
+                                            case 'NumberKeyword':
                                                 setOptional()
                                                 break
-                                            case "OptionalType":
+                                            case 'OptionalType':
                                                 setOptional()
                                                 break
-                                            case "ParenthesizedType":
+                                            case 'ParenthesizedType':
                                                 setOptional()
                                                 break
-                                            case "StringKeyword":
+                                            case 'StringKeyword':
                                                 setOptional()
                                                 break
-                                            case "TupleType":
+                                            case 'TupleType':
                                                 setOptional()
                                                 break
-                                            case "TypeLiteral":
+                                            case 'TypeLiteral':
                                                 setOptional()
                                                 break
-                                            case "TypeReference":
+                                            case 'TypeReference':
                                                 setOptional()
                                                 break
-                                            case "UndefinedKeyword":
+                                            case 'UndefinedKeyword':
                                                 setOptional()
                                                 break
-                                            case "UnionType":
+                                            case 'UnionType':
                                                 setOptional()
                                                 break
-                                            case "VoidKeyword":
+                                            case 'VoidKeyword':
                                                 setOptional()
                                                 break
                                         }
@@ -3299,17 +3300,17 @@ export function parse(
     }
     function Gstatement(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGstatement) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGstatement) => void,
     ): void {
-        const choiceEnd_Gstatement = ($: api.TVTGstatement) => {
+        const choiceEnd_Gstatement = ($: mapi.TVTGstatement) => {
             callback($)
         }
         $d.lookAhead(children, 
             (nextChild) => {
                 const choose_block = () => {
                     Gblock(node, children, ($) => {
-                        choiceEnd_Gstatement(["block", $])
+                        choiceEnd_Gstatement(['block', $])
                     })
                 }
                 const choose_break = () => {
@@ -3318,11 +3319,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "BreakStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_break$) => void,
+                                    callback: ($: mapi.TNGstatement_break$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    let optional: null | api.TVTGstatement_break$ = null
+                                    const children = ps.createStack($.children)
+                                    let optional: null | mapi.TVTGstatement_break$ = null
                                     const setOptional = () => {
                                         Gidentifier(node, children, ($) => {
                                             optional = $
@@ -3331,7 +3332,7 @@ export function parse(
                                     $d.lookAhead(children, 
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "Identifier":
+                                                case 'Identifier':
                                                     setOptional()
                                                     break
                                             }
@@ -3357,7 +3358,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["break", $])
+                                        choiceEnd_Gstatement(['break', $])
                                     }
                                 )
                             } else {
@@ -3383,10 +3384,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ExportDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_export$) => void,
+                                    callback: ($: mapi.TNGstatement_export$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     GstringLiteral(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -3406,7 +3407,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["export", $])
+                                        choiceEnd_Gstatement(['export', $])
                                     }
                                 )
                             } else {
@@ -3432,10 +3433,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ExpressionStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_expression$) => void,
+                                    callback: ($: mapi.TNGstatement_expression$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gexpression(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -3455,7 +3456,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["expression", $])
+                                        choiceEnd_Gstatement(['expression', $])
                                     }
                                 )
                             } else {
@@ -3481,11 +3482,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ForStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_for$) => void,
+                                    callback: ($: mapi.TNGstatement_for$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_for$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_for$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -3522,7 +3523,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["for", $])
+                                        choiceEnd_Gstatement(['for', $])
                                     }
                                 )
                             } else {
@@ -3548,17 +3549,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "FunctionDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_function$) => void,
+                                    callback: ($: mapi.TNGstatement_function$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_function$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_function$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_function$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_function$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -3568,13 +3569,13 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "DeclareKeyword":
+                                                case 'DeclareKeyword':
                                                     processElement()
                                                     return true
-                                                case "ExportKeyword":
+                                                case 'ExportKeyword':
                                                     processElement()
                                                     return true
-                                                case "ReadonlyKeyword":
+                                                case 'ReadonlyKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -3587,7 +3588,7 @@ export function parse(
                                             const _name = $
                                             GfunctionDefinition(node, children, ($) => {
                                                 const _definition = $
-                                                let optional: null | api.TVTGstatement_function$_block = null
+                                                let optional: null | mapi.TVTGstatement_function$_block = null
                                                 const setOptional = () => {
                                                     Gblock(node, children, ($) => {
                                                         optional = $
@@ -3596,7 +3597,7 @@ export function parse(
                                                 $d.lookAhead(children, 
                                                     (nextChild) => {
                                                         switch (nextChild.kindName) {
-                                                            case "Block":
+                                                            case 'Block':
                                                                 setOptional()
                                                                 break
                                                         }
@@ -3628,7 +3629,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["function", $])
+                                        choiceEnd_Gstatement(['function', $])
                                     }
                                 )
                             } else {
@@ -3654,11 +3655,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "IfStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_if$) => void,
+                                    callback: ($: mapi.TNGstatement_if$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_if$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_if$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -3668,7 +3669,7 @@ export function parse(
                                         const _expression = $
                                         Gstatement(node, children, ($) => {
                                             const _thenStatement = $
-                                            let optional: null | api.TVTGstatement_if$_elseStatement = null
+                                            let optional: null | mapi.TVTGstatement_if$_elseStatement = null
                                             const setOptional = () => {
                                                 Gstatement(node, children, ($) => {
                                                     optional = $
@@ -3677,55 +3678,55 @@ export function parse(
                                             $d.lookAhead(children, 
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
-                                                        case "Block":
+                                                        case 'Block':
                                                             setOptional()
                                                             break
-                                                        case "BreakStatement":
+                                                        case 'BreakStatement':
                                                             setOptional()
                                                             break
-                                                        case "ExportDeclaration":
+                                                        case 'ExportDeclaration':
                                                             setOptional()
                                                             break
-                                                        case "ExpressionStatement":
+                                                        case 'ExpressionStatement':
                                                             setOptional()
                                                             break
-                                                        case "ForStatement":
+                                                        case 'ForStatement':
                                                             setOptional()
                                                             break
-                                                        case "FunctionDeclaration":
+                                                        case 'FunctionDeclaration':
                                                             setOptional()
                                                             break
-                                                        case "IfStatement":
+                                                        case 'IfStatement':
                                                             setOptional()
                                                             break
-                                                        case "ImportDeclaration":
+                                                        case 'ImportDeclaration':
                                                             setOptional()
                                                             break
-                                                        case "InterfaceDeclaration":
+                                                        case 'InterfaceDeclaration':
                                                             setOptional()
                                                             break
-                                                        case "LabeledStatement":
+                                                        case 'LabeledStatement':
                                                             setOptional()
                                                             break
-                                                        case "ReturnStatement":
+                                                        case 'ReturnStatement':
                                                             setOptional()
                                                             break
-                                                        case "SwitchStatement":
+                                                        case 'SwitchStatement':
                                                             setOptional()
                                                             break
-                                                        case "ThrowStatement":
+                                                        case 'ThrowStatement':
                                                             setOptional()
                                                             break
-                                                        case "TryStatement":
+                                                        case 'TryStatement':
                                                             setOptional()
                                                             break
-                                                        case "TypeAliasDeclaration":
+                                                        case 'TypeAliasDeclaration':
                                                             setOptional()
                                                             break
-                                                        case "VariableStatement":
+                                                        case 'VariableStatement':
                                                             setOptional()
                                                             break
-                                                        case "WhileStatement":
+                                                        case 'WhileStatement':
                                                             setOptional()
                                                             break
                                                     }
@@ -3755,7 +3756,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["if", $])
+                                        choiceEnd_Gstatement(['if', $])
                                     }
                                 )
                             } else {
@@ -3781,11 +3782,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ImportDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_import$) => void,
+                                    callback: ($: mapi.TNGstatement_import$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_import$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_import$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -3796,11 +3797,11 @@ export function parse(
                                             if ($d.stringsAreEqual(currentChild.kindName, "ImportClause")) {
                                                 ((
                                                     $: uast.T.UntypedNode,
-                                                    callback: ($: api.TNGstatement_import$_clause$) => void,
+                                                    callback: ($: mapi.TNGstatement_import$_clause$) => void,
                                                 ): void => {
                                                     const node = $
-                                                    const children = pm.createStack($.children)
-                                                    const choiceEnd_Gstatement_import$_clause$ = ($: api.TVTGstatement_import$_clause$) => {
+                                                    const children = ps.createStack($.children)
+                                                    const choiceEnd_Gstatement_import$_clause$ = ($: mapi.TVTGstatement_import$_clause$) => {
                                                         callback({
                                                             tokenDetails: node.details,
                                                             content: $,
@@ -3814,22 +3815,22 @@ export function parse(
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "NamedImports")) {
                                                                             ((
                                                                                 $: uast.T.UntypedNode,
-                                                                                callback: ($: api.TNGstatement_import$_clause$_named$) => void,
+                                                                                callback: ($: mapi.TNGstatement_import$_clause$_named$) => void,
                                                                             ): void => {
                                                                                 const node = $
-                                                                                const children = pm.createStack($.children)
-                                                                                const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_import$_clause$_named$>()
+                                                                                const children = ps.createStack($.children)
+                                                                                const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_import$_clause$_named$>()
                                                                                 const processElement = () => {
                                                                                     children.pop(
                                                                                         (currentChild) => {
                                                                                             if ($d.stringsAreEqual(currentChild.kindName, "ImportSpecifier")) {
                                                                                                 ((
                                                                                                     $: uast.T.UntypedNode,
-                                                                                                    callback: ($: api.TNGstatement_import$_clause$_named$$) => void,
+                                                                                                    callback: ($: mapi.TNGstatement_import$_clause$_named$$) => void,
                                                                                                 ): void => {
                                                                                                     const node = $
-                                                                                                    const children = pm.createStack($.children)
-                                                                                                    const sequenceEnd = ($: api.TVTGstatement_import$_clause$_named$$) => {
+                                                                                                    const children = ps.createStack($.children)
+                                                                                                    const sequenceEnd = ($: mapi.TVTGstatement_import$_clause$_named$$) => {
                                                                                                         callback({
                                                                                                             tokenDetails: node.details,
                                                                                                             content: $,
@@ -3837,7 +3838,7 @@ export function parse(
                                                                                                     }
                                                                                                     Gidentifier(node, children, ($) => {
                                                                                                         const _name = $
-                                                                                                        let optional: null | api.TVTGstatement_import$_clause$_named$$_as = null
+                                                                                                        let optional: null | mapi.TVTGstatement_import$_clause$_named$$_as = null
                                                                                                         const setOptional = () => {
                                                                                                             Gidentifier(node, children, ($) => {
                                                                                                                 optional = $
@@ -3846,7 +3847,7 @@ export function parse(
                                                                                                         $d.lookAhead(children, 
                                                                                                             (nextChild) => {
                                                                                                                 switch (nextChild.kindName) {
-                                                                                                                    case "Identifier":
+                                                                                                                    case 'Identifier':
                                                                                                                         setOptional()
                                                                                                                         break
                                                                                                                 }
@@ -3898,7 +3899,7 @@ export function parse(
                                                                                     children,
                                                                                     (nextChild) => {
                                                                                         switch (nextChild.kindName) {
-                                                                                            case "ImportSpecifier":
+                                                                                            case 'ImportSpecifier':
                                                                                                 processElement()
                                                                                                 return true
                                                                                             default: return false
@@ -3924,7 +3925,7 @@ export function parse(
                                                                             })(
                                                                                 currentChild,
                                                                                 ($) => {
-                                                                                    choiceEnd_Gstatement_import$_clause$(["named", $])
+                                                                                    choiceEnd_Gstatement_import$_clause$(['named', $])
                                                                                 }
                                                                             )
                                                                         } else {
@@ -3950,10 +3951,10 @@ export function parse(
                                                                         if ($d.stringsAreEqual(currentChild.kindName, "NamespaceImport")) {
                                                                             ((
                                                                                 $: uast.T.UntypedNode,
-                                                                                callback: ($: api.TNGstatement_import$_clause$_namespace$) => void,
+                                                                                callback: ($: mapi.TNGstatement_import$_clause$_namespace$) => void,
                                                                             ): void => {
                                                                                 const node = $
-                                                                                const children = pm.createStack($.children)
+                                                                                const children = ps.createStack($.children)
                                                                                 Gidentifier(node, children, ($) => {
                                                                                     callback({
                                                                                         tokenDetails: node.details,
@@ -3973,7 +3974,7 @@ export function parse(
                                                                             })(
                                                                                 currentChild,
                                                                                 ($) => {
-                                                                                    choiceEnd_Gstatement_import$_clause$(["namespace", $])
+                                                                                    choiceEnd_Gstatement_import$_clause$(['namespace', $])
                                                                                 }
                                                                             )
                                                                         } else {
@@ -3994,11 +3995,11 @@ export function parse(
                                                                 )
                                                             }
                                                             switch (nextChild.kindName) {
-                                                                case "NamedImports": /*Y*/ {
+                                                                case 'NamedImports': /*Y*/ {
                                                                     choose_named()
                                                                     break
                                                                 }
-                                                                case "NamespaceImport": /*Y*/ {
+                                                                case 'NamespaceImport': /*Y*/ {
                                                                     choose_namespace()
                                                                     break
                                                                 }
@@ -4071,7 +4072,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["import", $])
+                                        choiceEnd_Gstatement(['import', $])
                                     }
                                 )
                             } else {
@@ -4097,17 +4098,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "InterfaceDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_interface$) => void,
+                                    callback: ($: mapi.TNGstatement_interface$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_interface$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_interface$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_interface$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_interface$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -4117,13 +4118,13 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "DeclareKeyword":
+                                                case 'DeclareKeyword':
                                                     processElement()
                                                     return true
-                                                case "ExportKeyword":
+                                                case 'ExportKeyword':
                                                     processElement()
                                                     return true
-                                                case "ReadonlyKeyword":
+                                                case 'ReadonlyKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -4134,7 +4135,7 @@ export function parse(
                                         const _modifiers = $
                                         Gidentifier(node, children, ($) => {
                                             const _name = $
-                                            const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_interface$_typeParameters>()
+                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_interface$_typeParameters>()
                                             const processElement = () => {
                                                 GtypeParameter(node, children, ($) => {
                                                     elements.push($)
@@ -4144,7 +4145,7 @@ export function parse(
                                                 children,
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
-                                                        case "TypeParameter":
+                                                        case 'TypeParameter':
                                                             processElement()
                                                             return true
                                                         default: return false
@@ -4153,7 +4154,7 @@ export function parse(
                                             )
                                             pl.cc(elements.getArray(), ($) => {
                                                 const _typeParameters = $
-                                                const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_interface$_signature>()
+                                                const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_interface$_signature>()
                                                 const processElement = () => {
                                                     GtypeSignature(node, children, ($) => {
                                                         elements.push($)
@@ -4163,16 +4164,16 @@ export function parse(
                                                     children,
                                                     (nextChild) => {
                                                         switch (nextChild.kindName) {
-                                                            case "ConstructSignature":
+                                                            case 'ConstructSignature':
                                                                 processElement()
                                                                 return true
-                                                            case "IndexSignature":
+                                                            case 'IndexSignature':
                                                                 processElement()
                                                                 return true
-                                                            case "MethodSignature":
+                                                            case 'MethodSignature':
                                                                 processElement()
                                                                 return true
-                                                            case "PropertySignature":
+                                                            case 'PropertySignature':
                                                                 processElement()
                                                                 return true
                                                             default: return false
@@ -4204,7 +4205,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["interface", $])
+                                        choiceEnd_Gstatement(['interface', $])
                                     }
                                 )
                             } else {
@@ -4230,11 +4231,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "LabeledStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_labeled$) => void,
+                                    callback: ($: mapi.TNGstatement_labeled$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_labeled$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_labeled$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -4263,7 +4264,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["labeled", $])
+                                        choiceEnd_Gstatement(['labeled', $])
                                     }
                                 )
                             } else {
@@ -4289,11 +4290,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ReturnStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_return$) => void,
+                                    callback: ($: mapi.TNGstatement_return$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    let optional: null | api.TVTGstatement_return$ = null
+                                    const children = ps.createStack($.children)
+                                    let optional: null | mapi.TVTGstatement_return$ = null
                                     const setOptional = () => {
                                         Gexpression(node, children, ($) => {
                                             optional = $
@@ -4302,64 +4303,64 @@ export function parse(
                                     $d.lookAhead(children, 
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "ArrayLiteralExpression":
+                                                case 'ArrayLiteralExpression':
                                                     setOptional()
                                                     break
-                                                case "ArrowFunction":
+                                                case 'ArrowFunction':
                                                     setOptional()
                                                     break
-                                                case "BinaryExpression":
+                                                case 'BinaryExpression':
                                                     setOptional()
                                                     break
-                                                case "CallExpression":
+                                                case 'CallExpression':
                                                     setOptional()
                                                     break
-                                                case "ConditionalExpression":
+                                                case 'ConditionalExpression':
                                                     setOptional()
                                                     break
-                                                case "ElementAccessExpression":
+                                                case 'ElementAccessExpression':
                                                     setOptional()
                                                     break
-                                                case "FalseKeyword":
+                                                case 'FalseKeyword':
                                                     setOptional()
                                                     break
-                                                case "Identifier":
+                                                case 'Identifier':
                                                     setOptional()
                                                     break
-                                                case "NewExpression":
+                                                case 'NewExpression':
                                                     setOptional()
                                                     break
-                                                case "NoSubstitutionTemplateLiteral":
+                                                case 'NoSubstitutionTemplateLiteral':
                                                     setOptional()
                                                     break
-                                                case "NullKeyword":
+                                                case 'NullKeyword':
                                                     setOptional()
                                                     break
-                                                case "NumericLiteral":
+                                                case 'NumericLiteral':
                                                     setOptional()
                                                     break
-                                                case "ObjectLiteralExpression":
+                                                case 'ObjectLiteralExpression':
                                                     setOptional()
                                                     break
-                                                case "ParenthesizedExpression":
+                                                case 'ParenthesizedExpression':
                                                     setOptional()
                                                     break
-                                                case "PostfixUnaryExpression":
+                                                case 'PostfixUnaryExpression':
                                                     setOptional()
                                                     break
-                                                case "PrefixUnaryExpression":
+                                                case 'PrefixUnaryExpression':
                                                     setOptional()
                                                     break
-                                                case "PropertyAccessExpression":
+                                                case 'PropertyAccessExpression':
                                                     setOptional()
                                                     break
-                                                case "StringLiteral":
+                                                case 'StringLiteral':
                                                     setOptional()
                                                     break
-                                                case "TemplateExpression":
+                                                case 'TemplateExpression':
                                                     setOptional()
                                                     break
-                                                case "TrueKeyword":
+                                                case 'TrueKeyword':
                                                     setOptional()
                                                     break
                                             }
@@ -4385,7 +4386,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["return", $])
+                                        choiceEnd_Gstatement(['return', $])
                                     }
                                 )
                             } else {
@@ -4411,11 +4412,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "SwitchStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_switch$) => void,
+                                    callback: ($: mapi.TNGstatement_switch$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_switch$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_switch$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -4428,13 +4429,13 @@ export function parse(
                                                 if ($d.stringsAreEqual(currentChild.kindName, "CaseBlock")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: api.TNGstatement_switch$_caseBlock$) => void,
+                                                        callback: ($: mapi.TNGstatement_switch$_caseBlock$) => void,
                                                     ): void => {
                                                         const node = $
-                                                        const children = pm.createStack($.children)
-                                                        const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_switch$_caseBlock$>()
+                                                        const children = ps.createStack($.children)
+                                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_switch$_caseBlock$>()
                                                         const processElement = () => {
-                                                            const choiceEnd_Gstatement_switch$_caseBlock$ = ($: api.TVTGstatement_switch$_caseBlock$) => {
+                                                            const choiceEnd_Gstatement_switch$_caseBlock$ = ($: mapi.TVTGstatement_switch$_caseBlock$) => {
                                                                 elements.push($)
                                                             }
                                                             $d.lookAhead(children, 
@@ -4445,11 +4446,11 @@ export function parse(
                                                                                 if ($d.stringsAreEqual(currentChild.kindName, "CaseClause")) {
                                                                                     ((
                                                                                         $: uast.T.UntypedNode,
-                                                                                        callback: ($: api.TNGstatement_switch$_caseBlock$_case$) => void,
+                                                                                        callback: ($: mapi.TNGstatement_switch$_caseBlock$_case$) => void,
                                                                                     ): void => {
                                                                                         const node = $
-                                                                                        const children = pm.createStack($.children)
-                                                                                        const sequenceEnd = ($: api.TVTGstatement_switch$_caseBlock$_case$) => {
+                                                                                        const children = ps.createStack($.children)
+                                                                                        const sequenceEnd = ($: mapi.TVTGstatement_switch$_caseBlock$_case$) => {
                                                                                             callback({
                                                                                                 tokenDetails: node.details,
                                                                                                 content: $,
@@ -4457,7 +4458,7 @@ export function parse(
                                                                                         }
                                                                                         Gexpression(node, children, ($) => {
                                                                                             const _case = $
-                                                                                            const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_switch$_caseBlock$_case$_statements>()
+                                                                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_switch$_caseBlock$_case$_statements>()
                                                                                             const processElement = () => {
                                                                                                 Gstatement(node, children, ($) => {
                                                                                                     elements.push($)
@@ -4467,55 +4468,55 @@ export function parse(
                                                                                                 children,
                                                                                                 (nextChild) => {
                                                                                                     switch (nextChild.kindName) {
-                                                                                                        case "Block":
+                                                                                                        case 'Block':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "BreakStatement":
+                                                                                                        case 'BreakStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "ExportDeclaration":
+                                                                                                        case 'ExportDeclaration':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "ExpressionStatement":
+                                                                                                        case 'ExpressionStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "ForStatement":
+                                                                                                        case 'ForStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "FunctionDeclaration":
+                                                                                                        case 'FunctionDeclaration':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "IfStatement":
+                                                                                                        case 'IfStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "ImportDeclaration":
+                                                                                                        case 'ImportDeclaration':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "InterfaceDeclaration":
+                                                                                                        case 'InterfaceDeclaration':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "LabeledStatement":
+                                                                                                        case 'LabeledStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "ReturnStatement":
+                                                                                                        case 'ReturnStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "SwitchStatement":
+                                                                                                        case 'SwitchStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "ThrowStatement":
+                                                                                                        case 'ThrowStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "TryStatement":
+                                                                                                        case 'TryStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "TypeAliasDeclaration":
+                                                                                                        case 'TypeAliasDeclaration':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "VariableStatement":
+                                                                                                        case 'VariableStatement':
                                                                                                             processElement()
                                                                                                             return true
-                                                                                                        case "WhileStatement":
+                                                                                                        case 'WhileStatement':
                                                                                                             processElement()
                                                                                                             return true
                                                                                                         default: return false
@@ -4543,7 +4544,7 @@ export function parse(
                                                                                     })(
                                                                                         currentChild,
                                                                                         ($) => {
-                                                                                            choiceEnd_Gstatement_switch$_caseBlock$(["case", $])
+                                                                                            choiceEnd_Gstatement_switch$_caseBlock$(['case', $])
                                                                                         }
                                                                                     )
                                                                                 } else {
@@ -4569,11 +4570,11 @@ export function parse(
                                                                                 if ($d.stringsAreEqual(currentChild.kindName, "DefaultClause")) {
                                                                                     ((
                                                                                         $: uast.T.UntypedNode,
-                                                                                        callback: ($: api.TNGstatement_switch$_caseBlock$_default$) => void,
+                                                                                        callback: ($: mapi.TNGstatement_switch$_caseBlock$_default$) => void,
                                                                                     ): void => {
                                                                                         const node = $
-                                                                                        const children = pm.createStack($.children)
-                                                                                        const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_switch$_caseBlock$_default$>()
+                                                                                        const children = ps.createStack($.children)
+                                                                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_switch$_caseBlock$_default$>()
                                                                                         const processElement = () => {
                                                                                             Gstatement(node, children, ($) => {
                                                                                                 elements.push($)
@@ -4583,55 +4584,55 @@ export function parse(
                                                                                             children,
                                                                                             (nextChild) => {
                                                                                                 switch (nextChild.kindName) {
-                                                                                                    case "Block":
+                                                                                                    case 'Block':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "BreakStatement":
+                                                                                                    case 'BreakStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "ExportDeclaration":
+                                                                                                    case 'ExportDeclaration':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "ExpressionStatement":
+                                                                                                    case 'ExpressionStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "ForStatement":
+                                                                                                    case 'ForStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "FunctionDeclaration":
+                                                                                                    case 'FunctionDeclaration':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "IfStatement":
+                                                                                                    case 'IfStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "ImportDeclaration":
+                                                                                                    case 'ImportDeclaration':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "InterfaceDeclaration":
+                                                                                                    case 'InterfaceDeclaration':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "LabeledStatement":
+                                                                                                    case 'LabeledStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "ReturnStatement":
+                                                                                                    case 'ReturnStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "SwitchStatement":
+                                                                                                    case 'SwitchStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "ThrowStatement":
+                                                                                                    case 'ThrowStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "TryStatement":
+                                                                                                    case 'TryStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "TypeAliasDeclaration":
+                                                                                                    case 'TypeAliasDeclaration':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "VariableStatement":
+                                                                                                    case 'VariableStatement':
                                                                                                         processElement()
                                                                                                         return true
-                                                                                                    case "WhileStatement":
+                                                                                                    case 'WhileStatement':
                                                                                                         processElement()
                                                                                                         return true
                                                                                                     default: return false
@@ -4657,7 +4658,7 @@ export function parse(
                                                                                     })(
                                                                                         currentChild,
                                                                                         ($) => {
-                                                                                            choiceEnd_Gstatement_switch$_caseBlock$(["default", $])
+                                                                                            choiceEnd_Gstatement_switch$_caseBlock$(['default', $])
                                                                                         }
                                                                                     )
                                                                                 } else {
@@ -4678,11 +4679,11 @@ export function parse(
                                                                         )
                                                                     }
                                                                     switch (nextChild.kindName) {
-                                                                        case "CaseClause": /*Y*/ {
+                                                                        case 'CaseClause': /*Y*/ {
                                                                             choose_case()
                                                                             break
                                                                         }
-                                                                        case "DefaultClause": /*Y*/ {
+                                                                        case 'DefaultClause': /*Y*/ {
                                                                             choose_default()
                                                                             break
                                                                         }
@@ -4708,10 +4709,10 @@ export function parse(
                                                             children,
                                                             (nextChild) => {
                                                                 switch (nextChild.kindName) {
-                                                                    case "CaseClause":
+                                                                    case 'CaseClause':
                                                                         processElement()
                                                                         return true
-                                                                    case "DefaultClause":
+                                                                    case 'DefaultClause':
                                                                         processElement()
                                                                         return true
                                                                     default: return false
@@ -4774,7 +4775,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["switch", $])
+                                        choiceEnd_Gstatement(['switch', $])
                                     }
                                 )
                             } else {
@@ -4800,10 +4801,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ThrowStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_throw$) => void,
+                                    callback: ($: mapi.TNGstatement_throw$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gexpression(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -4823,7 +4824,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["throw", $])
+                                        choiceEnd_Gstatement(['throw', $])
                                     }
                                 )
                             } else {
@@ -4849,11 +4850,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TryStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_try$) => void,
+                                    callback: ($: mapi.TNGstatement_try$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_try$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_try$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -4866,11 +4867,11 @@ export function parse(
                                                 if ($d.stringsAreEqual(currentChild.kindName, "CatchClause")) {
                                                     ((
                                                         $: uast.T.UntypedNode,
-                                                        callback: ($: api.TNGstatement_try$_catchClause$) => void,
+                                                        callback: ($: mapi.TNGstatement_try$_catchClause$) => void,
                                                     ): void => {
                                                         const node = $
-                                                        const children = pm.createStack($.children)
-                                                        const sequenceEnd = ($: api.TVTGstatement_try$_catchClause$) => {
+                                                        const children = ps.createStack($.children)
+                                                        const sequenceEnd = ($: mapi.TVTGstatement_try$_catchClause$) => {
                                                             callback({
                                                                 tokenDetails: node.details,
                                                                 content: $,
@@ -4936,7 +4937,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["try", $])
+                                        choiceEnd_Gstatement(['try', $])
                                     }
                                 )
                             } else {
@@ -4962,17 +4963,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeAliasDeclaration")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_typeAlias$) => void,
+                                    callback: ($: mapi.TNGstatement_typeAlias$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_typeAlias$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_typeAlias$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_typeAlias$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_typeAlias$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -4982,13 +4983,13 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "DeclareKeyword":
+                                                case 'DeclareKeyword':
                                                     processElement()
                                                     return true
-                                                case "ExportKeyword":
+                                                case 'ExportKeyword':
                                                     processElement()
                                                     return true
-                                                case "ReadonlyKeyword":
+                                                case 'ReadonlyKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -4999,7 +5000,7 @@ export function parse(
                                         const _modifiers = $
                                         Gidentifier(node, children, ($) => {
                                             const _name = $
-                                            const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_typeAlias$_typeParameters>()
+                                            const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_typeAlias$_typeParameters>()
                                             const processElement = () => {
                                                 GtypeParameter(node, children, ($) => {
                                                     elements.push($)
@@ -5009,7 +5010,7 @@ export function parse(
                                                 children,
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
-                                                        case "TypeParameter":
+                                                        case 'TypeParameter':
                                                             processElement()
                                                             return true
                                                         default: return false
@@ -5043,7 +5044,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["typeAlias", $])
+                                        choiceEnd_Gstatement(['typeAlias', $])
                                     }
                                 )
                             } else {
@@ -5069,17 +5070,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "VariableStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_variable$) => void,
+                                    callback: ($: mapi.TNGstatement_variable$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_variable$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_variable$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGstatement_variable$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGstatement_variable$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -5089,13 +5090,13 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "DeclareKeyword":
+                                                case 'DeclareKeyword':
                                                     processElement()
                                                     return true
-                                                case "ExportKeyword":
+                                                case 'ExportKeyword':
                                                     processElement()
                                                     return true
-                                                case "ReadonlyKeyword":
+                                                case 'ReadonlyKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -5125,7 +5126,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["variable", $])
+                                        choiceEnd_Gstatement(['variable', $])
                                     }
                                 )
                             } else {
@@ -5151,11 +5152,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "WhileStatement")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGstatement_while$) => void,
+                                    callback: ($: mapi.TNGstatement_while$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGstatement_while$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGstatement_while$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -5184,7 +5185,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gstatement(["while", $])
+                                        choiceEnd_Gstatement(['while', $])
                                     }
                                 )
                             } else {
@@ -5205,71 +5206,71 @@ export function parse(
                     )
                 }
                 switch (nextChild.kindName) {
-                    case "Block": /*Y*/ {
+                    case 'Block': /*Y*/ {
                         choose_block()
                         break
                     }
-                    case "BreakStatement": /*Y*/ {
+                    case 'BreakStatement': /*Y*/ {
                         choose_break()
                         break
                     }
-                    case "ExportDeclaration": /*Y*/ {
+                    case 'ExportDeclaration': /*Y*/ {
                         choose_export()
                         break
                     }
-                    case "ExpressionStatement": /*Y*/ {
+                    case 'ExpressionStatement': /*Y*/ {
                         choose_expression()
                         break
                     }
-                    case "ForStatement": /*Y*/ {
+                    case 'ForStatement': /*Y*/ {
                         choose_for()
                         break
                     }
-                    case "FunctionDeclaration": /*Y*/ {
+                    case 'FunctionDeclaration': /*Y*/ {
                         choose_function()
                         break
                     }
-                    case "IfStatement": /*Y*/ {
+                    case 'IfStatement': /*Y*/ {
                         choose_if()
                         break
                     }
-                    case "ImportDeclaration": /*Y*/ {
+                    case 'ImportDeclaration': /*Y*/ {
                         choose_import()
                         break
                     }
-                    case "InterfaceDeclaration": /*Y*/ {
+                    case 'InterfaceDeclaration': /*Y*/ {
                         choose_interface()
                         break
                     }
-                    case "LabeledStatement": /*Y*/ {
+                    case 'LabeledStatement': /*Y*/ {
                         choose_labeled()
                         break
                     }
-                    case "ReturnStatement": /*Y*/ {
+                    case 'ReturnStatement': /*Y*/ {
                         choose_return()
                         break
                     }
-                    case "SwitchStatement": /*Y*/ {
+                    case 'SwitchStatement': /*Y*/ {
                         choose_switch()
                         break
                     }
-                    case "ThrowStatement": /*Y*/ {
+                    case 'ThrowStatement': /*Y*/ {
                         choose_throw()
                         break
                     }
-                    case "TryStatement": /*Y*/ {
+                    case 'TryStatement': /*Y*/ {
                         choose_try()
                         break
                     }
-                    case "TypeAliasDeclaration": /*Y*/ {
+                    case 'TypeAliasDeclaration': /*Y*/ {
                         choose_typeAlias()
                         break
                     }
-                    case "VariableStatement": /*Y*/ {
+                    case 'VariableStatement': /*Y*/ {
                         choose_variable()
                         break
                     }
-                    case "WhileStatement": /*Y*/ {
+                    case 'WhileStatement': /*Y*/ {
                         choose_while()
                         break
                     }
@@ -5293,18 +5294,18 @@ export function parse(
     }
     function GstringLiteral(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGstringLiteral) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGstringLiteral) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "StringLiteral")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGstringLiteral$) => void,
+                        callback: ($: mapi.TNGstringLiteral$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
+                        const children = ps.createStack($.children)
                         callback({
                             tokenDetails: $.details,
                             value: $.value
@@ -5344,10 +5345,10 @@ export function parse(
     }
     function Gtype(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGtype) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGtype) => void,
     ): void {
-        const choiceEnd_Gtype = ($: api.TVTGtype) => {
+        const choiceEnd_Gtype = ($: mapi.TVTGtype) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -5358,10 +5359,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "AnyKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_any$) => void,
+                                    callback: ($: mapi.TNGtype_any$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -5376,7 +5377,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["any", $])
+                                        choiceEnd_Gtype(['any', $])
                                     }
                                 )
                             } else {
@@ -5402,10 +5403,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ArrayType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_array$) => void,
+                                    callback: ($: mapi.TNGtype_array$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gtype(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -5425,7 +5426,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["array", $])
+                                        choiceEnd_Gtype(['array', $])
                                     }
                                 )
                             } else {
@@ -5451,10 +5452,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "BooleanKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_boolean$) => void,
+                                    callback: ($: mapi.TNGtype_boolean$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -5469,7 +5470,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["boolean", $])
+                                        choiceEnd_Gtype(['boolean', $])
                                     }
                                 )
                             } else {
@@ -5495,17 +5496,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "FunctionType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_function$) => void,
+                                    callback: ($: mapi.TNGtype_function$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGtype_function$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGtype_function$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_function$_parameters>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_function$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -5515,7 +5516,7 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "Parameter":
+                                                case 'Parameter':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -5524,7 +5525,7 @@ export function parse(
                                     )
                                     pl.cc(elements.getArray(), ($) => {
                                         const _parameters = $
-                                        let optional: null | api.TVTGtype_function$_returnType = null
+                                        let optional: null | mapi.TVTGtype_function$_returnType = null
                                         const setOptional = () => {
                                             Gtype(node, children, ($) => {
                                                 optional = $
@@ -5533,52 +5534,52 @@ export function parse(
                                         $d.lookAhead(children, 
                                             (nextChild) => {
                                                 switch (nextChild.kindName) {
-                                                    case "AnyKeyword":
+                                                    case 'AnyKeyword':
                                                         setOptional()
                                                         break
-                                                    case "ArrayType":
+                                                    case 'ArrayType':
                                                         setOptional()
                                                         break
-                                                    case "BooleanKeyword":
+                                                    case 'BooleanKeyword':
                                                         setOptional()
                                                         break
-                                                    case "FunctionType":
+                                                    case 'FunctionType':
                                                         setOptional()
                                                         break
-                                                    case "LiteralType":
+                                                    case 'LiteralType':
                                                         setOptional()
                                                         break
-                                                    case "NeverKeyword":
+                                                    case 'NeverKeyword':
                                                         setOptional()
                                                         break
-                                                    case "NumberKeyword":
+                                                    case 'NumberKeyword':
                                                         setOptional()
                                                         break
-                                                    case "OptionalType":
+                                                    case 'OptionalType':
                                                         setOptional()
                                                         break
-                                                    case "ParenthesizedType":
+                                                    case 'ParenthesizedType':
                                                         setOptional()
                                                         break
-                                                    case "StringKeyword":
+                                                    case 'StringKeyword':
                                                         setOptional()
                                                         break
-                                                    case "TupleType":
+                                                    case 'TupleType':
                                                         setOptional()
                                                         break
-                                                    case "TypeLiteral":
+                                                    case 'TypeLiteral':
                                                         setOptional()
                                                         break
-                                                    case "TypeReference":
+                                                    case 'TypeReference':
                                                         setOptional()
                                                         break
-                                                    case "UndefinedKeyword":
+                                                    case 'UndefinedKeyword':
                                                         setOptional()
                                                         break
-                                                    case "UnionType":
+                                                    case 'UnionType':
                                                         setOptional()
                                                         break
-                                                    case "VoidKeyword":
+                                                    case 'VoidKeyword':
                                                         setOptional()
                                                         break
                                                 }
@@ -5606,7 +5607,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["function", $])
+                                        choiceEnd_Gtype(['function', $])
                                     }
                                 )
                             } else {
@@ -5632,11 +5633,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "LiteralType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_literal$) => void,
+                                    callback: ($: mapi.TNGtype_literal$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const choiceEnd_Gtype_literal$ = ($: api.TVTGtype_literal$) => {
+                                    const children = ps.createStack($.children)
+                                    const choiceEnd_Gtype_literal$ = ($: mapi.TVTGtype_literal$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -5650,10 +5651,10 @@ export function parse(
                                                         if ($d.stringsAreEqual(currentChild.kindName, "NullKeyword")) {
                                                             ((
                                                                 $: uast.T.UntypedNode,
-                                                                callback: ($: api.TNGtype_literal$_null$) => void,
+                                                                callback: ($: mapi.TNGtype_literal$_null$) => void,
                                                             ): void => {
                                                                 const node = $
-                                                                const children = pm.createStack($.children)
+                                                                const children = ps.createStack($.children)
                                                                 callback($.details)
                                                                 children.pop(
                                                                     (nextChild) => {
@@ -5668,7 +5669,7 @@ export function parse(
                                                             })(
                                                                 currentChild,
                                                                 ($) => {
-                                                                    choiceEnd_Gtype_literal$(["null", $])
+                                                                    choiceEnd_Gtype_literal$(['null', $])
                                                                 }
                                                             )
                                                         } else {
@@ -5690,15 +5691,15 @@ export function parse(
                                             }
                                             const choose_string = () => {
                                                 GstringLiteral(node, children, ($) => {
-                                                    choiceEnd_Gtype_literal$(["string", $])
+                                                    choiceEnd_Gtype_literal$(['string', $])
                                                 })
                                             }
                                             switch (nextChild.kindName) {
-                                                case "NullKeyword": /*Y*/ {
+                                                case 'NullKeyword': /*Y*/ {
                                                     choose_null()
                                                     break
                                                 }
-                                                case "StringLiteral": /*Y*/ {
+                                                case 'StringLiteral': /*Y*/ {
                                                     choose_string()
                                                     break
                                                 }
@@ -5732,7 +5733,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["literal", $])
+                                        choiceEnd_Gtype(['literal', $])
                                     }
                                 )
                             } else {
@@ -5758,10 +5759,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NeverKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_never$) => void,
+                                    callback: ($: mapi.TNGtype_never$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -5776,7 +5777,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["never", $])
+                                        choiceEnd_Gtype(['never', $])
                                     }
                                 )
                             } else {
@@ -5802,10 +5803,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "NumberKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_number$) => void,
+                                    callback: ($: mapi.TNGtype_number$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -5820,7 +5821,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["number", $])
+                                        choiceEnd_Gtype(['number', $])
                                     }
                                 )
                             } else {
@@ -5846,10 +5847,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "OptionalType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_optional$) => void,
+                                    callback: ($: mapi.TNGtype_optional$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gtype(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -5869,7 +5870,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["optional", $])
+                                        choiceEnd_Gtype(['optional', $])
                                     }
                                 )
                             } else {
@@ -5895,10 +5896,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ParenthesizedType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_parenthesized$) => void,
+                                    callback: ($: mapi.TNGtype_parenthesized$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     Gtype(node, children, ($) => {
                                         callback({
                                             tokenDetails: node.details,
@@ -5918,7 +5919,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["parenthesized", $])
+                                        choiceEnd_Gtype(['parenthesized', $])
                                     }
                                 )
                             } else {
@@ -5944,10 +5945,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "StringKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_string$) => void,
+                                    callback: ($: mapi.TNGtype_string$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -5962,7 +5963,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["string", $])
+                                        choiceEnd_Gtype(['string', $])
                                     }
                                 )
                             } else {
@@ -5988,11 +5989,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TupleType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_tuple$) => void,
+                                    callback: ($: mapi.TNGtype_tuple$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_tuple$>()
+                                    const children = ps.createStack($.children)
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_tuple$>()
                                     const processElement = () => {
                                         Gtype(node, children, ($) => {
                                             elements.push($)
@@ -6002,52 +6003,52 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "AnyKeyword":
+                                                case 'AnyKeyword':
                                                     processElement()
                                                     return true
-                                                case "ArrayType":
+                                                case 'ArrayType':
                                                     processElement()
                                                     return true
-                                                case "BooleanKeyword":
+                                                case 'BooleanKeyword':
                                                     processElement()
                                                     return true
-                                                case "FunctionType":
+                                                case 'FunctionType':
                                                     processElement()
                                                     return true
-                                                case "LiteralType":
+                                                case 'LiteralType':
                                                     processElement()
                                                     return true
-                                                case "NeverKeyword":
+                                                case 'NeverKeyword':
                                                     processElement()
                                                     return true
-                                                case "NumberKeyword":
+                                                case 'NumberKeyword':
                                                     processElement()
                                                     return true
-                                                case "OptionalType":
+                                                case 'OptionalType':
                                                     processElement()
                                                     return true
-                                                case "ParenthesizedType":
+                                                case 'ParenthesizedType':
                                                     processElement()
                                                     return true
-                                                case "StringKeyword":
+                                                case 'StringKeyword':
                                                     processElement()
                                                     return true
-                                                case "TupleType":
+                                                case 'TupleType':
                                                     processElement()
                                                     return true
-                                                case "TypeLiteral":
+                                                case 'TypeLiteral':
                                                     processElement()
                                                     return true
-                                                case "TypeReference":
+                                                case 'TypeReference':
                                                     processElement()
                                                     return true
-                                                case "UndefinedKeyword":
+                                                case 'UndefinedKeyword':
                                                     processElement()
                                                     return true
-                                                case "UnionType":
+                                                case 'UnionType':
                                                     processElement()
                                                     return true
-                                                case "VoidKeyword":
+                                                case 'VoidKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -6073,7 +6074,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["tuple", $])
+                                        choiceEnd_Gtype(['tuple', $])
                                     }
                                 )
                             } else {
@@ -6099,11 +6100,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeLiteral")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_typeLiteral$) => void,
+                                    callback: ($: mapi.TNGtype_typeLiteral$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_typeLiteral$>()
+                                    const children = ps.createStack($.children)
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_typeLiteral$>()
                                     const processElement = () => {
                                         GtypeSignature(node, children, ($) => {
                                             elements.push($)
@@ -6113,16 +6114,16 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "ConstructSignature":
+                                                case 'ConstructSignature':
                                                     processElement()
                                                     return true
-                                                case "IndexSignature":
+                                                case 'IndexSignature':
                                                     processElement()
                                                     return true
-                                                case "MethodSignature":
+                                                case 'MethodSignature':
                                                     processElement()
                                                     return true
-                                                case "PropertySignature":
+                                                case 'PropertySignature':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -6148,7 +6149,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["typeLiteral", $])
+                                        choiceEnd_Gtype(['typeLiteral', $])
                                     }
                                 )
                             } else {
@@ -6174,19 +6175,19 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "TypeReference")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_typeReference$) => void,
+                                    callback: ($: mapi.TNGtype_typeReference$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGtype_typeReference$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGtype_typeReference$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const choiceEnd_Gtype_typeReference$_x = ($: api.TVTGtype_typeReference$_x) => {
+                                    const choiceEnd_Gtype_typeReference$_x = ($: mapi.TVTGtype_typeReference$_x) => {
                                         const _x = $
-                                        const elements = pm.createArrayBuilderFIXME<api.TVTGtype_typeReference$_parameters>()
+                                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_typeReference$_parameters>()
                                         const processElement = () => {
                                             Gtype(node, children, ($) => {
                                                 elements.push($)
@@ -6196,52 +6197,52 @@ export function parse(
                                             children,
                                             (nextChild) => {
                                                 switch (nextChild.kindName) {
-                                                    case "AnyKeyword":
+                                                    case 'AnyKeyword':
                                                         processElement()
                                                         return true
-                                                    case "ArrayType":
+                                                    case 'ArrayType':
                                                         processElement()
                                                         return true
-                                                    case "BooleanKeyword":
+                                                    case 'BooleanKeyword':
                                                         processElement()
                                                         return true
-                                                    case "FunctionType":
+                                                    case 'FunctionType':
                                                         processElement()
                                                         return true
-                                                    case "LiteralType":
+                                                    case 'LiteralType':
                                                         processElement()
                                                         return true
-                                                    case "NeverKeyword":
+                                                    case 'NeverKeyword':
                                                         processElement()
                                                         return true
-                                                    case "NumberKeyword":
+                                                    case 'NumberKeyword':
                                                         processElement()
                                                         return true
-                                                    case "OptionalType":
+                                                    case 'OptionalType':
                                                         processElement()
                                                         return true
-                                                    case "ParenthesizedType":
+                                                    case 'ParenthesizedType':
                                                         processElement()
                                                         return true
-                                                    case "StringKeyword":
+                                                    case 'StringKeyword':
                                                         processElement()
                                                         return true
-                                                    case "TupleType":
+                                                    case 'TupleType':
                                                         processElement()
                                                         return true
-                                                    case "TypeLiteral":
+                                                    case 'TypeLiteral':
                                                         processElement()
                                                         return true
-                                                    case "TypeReference":
+                                                    case 'TypeReference':
                                                         processElement()
                                                         return true
-                                                    case "UndefinedKeyword":
+                                                    case 'UndefinedKeyword':
                                                         processElement()
                                                         return true
-                                                    case "UnionType":
+                                                    case 'UnionType':
                                                         processElement()
                                                         return true
-                                                    case "VoidKeyword":
+                                                    case 'VoidKeyword':
                                                         processElement()
                                                         return true
                                                     default: return false
@@ -6260,7 +6261,7 @@ export function parse(
                                         (nextChild) => {
                                             const choose_identifier = () => {
                                                 Gidentifier(node, children, ($) => {
-                                                    choiceEnd_Gtype_typeReference$_x(["identifier", $])
+                                                    choiceEnd_Gtype_typeReference$_x(['identifier', $])
                                                 })
                                             }
                                             const choose_qualifiedName = () => {
@@ -6269,11 +6270,11 @@ export function parse(
                                                         if ($d.stringsAreEqual(currentChild.kindName, "QualifiedName")) {
                                                             ((
                                                                 $: uast.T.UntypedNode,
-                                                                callback: ($: api.TNGtype_typeReference$_x_qualifiedName$) => void,
+                                                                callback: ($: mapi.TNGtype_typeReference$_x_qualifiedName$) => void,
                                                             ): void => {
                                                                 const node = $
-                                                                const children = pm.createStack($.children)
-                                                                const sequenceEnd = ($: api.TVTGtype_typeReference$_x_qualifiedName$) => {
+                                                                const children = ps.createStack($.children)
+                                                                const sequenceEnd = ($: mapi.TVTGtype_typeReference$_x_qualifiedName$) => {
                                                                     callback({
                                                                         tokenDetails: node.details,
                                                                         content: $,
@@ -6302,7 +6303,7 @@ export function parse(
                                                             })(
                                                                 currentChild,
                                                                 ($) => {
-                                                                    choiceEnd_Gtype_typeReference$_x(["qualifiedName", $])
+                                                                    choiceEnd_Gtype_typeReference$_x(['qualifiedName', $])
                                                                 }
                                                             )
                                                         } else {
@@ -6323,11 +6324,11 @@ export function parse(
                                                 )
                                             }
                                             switch (nextChild.kindName) {
-                                                case "Identifier": /*Y*/ {
+                                                case 'Identifier': /*Y*/ {
                                                     choose_identifier()
                                                     break
                                                 }
-                                                case "QualifiedName": /*Y*/ {
+                                                case 'QualifiedName': /*Y*/ {
                                                     choose_qualifiedName()
                                                     break
                                                 }
@@ -6361,7 +6362,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["typeReference", $])
+                                        choiceEnd_Gtype(['typeReference', $])
                                     }
                                 )
                             } else {
@@ -6387,10 +6388,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "UndefinedKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_undefined$) => void,
+                                    callback: ($: mapi.TNGtype_undefined$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -6405,7 +6406,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["undefined", $])
+                                        choiceEnd_Gtype(['undefined', $])
                                     }
                                 )
                             } else {
@@ -6431,11 +6432,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "UnionType")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_union$) => void,
+                                    callback: ($: mapi.TNGtype_union$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtype_union$>()
+                                    const children = ps.createStack($.children)
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtype_union$>()
                                     const processElement = () => {
                                         Gtype(node, children, ($) => {
                                             elements.push($)
@@ -6445,52 +6446,52 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "AnyKeyword":
+                                                case 'AnyKeyword':
                                                     processElement()
                                                     return true
-                                                case "ArrayType":
+                                                case 'ArrayType':
                                                     processElement()
                                                     return true
-                                                case "BooleanKeyword":
+                                                case 'BooleanKeyword':
                                                     processElement()
                                                     return true
-                                                case "FunctionType":
+                                                case 'FunctionType':
                                                     processElement()
                                                     return true
-                                                case "LiteralType":
+                                                case 'LiteralType':
                                                     processElement()
                                                     return true
-                                                case "NeverKeyword":
+                                                case 'NeverKeyword':
                                                     processElement()
                                                     return true
-                                                case "NumberKeyword":
+                                                case 'NumberKeyword':
                                                     processElement()
                                                     return true
-                                                case "OptionalType":
+                                                case 'OptionalType':
                                                     processElement()
                                                     return true
-                                                case "ParenthesizedType":
+                                                case 'ParenthesizedType':
                                                     processElement()
                                                     return true
-                                                case "StringKeyword":
+                                                case 'StringKeyword':
                                                     processElement()
                                                     return true
-                                                case "TupleType":
+                                                case 'TupleType':
                                                     processElement()
                                                     return true
-                                                case "TypeLiteral":
+                                                case 'TypeLiteral':
                                                     processElement()
                                                     return true
-                                                case "TypeReference":
+                                                case 'TypeReference':
                                                     processElement()
                                                     return true
-                                                case "UndefinedKeyword":
+                                                case 'UndefinedKeyword':
                                                     processElement()
                                                     return true
-                                                case "UnionType":
+                                                case 'UnionType':
                                                     processElement()
                                                     return true
-                                                case "VoidKeyword":
+                                                case 'VoidKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -6516,7 +6517,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["union", $])
+                                        choiceEnd_Gtype(['union', $])
                                     }
                                 )
                             } else {
@@ -6542,10 +6543,10 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "VoidKeyword")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtype_void$) => void,
+                                    callback: ($: mapi.TNGtype_void$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
+                                    const children = ps.createStack($.children)
                                     callback($.details)
                                     children.pop(
                                         (nextChild) => {
@@ -6560,7 +6561,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_Gtype(["void", $])
+                                        choiceEnd_Gtype(['void', $])
                                     }
                                 )
                             } else {
@@ -6581,67 +6582,67 @@ export function parse(
                     )
                 }
                 switch (nextChild.kindName) {
-                    case "AnyKeyword": /*Y*/ {
+                    case 'AnyKeyword': /*Y*/ {
                         choose_any()
                         break
                     }
-                    case "ArrayType": /*Y*/ {
+                    case 'ArrayType': /*Y*/ {
                         choose_array()
                         break
                     }
-                    case "BooleanKeyword": /*Y*/ {
+                    case 'BooleanKeyword': /*Y*/ {
                         choose_boolean()
                         break
                     }
-                    case "FunctionType": /*Y*/ {
+                    case 'FunctionType': /*Y*/ {
                         choose_function()
                         break
                     }
-                    case "LiteralType": /*Y*/ {
+                    case 'LiteralType': /*Y*/ {
                         choose_literal()
                         break
                     }
-                    case "NeverKeyword": /*Y*/ {
+                    case 'NeverKeyword': /*Y*/ {
                         choose_never()
                         break
                     }
-                    case "NumberKeyword": /*Y*/ {
+                    case 'NumberKeyword': /*Y*/ {
                         choose_number()
                         break
                     }
-                    case "OptionalType": /*Y*/ {
+                    case 'OptionalType': /*Y*/ {
                         choose_optional()
                         break
                     }
-                    case "ParenthesizedType": /*Y*/ {
+                    case 'ParenthesizedType': /*Y*/ {
                         choose_parenthesized()
                         break
                     }
-                    case "StringKeyword": /*Y*/ {
+                    case 'StringKeyword': /*Y*/ {
                         choose_string()
                         break
                     }
-                    case "TupleType": /*Y*/ {
+                    case 'TupleType': /*Y*/ {
                         choose_tuple()
                         break
                     }
-                    case "TypeLiteral": /*Y*/ {
+                    case 'TypeLiteral': /*Y*/ {
                         choose_typeLiteral()
                         break
                     }
-                    case "TypeReference": /*Y*/ {
+                    case 'TypeReference': /*Y*/ {
                         choose_typeReference()
                         break
                     }
-                    case "UndefinedKeyword": /*Y*/ {
+                    case 'UndefinedKeyword': /*Y*/ {
                         choose_undefined()
                         break
                     }
-                    case "UnionType": /*Y*/ {
+                    case 'UnionType': /*Y*/ {
                         choose_union()
                         break
                     }
-                    case "VoidKeyword": /*Y*/ {
+                    case 'VoidKeyword': /*Y*/ {
                         choose_void()
                         break
                     }
@@ -6665,18 +6666,18 @@ export function parse(
     }
     function GtypeParameter(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGtypeParameter) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGtypeParameter) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "TypeParameter")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGtypeParameter$) => void,
+                        callback: ($: mapi.TNGtypeParameter$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
+                        const children = ps.createStack($.children)
                         Gidentifier(node, children, ($) => {
                             callback({
                                 tokenDetails: node.details,
@@ -6718,10 +6719,10 @@ export function parse(
     }
     function GtypeSignature(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGtypeSignature) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGtypeSignature) => void,
     ): void {
-        const choiceEnd_GtypeSignature = ($: api.TVTGtypeSignature) => {
+        const choiceEnd_GtypeSignature = ($: mapi.TVTGtypeSignature) => {
             callback($)
         }
         $d.lookAhead(children, 
@@ -6732,17 +6733,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "ConstructSignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtypeSignature_construct$) => void,
+                                    callback: ($: mapi.TNGtypeSignature_construct$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGtypeSignature_construct$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_construct$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtypeSignature_construct$_parameters>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtypeSignature_construct$_parameters>()
                                     const processElement = () => {
                                         Gparameter(node, children, ($) => {
                                             elements.push($)
@@ -6752,7 +6753,7 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "Parameter":
+                                                case 'Parameter':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -6782,7 +6783,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_GtypeSignature(["construct", $])
+                                        choiceEnd_GtypeSignature(['construct', $])
                                     }
                                 )
                             } else {
@@ -6808,17 +6809,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "IndexSignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtypeSignature_index$) => void,
+                                    callback: ($: mapi.TNGtypeSignature_index$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGtypeSignature_index$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_index$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtypeSignature_index$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtypeSignature_index$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -6828,13 +6829,13 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "DeclareKeyword":
+                                                case 'DeclareKeyword':
                                                     processElement()
                                                     return true
-                                                case "ExportKeyword":
+                                                case 'ExportKeyword':
                                                     processElement()
                                                     return true
-                                                case "ReadonlyKeyword":
+                                                case 'ReadonlyKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -6845,7 +6846,7 @@ export function parse(
                                         const _modifiers = $
                                         Gparameter(node, children, ($) => {
                                             const _parameter = $
-                                            let optional: null | api.TVTGtypeSignature_index$_type = null
+                                            let optional: null | mapi.TVTGtypeSignature_index$_type = null
                                             const setOptional = () => {
                                                 Gtype(node, children, ($) => {
                                                     optional = $
@@ -6854,52 +6855,52 @@ export function parse(
                                             $d.lookAhead(children, 
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
-                                                        case "AnyKeyword":
+                                                        case 'AnyKeyword':
                                                             setOptional()
                                                             break
-                                                        case "ArrayType":
+                                                        case 'ArrayType':
                                                             setOptional()
                                                             break
-                                                        case "BooleanKeyword":
+                                                        case 'BooleanKeyword':
                                                             setOptional()
                                                             break
-                                                        case "FunctionType":
+                                                        case 'FunctionType':
                                                             setOptional()
                                                             break
-                                                        case "LiteralType":
+                                                        case 'LiteralType':
                                                             setOptional()
                                                             break
-                                                        case "NeverKeyword":
+                                                        case 'NeverKeyword':
                                                             setOptional()
                                                             break
-                                                        case "NumberKeyword":
+                                                        case 'NumberKeyword':
                                                             setOptional()
                                                             break
-                                                        case "OptionalType":
+                                                        case 'OptionalType':
                                                             setOptional()
                                                             break
-                                                        case "ParenthesizedType":
+                                                        case 'ParenthesizedType':
                                                             setOptional()
                                                             break
-                                                        case "StringKeyword":
+                                                        case 'StringKeyword':
                                                             setOptional()
                                                             break
-                                                        case "TupleType":
+                                                        case 'TupleType':
                                                             setOptional()
                                                             break
-                                                        case "TypeLiteral":
+                                                        case 'TypeLiteral':
                                                             setOptional()
                                                             break
-                                                        case "TypeReference":
+                                                        case 'TypeReference':
                                                             setOptional()
                                                             break
-                                                        case "UndefinedKeyword":
+                                                        case 'UndefinedKeyword':
                                                             setOptional()
                                                             break
-                                                        case "UnionType":
+                                                        case 'UnionType':
                                                             setOptional()
                                                             break
-                                                        case "VoidKeyword":
+                                                        case 'VoidKeyword':
                                                             setOptional()
                                                             break
                                                     }
@@ -6929,7 +6930,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_GtypeSignature(["index", $])
+                                        choiceEnd_GtypeSignature(['index', $])
                                     }
                                 )
                             } else {
@@ -6955,11 +6956,11 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "MethodSignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtypeSignature_method$) => void,
+                                    callback: ($: mapi.TNGtypeSignature_method$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGtypeSignature_method$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_method$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
@@ -6988,7 +6989,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_GtypeSignature(["method", $])
+                                        choiceEnd_GtypeSignature(['method', $])
                                     }
                                 )
                             } else {
@@ -7014,17 +7015,17 @@ export function parse(
                             if ($d.stringsAreEqual(currentChild.kindName, "PropertySignature")) {
                                 ((
                                     $: uast.T.UntypedNode,
-                                    callback: ($: api.TNGtypeSignature_property$) => void,
+                                    callback: ($: mapi.TNGtypeSignature_property$) => void,
                                 ): void => {
                                     const node = $
-                                    const children = pm.createStack($.children)
-                                    const sequenceEnd = ($: api.TVTGtypeSignature_property$) => {
+                                    const children = ps.createStack($.children)
+                                    const sequenceEnd = ($: mapi.TVTGtypeSignature_property$) => {
                                         callback({
                                             tokenDetails: node.details,
                                             content: $,
                                         })
                                     }
-                                    const elements = pm.createArrayBuilderFIXME<api.TVTGtypeSignature_property$_modifiers>()
+                                    const elements = ps.createArrayBuilderFIXME<mapi.TVTGtypeSignature_property$_modifiers>()
                                     const processElement = () => {
                                         Gmodifier(node, children, ($) => {
                                             elements.push($)
@@ -7034,13 +7035,13 @@ export function parse(
                                         children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "DeclareKeyword":
+                                                case 'DeclareKeyword':
                                                     processElement()
                                                     return true
-                                                case "ExportKeyword":
+                                                case 'ExportKeyword':
                                                     processElement()
                                                     return true
-                                                case "ReadonlyKeyword":
+                                                case 'ReadonlyKeyword':
                                                     processElement()
                                                     return true
                                                 default: return false
@@ -7051,17 +7052,17 @@ export function parse(
                                         const _modifiers = $
                                         GidentifierOrStringLiteral(node, children, ($) => {
                                             const _name = $
-                                            let optional: null | api.TVTGtypeSignature_property$_quesionToken = null
+                                            let optional: null | mapi.TVTGtypeSignature_property$_quesionToken = null
                                             const setOptional = () => {
                                                 children.pop(
                                                     (currentChild) => {
                                                         if ($d.stringsAreEqual(currentChild.kindName, "QuestionToken")) {
                                                             ((
                                                                 $: uast.T.UntypedNode,
-                                                                callback: ($: api.TNGtypeSignature_property$_quesionToken$) => void,
+                                                                callback: ($: mapi.TNGtypeSignature_property$_quesionToken$) => void,
                                                             ): void => {
                                                                 const node = $
-                                                                const children = pm.createStack($.children)
+                                                                const children = ps.createStack($.children)
                                                                 callback($.details)
                                                                 children.pop(
                                                                     (nextChild) => {
@@ -7099,7 +7100,7 @@ export function parse(
                                             $d.lookAhead(children, 
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
-                                                        case "QuestionToken":
+                                                        case 'QuestionToken':
                                                             setOptional()
                                                             break
                                                     }
@@ -7108,7 +7109,7 @@ export function parse(
                                             )
                                             pl.cc(optional, ($) => {
                                                 const _quesionToken = $
-                                                let optional: null | api.TVTGtypeSignature_property$_type = null
+                                                let optional: null | mapi.TVTGtypeSignature_property$_type = null
                                                 const setOptional = () => {
                                                     Gtype(node, children, ($) => {
                                                         optional = $
@@ -7117,52 +7118,52 @@ export function parse(
                                                 $d.lookAhead(children, 
                                                     (nextChild) => {
                                                         switch (nextChild.kindName) {
-                                                            case "AnyKeyword":
+                                                            case 'AnyKeyword':
                                                                 setOptional()
                                                                 break
-                                                            case "ArrayType":
+                                                            case 'ArrayType':
                                                                 setOptional()
                                                                 break
-                                                            case "BooleanKeyword":
+                                                            case 'BooleanKeyword':
                                                                 setOptional()
                                                                 break
-                                                            case "FunctionType":
+                                                            case 'FunctionType':
                                                                 setOptional()
                                                                 break
-                                                            case "LiteralType":
+                                                            case 'LiteralType':
                                                                 setOptional()
                                                                 break
-                                                            case "NeverKeyword":
+                                                            case 'NeverKeyword':
                                                                 setOptional()
                                                                 break
-                                                            case "NumberKeyword":
+                                                            case 'NumberKeyword':
                                                                 setOptional()
                                                                 break
-                                                            case "OptionalType":
+                                                            case 'OptionalType':
                                                                 setOptional()
                                                                 break
-                                                            case "ParenthesizedType":
+                                                            case 'ParenthesizedType':
                                                                 setOptional()
                                                                 break
-                                                            case "StringKeyword":
+                                                            case 'StringKeyword':
                                                                 setOptional()
                                                                 break
-                                                            case "TupleType":
+                                                            case 'TupleType':
                                                                 setOptional()
                                                                 break
-                                                            case "TypeLiteral":
+                                                            case 'TypeLiteral':
                                                                 setOptional()
                                                                 break
-                                                            case "TypeReference":
+                                                            case 'TypeReference':
                                                                 setOptional()
                                                                 break
-                                                            case "UndefinedKeyword":
+                                                            case 'UndefinedKeyword':
                                                                 setOptional()
                                                                 break
-                                                            case "UnionType":
+                                                            case 'UnionType':
                                                                 setOptional()
                                                                 break
-                                                            case "VoidKeyword":
+                                                            case 'VoidKeyword':
                                                                 setOptional()
                                                                 break
                                                         }
@@ -7194,7 +7195,7 @@ export function parse(
                                 })(
                                     currentChild,
                                     ($) => {
-                                        choiceEnd_GtypeSignature(["property", $])
+                                        choiceEnd_GtypeSignature(['property', $])
                                     }
                                 )
                             } else {
@@ -7215,19 +7216,19 @@ export function parse(
                     )
                 }
                 switch (nextChild.kindName) {
-                    case "ConstructSignature": /*Y*/ {
+                    case 'ConstructSignature': /*Y*/ {
                         choose_construct()
                         break
                     }
-                    case "IndexSignature": /*Y*/ {
+                    case 'IndexSignature': /*Y*/ {
                         choose_index()
                         break
                     }
-                    case "MethodSignature": /*Y*/ {
+                    case 'MethodSignature': /*Y*/ {
                         choose_method()
                         break
                     }
-                    case "PropertySignature": /*Y*/ {
+                    case 'PropertySignature': /*Y*/ {
                         choose_property()
                         break
                     }
@@ -7251,19 +7252,19 @@ export function parse(
     }
     function GvariableDeclaration(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGvariableDeclaration) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGvariableDeclaration) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "VariableDeclaration")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGvariableDeclaration$) => void,
+                        callback: ($: mapi.TNGvariableDeclaration$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
-                        const sequenceEnd = ($: api.TVTGvariableDeclaration$) => {
+                        const children = ps.createStack($.children)
+                        const sequenceEnd = ($: mapi.TVTGvariableDeclaration$) => {
                             callback({
                                 tokenDetails: node.details,
                                 content: $,
@@ -7271,7 +7272,7 @@ export function parse(
                         }
                         Gidentifier(node, children, ($) => {
                             const _name = $
-                            let optional: null | api.TVTGvariableDeclaration$_type = null
+                            let optional: null | mapi.TVTGvariableDeclaration$_type = null
                             const setOptional = () => {
                                 Gtype(node, children, ($) => {
                                     optional = $
@@ -7280,52 +7281,52 @@ export function parse(
                             $d.lookAhead(children, 
                                 (nextChild) => {
                                     switch (nextChild.kindName) {
-                                        case "AnyKeyword":
+                                        case 'AnyKeyword':
                                             setOptional()
                                             break
-                                        case "ArrayType":
+                                        case 'ArrayType':
                                             setOptional()
                                             break
-                                        case "BooleanKeyword":
+                                        case 'BooleanKeyword':
                                             setOptional()
                                             break
-                                        case "FunctionType":
+                                        case 'FunctionType':
                                             setOptional()
                                             break
-                                        case "LiteralType":
+                                        case 'LiteralType':
                                             setOptional()
                                             break
-                                        case "NeverKeyword":
+                                        case 'NeverKeyword':
                                             setOptional()
                                             break
-                                        case "NumberKeyword":
+                                        case 'NumberKeyword':
                                             setOptional()
                                             break
-                                        case "OptionalType":
+                                        case 'OptionalType':
                                             setOptional()
                                             break
-                                        case "ParenthesizedType":
+                                        case 'ParenthesizedType':
                                             setOptional()
                                             break
-                                        case "StringKeyword":
+                                        case 'StringKeyword':
                                             setOptional()
                                             break
-                                        case "TupleType":
+                                        case 'TupleType':
                                             setOptional()
                                             break
-                                        case "TypeLiteral":
+                                        case 'TypeLiteral':
                                             setOptional()
                                             break
-                                        case "TypeReference":
+                                        case 'TypeReference':
                                             setOptional()
                                             break
-                                        case "UndefinedKeyword":
+                                        case 'UndefinedKeyword':
                                             setOptional()
                                             break
-                                        case "UnionType":
+                                        case 'UnionType':
                                             setOptional()
                                             break
-                                        case "VoidKeyword":
+                                        case 'VoidKeyword':
                                             setOptional()
                                             break
                                     }
@@ -7334,7 +7335,7 @@ export function parse(
                             )
                             pl.cc(optional, ($) => {
                                 const _type = $
-                                let optional: null | api.TVTGvariableDeclaration$_expression = null
+                                let optional: null | mapi.TVTGvariableDeclaration$_expression = null
                                 const setOptional = () => {
                                     Gexpression(node, children, ($) => {
                                         optional = $
@@ -7343,64 +7344,64 @@ export function parse(
                                 $d.lookAhead(children, 
                                     (nextChild) => {
                                         switch (nextChild.kindName) {
-                                            case "ArrayLiteralExpression":
+                                            case 'ArrayLiteralExpression':
                                                 setOptional()
                                                 break
-                                            case "ArrowFunction":
+                                            case 'ArrowFunction':
                                                 setOptional()
                                                 break
-                                            case "BinaryExpression":
+                                            case 'BinaryExpression':
                                                 setOptional()
                                                 break
-                                            case "CallExpression":
+                                            case 'CallExpression':
                                                 setOptional()
                                                 break
-                                            case "ConditionalExpression":
+                                            case 'ConditionalExpression':
                                                 setOptional()
                                                 break
-                                            case "ElementAccessExpression":
+                                            case 'ElementAccessExpression':
                                                 setOptional()
                                                 break
-                                            case "FalseKeyword":
+                                            case 'FalseKeyword':
                                                 setOptional()
                                                 break
-                                            case "Identifier":
+                                            case 'Identifier':
                                                 setOptional()
                                                 break
-                                            case "NewExpression":
+                                            case 'NewExpression':
                                                 setOptional()
                                                 break
-                                            case "NoSubstitutionTemplateLiteral":
+                                            case 'NoSubstitutionTemplateLiteral':
                                                 setOptional()
                                                 break
-                                            case "NullKeyword":
+                                            case 'NullKeyword':
                                                 setOptional()
                                                 break
-                                            case "NumericLiteral":
+                                            case 'NumericLiteral':
                                                 setOptional()
                                                 break
-                                            case "ObjectLiteralExpression":
+                                            case 'ObjectLiteralExpression':
                                                 setOptional()
                                                 break
-                                            case "ParenthesizedExpression":
+                                            case 'ParenthesizedExpression':
                                                 setOptional()
                                                 break
-                                            case "PostfixUnaryExpression":
+                                            case 'PostfixUnaryExpression':
                                                 setOptional()
                                                 break
-                                            case "PrefixUnaryExpression":
+                                            case 'PrefixUnaryExpression':
                                                 setOptional()
                                                 break
-                                            case "PropertyAccessExpression":
+                                            case 'PropertyAccessExpression':
                                                 setOptional()
                                                 break
-                                            case "StringLiteral":
+                                            case 'StringLiteral':
                                                 setOptional()
                                                 break
-                                            case "TemplateExpression":
+                                            case 'TemplateExpression':
                                                 setOptional()
                                                 break
-                                            case "TrueKeyword":
+                                            case 'TrueKeyword':
                                                 setOptional()
                                                 break
                                         }
@@ -7452,19 +7453,19 @@ export function parse(
     }
     function GvariableDeclarationList(
         node: uast.T.UntypedNode,
-        children: pm.Stack<uast.T.UntypedNode>,
-        callback: ($: api.TGvariableDeclarationList) => void,
+        children: ps.Stack<uast.T.UntypedNode>,
+        callback: ($: mapi.TGvariableDeclarationList) => void,
     ): void {
         children.pop(
             (currentChild) => {
                 if ($d.stringsAreEqual(currentChild.kindName, "VariableDeclarationList")) {
                     ((
                         $: uast.T.UntypedNode,
-                        callback: ($: api.TNGvariableDeclarationList$) => void,
+                        callback: ($: mapi.TNGvariableDeclarationList$) => void,
                     ): void => {
                         const node = $
-                        const children = pm.createStack($.children)
-                        const elements = pm.createArrayBuilderFIXME<api.TVTGvariableDeclarationList$>()
+                        const children = ps.createStack($.children)
+                        const elements = ps.createArrayBuilderFIXME<mapi.TVTGvariableDeclarationList$>()
                         const processElement = () => {
                             GvariableDeclaration(node, children, ($) => {
                                 elements.push($)
@@ -7474,7 +7475,7 @@ export function parse(
                             children,
                             (nextChild) => {
                                 switch (nextChild.kindName) {
-                                    case "VariableDeclaration":
+                                    case 'VariableDeclaration':
                                         processElement()
                                         return true
                                     default: return false
@@ -7523,17 +7524,17 @@ export function parse(
     if ($d.stringsAreEqual($.kindName, "SourceFile")) {
         ((
             $: uast.T.UntypedNode,
-            callback: ($: api.TNroot) => void,
+            callback: ($: mapi.TNroot) => void,
         ): void => {
             const node = $
-            const children = pm.createStack($.children)
-            const sequenceEnd = ($: api.TVTroot) => {
+            const children = ps.createStack($.children)
+            const sequenceEnd = ($: mapi.TVTroot) => {
                 callback({
                     tokenDetails: node.details,
                     content: $,
                 })
             }
-            const elements = pm.createArrayBuilderFIXME<api.TVTroot_statements>()
+            const elements = ps.createArrayBuilderFIXME<mapi.TVTroot_statements>()
             const processElement = () => {
                 Gstatement(node, children, ($) => {
                     elements.push($)
@@ -7543,55 +7544,55 @@ export function parse(
                 children,
                 (nextChild) => {
                     switch (nextChild.kindName) {
-                        case "Block":
+                        case 'Block':
                             processElement()
                             return true
-                        case "BreakStatement":
+                        case 'BreakStatement':
                             processElement()
                             return true
-                        case "ExportDeclaration":
+                        case 'ExportDeclaration':
                             processElement()
                             return true
-                        case "ExpressionStatement":
+                        case 'ExpressionStatement':
                             processElement()
                             return true
-                        case "ForStatement":
+                        case 'ForStatement':
                             processElement()
                             return true
-                        case "FunctionDeclaration":
+                        case 'FunctionDeclaration':
                             processElement()
                             return true
-                        case "IfStatement":
+                        case 'IfStatement':
                             processElement()
                             return true
-                        case "ImportDeclaration":
+                        case 'ImportDeclaration':
                             processElement()
                             return true
-                        case "InterfaceDeclaration":
+                        case 'InterfaceDeclaration':
                             processElement()
                             return true
-                        case "LabeledStatement":
+                        case 'LabeledStatement':
                             processElement()
                             return true
-                        case "ReturnStatement":
+                        case 'ReturnStatement':
                             processElement()
                             return true
-                        case "SwitchStatement":
+                        case 'SwitchStatement':
                             processElement()
                             return true
-                        case "ThrowStatement":
+                        case 'ThrowStatement':
                             processElement()
                             return true
-                        case "TryStatement":
+                        case 'TryStatement':
                             processElement()
                             return true
-                        case "TypeAliasDeclaration":
+                        case 'TypeAliasDeclaration':
                             processElement()
                             return true
-                        case "VariableStatement":
+                        case 'VariableStatement':
                             processElement()
                             return true
-                        case "WhileStatement":
+                        case 'WhileStatement':
                             processElement()
                             return true
                         default: return false
@@ -7605,10 +7606,10 @@ export function parse(
                         if ($d.stringsAreEqual(currentChild.kindName, "EndOfFileToken")) {
                             ((
                                 $: uast.T.UntypedNode,
-                                callback: ($: api.TNroot_endOfFile$) => void,
+                                callback: ($: mapi.TNroot_endOfFile$) => void,
                             ): void => {
                                 const node = $
-                                const children = pm.createStack($.children)
+                                const children = ps.createStack($.children)
                                 callback($.details)
                                 children.pop(
                                     (nextChild) => {

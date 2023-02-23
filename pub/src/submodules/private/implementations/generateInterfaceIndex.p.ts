@@ -1,8 +1,8 @@
 import * as pl from 'pareto-core-lib'
 
-import * as api from "../api"
+import * as mapi from "../api"
 
-export const $$: api.CgenerateInterfaceIndex = ($, $i) => {
+export const $$: mapi.CgenerateInterfaceIndex = ($, $i) => {
     pl.cc($i, ($w) => {
 
         $w.line(`export * from "./types/ts_api.generated"`)

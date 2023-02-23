@@ -1,11 +1,10 @@
 import * as pl from 'pareto-core-lib'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mdefinition from "../../definition"
 import * as mfp from "lib-fountain-pen"
 
-export const $$: api.CgenerateVisitorInterface = ($d) => {
+export const $$: mapi.CgenerateVisitorInterface = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         pl.cc(($i), $w => {

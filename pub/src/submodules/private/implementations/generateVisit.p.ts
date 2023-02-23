@@ -1,24 +1,18 @@
 import * as pl from 'pareto-core-lib'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mdefinition from "../../definition"
 import * as mfp from "lib-fountain-pen"
 
-export const $$: api.CgenerateVisit = ($d) => {
+export const $$: mapi.CgenerateVisit = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
 
         pl.cc($i, ($w) => {
 
             $w.line(`import * as pl from 'pareto-core-lib'`)
-            $w.line(`import * as api from "${$.pathToInterface}"`)
-
             $w.line(``)
-            $w.line(`function isNotNull<T>($: null | T): $ is T {`)
-            $w.line(`    return $ !== null`)
-            $w.line(`}`)
-
+            $w.line(`import * as mapi from "${$.pathToInterface}"`)
             $w.line(``)
             $w.nestedLine(($w) => {
                 $w.snippet(`export function visit(`)
@@ -50,7 +44,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                             $w.snippet(`) => {`)
                             $w.indent(($w) => {
                                 switch ($.type[0]) {
-                                    case "composite":
+                                    case 'composite':
                                         pl.cc($.type[1], ($) => {
                                             $w.line(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"].begin($) }`)
                                             $w.nestedLine(($w) => {
@@ -68,7 +62,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                                             $w.line(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"].end($) }`)
                                         })
                                         break
-                                    case "leaf":
+                                    case 'leaf':
                                         pl.cc($.type[1], ($) => {
                                             $w.line(`if (pl.isNotUndefined($i.visitor["${pathForReporting}"])) { $i.visitor["${pathForReporting}"]($) }`)
                                         })
@@ -87,7 +81,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                         pathForReporting: string,
                     ) {
                         switch ($[0]) {
-                            case "choice":
+                            case 'choice':
                                 pl.cc($[1], ($) => {
                                     $w.nestedLine(($w) => {
 
@@ -97,7 +91,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                                                 $.options,
                                                 ($) => {
                                                     $w.nestedLine(($w) => {
-                                                        $w.snippet(`case "${$.key}": {`)
+                                                        $w.snippet(`case '${$.key}': {`)
                                                         $w.indent(($w) => {
                                                             $w.nestedLine(($w) => {
                                                                 $w.snippet(`pl.cc($[1], ($) => {`)
@@ -122,13 +116,13 @@ export const $$: api.CgenerateVisit = ($d) => {
                                     })
                                 })
                                 break
-                            case "reference":
+                            case 'reference':
                                 pl.cc($[1], ($) => {
 
                                     $w.line(`X_${$.name}($)`)
                                 })
                                 break
-                            case "sequence":
+                            case 'sequence':
                                 pl.cc($[1], ($) => {
                                     $.elements.__forEach(($) => {
                                         $w.nestedLine(($w) => {
@@ -146,7 +140,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                                     })
                                 })
                                 break
-                            case "node":
+                            case 'node':
                                 pl.cc($[1], ($) => {
                                     generateNode(
                                         $,
@@ -168,9 +162,9 @@ export const $$: api.CgenerateVisit = ($d) => {
                         pathForReporting: string,
                     ) {
                         const symbol = $
-                        if (pl.isNotUndefined($.cardinality)) {
+                        if ($.cardinality !== undefined) {
                             switch ($.cardinality[0]) {
-                                case "array":
+                                case 'array':
                                     pl.cc($.cardinality[1], ($) => {
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`$.forEach(($) => {`)
@@ -186,7 +180,7 @@ export const $$: api.CgenerateVisit = ($d) => {
                                         })
                                     })
                                     break
-                                case "one":
+                                case 'one':
                                     pl.cc($.cardinality[1], ($) => {
                                         generateValueType(
                                             symbol.type,
@@ -197,7 +191,7 @@ export const $$: api.CgenerateVisit = ($d) => {
 
                                     })
                                     break
-                                case "optional":
+                                case 'optional':
                                     pl.cc($.cardinality[1], ($) => {
                                         $w.nestedLine(($w) => {
                                             $w.snippet(`if (isNotNull($)) {`)

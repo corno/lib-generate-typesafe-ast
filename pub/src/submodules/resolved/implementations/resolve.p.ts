@@ -4,8 +4,7 @@ import * as pl from 'pareto-core-lib'
 import * as ps from 'pareto-core-state'
 import * as pv from 'pareto-core-dev'
 
-import * as api from "../api"
-
+import * as mapi from "../api"
 import * as mdefinition from "../../definition"
 
 
@@ -78,7 +77,7 @@ function resolve<T>(
     })
 }
 
-export const $$: api.Cresolve = ($, $i) => {
+export const $$: mapi.Cresolve = ($, $i) => {
 
     let hasError = false
 
@@ -87,9 +86,9 @@ export const $$: api.Cresolve = ($, $i) => {
             'context': mdefinition.T.Node2,
         },
         parameters: {
-            'gt': Subscribe<api.T.ValueType>
+            'gt': Subscribe<mapi.T.ValueType>
         }
-    ): api.T.Node2 {
+    ): mapi.T.Node2 {
         return pl.cc(($.context), ($) => {
 
             return {
@@ -124,9 +123,9 @@ export const $$: api.Cresolve = ($, $i) => {
             'context': mdefinition.T.Value,
         },
         parameters: {
-            'gt': Subscribe<api.T.ValueType>
+            'gt': Subscribe<mapi.T.ValueType>
         }
-    ): api.T.Value {
+    ): mapi.T.Value {
         return pl.cc(($.context), ($) => {
             return {
                 'cardinality': $.cardinality,
@@ -146,9 +145,9 @@ export const $$: api.Cresolve = ($, $i) => {
             'context': mdefinition.T.ValueType,
         },
         parameters: {
-            'gt': Subscribe<api.T.ValueType>
+            'gt': Subscribe<mapi.T.ValueType>
         }
-    ): api.T.ValueType {
+    ): mapi.T.ValueType {
         return pl.cc(($.context), ($) => {
 
             switch ($[0]) {
@@ -180,7 +179,7 @@ export const $$: api.Cresolve = ($, $i) => {
                     })
                 case 'reference':
                     return pl.cc($[1], ($) => {
-                        let x: null | api.T.ValueType = null
+                        let x: null | mapi.T.ValueType = null
                         parameters.gt($.name, ($) => {
                             x = $
                         })
@@ -216,7 +215,7 @@ export const $$: api.Cresolve = ($, $i) => {
             }
         })
     }
-    const subscribers = createSubscribers<api.T.ValueType>()
+    const subscribers = createSubscribers<mapi.T.ValueType>()
     const gvt = $.globalValueTypes.map(($) => {
         return mapValueType(
             {
@@ -227,7 +226,7 @@ export const $$: api.Cresolve = ($, $i) => {
             }
         )
     })
-    const out: api.T.Grammar = {
+    const out: mapi.T.Grammar = {
         'globalValueTypes': gvt,
         'root': mapNode2(
             {

@@ -5,35 +5,35 @@ import * as gr from "../../../pub/dist/submodules/definition"
 
 export const $: gr.T.Grammar = {
     'globalValueTypes': pd.d({
-        'block': ["node", {
+        'block': ['node', {
             'name': `Block`,
-            'type': ["composite", {
-                'cardinality': ["array", {}],
-                'type': ["reference", { 'name': `statement` }]
+            'type': ['composite', {
+                'cardinality': ['array', {}],
+                'type': ['reference', { 'name': `statement` }]
             }],
         }],
-        'expression': ["choice", {
+        'expression': ['choice', {
             'options': pd.d({
                 'arrayLiteral': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ArrayLiteralExpression`,
-                        'type': ["composite", {
-                            'cardinality': ["array", {}],
-                            'type': ["reference", { 'name': `expression` }],
+                        'type': ['composite', {
+                            'cardinality': ['array', {}],
+                            'type': ['reference', { 'name': `expression` }],
                         }],
                     }]
                 },
                 'arrowFunction': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ArrowFunction`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", {
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', {
                                                 'name': `parameter`
                                             }]
                                         }
@@ -41,31 +41,31 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `returnType`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["reference", { 'name': `type` }],
+                                            'cardinality': ['optional', {}],
+                                            'type': ['reference', { 'name': `type` }],
                                         }
                                     },
                                     {
                                         'name': `equalsGreaterThan`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `EqualsGreaterThanToken`,
-                                                'type': ["leaf", { 'hasTextContent': false }],
+                                                'type': ['leaf', { 'hasTextContent': false }],
                                             }]
                                         }
                                     },
                                     {
                                         'name': `implementation`,
                                         'value': {
-                                            'type': ["choice", {
+                                            'type': ['choice', {
                                                 'options': pd.d({
                                                     "block": {
-                                                        'type': ["reference", {
+                                                        'type': ['reference', {
                                                             'name': `block`,
                                                         }]
                                                     },
                                                     "expression": {
-                                                        'type': ["reference", { 'name': `expression` }],
+                                                        'type': ['reference', { 'name': `expression` }],
                                                     },
                                                 })
                                             }]
@@ -77,86 +77,86 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'binary': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `BinaryExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `leftHandSide`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                     {
                                         'name': `operator`,
                                         'value': {
-                                            'type': ["choice", {
+                                            'type': ['choice', {
                                                 'options': pd.d({
                                                     'ampersandAmpersand': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `AmpersandAmpersandToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'barBar': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `BarBarToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'equals': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `EqualsToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'equalsEqualsEquals': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `EqualsEqualsEqualsToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'exclamationEqualsEquals': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `ExclamationEqualsEqualsToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'greaterThan': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `GreaterThanToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }],
+                                                            'type': ['leaf', { 'hasTextContent': false }],
                                                         }]
                                                     },
                                                     'lessThan': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `LessThanToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }],
+                                                            'type': ['leaf', { 'hasTextContent': false }],
                                                         }]
                                                     },
                                                     'minus': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `MinusToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }],
+                                                            'type': ['leaf', { 'hasTextContent': false }],
                                                         }]
                                                     },
                                                     'minusEquals': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `MinusEqualsToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'plus': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `PlusToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     },
                                                     'plusEquals': {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `PlusEqualsToken`,
-                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                            'type': ['leaf', { 'hasTextContent': false }]
                                                         }]
                                                     }
                                                 })
@@ -166,7 +166,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `rightHandSide`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     }
                                 ])
@@ -175,30 +175,30 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'call': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `CallExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `function`,
                                         'value': {
-                                            "cardinality": ["one", {}],
-                                            'type': ["reference", { 'name': `expression` }]
+                                            "cardinality": ['one', {}],
+                                            'type': ['reference', { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `typeParameters`,
                                         'value': {
-                                            "cardinality": ["array", {}],
-                                            'type': ["reference", { 'name': `type` }],
+                                            "cardinality": ['array', {}],
+                                            'type': ['reference', { 'name': `type` }],
                                         }
                                     },
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            "cardinality": ["array", {}],
-                                            'type': ["reference", { 'name': `expression` }]
+                                            "cardinality": ['array', {}],
+                                            'type': ['reference', { 'name': `expression` }]
                                         }
                                     },
                                 ])
@@ -207,45 +207,45 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'conditional': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ConditionalExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `test`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                     {
                                         'name': `questionToken`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `QuestionToken`,
-                                                'type': ["leaf", { 'hasTextContent': false }]
+                                                'type': ['leaf', { 'hasTextContent': false }]
                                             }],
                                         }
                                     },
                                     {
                                         'name': `ifExpression`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                     {
                                         'name': `colonToken`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `ColonToken`,
-                                                'type': ["leaf", { 'hasTextContent': false }],
+                                                'type': ['leaf', { 'hasTextContent': false }],
                                             }],
                                         }
                                     },
                                     {
                                         'name': `elseExpression`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                 ])
@@ -254,21 +254,21 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'elementAccess': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ElementAccessExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `array`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                     {
                                         'name': `element`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     }
                                 ])
@@ -277,26 +277,26 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'false': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `FalseKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'identifier': {
-                    'type': ["reference", {
+                    'type': ['reference', {
                         'name': `identifier`
                     }],
                 },
                 'new': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `NewExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `class`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `identifier`
                                             }],
                                         }
@@ -304,8 +304,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                 ])
@@ -314,49 +314,49 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'noSubstitutionTemplateLiteral': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `NoSubstitutionTemplateLiteral`,
-                        'type': ["leaf", { 'hasTextContent': false }]
+                        'type': ['leaf', { 'hasTextContent': false }]
                     }]
                 },
                 'numericLiteral': {
-                    'type': ["reference", {
+                    'type': ['reference', {
                         'name': `numericLiteral`,
                     }],
                 },
                 'nullKeyword': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `NullKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'objectLiteral': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ObjectLiteralExpression`,
-                        'type': ["composite", {
-                            'cardinality': ["array", {}],
-                            'type': ["node", {
+                        'type': ['composite', {
+                            'cardinality': ['array', {}],
+                            'type': ['node', {
                                 'name': `PropertyAssignment`,
-                                'type': ["composite", {
-                                    'type': ["sequence", {
+                                'type': ['composite', {
+                                    'type': ['sequence', {
                                         'elements': pd.a([
                                             {
                                                 'name': `name`,
                                                 'value': {
-                                                    'type': ["choice", {
+                                                    'type': ['choice', {
                                                         'options': pd.d({
                                                             'identifier': {
-                                                                'type': ["reference", {
+                                                                'type': ['reference', {
                                                                     'name': `identifier`
                                                                 }],
                                                             },
                                                             'numericLiteral': {
-                                                                'type': ["reference", {
+                                                                'type': ['reference', {
                                                                     'name': `numericLiteral`,
                                                                 }],
                                                             },
                                                             'stringLiteral': {
-                                                                'type': ["reference", {
+                                                                'type': ['reference', {
                                                                     'name': `stringLiteral`
                                                                 }]
                                                             },
@@ -367,7 +367,7 @@ export const $: gr.T.Grammar = {
                                             {
                                                 'name': `expression`,
                                                 'value': {
-                                                    'type': ["reference", { 'name': `expression` }],
+                                                    'type': ['reference', { 'name': `expression` }],
                                                 }
                                             },
                                         ])
@@ -378,45 +378,45 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'parenthesizedExpression': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ParenthesizedExpression`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `expression` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `expression` }],
                         }],
                     }]
                 },
                 'postfixUnary': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `PostfixUnaryExpression`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `expression` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `expression` }],
                         }],
                     }]
                 },
                 'prefixUnary': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `PrefixUnaryExpression`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `expression` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `expression` }],
                         }],
                     }]
                 },
                 'propertyAccess': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `PropertyAccessExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `object`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                     {
                                         'name': `property`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         }
                                     },
                                 ])
@@ -425,55 +425,55 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'stringLiteral': {
-                    'type': ["reference", {
+                    'type': ['reference', {
                         'name': `stringLiteral`
                     }]
                 },
                 'template': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TemplateExpression`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `head`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `TemplateHead`,
-                                                'type': ["leaf", { 'hasTextContent': true }],
+                                                'type': ['leaf', { 'hasTextContent': true }],
                                             }]
                                         }
                                     },
                                     {
                                         'name': `spans`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["node", {
+                                            'cardinality': ['array', {}],
+                                            'type': ['node', {
                                                 'name': `TemplateSpan`,
-                                                'type': ["composite", {
-                                                    'type': ["sequence", {
+                                                'type': ['composite', {
+                                                    'type': ['sequence', {
                                                         'elements': pd.a([
                                                             {
                                                                 'name': `expression`,
                                                                 'value': {
-                                                                    'type': ["reference", { 'name': `expression` }],
+                                                                    'type': ['reference', { 'name': `expression` }],
                                                                 }
                                                             },
                                                             {
                                                                 'name': `x`,
                                                                 'value': {
-                                                                    'type': ["choice", {
+                                                                    'type': ['choice', {
                                                                         'options': pd.d({
                                                                             'middle': {
-                                                                                'type': ["node", {
+                                                                                'type': ['node', {
                                                                                     'name': `TemplateMiddle`,
-                                                                                    'type': ["leaf", { 'hasTextContent': true }],
+                                                                                    'type': ['leaf', { 'hasTextContent': true }],
                                                                                 }],
                                                                             },
                                                                             'tail': {
-                                                                                'type': ["node", {
+                                                                                'type': ['node', {
                                                                                     'name': `TemplateTail`,
-                                                                                    'type': ["leaf", { 'hasTextContent': true }]
+                                                                                    'type': ['leaf', { 'hasTextContent': true }]
                                                                                 }],
                                                                             }
                                                                         })
@@ -492,20 +492,20 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'true': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TrueKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }]
+                        'type': ['leaf', { 'hasTextContent': false }]
                     }]
                 },
             })
         }],
-        'functionDefinition': ["sequence", {
+        'functionDefinition': ['sequence', {
             'elements': pd.a([
                 {
                     'name': `typeParameters`,
                     'value': {
-                        'cardinality': ["array", {}],
-                        'type': ["reference", {
+                        'cardinality': ['array', {}],
+                        'type': ['reference', {
                             'name': `typeParameter`
                         }]
                     },
@@ -513,8 +513,8 @@ export const $: gr.T.Grammar = {
                 {
                     'name': `parameters`,
                     'value': {
-                        'cardinality': ["array", {}],
-                        'type': ["reference", {
+                        'cardinality': ['array', {}],
+                        'type': ['reference', {
                             'name': `parameter`
                         }]
                     },
@@ -522,66 +522,66 @@ export const $: gr.T.Grammar = {
                 {
                     'name': `returnType`,
                     'value': {
-                        'cardinality': ["optional", {}],
-                        'type': ["reference", { 'name': `type` }],
+                        'cardinality': ['optional', {}],
+                        'type': ['reference', { 'name': `type` }],
                     },
                 },
             ])
         }],
-        'identifier': ["node", {
+        'identifier': ['node', {
             'name': `Identifier`,
-            'type': ["leaf", { 'hasTextContent': true }]
+            'type': ['leaf', { 'hasTextContent': true }]
         }],
-        'identifierOrStringLiteral': ["choice", {
+        'identifierOrStringLiteral': ['choice', {
             'options': pd.d({
                 'identifier': {
-                    'type': ["reference", {
+                    'type': ['reference', {
                         'name': `identifier`
                     }],
                 },
                 'stringLiteral': {
-                    'type': ["reference", {
+                    'type': ['reference', {
                         'name': `stringLiteral`
                     }]
                 },
             })
         }],
-        'modifier': ["choice", {
+        'modifier': ['choice', {
             //AbstractKeyword | AsyncKeyword | ConstKeyword | DeclareKeyword | DefaultKeyword | ExportKeyword | PrivateKeyword | ProtectedKeyword | PublicKeyword | OverrideKeyword | ReadonlyKeyword | StaticKeyword;
             'options': pd.d({
                 'declare': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `DeclareKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }]
+                        'type': ['leaf', { 'hasTextContent': false }]
                     }]
                 },
                 'export': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ExportKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'readonly': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ReadonlyKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
             })
         }],
-        'numericLiteral': ["node", {
+        'numericLiteral': ['node', {
             'name': `NumericLiteral`,
-            'type': ["leaf", { 'hasTextContent': true }],
+            'type': ['leaf', { 'hasTextContent': true }],
         }],
-        'parameter': ["node", {
+        'parameter': ['node', {
             'name': `Parameter`,
-            'type': ["composite", {
-                'type': ["sequence", {
+            'type': ['composite', {
+                'type': ['sequence', {
                     'elements': pd.a([
                         {
                             'name': `name`,
                             'value': {
-                                'type': ["reference", {
+                                'type': ['reference', {
                                     'name': `identifier`
                                 }],
                             }
@@ -589,71 +589,71 @@ export const $: gr.T.Grammar = {
                         {
                             'name': `questionToken`,
                             'value': {
-                                'cardinality': ["optional", {}],
-                                'type': ["node", {
+                                'cardinality': ['optional', {}],
+                                'type': ['node', {
                                     'name': `QuestionToken`,
-                                    'type': ["leaf", { 'hasTextContent': false }],
+                                    'type': ['leaf', { 'hasTextContent': false }],
                                 }]
                             }
                         },
                         {
                             'name': `type`,
                             'value': {
-                                'cardinality': ["optional", {}],
-                                'type': ["reference", { 'name': `type` }],
+                                'cardinality': ['optional', {}],
+                                'type': ['reference', { 'name': `type` }],
                             }
                         }
                     ])
                 }]
             }]
         }],
-        'statement': ["choice", {
+        'statement': ['choice', {
             'options': pd.d({
                 'block': {
-                    'type': ["reference", {
+                    'type': ['reference', {
                         'name': `block`
                     }]
                 },
                 'break': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `BreakStatement`,
-                        'type': ["composite", {
-                            'cardinality': ["optional", {}],
-                            'type': ["reference", {
+                        'type': ['composite', {
+                            'cardinality': ['optional', {}],
+                            'type': ['reference', {
                                 'name': `identifier`
                             }],
                         }],
                     }]
                 },
                 'export': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ExportDeclaration`,
-                        'type': ["composite", {
-                            'type': ["reference", {
+                        'type': ['composite', {
+                            'type': ['reference', {
                                 'name': `stringLiteral`
                             }],
                         }]
                     }]
                 },
                 'expression': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ExpressionStatement`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `expression` }]
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `expression` }]
                         }],
                     }]
                 },
                 'for': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ForStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `initializer`,
                                         'value': {
-                                            "cardinality": ["one", {}],
-                                            'type': ["reference", {
+                                            "cardinality": ['one', {}],
+                                            'type': ['reference', {
                                                 'name': `variableDeclarationList`
                                             }]
                                         }
@@ -661,22 +661,22 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `condition`,
                                         'value': {
-                                            "cardinality": ["one", {}],
-                                            'type': ["reference", { 'name': `expression` }]
+                                            "cardinality": ['one', {}],
+                                            'type': ['reference', { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `incrementer`,
                                         'value': {
-                                            "cardinality": ["one", {}],
-                                            'type': ["reference", { 'name': `expression` }]
+                                            "cardinality": ['one', {}],
+                                            'type': ['reference', { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `block`,
                                         'value': {
-                                            "cardinality": ["one", {}],
-                                            'type': ["reference", {
+                                            "cardinality": ['one', {}],
+                                            'type': ['reference', {
                                                 'name': `block`,
                                             }]
                                         }
@@ -687,22 +687,22 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'function': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `FunctionDeclaration`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `modifier` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `modifier` }]
                                         },
                                     },
                                     {
                                         'name': `name`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `identifier`
                                             }],
                                         },
@@ -710,7 +710,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `definition`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `functionDefinition`
                                             }]
                                         },
@@ -718,8 +718,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `block`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["reference", {
+                                            'cardinality': ['optional', {}],
+                                            'type': ['reference', {
                                                 'name': `block`
                                             }]
                                         },
@@ -730,28 +730,28 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'if': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `IfStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `expression`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         },
                                     },
                                     {
                                         'name': `thenStatement`,
                                         'value': {
-                                            'type': ["reference", { 'name': `statement` }],
+                                            'type': ['reference', { 'name': `statement` }],
                                         },
                                     },
                                     {
                                         'name': `elseStatement`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["reference", { 'name': `statement` }],
+                                            'cardinality': ['optional', {}],
+                                            'type': ['reference', { 'name': `statement` }],
                                         },
                                     },
                                 ])
@@ -760,43 +760,43 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'import': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ImportDeclaration`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `clause`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `ImportClause`,
-                                                'type': ["composite", {
-                                                    'type': ["choice", {
+                                                'type': ['composite', {
+                                                    'type': ['choice', {
                                                         'options': pd.d({
                                                             'namespace': {
-                                                                'type': ["node", {
+                                                                'type': ['node', {
                                                                     'name': `NamespaceImport`,
-                                                                    'type': ["composite", {
-                                                                        'type': ["reference", {
+                                                                    'type': ['composite', {
+                                                                        'type': ['reference', {
                                                                             'name': `identifier`
                                                                         }],
                                                                     }],
                                                                 }]
                                                             },
                                                             'named': {
-                                                                'type': ["node", {
+                                                                'type': ['node', {
                                                                     'name': `NamedImports`,
-                                                                    'type': ["composite", {
-                                                                        'cardinality': ["array", {}],
-                                                                        'type': ["node", {
+                                                                    'type': ['composite', {
+                                                                        'cardinality': ['array', {}],
+                                                                        'type': ['node', {
                                                                             'name': `ImportSpecifier`,
-                                                                            'type': ["composite", {
-                                                                                'type': ["sequence", {
+                                                                            'type': ['composite', {
+                                                                                'type': ['sequence', {
                                                                                     'elements': pd.a([
                                                                                         {
                                                                                             'name': `name`,
                                                                                             'value': {
-                                                                                                'type': ["reference", {
+                                                                                                'type': ['reference', {
                                                                                                     'name': `identifier`
                                                                                                 }],
                                                                                             }
@@ -804,8 +804,8 @@ export const $: gr.T.Grammar = {
                                                                                         {
                                                                                             'name': `as`,
                                                                                             'value': {
-                                                                                                'cardinality': ["optional", {}],
-                                                                                                'type': ["reference", {
+                                                                                                'cardinality': ['optional', {}],
+                                                                                                'type': ['reference', {
                                                                                                     'name': `identifier`
                                                                                                 }],
                                                                                             }
@@ -826,7 +826,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `file`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `stringLiteral`
                                             }],
                                         }
@@ -837,22 +837,22 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'interface': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `InterfaceDeclaration`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `modifier` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `modifier` }]
                                         },
                                     },
                                     {
                                         'name': `name`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `identifier`
                                             }],
                                         }
@@ -860,8 +860,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `typeParameters`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", {
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', {
                                                 'name': `typeParameter`
                                             }]
                                         },
@@ -869,8 +869,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `signature`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `typeSignature` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `typeSignature` }]
                                         },
                                     },
                                 ])
@@ -879,15 +879,15 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'labeled': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `LabeledStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `label`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `identifier`
                                             }],
                                         }
@@ -895,7 +895,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `statement`,
                                         'value': {
-                                            'type': ["reference", { 'name': `statement` }],
+                                            'type': ['reference', { 'name': `statement` }],
                                         }
                                     },
                                 ])
@@ -904,52 +904,52 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'return': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ReturnStatement`,
-                        'type': ["composite", {
-                            'cardinality': ["optional", {}],
-                            'type': ["reference", { 'name': `expression` }],
+                        'type': ['composite', {
+                            'cardinality': ['optional', {}],
+                            'type': ['reference', { 'name': `expression` }],
                         }],
                     }]
                 },
                 'switch': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `SwitchStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `expression`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }]
+                                            'type': ['reference', { 'name': `expression` }]
                                         }
                                     },
                                     {
                                         'name': `caseBlock`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `CaseBlock`,
-                                                'type': ["composite", {
-                                                    'cardinality': ["array", {}],
-                                                    'type': ["choice", {
+                                                'type': ['composite', {
+                                                    'cardinality': ['array', {}],
+                                                    'type': ['choice', {
                                                         'options': pd.d({
                                                             "case": {
-                                                                'type': ["node", {
+                                                                'type': ['node', {
                                                                     'name': `CaseClause`,
-                                                                    'type': ["composite", {
-                                                                        'type': ["sequence", {
+                                                                    'type': ['composite', {
+                                                                        'type': ['sequence', {
                                                                             'elements': pd.a([
                                                                                 {
                                                                                     'name': `case`,
                                                                                     'value': {
-                                                                                        'type': ["reference", { 'name': `expression` }]
+                                                                                        'type': ['reference', { 'name': `expression` }]
                                                                                     }
                                                                                 },
                                                                                 {
                                                                                     'name': `statements`,
                                                                                     'value': {
-                                                                                        'cardinality': ["array", {}],
-                                                                                        'type': ["reference", { 'name': `statement` }]
+                                                                                        'cardinality': ['array', {}],
+                                                                                        'type': ['reference', { 'name': `statement` }]
                                                                                     },
                                                                                 }
                                                                             ])
@@ -958,11 +958,11 @@ export const $: gr.T.Grammar = {
                                                                 }]
                                                             },
                                                             "default": {
-                                                                'type': ["node", {
+                                                                'type': ['node', {
                                                                     'name': `DefaultClause`,
-                                                                    'type': ["composite", {
-                                                                        'cardinality': ["array", {}],
-                                                                        'type': ["reference", { 'name': `statement` }]
+                                                                    'type': ['composite', {
+                                                                        'cardinality': ['array', {}],
+                                                                        'type': ['reference', { 'name': `statement` }]
                                                                     }]
                                                                 }]
                                                             },
@@ -978,23 +978,23 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'throw': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ThrowStatement`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `expression` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `expression` }],
                         }]
                     }]
                 },
                 'try': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TryStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `block`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `block`
                                             }]
                                         },
@@ -1002,15 +1002,15 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `catchClause`,
                                         'value': {
-                                            'type': ["node", {
+                                            'type': ['node', {
                                                 'name': `CatchClause`,
-                                                'type': ["composite", {
-                                                    'type': ["sequence", {
+                                                'type': ['composite', {
+                                                    'type': ['sequence', {
                                                         'elements': pd.a([
                                                             {
                                                                 'name': `variable`,
                                                                 'value': {
-                                                                    'type': ["reference", {
+                                                                    'type': ['reference', {
                                                                         'name': `variableDeclaration`
                                                                     }]
                                                                 }
@@ -1018,7 +1018,7 @@ export const $: gr.T.Grammar = {
                                                             {
                                                                 'name': `block`,
                                                                 'value': {
-                                                                    'type': ["reference", {
+                                                                    'type': ['reference', {
                                                                         'name': `block`
                                                                     }]
                                                                 }
@@ -1035,22 +1035,22 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'typeAlias': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TypeAliasDeclaration`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `modifier` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `modifier` }]
                                         },
                                     },
                                     {
                                         'name': `name`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `identifier`
                                             }],
                                         }
@@ -1058,8 +1058,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `typeParameters`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", {
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', {
                                                 'name': `typeParameter`
                                             }]
                                         },
@@ -1067,7 +1067,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `type`,
                                         'value': {
-                                            'type': ["reference", { 'name': `type` }],
+                                            'type': ['reference', { 'name': `type` }],
                                         },
                                     }
                                 ])
@@ -1076,22 +1076,22 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'variable': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `VariableStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `modifier` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `modifier` }]
                                         },
                                     },
                                     {
                                         'name': `variableDeclarationList`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `variableDeclarationList`
                                             }]
                                         },
@@ -1102,21 +1102,21 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'while': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `WhileStatement`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `condition`,
                                         'value': {
-                                            'type': ["reference", { 'name': `expression` }],
+                                            'type': ['reference', { 'name': `expression` }],
                                         },
                                     },
                                     {
                                         'name': `block`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `block`
                                             }],
                                         },
@@ -1128,43 +1128,43 @@ export const $: gr.T.Grammar = {
                 },
             })
         }],
-        'stringLiteral': ["node", {
+        'stringLiteral': ['node', {
             'name': `StringLiteral`,
-            'type': ["leaf", { 'hasTextContent': true }]
+            'type': ['leaf', { 'hasTextContent': true }]
         }],
-        'type': ["choice", {
+        'type': ['choice', {
             'options': pd.d({
                 'any': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `AnyKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'array': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ArrayType`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `type` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `type` }],
                         }]
                     }]
                 },
                 'boolean': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `BooleanKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }]
+                        'type': ['leaf', { 'hasTextContent': false }]
                     }]
                 },
                 'function': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `FunctionType`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", {
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', {
                                                 'name': `parameter`
                                             }]
                                         },
@@ -1172,8 +1172,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `returnType`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["reference", { 'name': `type` }],
+                                            'cardinality': ['optional', {}],
+                                            'type': ['reference', { 'name': `type` }],
                                         },
                                     }
                                 ])
@@ -1182,19 +1182,19 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'literal': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `LiteralType`,
-                        'type': ["composite", {
-                            'type': ["choice", {
+                        'type': ['composite', {
+                            'type': ['choice', {
                                 'options': pd.d({
                                     'null': {
-                                        'type': ["node", {
+                                        'type': ['node', {
                                             'name': `NullKeyword`,
-                                            'type': ["leaf", { 'hasTextContent': false }],
+                                            'type': ['leaf', { 'hasTextContent': false }],
                                         }]
                                     },
                                     'string': {
-                                        'type': ["reference", {
+                                        'type': ['reference', {
                                             'name': `stringLiteral`
                                         }],
                                     },
@@ -1204,84 +1204,84 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'parenthesized': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ParenthesizedType`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `type` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `type` }],
                         }],
                     }]
                 },
                 'never': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `NeverKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'number': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `NumberKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'optional': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `OptionalType`,
-                        'type': ["composite", {
-                            'type': ["reference", { 'name': `type` }],
+                        'type': ['composite', {
+                            'type': ['reference', { 'name': `type` }],
                         }],
                     }]
                 },
                 'tuple': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TupleType`,
-                        'type': ["composite", {
-                            'cardinality': ["array", {}],
-                            'type': ["reference", { 'name': `type` }],
+                        'type': ['composite', {
+                            'cardinality': ['array', {}],
+                            'type': ['reference', { 'name': `type` }],
                         }],
                     }]
                 },
                 'typeLiteral': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TypeLiteral`,
-                        'type': ["composite", {
-                            'cardinality': ["array", {}],
-                            'type': ["reference", { 'name': `typeSignature` }],
+                        'type': ['composite', {
+                            'cardinality': ['array', {}],
+                            'type': ['reference', { 'name': `typeSignature` }],
                         }],
                     }]
                 },
                 'string': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `StringKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }]
+                        'type': ['leaf', { 'hasTextContent': false }]
                     }]
                 },
                 'typeReference': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `TypeReference`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `x`,
                                         'value': {
-                                            "cardinality": ["one", {}],
-                                            'type': ["choice", {
+                                            "cardinality": ['one', {}],
+                                            'type': ['choice', {
                                                 'options': pd.d({
                                                     "identifier": {
-                                                        'type': ["reference", {
+                                                        'type': ['reference', {
                                                             'name': `identifier`
                                                         }],
                                                     },
                                                     "qualifiedName": {
-                                                        'type': ["node", {
+                                                        'type': ['node', {
                                                             'name': `QualifiedName`,
-                                                            'type': ["composite", {
-                                                                'type': ["sequence", {
+                                                            'type': ['composite', {
+                                                                'type': ['sequence', {
                                                                     'elements': pd.a([
                                                                         {
                                                                             'name': `context`,
                                                                             'value': {
-                                                                                'type': ["reference", {
+                                                                                'type': ['reference', {
                                                                                     'name': `identifier`
                                                                                 }],
                                                                             }
@@ -1289,7 +1289,7 @@ export const $: gr.T.Grammar = {
                                                                         {
                                                                             'name': `type`,
                                                                             'value': {
-                                                                                'type': ["reference", {
+                                                                                'type': ['reference', {
                                                                                     'name': `identifier`
                                                                                 }],
                                                                             }
@@ -1306,8 +1306,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            "cardinality": ["array", {}],
-                                            'type': ["reference", { 'name': `type` }],
+                                            "cardinality": ['array', {}],
+                                            'type': ['reference', { 'name': `type` }],
                                         }
                                     },
                                 ])
@@ -1316,49 +1316,49 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'undefined': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `UndefinedKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }],
+                        'type': ['leaf', { 'hasTextContent': false }],
                     }]
                 },
                 'union': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `UnionType`,
-                        'type': ["composite", {
-                            'cardinality': ["array", {}],
-                            'type': ["reference", { 'name': `type` }],
+                        'type': ['composite', {
+                            'cardinality': ['array', {}],
+                            'type': ['reference', { 'name': `type` }],
                         }],
                     }]
                 },
                 'void': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `VoidKeyword`,
-                        'type': ["leaf", { 'hasTextContent': false }]
+                        'type': ['leaf', { 'hasTextContent': false }]
                     }]
                 },
             })
         }],
-        'typeParameter': ["node", {
+        'typeParameter': ['node', {
             'name': `TypeParameter`,
-            'type': ["composite", {
-                'type': ["reference", {
+            'type': ['composite', {
+                'type': ['reference', {
                     'name': `identifier`
                 }],
             }]
         }],
-        'typeSignature': ["choice", {
+        'typeSignature': ['choice', {
             'options': pd.d({
                 'construct': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `ConstructSignature`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `parameters`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", {
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', {
                                                 'name': `parameter`
                                             }]
                                         }
@@ -1366,7 +1366,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `returnType`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `type`
                                             }]
                                         }
@@ -1377,22 +1377,22 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'index': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `IndexSignature`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `modifier` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `modifier` }]
                                         },
                                     },
                                     {
                                         'name': `parameter`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `parameter`
                                             }],
                                         }
@@ -1400,8 +1400,8 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `type`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["reference", { 'name': `type` }],
+                                            'cardinality': ['optional', {}],
+                                            'type': ['reference', { 'name': `type` }],
                                         },
                                     },
                                 ])
@@ -1410,15 +1410,15 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'method': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `MethodSignature`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `name`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `identifier`
                                             }],
                                         }
@@ -1426,7 +1426,7 @@ export const $: gr.T.Grammar = {
                                     {
                                         'name': `definition`,
                                         'value': {
-                                            'type': ["reference", {
+                                            'type': ['reference', {
                                                 'name': `functionDefinition`
                                             }]
                                         }
@@ -1437,39 +1437,39 @@ export const $: gr.T.Grammar = {
                     }]
                 },
                 'property': {
-                    'type': ["node", {
+                    'type': ['node', {
                         'name': `PropertySignature`,
-                        'type': ["composite", {
-                            'type': ["sequence", {
+                        'type': ['composite', {
+                            'type': ['sequence', {
                                 'elements': pd.a([
                                     {
                                         'name': `modifiers`,
                                         'value': {
-                                            'cardinality': ["array", {}],
-                                            'type': ["reference", { 'name': `modifier` }]
+                                            'cardinality': ['array', {}],
+                                            'type': ['reference', { 'name': `modifier` }]
                                         },
                                     },
                                     {
                                         'name': `name`,
                                         'value': {
-                                            'type': ["reference", { 'name': `identifierOrStringLiteral` }],
+                                            'type': ['reference', { 'name': `identifierOrStringLiteral` }],
                                         }
                                     },
                                     {
                                         'name': `quesionToken`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["node", {
+                                            'cardinality': ['optional', {}],
+                                            'type': ['node', {
                                                 'name': `QuestionToken`,
-                                                'type': ["leaf", { 'hasTextContent': false }],
+                                                'type': ['leaf', { 'hasTextContent': false }],
                                             }],
                                         }
                                     },
                                     {
                                         'name': `type`,
                                         'value': {
-                                            'cardinality': ["optional", {}],
-                                            'type': ["reference", { 'name': `type` }],
+                                            'cardinality': ['optional', {}],
+                                            'type': ['reference', { 'name': `type` }],
                                         },
                                     }
                                 ])
@@ -1479,15 +1479,15 @@ export const $: gr.T.Grammar = {
                 },
             })
         }],
-        'variableDeclaration': ["node", {
+        'variableDeclaration': ['node', {
             'name': `VariableDeclaration`,
-            'type': ["composite", {
-                'type': ["sequence", {
+            'type': ['composite', {
+                'type': ['sequence', {
                     'elements': pd.a([
                         {
                             'name': `name`,
                             'value': {
-                                'type': ["reference", {
+                                'type': ['reference', {
                                     'name': `identifier`
                                 }],
                             },
@@ -1495,26 +1495,26 @@ export const $: gr.T.Grammar = {
                         {
                             'name': `type`,
                             'value': {
-                                'cardinality': ["optional", {}],
-                                'type': ["reference", { 'name': `type` }],
+                                'cardinality': ['optional', {}],
+                                'type': ['reference', { 'name': `type` }],
                             },
                         },
                         {
                             'name': `expression`,
                             'value': {
-                                'cardinality': ["optional", {}],
-                                'type': ["reference", { 'name': `expression` }],
+                                'cardinality': ['optional', {}],
+                                'type': ['reference', { 'name': `expression` }],
                             },
                         },
                     ])
                 }]
             }]
         }],
-        'variableDeclarationList': ["node", {
+        'variableDeclarationList': ['node', {
             'name': `VariableDeclarationList`,
-            'type': ["composite", {
-                'cardinality': ["array", {}],
-                'type': ["reference", {
+            'type': ['composite', {
+                'cardinality': ['array', {}],
+                'type': ['reference', {
                     'name': `variableDeclaration`
                 }]
             }],
@@ -1522,22 +1522,22 @@ export const $: gr.T.Grammar = {
     }),
     'root': {
         'name': `SourceFile`,
-        'type': ["composite", {
-            'type': ["sequence", {
+        'type': ['composite', {
+            'type': ['sequence', {
                 'elements': pd.a([
                     {
                         'name': `statements`,
                         'value': {
-                            'cardinality': ["array", {}],
-                            'type': ["reference", { 'name': `statement` }]
+                            'cardinality': ['array', {}],
+                            'type': ['reference', { 'name': `statement` }]
                         },
                     },
                     {
                         'name': `endOfFile`,
                         'value': {
-                            'type': ["node", {
+                            'type': ['node', {
                                 'name': `EndOfFileToken`,
-                                'type': ["leaf", { 'hasTextContent': false }]
+                                'type': ['leaf', { 'hasTextContent': false }]
                             }]
                         }
                     }
