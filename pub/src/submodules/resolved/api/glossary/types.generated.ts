@@ -1,7 +1,7 @@
 import * as pt from 'pareto-core-types'
 
-import * as mdefinition from "../../../definition"
-import * as mfp from "lib-fountain-pen"
+import * as gdefinition from "../../../definition"
+import * as gfp from "lib-fountain-pen"
 
 export namespace T {
     

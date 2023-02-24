@@ -1,39 +1,39 @@
 import * as pt from 'pareto-core-types'
 
-import * as glo from "./glossary"
+import * as gglo from "./glossary"
 
-import * as mbuild from "res-pareto-build"
-import * as mforeach from "res-pareto-foreach"
-import * as mtostring from "res-pareto-tostring"
+import * as gbuild from "res-pareto-build"
+import * as gforeach from "res-pareto-foreach"
+import * as gtostring from "res-pareto-tostring"
 
 export type CgenerateCreateDefaultVisitor = ($d: {
-    readonly 'sortedForEach': mforeach.FDictionaryForEach
-}) => glo.FGenerateImplementationFile
+    readonly 'sortedForEach': gforeach.FDictionaryForEach
+}) => gglo.FGenerateImplementationFile
 
-export type CgenerateFunctions = ($d: {}) => glo.FGenerateInterfaceFile
+export type CgenerateFunctions = ($d: {}) => gglo.FGenerateInterfaceFile
 
-export type CgenerateImplementationIndex = glo.FGenerateImplementationFile
+export type CgenerateImplementationIndex = gglo.FGenerateImplementationFile
 
-export type CgenerateInterfaceIndex = glo.FGenerateInterfaceFile
+export type CgenerateInterfaceIndex = gglo.FGenerateInterfaceFile
 
 export type CgenerateParser = ($d: {
-    readonly 'buildDictionary': mbuild.FBuildDictionary
-    readonly 'getKeysAsString': mtostring.FGetKeysAsString
-    readonly 'sortedForEach': mforeach.FDictionaryForEach
-}) => glo.FGenerateImplementationFile
+    readonly 'buildDictionary': gbuild.FBuildDictionary
+    readonly 'getKeysAsString': gtostring.FGetKeysAsString
+    readonly 'sortedForEach': gforeach.FDictionaryForEach
+}) => gglo.FGenerateImplementationFile
 
 export type CgenerateTypes = ($d: {
-    readonly 'joinNestedStrings': mtostring.FJoinNestedStrings
-    readonly 'sortedForEach': mforeach.FDictionaryForEach
-}) => glo.FGenerateInterfaceFile
+    readonly 'joinNestedStrings': gtostring.FJoinNestedStrings
+    readonly 'sortedForEach': gforeach.FDictionaryForEach
+}) => gglo.FGenerateInterfaceFile
 
 export type CgenerateVisit = ($d: {
-    readonly 'sortedForEach': mforeach.FDictionaryForEach
-}) => glo.FGenerateImplementationFile
+    readonly 'sortedForEach': gforeach.FDictionaryForEach
+}) => gglo.FGenerateImplementationFile
 
 export type CgenerateVisitorInterface = ($d: {
-    readonly 'sortedForEach': mforeach.FDictionaryForEach
-}) => glo.FGenerateInterfaceFile
+    readonly 'sortedForEach': gforeach.FDictionaryForEach
+}) => gglo.FGenerateInterfaceFile
 
 export type API = {
     generateCreateDefaultVisitor: CgenerateCreateDefaultVisitor

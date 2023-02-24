@@ -1,34 +1,34 @@
 import * as pt from 'pareto-core-types'
 
-import * as glo from "./glossary"
+import * as gglo from "./glossary"
 
-import * as mdefinition from "../../submodules/definition"
-import * as mfp from "lib-fountain-pen"
-import * as mprivate from "../../submodules/private"
-import * as mresolved from "../../submodules/resolved"
+import * as gdefinition from "../../submodules/definition"
+import * as gfp from "lib-fountain-pen"
+import * as gprivate from "../../submodules/private"
+import * as gresolved from "../../submodules/resolved"
 
-export type CgenerateImplementation = glo.FGenerateImplementation
+export type CgenerateImplementation = gglo.FGenerateImplementation
 
-export type CgenerateInterface = glo.FGenerateInterface
+export type CgenerateInterface = gglo.FGenerateInterface
 
-export type Cserialize = ($d: {}) => glo.FSerialize
+export type Cserialize = ($d: {}) => gglo.FSerialize
 
-export type CserializeToNew = ($d: {}) => glo.FSerialize
+export type CserializeToNew = ($d: {}) => gglo.FSerialize
 
 export type CunboundGenerateImplementation = ($d: {
-    readonly 'generateCreateDefaultVisitor': mprivate.FGenerateImplementationFile
-    readonly 'generateImplementationIndex': mprivate.FGenerateImplementationFile
-    readonly 'generateParser': mprivate.FGenerateImplementationFile
-    readonly 'generateVisit': mprivate.FGenerateImplementationFile
-    readonly 'resolve': mresolved.FResolve
-}) => glo.FGenerateUnboundImplementation
+    readonly 'generateCreateDefaultVisitor': gprivate.FGenerateImplementationFile
+    readonly 'generateImplementationIndex': gprivate.FGenerateImplementationFile
+    readonly 'generateParser': gprivate.FGenerateImplementationFile
+    readonly 'generateVisit': gprivate.FGenerateImplementationFile
+    readonly 'resolve': gresolved.FResolve
+}) => gglo.FGenerateUnboundImplementation
 
 export type CunboundGenerateInterface = ($d: {
-    readonly 'generateFunctions': mprivate.FGenerateInterfaceFile
-    readonly 'generateInterfaceIndex': mprivate.FGenerateInterfaceFile
-    readonly 'generateTypes': mprivate.FGenerateInterfaceFile
-    readonly 'generateVisitorInterface': mprivate.FGenerateInterfaceFile
-}) => glo.FGenerateInterface2
+    readonly 'generateFunctions': gprivate.FGenerateInterfaceFile
+    readonly 'generateInterfaceIndex': gprivate.FGenerateInterfaceFile
+    readonly 'generateTypes': gprivate.FGenerateInterfaceFile
+    readonly 'generateVisitorInterface': gprivate.FGenerateInterfaceFile
+}) => gglo.FGenerateInterface2
 
 export type API = {
     generateImplementation: CgenerateImplementation
