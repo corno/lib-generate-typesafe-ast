@@ -6,6 +6,7 @@ import * as gprivate from "../../submodules/private"
 import * as gforeach from "res-pareto-foreach"
 import * as gcoll from "res-pareto-collation"
 import * as gtostring from "res-pareto-tostring"
+import * as gbuild from "res-pareto-build"
 
 import { $$ as ugImp } from "./unboundGenerateImplementation.p"
 
@@ -35,6 +36,7 @@ export const $$:CgenerateImplementation = ($) => {
                     'separator': ", ",
                 }, {}),
                 'sortedForEach': dfe,
+                'buildDictionary': gbuild.$a.buildDictionary,
             }),
             'generateVisit': gprivate.$a.generateVisit({
                 'sortedForEach': dfe,

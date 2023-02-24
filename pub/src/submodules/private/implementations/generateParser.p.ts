@@ -7,22 +7,10 @@ import * as pd from 'pareto-core-dev'
 import * as gfp from "lib-fountain-pen"
 import * as gresolved from "../../resolved"
 
-function buildDictionary<T>($c: (add: (key: string, value: T) => void) => void): pt.Dictionary<T> {
-    const temp = ps.createDictionaryBuilder<T>(
-        ['ignore', {}],
-        () => {
-            //allow duplicates???
-        }
-    )
-    $c((key, value) => {
-        temp.add(key, value)
-    })
-    return temp.getDictionary()
-}
 
 import { CgenerateParser } from "../api"
 
-export const $$:CgenerateParser = ($d) => {
+export const $$: CgenerateParser = ($d) => {
     return ($, $i) => {
         const grammar = $.grammar
         function findNextPossibleTokensInSymbolType(
@@ -263,17 +251,26 @@ export const $$:CgenerateParser = ($d) => {
                                                             $w.indent(($w) => {
 
                                                                 $d.sortedForEach(
-                                                                    buildDictionary((add) => {
-                                                                        findNextPossibleTokensInSymbolType(
-                                                                            symbol.type,
-                                                                            ($) => {
-                                                                                add($, null)
-                                                                            },
-                                                                            () => {
-                                                                                pd.implementMe("IMPLEMENT ME 4")
-                                                                            }
-                                                                        )
-                                                                    }),
+                                                                    $d.buildDictionary(
+                                                                        ['ignore', {}],
+                                                                        (add) => {
+                                                                            findNextPossibleTokensInSymbolType(
+                                                                                symbol.type,
+                                                                                ($) => {
+                                                                                    add({
+                                                                                        'key': $,
+                                                                                        'value': null,
+                                                                                    })
+                                                                                },
+                                                                                () => {
+                                                                                    pd.implementMe("IMPLEMENT ME 4")
+                                                                                }
+                                                                            )
+                                                                        },
+                                                                        ($) => {
+                                                                            //FIXME: handle duplicate
+                                                                        }
+                                                                    ),
                                                                     ($) => {
                                                                         $w.nestedLine(($w) => {
                                                                             $w.snippet(`case '${$.key}':`)
@@ -341,17 +338,26 @@ export const $$:CgenerateParser = ($d) => {
                                                             $w.snippet(`switch (nextChild.kindName) {`)
                                                             $w.indent(($w) => {
                                                                 $d.sortedForEach(
-                                                                    buildDictionary((add) => {
-                                                                        findNextPossibleTokensInSymbolType(
-                                                                            symbol.type,
-                                                                            ($) => {
-                                                                                add($, null)
-                                                                            },
-                                                                            () => {
-                                                                                pl.panic("IMPLEMENT ME 5")
-                                                                            }
-                                                                        )
-                                                                    }),
+                                                                    $d.buildDictionary(
+                                                                        ['ignore', {}],
+                                                                        (add) => {
+                                                                            findNextPossibleTokensInSymbolType(
+                                                                                symbol.type,
+                                                                                ($) => {
+                                                                                    add({
+                                                                                        'key': $,
+                                                                                        'value': null,
+                                                                                    })
+                                                                                },
+                                                                                () => {
+                                                                                    pl.panic("IMPLEMENT ME 5")
+                                                                                }
+                                                                            )
+                                                                        },
+                                                                        () => {
+                                                                            //HANDLE DUPLICATE
+                                                                        }
+                                                                    ),
                                                                     ($) => {
                                                                         $w.nestedLine(($w) => {
                                                                             $w.snippet(`case '${$.key}':`)

@@ -19,6 +19,7 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         "lib-fountain-pen": {},
         "res-pareto-foreach": {},
         "res-pareto-tostring": {},
+        "res-pareto-build": {},
     }),
     'type': ['library', {
         'main': {
@@ -317,8 +318,9 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
                     "api": {
                         'imports': d({
                             "foreach": "res-pareto-foreach",
-                            "fp": "lib-fountain-pen",
+                            //"fp": "lib-fountain-pen",
                             "tostring": "res-pareto-tostring",
+                            "build": "res-pareto-build",
                         }),
                         'algorithms': d({
                             "generateFunctions": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {})),
@@ -335,6 +337,7 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
                             "generateParser": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
                                 "getKeysAsString": definitionReference("tostring", {}, "GetKeysAsString"),
                                 "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                                "buildDictionary": definitionReference("build", {}, "BuildDictionary"),
                             })),
                             "generateCreateDefaultVisitor": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
                                 "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
