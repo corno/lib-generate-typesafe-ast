@@ -7,11 +7,11 @@ import { algorithm, constructor, definitionReference } from "lib-pareto-typescri
 
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
-import { $ as resolved } from "./submodules/resolved/module.data"
+import { $ as resolved } from "./submodules/resolved/module.deprecated"
 import { $ as _2liana } from "./submodules/2liana/module.data"
 import { $ as _private } from "./submodules/private/module.data"
-import { $ as definition } from "./submodules/definition/module.data"
-import { $ as definitionNew } from "./submodules/definitionNew/module.data"
+import { $ as definition } from "./submodules/definition/module.deprecated"
+import { $ as definitionNew } from "./submodules/definitionNew/module.deprecated"
 import { $ as main } from "./main/module.data"
 
 const d = pd.d
