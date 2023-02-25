@@ -7,14 +7,14 @@ export namespace T {
     
     export type Annotation<GPAnnotation> = GPAnnotation
     
-    export namespace AnnotationOrString {
+    export namespace OutAnnotation {
         
-        export type annotation<GPAnnotation> = GPAnnotation
+        export type internal<GPAnnotation> = string
         
-        export type _lstring<GPAnnotation> = string
+        export type source<GPAnnotation> = GPAnnotation
     }
     
-    export type AnnotationOrString<GPAnnotation> = 
-        | ['annotation', GPAnnotation]
-        | ['string', string]
+    export type OutAnnotation<GPAnnotation> = 
+        | ['internal', string]
+        | ['source', GPAnnotation]
 }

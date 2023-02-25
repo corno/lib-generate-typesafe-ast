@@ -24,14 +24,14 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             }),
             'types': d({
                 "Annotation": type(glossaryParameter("Annotation")),
-                "AnnotationOrString": type(taggedUnion({
-                    "annotation": glossaryParameter("Annotation"),
-                    "string": string(),
+                "OutAnnotation": type(taggedUnion({
+                    "source": glossaryParameter("Annotation"),
+                    "internal": string(),
                 })),
             }),
             'interfaces': d({}),
             'functions': d({
-                "Map2Liana": func(parametrizedTypeReference("def", { "Annotation": typeReference("Annotation") }, "Grammar"), null, null, data(parametrizedTypeReference("liana", { "Annotation": typeReference("AnnotationOrString") }, "Model"), false))
+                "Map2Liana": func(parametrizedTypeReference("def", { "Annotation": typeReference("Annotation") }, "Grammar"), null, null, data(parametrizedTypeReference("liana", { "Annotation": typeReference("OutAnnotation") }, "Model"), false))
             }),
         },
         'api': {

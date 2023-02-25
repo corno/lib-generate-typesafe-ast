@@ -10,9 +10,9 @@ import { Cmap2Liana } from "../api"
 
 
 export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotation>) => {
-    type OutAnnotation = gapi.T.AnnotationOrString<InAnnotation>
+    type OutAnnotation = gapi.T.OutAnnotation<InAnnotation>
     return {
-        'globalTypes': {
+        'global types': {
             'dictionary': $.types.map<gliana.T.GlobalType<OutAnnotation>>(($) => {
                 function mapValue($: gdefinition.T.Value<InAnnotation>): gliana.T.LocalType<OutAnnotation> {
                     switch ($[0]) {
@@ -24,22 +24,31 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                             })
                         case 'choice':
                             return pl.cc($[1], ($) => {
-                                return ['taggedUnion', {
+                                return ['tagged union', {
                                     'options': {
                                         'dictionary': $.options.map(($) => {
                                             return mapValue($)
                                         }),
-                                        'annotation': ['string', "FOO"]
+                                        'annotation': ['internal', "FOO"]
                                     },
                                     'default': {
                                         'key': "FIXMEDEFAULT",
-                                        'annotation': ['string', "FOO"]
+                                        'annotation': ['internal', "FOO"]
                                     }
                                 }]
                             })
                         case 'component':
                             return pl.cc($[1], ($) => {
-                                pd.implementMe(`case`)
+                                return ['component', {
+                                    'type': {
+                                        'key': $.name,
+                                        'annotation': ['source', $.annotation],
+                                    },
+                                    'arguments': {
+                                        'dictionary': pm.wrapRawDictionary({}),
+                                        'annotation': ['internal', "FOO"]
+                                    },
+                                }]
                             })
                         case 'group':
                             return pl.cc($[1], ($) => {
@@ -59,20 +68,20 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                 return {
                     'parameters': {
                         'dictionary': pm.wrapRawDictionary({}),
-                        'annotation': ['string', "FOO"]
+                        'annotation': ['internal', "FOO"]
                     },
                     'type': mapValue($)
                 }
             }),
-            'annotation': ['string', "FOO"]
+            'annotation': ['internal', "FOO"]
         },
-        'stringTypes': {
+        'string types': {
             'dictionary': pm.wrapRawDictionary({}),
-            'annotation': ['string', "FOO"]
+            'annotation': ['internal', "FOO"]
         },
         'root': {
             'key': "FOO",
-            'annotation': ['string', "FOO"]
+            'annotation': ['internal', "FOO"]
         },
     }
 }
