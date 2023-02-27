@@ -15,7 +15,7 @@ export const $$:CgenerateInterface = ($) => {
     const dfe = gforeach.$a.createDictionaryForEach({
         'compare': gcoll.$a.localeIsABeforeB,
     })
-    gfp.$a.createWriter({
+    gfp.$a.createDirectory({
         'onError': ($) => {
             pd.logDebugMessage("FSDFSDSFDFSDFS")
         },

@@ -25,7 +25,7 @@ export const $: gmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
         'interfaces': d({
         }),
         'functions': d({
-            "SerializeImplementation": func(parametrizedTypeReference("algorithm", { "Annotation": typeReference("Annotation") }, "Implementation"), null, interfaceReference("fp", "Writer"), null),
+            "SerializeImplementation": func(parametrizedTypeReference("algorithm", { "Annotation": typeReference("Annotation") }, "Implementation"), null, interfaceReference("fp", "Directory"), null),
             "SerializeStates": func(parametrizedTypeReference("algorithm", { "Annotation": typeReference("Annotation") }, "States"), null, interfaceReference("fp", "Block"), null),
         }),
     },

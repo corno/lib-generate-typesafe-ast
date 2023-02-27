@@ -44,6 +44,7 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                         case 'component':
                             return pl.cc($[1], ($) => {
                                 return ['component', {
+                                    'context': ['local', {}],
                                     'type': {
                                         'key': $.name,
                                         //  'annotation': ['source', $.annotation],

@@ -49,8 +49,8 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'functions': d({
                 "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, null, null),
                 "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, null, null),
-                "GenerateUnboundImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Writer"), null),
-                "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Writer"), null),
+                "GenerateUnboundImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Directory"), null),
+                "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Directory"), null),
                 "Serialize": func(typeReference("SerializeData"), null, null, null)
             }),
             'interfaces': d({}),

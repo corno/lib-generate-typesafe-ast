@@ -9,7 +9,7 @@ import { Cserialize } from "../api"
 
 export const $$:Cserialize = ($d) => {
     return ($) => {
-        gfp.$a.createWriter({
+        gfp.$a.createDirectory({
             'onError': ($) => {
                 pv.logDebugMessage("FSDFSDSFDFSDFS")
             },

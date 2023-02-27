@@ -10,8 +10,8 @@ export type FGenerateImplementation = ($: T.GenerateImplementationData,) => void
 
 export type FGenerateInterface = ($: T.GenerateInterfaceData,) => void
 
-export type FGenerateInterface2 = ($: T.GenerateInterfaceData, $i: gfp.IWriter,) => void
+export type FGenerateInterface2 = ($: T.GenerateInterfaceData, $i: gfp.IDirectory,) => void
 
-export type FGenerateUnboundImplementation = ($: T.GenerateImplementationData, $i: gfp.IWriter,) => void
+export type FGenerateUnboundImplementation = ($: T.GenerateImplementationData, $i: gfp.IDirectory,) => void
 
 export type FSerialize = ($: T.SerializeData,) => void

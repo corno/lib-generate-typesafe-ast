@@ -20,6 +20,7 @@ const d = pd.d
 
 export const $: gliana.T.Model<pd.SourceLocation> = {
     'type library': {
+        'imports': d({}),
         'string types': d({
             "text": {},
         }),
