@@ -1,14 +1,19 @@
 import * as pt from 'pareto-core-types'
 
-import * as gfp from "lib-fountain-pen"
+import * as gcommon from "glo-pareto-common"
 
 export namespace T {
     
-    export type Annotation<GPAnnotation> = GPAnnotation
-    
     export namespace Grammar {
         
-        export type root<GPAnnotation> = string
+        export namespace root {
+            
+            export type key<GPAnnotation> = string
+        }
+        
+        export type root<GPAnnotation> = {
+            readonly 'key': string
+        }
         
         export namespace types {
             
@@ -19,7 +24,9 @@ export namespace T {
     }
     
     export type Grammar<GPAnnotation> = {
-        readonly 'root': string
+        readonly 'root': {
+            readonly 'key': string
+        }
         readonly 'types': pt.Dictionary<T.Value<GPAnnotation>>
     }
     
@@ -29,7 +36,14 @@ export namespace T {
         
         export namespace choice {
             
-            export type _ldefault<GPAnnotation> = string
+            export namespace _ldefault {
+                
+                export type key<GPAnnotation> = string
+            }
+            
+            export type _ldefault<GPAnnotation> = {
+                readonly 'key': string
+            }
             
             export namespace options {
                 
@@ -40,20 +54,28 @@ export namespace T {
         }
         
         export type choice<GPAnnotation> = {
-            readonly 'default': string
+            readonly 'default': {
+                readonly 'key': string
+            }
             readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
         }
         
         export namespace component {
             
-            export type annotation<GPAnnotation> = T.Annotation<GPAnnotation>
+            export namespace _ltype {
+                
+                export type key<GPAnnotation> = string
+            }
             
-            export type name<GPAnnotation> = string
+            export type _ltype<GPAnnotation> = {
+                readonly 'key': string
+            }
         }
         
         export type component<GPAnnotation> = {
-            readonly 'annotation': T.Annotation<GPAnnotation>
-            readonly 'name': string
+            readonly 'type': {
+                readonly 'key': string
+            }
         }
         
         export namespace group {
@@ -142,12 +164,15 @@ export namespace T {
     export type Value<GPAnnotation> = 
         | ['array', T.Value<GPAnnotation>]
         | ['choice', {
-            readonly 'default': string
+            readonly 'default': {
+                readonly 'key': string
+            }
             readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
         }]
         | ['component', {
-            readonly 'annotation': T.Annotation<GPAnnotation>
-            readonly 'name': string
+            readonly 'type': {
+                readonly 'key': string
+            }
         }]
         | ['group', {
             readonly 'members': pt.Dictionary<{

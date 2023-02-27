@@ -3,7 +3,7 @@ import * as pt from 'pareto-core-types'
 import { T   } from './types.generated'
 
 import * as gcommon from "glo-pareto-common"
-import * as gdefinition from "../../../submodules/definition"
+import * as gdefinition from "../../../submodules/grammar_old"
 import * as gfp from "lib-fountain-pen"
 
 export type FGenerateImplementation = ($: T.GenerateImplementationData,) => void

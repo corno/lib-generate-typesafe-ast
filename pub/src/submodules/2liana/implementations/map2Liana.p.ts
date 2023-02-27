@@ -3,7 +3,7 @@ import * as pd from 'pareto-core-dev'
 import * as pm from 'pareto-core-map'
 
 import * as gapi from "../api"
-import * as gdefinition from "../../definitionNew"
+import * as gdefinition from "../../grammar"
 import * as gliana from "lib-liana/dist/submodules/liana"
 
 import { Cmap2Liana } from "../api"
@@ -46,7 +46,7 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                                 return ['component', {
                                     'context': ['local', {}],
                                     'type': {
-                                        'key': $.name,
+                                        'key': $.type.key,
                                         //  'annotation': ['source', $.annotation],
                                     },
                                     // 'arguments': {

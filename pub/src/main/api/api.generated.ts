@@ -2,10 +2,10 @@ import * as pt from 'pareto-core-types'
 
 import * as gglo from "./glossary"
 
-import * as gdefinition from "../../submodules/definition"
+import * as gdefinition from "../../submodules/grammar_old"
 import * as gfp from "lib-fountain-pen"
 import * as gprivate from "../../submodules/private"
-import * as gresolved from "../../submodules/resolved"
+import * as gresolved from "../../submodules/grammar_resolved_old"
 
 export type CgenerateImplementation = gglo.FGenerateImplementation
 

@@ -5,7 +5,7 @@ import * as ps from 'pareto-core-state'
 import * as pd from 'pareto-core-dev'
 
 import * as gfp from "lib-fountain-pen"
-import * as gresolved from "../../resolved"
+import * as gresolved from "../../grammar_resolved_old"
 
 
 import { CgenerateParser } from "../api"

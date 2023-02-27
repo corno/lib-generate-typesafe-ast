@@ -7,13 +7,14 @@ import { algorithm, constructor, definitionReference } from "lib-pareto-typescri
 
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
-import { $ as resolved } from "./submodules/resolved/module.deprecated"
+import { $ as grammar_resolved_old } from "./submodules/grammar_resolved_old/module.deprecated"
 import { $ as alg } from "./submodules/algorithm.deprecated"
 import { $ as p2t } from "./submodules/pareto2typescript.data"
 import { $ as _2liana } from "./submodules/2liana/module.data"
 import { $ as _private } from "./submodules/private/module.data"
-import { $ as definition } from "./submodules/definition/module.deprecated"
-import { $ as definitionNew } from "./submodules/definitionNew/module.deprecated"
+import { $ as grammar } from "./submodules/grammar/module.generated"
+import { $ as grammar_resolved } from "./submodules/grammar_resolved/module.generated"
+import { $ as grammar_old } from "./submodules/grammar_old/module.deprecated"
 import { $ as main } from "./main/module.data"
 
 const d = pd.d
@@ -43,9 +44,10 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
                 'implementation': ['manual', {}],
             },
             "2liana": _2liana,
-            "definition": definition,
-            "definitionNew": definitionNew,
-            "resolved": resolved,
+            "grammar": grammar,
+            "grammar_resolved": grammar_resolved,
+            "grammar_old": grammar_old,
+            "grammar_resolved_old": grammar_resolved_old,
             "private": _private,
         }),
         'executables': d({}),

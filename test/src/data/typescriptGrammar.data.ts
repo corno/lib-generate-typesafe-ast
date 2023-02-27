@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as ggr from "../../../pub/dist/submodules/definitionNew"
+import * as ggr from "../../../pub/dist/submodules/grammar"
 
 import {
     array,
@@ -12,7 +12,7 @@ import {
     string,
     enumeration,
     optional,
-} from "../../../pub/dist/submodules/definitionNew/shorthands"
+} from "../../../pub/dist/submodules/grammar/shorthands"
 
 const d = pd.d
 
@@ -277,5 +277,7 @@ export const $: ggr.T.Grammar<pd.SourceLocation> = {
         })),
         "variableDeclarationList": node("VariableDeclarationList", array(component("variableDeclaration"))),
     }),
-    'root': "sourceFile",
+    'root': {
+        'key': "sourceFile"
+    },
 }

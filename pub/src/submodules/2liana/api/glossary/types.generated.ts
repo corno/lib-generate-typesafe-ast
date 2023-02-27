@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core-types'
 
-import * as gdef from "../../../definitionNew"
+import * as gdef from "../../../grammar"
 import * as gliana from "lib-liana/dist/submodules/liana"
 
 export namespace T {

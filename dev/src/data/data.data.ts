@@ -1,5 +1,6 @@
 import * as pd from 'pareto-core-data'
 import * as pt from 'pareto-core-types'
+import * as pv from 'pareto-core-dev'
 
 import * as gliana2pareto from "lib-liana/dist/submodules/liana2pareto"
 

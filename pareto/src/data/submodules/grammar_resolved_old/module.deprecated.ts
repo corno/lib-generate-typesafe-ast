@@ -17,7 +17,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
         'glossary': {
             'imports': d({
                 "fp": "lib-fountain-pen",
-                "definition": "../../../definition",
+                "definition": "../../../grammar_old",
             }),
             'parameters': d({}),
             'types': d({

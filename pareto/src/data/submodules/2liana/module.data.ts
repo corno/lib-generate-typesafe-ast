@@ -16,7 +16,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
     'definition': {
         'glossary': {
             'imports': d({
-                "def": "../../../definitionNew",
+                "def": "../../../grammar",
                 "liana": "lib-liana/dist/submodules/liana",
             }),
             'parameters': d({

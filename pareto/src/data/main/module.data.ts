@@ -18,7 +18,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'imports': d({
                 "fp": "lib-fountain-pen",
                 "common": "glo-pareto-common",
-                "definition": "../../../submodules/definition",
+                "definition": "../../../submodules/grammar_old",
             }),
             'parameters': d({}),
             'types': d({
@@ -57,8 +57,8 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
         },
         'api': {
             'imports': d({
-                "definition": "../../submodules/definition",
-                "resolved": "../../submodules/resolved",
+                "definition": "../../submodules/grammar_old",
+                "resolved": "../../submodules/grammar_resolved_old",
                 "fp": "lib-fountain-pen",
                 "private": "../../submodules/private",
             }),

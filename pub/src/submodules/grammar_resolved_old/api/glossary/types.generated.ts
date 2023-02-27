@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core-types'
 
-import * as gdefinition from "../../../definition"
+import * as gdefinition from "../../../grammar_old"
 import * as gfp from "lib-fountain-pen"
 
 export namespace T {

@@ -1,7 +1,7 @@
 import * as pd from 'pareto-core-dev'
 
 import * as gfp from "lib-fountain-pen"
-import * as gresolved from "../../submodules/resolved"
+import * as gresolved from "../../submodules/grammar_resolved_old"
 import * as gprivate from "../../submodules/private"
 import * as gforeach from "res-pareto-foreach"
 import * as gcoll from "res-pareto-collation"

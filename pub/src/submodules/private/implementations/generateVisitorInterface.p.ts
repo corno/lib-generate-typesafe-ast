@@ -1,6 +1,6 @@
 import * as pl from 'pareto-core-lib'
 
-import * as gdefinition from "../../definition"
+import * as gdefinition from "../../grammar_old"
 import * as gfp from "lib-fountain-pen"
 
 import { CgenerateVisitorInterface } from "../api"
