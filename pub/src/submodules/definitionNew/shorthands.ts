@@ -10,21 +10,44 @@ export function array(vt: t.T.Value<pd.SourceLocation>): t.T.Value<pd.SourceLoca
 }
 
 export function choice(options: RawDictionary<t.T.Value<pd.SourceLocation>>): t.T.Value<pd.SourceLocation> {
-    return ['choice', { 'options': pd.d(options) }]
+    const li = pd.getLocationInfo(1)
+    let firstKey: null | string = null
+    pd.d(options).__mapWithKey(($, key) => {
+        if (firstKey === null) {
+            firstKey = key
+        }
+    })
+    if (firstKey === null) {
+        firstKey = "--NO OPTIONS--"
+    }
+    return ['choice', {
+        'options': pd.d(options),
+        'default': firstKey,
+    }]
 }
 
-export function node(name: string, content: boolean | t.T.Value<pd.SourceLocation>): t.T.Value<pd.SourceLocation> {
+export function string(): t.T.Value.node.flags.D<pd.SourceLocation> {
+    return ['string', {}]
+}
+
+export function enumeration(options: RawDictionary<string>): t.T.Value.node.flags.D<pd.SourceLocation> {
+    return ['enumeration', pd.d(options)]
+}
+
+export function node(name: string, content: null | t.T.Value<pd.SourceLocation>, flags?: RawDictionary<t.T.Value.node.flags.D<pd.SourceLocation>>): t.T.Value<pd.SourceLocation> {
     return ['node', {
         'name': name,
         'type': pl.cc([1], ($): t.T.Value.node._ltype<pd.SourceLocation> => {
-            if (typeof content === "boolean") {
-              return ['leaf', {
-                  'hasTextContent': content
-              }]
+            if (content === null) {
+                return ['leaf', {
+                }]
             } else {
-              return ['composite', content]
+                return ['composite', content]
             }
         }),
+        'flags': flags === undefined
+            ? pd.d({})
+            : pd.d(flags)
     }]
 }
 
@@ -45,7 +68,7 @@ export function component(name: string): t.T.Value<pd.SourceLocation> {
     }]
 }
 
-export function group(members: RawDictionary< t.T.Value.group.members.D<pd.SourceLocation>>): t.T.Value<pd.SourceLocation> {
+export function group(members: RawDictionary<t.T.Value.group.members.D<pd.SourceLocation>>): t.T.Value<pd.SourceLocation> {
     return ['group', {
         'members': pd.d(members),
     }]

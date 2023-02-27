@@ -12,9 +12,10 @@ import { Cmap2Liana } from "../api"
 export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotation>) => {
     type OutAnnotation = gapi.T.OutAnnotation<InAnnotation>
     return {
-        'global types': {
-            'dictionary': $.types.map<gliana.T.GlobalType<OutAnnotation>>(($) => {
-                function mapValue($: gdefinition.T.Value<InAnnotation>): gliana.T.LocalType<OutAnnotation> {
+        'type library': <gliana.T.Type__Library<OutAnnotation>>{
+            'string types': pm.wrapRawDictionary({}),
+            'global types': $.types.map<gliana.T.Type__Library.global__types.D<OutAnnotation>>(($) => {
+                function mapValue($: gdefinition.T.Value<InAnnotation>): gliana.T.Type<OutAnnotation> {
                     switch ($[0]) {
                         case 'array':
                             return pl.cc($[1], ($) => {
@@ -25,15 +26,18 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                         case 'choice':
                             return pl.cc($[1], ($) => {
                                 return ['tagged union', {
-                                    'options': {
-                                        'dictionary': $.options.map(($) => {
-                                            return mapValue($)
-                                        }),
-                                        'annotation': ['internal', "FOO"]
-                                    },
+                                    // 'options': {
+                                    //     'dictionary': $.options.map(($) => {
+                                    //         return mapValue($)
+                                    //     }),
+                                    //     'annotation': ['internal', "FOO"]
+                                    // },
+                                    'options': $.options.map(($) => {
+                                        return mapValue($)
+                                    }),
                                     'default': {
                                         'key': "FIXMEDEFAULT",
-                                        'annotation': ['internal', "FOO"]
+                                        //'annotation': ['internal', "FOO"]
                                     }
                                 }]
                             })
@@ -42,12 +46,13 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                                 return ['component', {
                                     'type': {
                                         'key': $.name,
-                                        'annotation': ['source', $.annotation],
+                                        //  'annotation': ['source', $.annotation],
                                     },
-                                    'arguments': {
-                                        'dictionary': pm.wrapRawDictionary({}),
-                                        'annotation': ['internal', "FOO"]
-                                    },
+                                    // 'arguments': {
+                                    //     'dictionary': pm.wrapRawDictionary({}),
+                                    //     //'annotation': ['internal', "FOO"]
+                                    // },
+                                    'arguments': pm.wrapRawDictionary({}),
                                 }]
                             })
                         case 'group':
@@ -66,18 +71,18 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                     }
                 }
                 return {
-                    'parameters': {
-                        'dictionary': pm.wrapRawDictionary({}),
-                        'annotation': ['internal', "FOO"]
-                    },
+                    // 'parameters': {
+                    //     'dictionary': pm.wrapRawDictionary({}),
+                    //     'annotation': ['internal', "FOO"]
+                    // }, 
+                    'parameters': pm.wrapRawDictionary({}),
                     'type': mapValue($)
                 }
             }),
-            'annotation': ['internal', "FOO"]
-        },
-        'string types': {
-            'dictionary': pm.wrapRawDictionary({}),
-            'annotation': ['internal', "FOO"]
+            // 'string types': {
+            //     'dictionary': pm.wrapRawDictionary({}),
+            //     'annotation': ['internal', "FOO"]
+            // },
         },
         'root': {
             'key': "FOO",

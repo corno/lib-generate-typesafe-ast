@@ -9,7 +9,9 @@ const a = pd.a
 export const $: gproject.T.Module<pd.SourceLocation> = {
     'definition': {
         'glossary': {
-            'imports': d({}),
+            'imports': d({
+                "common": "glo-pareto-common",
+            }),
             'parameters': d({
                 "Annotation": {},
             }),
@@ -23,13 +25,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             'functions': d({}),
         },
         'api': {
-            'imports': d({
-                "foreach": "res-pareto-foreach",
-            }),
+            'imports': d({}),
             'algorithms': d({}),
         },
     },
-    'implementation': {
-        'implementations': d({}),
-    },
+    'implementation': ['manual', {}],
 }

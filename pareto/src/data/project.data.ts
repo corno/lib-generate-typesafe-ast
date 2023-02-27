@@ -8,6 +8,8 @@ import { algorithm, constructor, definitionReference } from "lib-pareto-typescri
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as resolved } from "./submodules/resolved/module.deprecated"
+import { $ as alg } from "./submodules/algorithm.deprecated"
+import { $ as p2t } from "./submodules/pareto2typescript.data"
 import { $ as _2liana } from "./submodules/2liana/module.data"
 import { $ as _private } from "./submodules/private/module.data"
 import { $ as definition } from "./submodules/definition/module.deprecated"
@@ -19,7 +21,7 @@ const d = pd.d
 export const $: gproject.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "generates a typescript parser that provides a typed AST",
-    'license': "ISC",
+    'license': "TBD",
 
     'dependencies': d({
         "glo-pareto-common": {},
@@ -32,6 +34,14 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
     'type': ['library', {
         'main': main,
         'submodules': d({
+            "pt2": {
+                'definition': p2t,
+                'implementation': ['manual', {}],
+            },
+            "algorithm": {
+                'definition': alg,
+                'implementation': ['manual', {}],
+            },
             "2liana": _2liana,
             "definition": definition,
             "definitionNew": definitionNew,

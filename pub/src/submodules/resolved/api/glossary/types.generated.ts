@@ -105,7 +105,7 @@ export namespace T {
     }
     
     export type Value = {
-        readonly 'cardinality'?: 
+        readonly 'cardinality': 
             | ['array', {}]
             | ['one', {}]
             | ['optional', {}]

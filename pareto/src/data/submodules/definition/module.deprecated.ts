@@ -40,7 +40,7 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "one": group({}),
                         "optional": group({}),
                         "array": group({}),
-                    }), true),
+                    })),
                     "type": member(reference("ValueType")),
                 })),
                 "Grammar": type(group({
@@ -76,4 +76,5 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             })
         },
     },
+    'implementation': ['manual', {}],
 }

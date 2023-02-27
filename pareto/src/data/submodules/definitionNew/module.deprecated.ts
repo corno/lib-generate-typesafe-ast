@@ -29,16 +29,19 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "annotation": member(reference("Annotation")),
                     }),
                     "choice": group({
-                        "options": member(dictionary(reference("Value")))
+                        "options": member(dictionary(reference("Value"))),
+                        "default": member(string()),
                     }),
                     "node": group({
                         "name": member(string()),
                         "type": member(taggedUnion({
                             "composite": reference("Value"),
-                            "leaf": group({
-                                "hasTextContent": member(boolean()),
-                            }),
-                        }))
+                            "leaf": group({}),
+                        })),
+                        "flags": member(dictionary(taggedUnion({
+                            "string": group({}),
+                            "enumeration": dictionary(string()),
+                        })))
                     }),
                     "group": group({
                         "members": member(dictionary(group({
@@ -60,10 +63,11 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
         },
         'api': {
             'imports': d({
-                "foreach": "res-pareto-foreach",
+                //"foreach": "res-pareto-foreach",
             }),
             'algorithms': d({
             })
         },
     },
+    'implementation': ['manual', {}],
 }

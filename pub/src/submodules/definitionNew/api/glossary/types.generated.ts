@@ -29,6 +29,8 @@ export namespace T {
         
         export namespace choice {
             
+            export type _ldefault<GPAnnotation> = string
+            
             export namespace options {
                 
                 export type D<GPAnnotation> = T.Value<GPAnnotation>
@@ -38,6 +40,7 @@ export namespace T {
         }
         
         export type choice<GPAnnotation> = {
+            readonly 'default': string
             readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
         }
         
@@ -80,36 +83,57 @@ export namespace T {
         
         export namespace node {
             
+            export namespace flags {
+                
+                export namespace D {
+                    
+                    export namespace enumeration {
+                        
+                        export type D<GPAnnotation> = string
+                    }
+                    
+                    export type enumeration<GPAnnotation> = pt.Dictionary<string>
+                    
+                    export namespace _lstring {}
+                    
+                    export type _lstring<GPAnnotation> = {}
+                }
+                
+                export type D<GPAnnotation> = 
+                    | ['enumeration', pt.Dictionary<string>]
+                    | ['string', {}]
+            }
+            
+            export type flags<GPAnnotation> = pt.Dictionary<
+                | ['enumeration', pt.Dictionary<string>]
+                | ['string', {}]
+            >
+            
             export type name<GPAnnotation> = string
             
             export namespace _ltype {
                 
                 export type composite<GPAnnotation> = T.Value<GPAnnotation>
                 
-                export namespace leaf {
-                    
-                    export type hasTextContent<GPAnnotation> = boolean
-                }
+                export namespace leaf {}
                 
-                export type leaf<GPAnnotation> = {
-                    readonly 'hasTextContent': boolean
-                }
+                export type leaf<GPAnnotation> = {}
             }
             
             export type _ltype<GPAnnotation> = 
                 | ['composite', T.Value<GPAnnotation>]
-                | ['leaf', {
-                    readonly 'hasTextContent': boolean
-                }]
+                | ['leaf', {}]
         }
         
         export type node<GPAnnotation> = {
+            readonly 'flags': pt.Dictionary<
+                | ['enumeration', pt.Dictionary<string>]
+                | ['string', {}]
+            >
             readonly 'name': string
             readonly 'type': 
                 | ['composite', T.Value<GPAnnotation>]
-                | ['leaf', {
-                    readonly 'hasTextContent': boolean
-                }]
+                | ['leaf', {}]
         }
         
         export type optional<GPAnnotation> = T.Value<GPAnnotation>
@@ -118,6 +142,7 @@ export namespace T {
     export type Value<GPAnnotation> = 
         | ['array', T.Value<GPAnnotation>]
         | ['choice', {
+            readonly 'default': string
             readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
         }]
         | ['component', {
@@ -130,12 +155,14 @@ export namespace T {
             }>
         }]
         | ['node', {
+            readonly 'flags': pt.Dictionary<
+                | ['enumeration', pt.Dictionary<string>]
+                | ['string', {}]
+            >
             readonly 'name': string
             readonly 'type': 
                 | ['composite', T.Value<GPAnnotation>]
-                | ['leaf', {
-                    readonly 'hasTextContent': boolean
-                }]
+                | ['leaf', {}]
         }]
         | ['optional', T.Value<GPAnnotation>]
 }
