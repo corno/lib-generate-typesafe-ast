@@ -1,19 +1,18 @@
 import * as pt from 'pareto-core-types'
 
-import * as gglo from "./glossary"
-
 import * as gdefinition from "../../submodules/grammar_old"
 import * as gfp from "lib-fountain-pen"
 import * as gprivate from "../../submodules/private"
 import * as gresolved from "../../submodules/grammar_resolved_old"
+import * as gthis from "./glossary"
 
-export type CgenerateImplementation = gglo.FGenerateImplementation
+export type CgenerateImplementation = gthis.FGenerateImplementation
 
-export type CgenerateInterface = gglo.FGenerateInterface
+export type CgenerateInterface = gthis.FGenerateInterface
 
-export type Cserialize = ($d: {}) => gglo.FSerialize
+export type Cserialize = ($d: {}) => gthis.FSerialize
 
-export type CserializeToNew = ($d: {}) => gglo.FSerialize
+export type CserializeToNew = ($d: {}) => gthis.FSerialize
 
 export type CunboundGenerateImplementation = ($d: {
     readonly 'generateCreateDefaultVisitor': gprivate.FGenerateImplementationFile
@@ -21,14 +20,14 @@ export type CunboundGenerateImplementation = ($d: {
     readonly 'generateParser': gprivate.FGenerateImplementationFile
     readonly 'generateVisit': gprivate.FGenerateImplementationFile
     readonly 'resolve': gresolved.FResolve
-}) => gglo.FGenerateUnboundImplementation
+}) => gthis.FGenerateUnboundImplementation
 
 export type CunboundGenerateInterface = ($d: {
     readonly 'generateFunctions': gprivate.FGenerateInterfaceFile
     readonly 'generateInterfaceIndex': gprivate.FGenerateInterfaceFile
     readonly 'generateTypes': gprivate.FGenerateInterfaceFile
     readonly 'generateVisitorInterface': gprivate.FGenerateInterfaceFile
-}) => gglo.FGenerateInterface2
+}) => gthis.FGenerateInterface2
 
 export type API = {
     generateImplementation: CgenerateImplementation

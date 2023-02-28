@@ -1,9 +1,8 @@
 import * as pt from 'pareto-core-types'
 
-import * as gglo from "./glossary"
-
 import * as gcollation from "res-pareto-collation"
 import * as gforeach from "res-pareto-foreach"
+import * as gthis from "./glossary"
 import * as gts from "res-typescript"
 
 export type CcreateImplementationSerializer = ($d: {
@@ -15,7 +14,7 @@ export type CcreateImplementationSerializer = ($d: {
     readonly 'dictionaryForEach': gforeach.FDictionaryForEach
     readonly 'enrichedArrayForEach': gforeach.FEnrichedArrayForEach
     readonly 'enrichedDictionaryForEach': gforeach.FEnrichedDictionaryForEach
-}) => gglo.FSerializeImplementation
+}) => gthis.FSerializeImplementation
 
 export type CcreateStatesSerializer = ($d: {
     readonly 'arrayForEach': gforeach.FArrayForEach
@@ -24,7 +23,7 @@ export type CcreateStatesSerializer = ($d: {
     readonly 'dictionaryForEach': gforeach.FDictionaryForEach
     readonly 'enrichedArrayForEach': gforeach.FEnrichedArrayForEach
     readonly 'enrichedDictionaryForEach': gforeach.FEnrichedDictionaryForEach
-}) => gglo.FSerializeStates
+}) => gthis.FSerializeStates
 
 export type API = {
     createImplementationSerializer: CcreateImplementationSerializer

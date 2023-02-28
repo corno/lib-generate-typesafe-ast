@@ -278,6 +278,7 @@ export const $: ggr.T.Grammar<pd.SourceLocation> = {
         "variableDeclarationList": node("VariableDeclarationList", array(component("variableDeclaration"))),
     }),
     'root': {
-        'key': "sourceFile"
+        'key': "sourceFile",
+        'annotation': pd.getLocationInfo(0),
     },
 }

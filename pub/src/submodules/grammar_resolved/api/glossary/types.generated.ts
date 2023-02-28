@@ -8,10 +8,13 @@ export namespace T {
         
         export namespace root {
             
+            export type annotation<GPAnnotation> = GPAnnotation
+            
             export type key<GPAnnotation> = string
         }
         
         export type root<GPAnnotation> = {
+            readonly 'annotation': GPAnnotation
             readonly 'key': string
         }
         
@@ -25,6 +28,7 @@ export namespace T {
     
     export type Grammar<GPAnnotation> = {
         readonly 'root': {
+            readonly 'annotation': GPAnnotation
             readonly 'key': string
         }
         readonly 'types': pt.Dictionary<T.Value<GPAnnotation>>
@@ -38,10 +42,13 @@ export namespace T {
             
             export namespace _ldefault {
                 
+                export type annotation<GPAnnotation> = GPAnnotation
+                
                 export type key<GPAnnotation> = string
             }
             
             export type _ldefault<GPAnnotation> = {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
             
@@ -55,6 +62,7 @@ export namespace T {
         
         export type choice<GPAnnotation> = {
             readonly 'default': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
             readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
@@ -64,16 +72,20 @@ export namespace T {
             
             export namespace _ltype {
                 
+                export type annotation<GPAnnotation> = GPAnnotation
+                
                 export type key<GPAnnotation> = string
             }
             
             export type _ltype<GPAnnotation> = {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
         }
         
         export type component<GPAnnotation> = {
             readonly 'type': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
         }
@@ -165,12 +177,14 @@ export namespace T {
         | ['array', T.Value<GPAnnotation>]
         | ['choice', {
             readonly 'default': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
             readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
         }]
         | ['component', {
             readonly 'type': {
+                readonly 'annotation': GPAnnotation
                 readonly 'key': string
             }
         }]

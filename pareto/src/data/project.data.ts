@@ -1,15 +1,10 @@
-import {
-    array, boolean, computed, data, dictionary, func, glossaryParameter, group, interfaceReference, member, method, optional, parametrizedTypeReference, reference, string, taggedUnion, type, typeReference, types
-} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 import * as pd from 'pareto-core-data'
-
-import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
 
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as grammar_resolved_old } from "./submodules/grammar_resolved_old/module.deprecated"
-import { $ as alg } from "./submodules/algorithm.deprecated"
-import { $ as p2t } from "./submodules/pareto2typescript.data"
+import { $ as alg } from "./submodules/algorithm/moduleDefinition.deprecated"
+import { $ as p2t } from "./submodules/pareto2typescript/moduleDefinition.data"
 import { $ as _2liana } from "./submodules/2liana/module.data"
 import { $ as _private } from "./submodules/private/module.data"
 import { $ as grammar } from "./submodules/grammar/module.generated"

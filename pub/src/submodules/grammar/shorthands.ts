@@ -24,6 +24,7 @@ export function choice(options: RawDictionary<t.T.Value<pd.SourceLocation>>): t.
         'options': pd.d(options),
         'default': {
             'key': firstKey,
+            'annotation': li,
         },
     }]
 }
@@ -66,10 +67,9 @@ export function member(value: t.T.Value<pd.SourceLocation>): t.T.Value.group.mem
 export function component(name: string): t.T.Value<pd.SourceLocation> {
     return ['component', {
         'type': {
-            'key': name
-        }
-        // 'annotation': pd.getLocationInfo(1),
-        // 'name': name,
+            'key': name,
+            'annotation': pd.getLocationInfo(1),
+        },
     }]
 }
 

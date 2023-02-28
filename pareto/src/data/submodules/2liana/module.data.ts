@@ -7,7 +7,7 @@ import {
     array, boolean, computed, data, dictionary, func, glossaryParameter, group, interfaceReference, member, method, optional, parametrizedTypeReference, reference, string, taggedUnion, type, typeReference, types
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
+import { algorithm, constructor, functionReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
 
 const d = pd.d
 const a = pd.a
@@ -36,9 +36,10 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
         },
         'api': {
             'imports': d({
+                "this": "./glossary",
             }),
             'algorithms': d({
-                "map2Liana": algorithm(definitionReference("Map2Liana"))
+                "map2Liana": algorithm(functionReference("this", {}, "Map2Liana"))
             })
         },
     },

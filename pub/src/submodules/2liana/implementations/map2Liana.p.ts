@@ -62,32 +62,44 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                             })
                         case 'node':
                             return pl.cc($[1], ($) => {
-                                pd.implementMe(`case`)
+                                $.name
+                                $.flags
+                                $.type
+                                return ['group', {
+                                    'properties': pm.wrapRawDictionary({
+                                
+                                        "name": {
+                                            'type': ['string', {
+                                                'constrained': ['no', {
+                                                    'type': {
+                                                        'key': "SDFSDFSFSDFSDFSFSDF",
+                                                        //'annotation': "SDSDFSDF"
+                                                    },
+                                                }],
+
+                                            }],
+                                        }
+                                    })
+                                }]
                             })
                         case 'optional':
                             return pl.cc($[1], ($) => {
-                                pd.implementMe(`case`)
+                                return ['optional', {
+                                    'type': mapValue($)
+                                }]
                             })
                         default: return pl.au($[0])
                     }
                 }
                 return {
-                    // 'parameters': {
-                    //     'dictionary': pm.wrapRawDictionary({}),
-                    //     'annotation': ['internal', "FOO"]
-                    // }, 
                     'parameters': pm.wrapRawDictionary({}),
                     'type': mapValue($)
                 }
             }),
-            // 'string types': {
-            //     'dictionary': pm.wrapRawDictionary({}),
-            //     'annotation': ['internal', "FOO"]
-            // },
         },
         'root': {
-            'key': "FOO",
-            'annotation': ['internal', "FOO"]
+            'key': $.root.key,
+            'annotation': $.root.annotation,
         },
     }
 }

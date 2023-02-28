@@ -7,7 +7,7 @@ import {
     array, boolean, computed, data, dictionary, func, glossaryParameter, group, interfaceReference, member, method, optional, parametrizedTypeReference, reference, string, taggedUnion, type, typeReference, types
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
+import { algorithm, constructor,  functionReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
 
 const d = pd.d
 const a = pd.a
@@ -65,13 +65,14 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
         'api': {
             'imports': d({
                 "foreach": "res-pareto-foreach",
+                "this": "./glossary",
             }),
             'algorithms': d({
-                "serialize": algorithm(definitionReference("Serialize"), constructor(null, {
-                    "dictionaryForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                "serialize": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
+                    "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
                 })),
-                "serializeToNew": algorithm(definitionReference("Serialize"), constructor(null, {
-                    "dictionaryForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                "serializeToNew": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
+                    "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
                 }))
             })
         },

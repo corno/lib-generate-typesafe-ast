@@ -1,10 +1,9 @@
 import * as pt from 'pareto-core-types'
 
-import * as gglo from "./glossary"
-
 import * as gforeach from "res-pareto-foreach"
+import * as gthis from "./glossary"
 
-export type Cresolve = gglo.FResolve
+export type Cresolve = gthis.FResolve
 
 export type API = {
     resolve: Cresolve

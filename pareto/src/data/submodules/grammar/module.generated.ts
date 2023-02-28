@@ -21,6 +21,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                     'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
                         "root": {
                             'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                },
                                 "key": {
                                     'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                 },
@@ -46,6 +49,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "choice": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "default": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                    "annotation": {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                    },
                                     "key": {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                     },
@@ -62,6 +68,9 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                         "component": <gglossary.T.Type<pd.SourceLocation>>['group', d({
                             "type": {
                                 'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
+                                    "annotation": {
+                                        'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
+                                    },
                                     "key": {
                                         'type': <gglossary.T.Type<pd.SourceLocation>>['string', {}],
                                     },

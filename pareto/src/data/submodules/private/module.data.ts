@@ -1,13 +1,12 @@
 import * as pd from 'pareto-core-data'
 
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 import {
     array, boolean, computed, data, dictionary, func, glossaryParameter, group, interfaceReference, member, method, optional, parametrizedTypeReference, reference, string, taggedUnion, type, typeReference, types
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
+import { algorithm, constructor,  functionReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
 
 const d = pd.d
 const a = pd.a
@@ -42,29 +41,30 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                 //"fp": "lib-fountain-pen",
                 "tostring": "res-pareto-tostring",
                 "build": "res-pareto-build",
+                "this": "./glossary",
             }),
             'algorithms': d({
-                "generateFunctions": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {})),
-                "generateInterfaceIndex": algorithm(definitionReference("GenerateInterfaceFile")),
-                "generateTypes": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {
-                    "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
-                    "joinNestedStrings": definitionReference("tostring", {}, "JoinNestedStrings"),
+                "generateFunctions": algorithm(functionReference("this", {}, "GenerateInterfaceFile"), constructor(null, {})),
+                "generateInterfaceIndex": algorithm(functionReference("this", {}, "GenerateInterfaceFile")),
+                "generateTypes": algorithm(functionReference("this", {}, "GenerateInterfaceFile"), constructor(null, {
+                    "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
+                    "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings"),
                 })),
-                "generateVisitorInterface": algorithm(definitionReference("GenerateInterfaceFile"), constructor(null, {
-                    "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                "generateVisitorInterface": algorithm(functionReference("this", {}, "GenerateInterfaceFile"), constructor(null, {
+                    "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
                 })),
 
-                "generateImplementationIndex": algorithm(definitionReference("GenerateImplementationFile")),
-                "generateParser": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
-                    "getKeysAsString": definitionReference("tostring", {}, "GetKeysAsString"),
-                    "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
-                    "buildDictionary": definitionReference("build", {}, "BuildDictionary"),
+                "generateImplementationIndex": algorithm(functionReference("this", {}, "GenerateImplementationFile")),
+                "generateParser": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
+                    "getKeysAsString": functionReference("tostring", {}, "GetKeysAsString"),
+                    "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
+                    "buildDictionary": functionReference("build", {}, "BuildDictionary"),
                 })),
-                "generateCreateDefaultVisitor": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
-                    "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                "generateCreateDefaultVisitor": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
+                    "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
                 })),
-                "generateVisit": algorithm(definitionReference("GenerateImplementationFile"), constructor(null, {
-                    "sortedForEach": definitionReference("foreach", {}, "DictionaryForEach"),
+                "generateVisit": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
+                    "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
                 })),
             })
         },

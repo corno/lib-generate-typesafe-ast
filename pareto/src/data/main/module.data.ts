@@ -7,7 +7,7 @@ import {
     array, boolean, computed, data, dictionary, func, glossaryParameter, group, interfaceReference, member, method, optional, parametrizedTypeReference, reference, string, taggedUnion, type, typeReference, types
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import { algorithm, constructor, definitionReference } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
+import { algorithm, constructor, functionReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
 
 const d = pd.d
 const a = pd.a
@@ -61,30 +61,31 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
                 "resolved": "../../submodules/grammar_resolved_old",
                 "fp": "lib-fountain-pen",
                 "private": "../../submodules/private",
+                "this": "./glossary",
             }),
             'algorithms': d({
-                "generateImplementation": algorithm(definitionReference("GenerateImplementation")),
-                "generateInterface": algorithm(definitionReference("GenerateInterface")),
-                "unboundGenerateImplementation": algorithm(definitionReference("GenerateUnboundImplementation"), constructor(null, {
-                    "generateImplementationIndex": definitionReference("private", {}, "GenerateImplementationFile"),
-                    "generateParser": definitionReference("private", {}, "GenerateImplementationFile"),
-                    "generateCreateDefaultVisitor": definitionReference("private", {}, "GenerateImplementationFile"),
-                    "generateVisit": definitionReference("private", {}, "GenerateImplementationFile"),
-                    "resolve": definitionReference("resolved", {}, "Resolve"),
+                "generateImplementation": algorithm(functionReference("this", {}, "GenerateImplementation")),
+                "generateInterface": algorithm(functionReference("this", {}, "GenerateInterface")),
+                "unboundGenerateImplementation": algorithm(functionReference("this", {}, "GenerateUnboundImplementation"), constructor(null, {
+                    "generateImplementationIndex": functionReference("private", {}, "GenerateImplementationFile"),
+                    "generateParser": functionReference("private", {}, "GenerateImplementationFile"),
+                    "generateCreateDefaultVisitor": functionReference("private", {}, "GenerateImplementationFile"),
+                    "generateVisit": functionReference("private", {}, "GenerateImplementationFile"),
+                    "resolve": functionReference("resolved", {}, "Resolve"),
                 })),
-                "unboundGenerateInterface": algorithm(definitionReference("GenerateInterface2"), constructor(null, {
-                    "generateFunctions": definitionReference("private", {}, "GenerateInterfaceFile"),
-                    "generateInterfaceIndex": definitionReference("private", {}, "GenerateInterfaceFile"),
-                    "generateTypes": definitionReference("private", {}, "GenerateInterfaceFile"),
-                    "generateVisitorInterface": definitionReference("private", {}, "GenerateInterfaceFile"),
+                "unboundGenerateInterface": algorithm(functionReference("this", {}, "GenerateInterface2"), constructor(null, {
+                    "generateFunctions": functionReference("private", {}, "GenerateInterfaceFile"),
+                    "generateInterfaceIndex": functionReference("private", {}, "GenerateInterfaceFile"),
+                    "generateTypes": functionReference("private", {}, "GenerateInterfaceFile"),
+                    "generateVisitorInterface": functionReference("private", {}, "GenerateInterfaceFile"),
                 })),
-                "serialize": algorithm(definitionReference("Serialize"), constructor(null, {
-                    // "createFountainPen": definitionReference("fp", {}, "CreateWriter"),
-                    // "serialize": definitionReference("definition", {}, "Serialize"),
+                "serialize": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
+                    // "createFountainPen": functionReference("this", {}, "fp", {}, "CreateWriter"),
+                    // "serialize": functionReference("this", {}, "definition", {}, "Serialize"),
                 })),
-                "serializeToNew": algorithm(definitionReference("Serialize"), constructor(null, {
-                    // "createFountainPen": definitionReference("fp", {}, "CreateWriter"),
-                    // "serialize": definitionReference("definition", {}, "Serialize"),
+                "serializeToNew": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
+                    // "createFountainPen": functionReference("this", {}, "fp", {}, "CreateWriter"),
+                    // "serialize": functionReference("this", {}, "definition", {}, "Serialize"),
                 }))
             })
         },
