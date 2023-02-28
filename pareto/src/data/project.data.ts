@@ -32,11 +32,11 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
         'submodules': d({
             "pt2": {
                 'definition': p2t,
-                'implementation': ['manual', {}],
+                'implementation': ['typescript', {}],
             },
             "algorithm": {
                 'definition': alg,
-                'implementation': ['manual', {}],
+                'implementation': ['typescript', {}],
             },
             "2liana": _2liana,
             "grammar": grammar,

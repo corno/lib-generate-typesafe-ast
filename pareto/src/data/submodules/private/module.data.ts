@@ -69,5 +69,5 @@ export const $: gproject.T.Module<pd.SourceLocation> = {
             })
         },
     },
-    'implementation': ['manual', {}],
+    'implementation': ['typescript', {}],
 }

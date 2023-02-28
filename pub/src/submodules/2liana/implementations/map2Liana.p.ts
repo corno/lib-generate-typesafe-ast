@@ -37,7 +37,7 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                                     }),
                                     'default': {
                                         'key': "FIXMEDEFAULT",
-                                        //'annotation': ['internal', "FOO"]
+                                        'annotation': ['internal', "FOO"]
                                     }
                                 }]
                             })
@@ -47,7 +47,7 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                                     'context': ['local', {}],
                                     'type': {
                                         'key': $.type.key,
-                                        //  'annotation': ['source', $.annotation],
+                                        'annotation': ['source', $.type.annotation],
                                     },
                                     // 'arguments': {
                                     //     'dictionary': pm.wrapRawDictionary({}),
@@ -67,13 +67,13 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
                                 $.type
                                 return ['group', {
                                     'properties': pm.wrapRawDictionary({
-                                
+
                                         "name": {
                                             'type': ['string', {
                                                 'constrained': ['no', {
                                                     'type': {
                                                         'key': "SDFSDFSFSDFSDFSFSDF",
-                                                        //'annotation': "SDSDFSDF"
+                                                        'annotation': ['internal', "FOO"]
                                                     },
                                                 }],
 
@@ -99,7 +99,7 @@ export const $$: Cmap2Liana = <InAnnotation>($: gdefinition.T.Grammar<InAnnotati
         },
         'root': {
             'key': $.root.key,
-            'annotation': $.root.annotation,
+            'annotation': ['source', $.root.annotation],
         },
     }
 }
