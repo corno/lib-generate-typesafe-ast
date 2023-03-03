@@ -15,17 +15,12 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
             'root': glossary,
             'imports': d({
                 "fp": external("lib-fountain-pen"),
-                "definition": sibling("grammar_old"),
-                "resolved": sibling("grammar_resolved_old"),
             }),
         },
         'api': {
             'root': api,
             'imports': d({
-                "foreach": external("res-pareto-foreach"),
-                //"fp": "lib-fountain-pen",
-                "tostring": external("res-pareto-tostring"),
-                "build": external("res-pareto-build"),
+                "foreach":external("res-pareto-foreach"),
                 "this": this_(),
             }),
         }

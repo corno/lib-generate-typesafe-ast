@@ -5,7 +5,7 @@ import { external, sibling, this_ } from "lib-pareto-typescript-project/dist/sub
 import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as api } from "./api.data"
-import { $ as glossary } from "./glossary.data"
+import { $ as glossary } from "./glossary.deprecated"
 
 const d = pd.d
 
@@ -14,19 +14,13 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
         'glossary': {
             'root': glossary,
             'imports': d({
-                "fp": external("lib-fountain-pen"),
-                "definition": sibling("grammar_old"),
-                "resolved": sibling("grammar_resolved_old"),
+                "common": external("glo-pareto-common"),
             }),
         },
         'api': {
             'root': api,
             'imports': d({
-                "foreach": external("res-pareto-foreach"),
-                //"fp": "lib-fountain-pen",
-                "tostring": external("res-pareto-tostring"),
-                "build": external("res-pareto-build"),
-                "this": this_(),
+                "common": external("glo-pareto-common"),
             }),
         }
     },
