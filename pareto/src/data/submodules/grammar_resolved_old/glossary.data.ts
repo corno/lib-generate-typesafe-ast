@@ -12,7 +12,7 @@ import {
     parametrizedType,
     typeReference,
     optional,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number, glossaryParameter
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, glossaryParameter
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -25,18 +25,18 @@ export const $: mglossary.T.Glossary<string> = {
         "ValueType": type(taggedUnion({
             "reference": group({
                 "referencee": member(computed(reference("ValueType"))),
-                "name": member(string())
+                "name": member(string()),
             }),
             "choice": group({
-                "options": member(dictionary(reference("Value")))
+                "options": member(dictionary(reference("Value"))),
             }),
             "node": reference("Node2"),
             "sequence": group({
                 "elements": member(array(group({
                     "name": member(string()),
-                    "value": member(reference("Value"))
-                })))
-            })
+                    "value": member(reference("Value")),
+                }))),
+            }),
         })),
         "Value": type(group({
             "cardinality": member(taggedUnion({
@@ -48,7 +48,7 @@ export const $: mglossary.T.Glossary<string> = {
         })),
         "Grammar": type(group({
             "globalValueTypes": member(dictionary(reference("ValueType"))),
-            "root": member(reference("Node2"))
+            "root": member(reference("Node2")),
         })),
         "Node2": type(group({
             "name": member(string()),
@@ -57,19 +57,20 @@ export const $: mglossary.T.Glossary<string> = {
                 "leaf": group({
                     "hasTextContent": member(boolean()),
                 }),
-            }))
+            })),
         })),
         "PossibleGrammar": type(optional(reference("Grammar"))),
         "ResolveError": type(group({
             "type": member(taggedUnion({
                 "no such global value type": string(),
-            }))
-        }))
+            })),
+        })),
     }),
+    'builders': d({}),
     'interfaces': d({
-        "OnResolveError": method(typeReference("ResolveError"))
+        //"OnResolveError": method(typeReference("ResolveError")),
     }),
     'functions': d({
-        "Resolve": func(typeReference("definition", "Grammar"), null, interfaceReference("OnResolveError"), data(typeReference("PossibleGrammar"), false))
+        //"Resolve": func(typeReference("definition", "Grammar"), null, interfaceReference("OnResolveError"), data(typeReference("PossibleGrammar"), false)),
     }),
 }

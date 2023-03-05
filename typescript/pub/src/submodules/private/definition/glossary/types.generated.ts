@@ -1,29 +1,29 @@
 import * as pt from 'pareto-core-types'
 
-import * as gdefinition from "../../../grammar_old"
-import * as gfp from "lib-fountain-pen"
-import * as gresolved from "../../../grammar_resolved_old"
+import * as g_definition from "../../../grammar_old"
+import * as g_fp from "lib-fountain-pen"
+import * as g_resolved from "../../../grammar_resolved_old"
 
 export namespace T {
     
     export namespace GenerateImplementationFileData {
         
-        export type grammar = gresolved.T.Grammar
+        export type grammar = g_resolved.T.Grammar
         
         export type pathToInterface = string
     }
     
     export type GenerateImplementationFileData = {
-        readonly 'grammar': gresolved.T.Grammar
+        readonly 'grammar': g_resolved.T.Grammar
         readonly 'pathToInterface': string
     }
     
     export namespace GenerateInterfaceFileData {
         
-        export type grammar = gdefinition.T.Grammar
+        export type grammar = g_definition.T.Grammar
     }
     
     export type GenerateInterfaceFileData = {
-        readonly 'grammar': gdefinition.T.Grammar
+        readonly 'grammar': g_definition.T.Grammar
     }
 }

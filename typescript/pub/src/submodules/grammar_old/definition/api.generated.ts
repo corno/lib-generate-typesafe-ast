@@ -1,17 +1,17 @@
 import * as pt from 'pareto-core-types'
 
-import * as gforeach from "res-pareto-foreach"
-import * as gthis from "./glossary"
+import * as g_foreach from "res-pareto-foreach"
+import * as g_this from "./glossary"
 
-export type Cserialize = ($d: {
-    readonly 'dictionaryForEach': gforeach.FDictionaryForEach
-}) => gthis.FSerialize
+export type serialize = ($d: {
+    readonly 'dictionaryForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.Serialize
 
-export type CserializeToNew = ($d: {
-    readonly 'dictionaryForEach': gforeach.FDictionaryForEach
-}) => gthis.FSerialize
+export type serializeToNew = ($d: {
+    readonly 'dictionaryForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.Serialize
 
 export type API = {
-    serialize: Cserialize
-    serializeToNew: CserializeToNew
+    serialize: serialize
+    serializeToNew: serializeToNew
 }

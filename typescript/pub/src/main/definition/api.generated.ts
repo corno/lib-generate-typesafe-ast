@@ -1,39 +1,39 @@
 import * as pt from 'pareto-core-types'
 
-import * as gdefinition from "../../submodules/grammar_old"
-import * as gfp from "../../submodules/lib-fountain-pen"
-import * as gprivate from "../../submodules/private"
-import * as gresolved from "../../submodules/grammar_resolved_old"
-import * as gthis from "../../submodules/glossary"
+import * as g_definition from "../../submodules/grammar_old"
+import * as g_fp from "../../submodules/lib-fountain-pen"
+import * as g_private from "../../submodules/private"
+import * as g_resolved from "../../submodules/grammar_resolved_old"
+import * as g_this from "../../submodules/glossary"
 
-export type CgenerateImplementation = gthis.FGenerateImplementation
+export type generateImplementation = g_this.F.GenerateImplementation
 
-export type CgenerateInterface = gthis.FGenerateInterface
+export type generateInterface = g_this.F.GenerateInterface
 
-export type Cserialize = ($d: {}) => gthis.FSerialize
+export type serialize = ($d: {}) => g_this.F.Serialize
 
-export type CserializeToNew = ($d: {}) => gthis.FSerialize
+export type serializeToNew = ($d: {}) => g_this.F.Serialize
 
-export type CunboundGenerateImplementation = ($d: {
-    readonly 'generateCreateDefaultVisitor': gprivate.FGenerateImplementationFile
-    readonly 'generateImplementationIndex': gprivate.FGenerateImplementationFile
-    readonly 'generateParser': gprivate.FGenerateImplementationFile
-    readonly 'generateVisit': gprivate.FGenerateImplementationFile
-    readonly 'resolve': gresolved.FResolve
-}) => gthis.FGenerateUnboundImplementation
+export type unboundGenerateImplementation = ($d: {
+    readonly 'generateCreateDefaultVisitor': g_private.F.GenerateImplementationFile
+    readonly 'generateImplementationIndex': g_private.F.GenerateImplementationFile
+    readonly 'generateParser': g_private.F.GenerateImplementationFile
+    readonly 'generateVisit': g_private.F.GenerateImplementationFile
+    readonly 'resolve': g_resolved.F.Resolve
+}) => g_this.F.GenerateUnboundImplementation
 
-export type CunboundGenerateInterface = ($d: {
-    readonly 'generateFunctions': gprivate.FGenerateInterfaceFile
-    readonly 'generateInterfaceIndex': gprivate.FGenerateInterfaceFile
-    readonly 'generateTypes': gprivate.FGenerateInterfaceFile
-    readonly 'generateVisitorInterface': gprivate.FGenerateInterfaceFile
-}) => gthis.FGenerateInterface2
+export type unboundGenerateInterface = ($d: {
+    readonly 'generateFunctions': g_private.F.GenerateInterfaceFile
+    readonly 'generateInterfaceIndex': g_private.F.GenerateInterfaceFile
+    readonly 'generateTypes': g_private.F.GenerateInterfaceFile
+    readonly 'generateVisitorInterface': g_private.F.GenerateInterfaceFile
+}) => g_this.F.GenerateInterface2
 
 export type API = {
-    generateImplementation: CgenerateImplementation
-    generateInterface: CgenerateInterface
-    serialize: Cserialize
-    serializeToNew: CserializeToNew
-    unboundGenerateImplementation: CunboundGenerateImplementation
-    unboundGenerateInterface: CunboundGenerateInterface
+    generateImplementation: generateImplementation
+    generateInterface: generateInterface
+    serialize: serialize
+    serializeToNew: serializeToNew
+    unboundGenerateImplementation: unboundGenerateImplementation
+    unboundGenerateInterface: unboundGenerateInterface
 }

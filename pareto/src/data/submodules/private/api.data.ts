@@ -29,5 +29,5 @@ export const $: gapi.T.API<pd.SourceLocation> = {
         "generateVisit": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
             "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
         })),
-    })
+    }),
 }

@@ -42,19 +42,19 @@ export const $: gliana.T.Model<pd.SourceLocation> = {
                     "flags": prop(dictionary(taggedUnion({
                         "string": group({}),
                         "enumeration": dictionary(string("identifier")),
-                    })))
+                    }))),
                 }),
                 "group": group({
                     "members": prop(dictionary(group({
-                        "value": prop(component("Value", {}))
-                    })))
+                        "value": prop(component("Value", {})),
+                    }))),
                 }),
                 "array": component("Value", {}),
                 "optional": component("Value", {}),
             })),
             "Grammar": globalType({}, group({
                 "types": prop(dictionary(component("Value", {}))),
-                "root": prop(reference(['sibling', "XXX"], []))
+                "root": prop(reference(['sibling', "XXX"], [])),
             })),
 
         }),

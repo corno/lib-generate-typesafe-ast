@@ -1,46 +1,46 @@
 import * as pt from 'pareto-core-types'
 
-import * as gbuild from "res-pareto-build"
-import * as gforeach from "res-pareto-foreach"
-import * as gthis from "./glossary"
-import * as gtostring from "res-pareto-tostring"
+import * as g_build from "res-pareto-build"
+import * as g_foreach from "res-pareto-foreach"
+import * as g_this from "./glossary"
+import * as g_tostring from "res-pareto-tostring"
 
-export type CgenerateCreateDefaultVisitor = ($d: {
-    readonly 'sortedForEach': gforeach.FDictionaryForEach
-}) => gthis.FGenerateImplementationFile
+export type generateCreateDefaultVisitor = ($d: {
+    readonly 'sortedForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.GenerateImplementationFile
 
-export type CgenerateFunctions = ($d: {}) => gthis.FGenerateInterfaceFile
+export type generateFunctions = ($d: {}) => g_this.F.GenerateInterfaceFile
 
-export type CgenerateImplementationIndex = gthis.FGenerateImplementationFile
+export type generateImplementationIndex = g_this.F.GenerateImplementationFile
 
-export type CgenerateInterfaceIndex = gthis.FGenerateInterfaceFile
+export type generateInterfaceIndex = g_this.F.GenerateInterfaceFile
 
-export type CgenerateParser = ($d: {
-    readonly 'buildDictionary': gbuild.FBuildDictionary
-    readonly 'getKeysAsString': gtostring.FGetKeysAsString
-    readonly 'sortedForEach': gforeach.FDictionaryForEach
-}) => gthis.FGenerateImplementationFile
+export type generateParser = ($d: {
+    readonly 'buildDictionary': g_build.F.BuildDictionary
+    readonly 'getKeysAsString': g_tostring.F.GetKeysAsString
+    readonly 'sortedForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.GenerateImplementationFile
 
-export type CgenerateTypes = ($d: {
-    readonly 'joinNestedStrings': gtostring.FJoinNestedStrings
-    readonly 'sortedForEach': gforeach.FDictionaryForEach
-}) => gthis.FGenerateInterfaceFile
+export type generateTypes = ($d: {
+    readonly 'joinNestedStrings': g_tostring.F.JoinNestedStrings
+    readonly 'sortedForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.GenerateInterfaceFile
 
-export type CgenerateVisit = ($d: {
-    readonly 'sortedForEach': gforeach.FDictionaryForEach
-}) => gthis.FGenerateImplementationFile
+export type generateVisit = ($d: {
+    readonly 'sortedForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.GenerateImplementationFile
 
-export type CgenerateVisitorInterface = ($d: {
-    readonly 'sortedForEach': gforeach.FDictionaryForEach
-}) => gthis.FGenerateInterfaceFile
+export type generateVisitorInterface = ($d: {
+    readonly 'sortedForEach': g_foreach.F.DictionaryForEach
+}) => g_this.F.GenerateInterfaceFile
 
 export type API = {
-    generateCreateDefaultVisitor: CgenerateCreateDefaultVisitor
-    generateFunctions: CgenerateFunctions
-    generateImplementationIndex: CgenerateImplementationIndex
-    generateInterfaceIndex: CgenerateInterfaceIndex
-    generateParser: CgenerateParser
-    generateTypes: CgenerateTypes
-    generateVisit: CgenerateVisit
-    generateVisitorInterface: CgenerateVisitorInterface
+    generateCreateDefaultVisitor: generateCreateDefaultVisitor
+    generateFunctions: generateFunctions
+    generateImplementationIndex: generateImplementationIndex
+    generateInterfaceIndex: generateInterfaceIndex
+    generateParser: generateParser
+    generateTypes: generateTypes
+    generateVisit: generateVisit
+    generateVisitorInterface: generateVisitorInterface
 }

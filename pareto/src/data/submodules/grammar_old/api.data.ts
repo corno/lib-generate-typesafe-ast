@@ -12,6 +12,6 @@ export const $: gapi.T.API<pd.SourceLocation> = {
         })),
         "serializeToNew": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
             "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
-        }))
-    })
+        })),
+    }),
 }

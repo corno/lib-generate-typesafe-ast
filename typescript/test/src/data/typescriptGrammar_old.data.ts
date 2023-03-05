@@ -67,7 +67,7 @@ import * as pd from 'pareto-core-data'
 //                                                     "expression": {
 //                                                         'type': ['reference', { 'name': `expression` }],
 //                                                     },
-//                                                 })
+//                                                 }),
 //                                             }]
 //                                         }
 //                                     },
@@ -159,7 +159,7 @@ import * as pd from 'pareto-core-data'
 //                                                             'type': ['leaf', { 'hasTextContent': false }]
 //                                                         }]
 //                                                     }
-//                                                 })
+//                                                 }),
 //                                             }],
 //                                         }
 //                                     },
@@ -169,7 +169,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `expression` }],
 //                                         }
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -201,7 +201,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `expression` }]
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -248,7 +248,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `expression` }],
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -271,7 +271,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `expression` }],
 //                                         }
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }],
 //                         }]
 //                     }]
@@ -308,7 +308,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `expression` }],
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -360,7 +360,7 @@ import * as pd from 'pareto-core-data'
 //                                                                     'name': `stringLiteral`
 //                                                                 }]
 //                                                             },
-//                                                         })
+//                                                         }),
 //                                                     }]
 //                                                 }
 //                                             },
@@ -370,7 +370,7 @@ import * as pd from 'pareto-core-data'
 //                                                     'type': ['reference', { 'name': `expression` }],
 //                                                 }
 //                                             },
-//                                         ])
+//                                         ]),
 //                                     }]
 //                                 }]
 //                             }]
@@ -419,7 +419,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `expression` }],
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }],
 //                     }]
@@ -476,17 +476,17 @@ import * as pd from 'pareto-core-data'
 //                                                                                     'type': ['leaf', { 'hasTextContent': true }]
 //                                                                                 }],
 //                                                                             }
-//                                                                         })
+//                                                                         }),
 //                                                                     }],
 //                                                                 }
 //                                                             },
-//                                                         ])
+//                                                         ]),
 //                                                     }]
 //                                                 }]
 //                                             }]
 //                                         }
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -497,7 +497,7 @@ import * as pd from 'pareto-core-data'
 //                         'type': ['leaf', { 'hasTextContent': false }]
 //                     }]
 //                 },
-//             })
+//             }),
 //         }],
 //         'functionDefinition': ['sequence', {
 //             'elements': pd.a([
@@ -526,7 +526,7 @@ import * as pd from 'pareto-core-data'
 //                         'type': ['reference', { 'name': `type` }],
 //                     },
 //                 },
-//             ])
+//             ]),
 //         }],
 //         'identifier': ['node', {
 //             'name': `Identifier`,
@@ -544,7 +544,7 @@ import * as pd from 'pareto-core-data'
 //                         'name': `stringLiteral`
 //                     }]
 //                 },
-//             })
+//             }),
 //         }],
 //         'modifier': ['choice', {
 //             //AbstractKeyword | AsyncKeyword | ConstKeyword | DeclareKeyword | DefaultKeyword | ExportKeyword | PrivateKeyword | ProtectedKeyword | PublicKeyword | OverrideKeyword | ReadonlyKeyword | StaticKeyword;
@@ -567,7 +567,7 @@ import * as pd from 'pareto-core-data'
 //                         'type': ['leaf', { 'hasTextContent': false }],
 //                     }]
 //                 },
-//             })
+//             }),
 //         }],
 //         'numericLiteral': ['node', {
 //             'name': `NumericLiteral`,
@@ -603,7 +603,7 @@ import * as pd from 'pareto-core-data'
 //                                 'type': ['reference', { 'name': `type` }],
 //                             }
 //                         }
-//                     ])
+//                     ]),
 //                 }]
 //             }]
 //         }],
@@ -681,7 +681,7 @@ import * as pd from 'pareto-core-data'
 //                                             }]
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -724,7 +724,7 @@ import * as pd from 'pareto-core-data'
 //                                             }]
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -754,7 +754,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `statement` }],
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -810,14 +810,14 @@ import * as pd from 'pareto-core-data'
 //                                                                                                 }],
 //                                                                                             }
 //                                                                                         },
-//                                                                                     ])
+//                                                                                     ]),
 //                                                                                 }]
 //                                                                             }]
 //                                                                         }]
 //                                                                     }]
 //                                                                 }]
 //                                                             }
-//                                                         })
+//                                                         }),
 //                                                     }]
 //                                                 }]
 //                                             }]
@@ -831,7 +831,7 @@ import * as pd from 'pareto-core-data'
 //                                             }],
 //                                         }
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -873,7 +873,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `typeSignature` }]
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -898,7 +898,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `statement` }],
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -952,7 +952,7 @@ import * as pd from 'pareto-core-data'
 //                                                                                         'type': ['reference', { 'name': `statement` }]
 //                                                                                     },
 //                                                                                 }
-//                                                                             ])
+//                                                                             ]),
 //                                                                         }]
 //                                                                     }]
 //                                                                 }]
@@ -966,13 +966,13 @@ import * as pd from 'pareto-core-data'
 //                                                                     }]
 //                                                                 }]
 //                                                             },
-//                                                         })
+//                                                         }),
 //                                                     }]
 //                                                 }]
 //                                             }]
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }],
 //                         }]
 //                     }]
@@ -1023,13 +1023,13 @@ import * as pd from 'pareto-core-data'
 //                                                                     }]
 //                                                                 }
 //                                                             },
-//                                                         ])
+//                                                         ]),
 //                                                     }]
 //                                                 }]
 //                                             }]
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1070,7 +1070,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `type` }],
 //                                         },
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1096,7 +1096,7 @@ import * as pd from 'pareto-core-data'
 //                                             }]
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1121,12 +1121,12 @@ import * as pd from 'pareto-core-data'
 //                                             }],
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
 //                 },
-//             })
+//             }),
 //         }],
 //         'stringLiteral': ['node', {
 //             'name': `StringLiteral`,
@@ -1176,7 +1176,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `type` }],
 //                                         },
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1198,7 +1198,7 @@ import * as pd from 'pareto-core-data'
 //                                             'name': `stringLiteral`
 //                                         }],
 //                                     },
-//                                 })
+//                                 }),
 //                             }]
 //                         }]
 //                     }]
@@ -1294,12 +1294,12 @@ import * as pd from 'pareto-core-data'
 //                                                                                 }],
 //                                                                             }
 //                                                                         },
-//                                                                     ])
+//                                                                     ]),
 //                                                                 }],
 //                                                             }]
 //                                                         }]
 //                                                     }
-//                                                 })
+//                                                 }),
 //                                             }]
 //                                         }
 //                                     },
@@ -1310,7 +1310,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `type` }],
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1336,7 +1336,7 @@ import * as pd from 'pareto-core-data'
 //                         'type': ['leaf', { 'hasTextContent': false }]
 //                     }]
 //                 },
-//             })
+//             }),
 //         }],
 //         'typeParameter': ['node', {
 //             'name': `TypeParameter`,
@@ -1371,7 +1371,7 @@ import * as pd from 'pareto-core-data'
 //                                             }]
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1404,7 +1404,7 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `type` }],
 //                                         },
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1431,7 +1431,7 @@ import * as pd from 'pareto-core-data'
 //                                             }]
 //                                         }
 //                                     },
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
@@ -1472,12 +1472,12 @@ import * as pd from 'pareto-core-data'
 //                                             'type': ['reference', { 'name': `type` }],
 //                                         },
 //                                     }
-//                                 ])
+//                                 ]),
 //                             }]
 //                         }]
 //                     }]
 //                 },
-//             })
+//             }),
 //         }],
 //         'variableDeclaration': ['node', {
 //             'name': `VariableDeclaration`,
@@ -1506,7 +1506,7 @@ import * as pd from 'pareto-core-data'
 //                                 'type': ['reference', { 'name': `expression` }],
 //                             },
 //                         },
-//                     ])
+//                     ]),
 //                 }]
 //             }]
 //         }],
@@ -1541,7 +1541,7 @@ import * as pd from 'pareto-core-data'
 //                             }]
 //                         }
 //                     }
-//                 ])
+//                 ]),
 //             }]
 //         }]
 //     }

@@ -1,8 +1,8 @@
 import * as pt from 'pareto-core-types'
 
-import * as gcommon from "glo-pareto-common"
-import * as gdefinition from "../../../submodules/grammar_old"
-import * as gfp from "lib-fountain-pen"
+import * as g_common from "glo-pareto-common"
+import * as g_definition from "../../../submodules/grammar_old"
+import * as g_fp from "lib-fountain-pen"
 
 export namespace T {
     
@@ -10,57 +10,57 @@ export namespace T {
         
         export namespace generation {
             
-            export type grammar = gdefinition.T.Grammar
+            export type grammar = g_definition.T.Grammar
             
             export type pathToInterface = string
         }
         
         export type generation = {
-            readonly 'grammar': gdefinition.T.Grammar
+            readonly 'grammar': g_definition.T.Grammar
             readonly 'pathToInterface': string
         }
         
-        export type rootPath = gcommon.T.Path
+        export type rootPath = g_common.T.Path
     }
     
     export type GenerateImplementationData = {
         readonly 'generation': {
-            readonly 'grammar': gdefinition.T.Grammar
+            readonly 'grammar': g_definition.T.Grammar
             readonly 'pathToInterface': string
         }
-        readonly 'rootPath': gcommon.T.Path
+        readonly 'rootPath': g_common.T.Path
     }
     
     export namespace GenerateInterfaceData {
         
         export namespace generation {
             
-            export type grammar = gdefinition.T.Grammar
+            export type grammar = g_definition.T.Grammar
         }
         
         export type generation = {
-            readonly 'grammar': gdefinition.T.Grammar
+            readonly 'grammar': g_definition.T.Grammar
         }
         
-        export type rootPath = gcommon.T.Path
+        export type rootPath = g_common.T.Path
     }
     
     export type GenerateInterfaceData = {
         readonly 'generation': {
-            readonly 'grammar': gdefinition.T.Grammar
+            readonly 'grammar': g_definition.T.Grammar
         }
-        readonly 'rootPath': gcommon.T.Path
+        readonly 'rootPath': g_common.T.Path
     }
     
     export namespace SerializeData {
         
-        export type grammar = gdefinition.T.Grammar
+        export type grammar = g_definition.T.Grammar
         
-        export type rootPath = gcommon.T.Path
+        export type rootPath = g_common.T.Path
     }
     
     export type SerializeData = {
-        readonly 'grammar': gdefinition.T.Grammar
-        readonly 'rootPath': gcommon.T.Path
+        readonly 'grammar': g_definition.T.Grammar
+        readonly 'rootPath': g_common.T.Path
     }
 }

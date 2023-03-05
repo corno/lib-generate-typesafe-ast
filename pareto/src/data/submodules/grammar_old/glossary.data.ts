@@ -11,7 +11,7 @@ import {
     computed,
     parametrizedType,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number, glossaryParameter
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, glossaryParameter
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -23,18 +23,18 @@ export const $: mglossary.T.Glossary<string> = {
     'types': d({
         "ValueType": type(taggedUnion({
             "reference": group({
-                "name": member(string())
+                "name": member(string()),
             }),
             "choice": group({
-                "options": member(dictionary(reference("Value")))
+                "options": member(dictionary(reference("Value"))),
             }),
             "node": reference("Node2"),
             "sequence": group({
                 "elements": member(array(group({
                     "name": member(string()),
-                    "value": member(reference("Value"))
-                })))
-            })
+                    "value": member(reference("Value")),
+                }))),
+            }),
         })),
         "Value": type(group({
             "cardinality": member(taggedUnion({
@@ -46,7 +46,7 @@ export const $: mglossary.T.Glossary<string> = {
         })),
         "Grammar": type(group({
             "globalValueTypes": member(dictionary(reference("ValueType"))),
-            "root": member(reference("Node2"))
+            "root": member(reference("Node2")),
         })),
         "Node2": type(group({
             "name": member(string()),
@@ -55,11 +55,12 @@ export const $: mglossary.T.Glossary<string> = {
                 "leaf": group({
                     "hasTextContent": member(boolean()),
                 }),
-            }))
+            })),
         })),
     }),
+    'builders': d({}),
     'interfaces': d({}),
     'functions': d({
-        "Serialize": func(typeReference("Grammar"), null, interfaceReference("fp", "Block"), null)
+        // "Serialize": func(typeReference("Grammar"), null, interfaceReference("fp", "Block"), null),
     }),
 }

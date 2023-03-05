@@ -1,10 +1,10 @@
 import * as pt from 'pareto-core-types'
 
-import * as gforeach from "res-pareto-foreach"
-import * as gthis from "./glossary"
+import * as g_foreach from "res-pareto-foreach"
+import * as g_this from "./glossary"
 
-export type Cresolve = gthis.FResolve
+export type resolve = g_this.F.Resolve
 
 export type API = {
-    resolve: Cresolve
+    resolve: resolve
 }

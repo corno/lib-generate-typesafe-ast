@@ -1,7 +1,11 @@
 import * as pt from 'pareto-core-types'
 
-import { T   } from './types.generated'
+import { T } from './types.generated'
 
-import * as gfp from "lib-fountain-pen"
+import * as g_fp from "lib-fountain-pen"
 
-export type FSerialize = ($: T.Grammar, $i: gfp.IBlock,) => void
+export namespace I {}
+
+export namespace B {}
+
+export namespace F {}

@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core-types'
 
-import * as gcommon from "glo-pareto-common"
+import * as g_common from "glo-pareto-common"
 
 export namespace T {
     
@@ -8,84 +8,84 @@ export namespace T {
         
         export namespace root {
             
-            export type annotation<GPAnnotation> = GPAnnotation
+            export type annotation<GAnnotation> = GAnnotation
             
-            export type key<GPAnnotation> = string
+            export type key<GAnnotation> = string
         }
         
-        export type root<GPAnnotation> = {
-            readonly 'annotation': GPAnnotation
+        export type root<GAnnotation> = {
+            readonly 'annotation': GAnnotation
             readonly 'key': string
         }
         
         export namespace types {
             
-            export type D<GPAnnotation> = T.Value<GPAnnotation>
+            export type D<GAnnotation> = T.Value<GAnnotation>
         }
         
-        export type types<GPAnnotation> = pt.Dictionary<T.Value<GPAnnotation>>
+        export type types<GAnnotation> = pt.Dictionary<T.Value<GAnnotation>>
     }
     
-    export type Grammar<GPAnnotation> = {
+    export type Grammar<GAnnotation> = {
         readonly 'root': {
-            readonly 'annotation': GPAnnotation
+            readonly 'annotation': GAnnotation
             readonly 'key': string
         }
-        readonly 'types': pt.Dictionary<T.Value<GPAnnotation>>
+        readonly 'types': pt.Dictionary<T.Value<GAnnotation>>
     }
     
     export namespace Value {
         
-        export type array<GPAnnotation> = T.Value<GPAnnotation>
+        export type array<GAnnotation> = T.Value<GAnnotation>
         
         export namespace choice {
             
             export namespace _ldefault {
                 
-                export type annotation<GPAnnotation> = GPAnnotation
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export type key<GPAnnotation> = string
+                export type key<GAnnotation> = string
             }
             
-            export type _ldefault<GPAnnotation> = {
-                readonly 'annotation': GPAnnotation
+            export type _ldefault<GAnnotation> = {
+                readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
             
             export namespace options {
                 
-                export type D<GPAnnotation> = T.Value<GPAnnotation>
+                export type D<GAnnotation> = T.Value<GAnnotation>
             }
             
-            export type options<GPAnnotation> = pt.Dictionary<T.Value<GPAnnotation>>
+            export type options<GAnnotation> = pt.Dictionary<T.Value<GAnnotation>>
         }
         
-        export type choice<GPAnnotation> = {
+        export type choice<GAnnotation> = {
             readonly 'default': {
-                readonly 'annotation': GPAnnotation
+                readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
-            readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
+            readonly 'options': pt.Dictionary<T.Value<GAnnotation>>
         }
         
         export namespace component {
             
             export namespace _ltype {
                 
-                export type annotation<GPAnnotation> = GPAnnotation
+                export type annotation<GAnnotation> = GAnnotation
                 
-                export type key<GPAnnotation> = string
+                export type key<GAnnotation> = string
             }
             
-            export type _ltype<GPAnnotation> = {
-                readonly 'annotation': GPAnnotation
+            export type _ltype<GAnnotation> = {
+                readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
         }
         
-        export type component<GPAnnotation> = {
+        export type component<GAnnotation> = {
             readonly 'type': {
-                readonly 'annotation': GPAnnotation
+                readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
         }
@@ -96,22 +96,22 @@ export namespace T {
                 
                 export namespace D {
                     
-                    export type value<GPAnnotation> = T.Value<GPAnnotation>
+                    export type value<GAnnotation> = T.Value<GAnnotation>
                 }
                 
-                export type D<GPAnnotation> = {
-                    readonly 'value': T.Value<GPAnnotation>
+                export type D<GAnnotation> = {
+                    readonly 'value': T.Value<GAnnotation>
                 }
             }
             
-            export type members<GPAnnotation> = pt.Dictionary<{
-                readonly 'value': T.Value<GPAnnotation>
+            export type members<GAnnotation> = pt.Dictionary<{
+                readonly 'value': T.Value<GAnnotation>
             }>
         }
         
-        export type group<GPAnnotation> = {
+        export type group<GAnnotation> = {
             readonly 'members': pt.Dictionary<{
-                readonly 'value': T.Value<GPAnnotation>
+                readonly 'value': T.Value<GAnnotation>
             }>
         }
         
@@ -123,74 +123,74 @@ export namespace T {
                     
                     export namespace enumeration {
                         
-                        export type D<GPAnnotation> = string
+                        export type D<GAnnotation> = string
                     }
                     
-                    export type enumeration<GPAnnotation> = pt.Dictionary<string>
+                    export type enumeration<GAnnotation> = pt.Dictionary<string>
                     
                     export namespace _lstring {}
                     
-                    export type _lstring<GPAnnotation> = null
+                    export type _lstring<GAnnotation> = null
                 }
                 
-                export type D<GPAnnotation> = 
+                export type D<GAnnotation> = 
                     | ['enumeration', pt.Dictionary<string>]
                     | ['string', null]
             }
             
-            export type flags<GPAnnotation> = pt.Dictionary<
+            export type flags<GAnnotation> = pt.Dictionary<
                 | ['enumeration', pt.Dictionary<string>]
                 | ['string', null]
             >
             
-            export type name<GPAnnotation> = string
+            export type name<GAnnotation> = string
             
             export namespace _ltype {
                 
-                export type composite<GPAnnotation> = T.Value<GPAnnotation>
+                export type composite<GAnnotation> = T.Value<GAnnotation>
                 
                 export namespace leaf {}
                 
-                export type leaf<GPAnnotation> = null
+                export type leaf<GAnnotation> = null
             }
             
-            export type _ltype<GPAnnotation> = 
-                | ['composite', T.Value<GPAnnotation>]
+            export type _ltype<GAnnotation> = 
+                | ['composite', T.Value<GAnnotation>]
                 | ['leaf', null]
         }
         
-        export type node<GPAnnotation> = {
+        export type node<GAnnotation> = {
             readonly 'flags': pt.Dictionary<
                 | ['enumeration', pt.Dictionary<string>]
                 | ['string', null]
             >
             readonly 'name': string
             readonly 'type': 
-                | ['composite', T.Value<GPAnnotation>]
+                | ['composite', T.Value<GAnnotation>]
                 | ['leaf', null]
         }
         
-        export type optional<GPAnnotation> = T.Value<GPAnnotation>
+        export type optional<GAnnotation> = T.Value<GAnnotation>
     }
     
-    export type Value<GPAnnotation> = 
-        | ['array', T.Value<GPAnnotation>]
+    export type Value<GAnnotation> = 
+        | ['array', T.Value<GAnnotation>]
         | ['choice', {
             readonly 'default': {
-                readonly 'annotation': GPAnnotation
+                readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
-            readonly 'options': pt.Dictionary<T.Value<GPAnnotation>>
+            readonly 'options': pt.Dictionary<T.Value<GAnnotation>>
         }]
         | ['component', {
             readonly 'type': {
-                readonly 'annotation': GPAnnotation
+                readonly 'annotation': GAnnotation
                 readonly 'key': string
             }
         }]
         | ['group', {
             readonly 'members': pt.Dictionary<{
-                readonly 'value': T.Value<GPAnnotation>
+                readonly 'value': T.Value<GAnnotation>
             }>
         }]
         | ['node', {
@@ -200,8 +200,8 @@ export namespace T {
             >
             readonly 'name': string
             readonly 'type': 
-                | ['composite', T.Value<GPAnnotation>]
+                | ['composite', T.Value<GAnnotation>]
                 | ['leaf', null]
         }]
-        | ['optional', T.Value<GPAnnotation>]
+        | ['optional', T.Value<GAnnotation>]
 }

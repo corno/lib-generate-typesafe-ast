@@ -1,9 +1,9 @@
 import * as pt from 'pareto-core-types'
 
-import * as gthis from "./glossary"
+import * as g_this from "./glossary"
 
-export type Cmap2Liana = gthis.FMap2Liana
+export type map2Liana = g_this.F.Map2Liana
 
 export type API = {
-    map2Liana: Cmap2Liana
+    map2Liana: map2Liana
 }

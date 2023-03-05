@@ -94,7 +94,7 @@ export const $: ggr.T.Grammar<pd.SourceLocation> = {
                     "53": "exclamation",
                     "45": "plusplus",
                     "46": "minusminus",
-                })
+                }),
             }),
             "propertyAccess": node("PropertyAccessExpression", group({
                 "object": member(component("expression")),

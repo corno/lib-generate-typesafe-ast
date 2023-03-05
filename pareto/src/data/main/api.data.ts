@@ -29,6 +29,6 @@ export const $: gapi.T.API<pd.SourceLocation> = {
         "serializeToNew": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
             // "createFountainPen": functionReference("this", {}, "fp", {}, "CreateWriter"),
             // "serialize": functionReference("this", {}, "definition", {}, "Serialize"),
-        }))
-    })
+        })),
+    }),
 }

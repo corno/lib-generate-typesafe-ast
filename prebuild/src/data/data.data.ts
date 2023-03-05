@@ -1,59 +1,57 @@
 import * as pd from 'pareto-core-data'
 import * as pt from 'pareto-core-types'
-import * as pv from 'pareto-core-dev'
 
-import * as gliana2pareto from "lib-liana/dist/submodules/liana2pareto"
+import * as gliana2glossary from "lib-liana/dist/submodules/liana2glossary"
 
 import { $ as grammar } from "./models/grammar.data"
 
-pv.logDebugMessage("REENABLE")
 
-export const $: pt.Array<gliana2pareto.T.GenerateModuleData<pd.SourceLocation>> = pd.a([
-    // {
-    //     'path': `../../pareto/src/data/submodules/grammar`,
-    //     'data': {
-    //         'configuration': {
-    //             'datamodel': [true, {
-    //                 'annotations': true,
-    //                 'properties optional': false,
-    //                 'reference mapping': ['string', null],
-    //             }],
-    //             'visitor interface': [false],
-    //             'algorithms': {
-    //                 'serialize': [false],
-    //             },
-    //         },
-    //         'mappedModel': {
-    //             'model': grammar,
+export const $: pt.Array<gliana2glossary.T.GenerateData<pd.SourceLocation>> = pd.a([
+    {
+        'path': `../../pareto/src/data/submodules/grammar/glossary.generated.ts`,
+        'data': {
+            'settings': {
+                'datamodel': [true, {
+                    'annotations': true,
+                    'properties optional': false,
+                    'reference mapping': ['string', null],
+                }],
+                'visitor interface': [false],
+                'algorithms': {
+                    'serialize': [false],
+                },
+            },
+            'mappedModel': {
+                'model': grammar,
 
-    //             'stringmapping': pd.d({
-    //                 "identifier": ['string', null]
-    //             }),
-    //         },
-    //     }
-    // },
+                'stringmapping': pd.d({
+                    "identifier": ['string', null]
+                }),
+            },
+        }
+    },
 
-    // {
-    //     'path': `../../pareto/src/data/submodules/grammar_resolved`,
-    //     'data': {
-    //         'configuration': {
-    //             'datamodel': [true, {
-    //                 'annotations': true,
-    //                 'properties optional': false,
-    //                 'reference mapping': ['reference and string', null],
-    //             }],
-    //             'visitor interface': [false],
-    //             'algorithms': {
-    //                 'serialize': [false],
-    //             },
-    //         },
-    //         'mappedModel': {
-    //             'model': grammar,
+    {
+        'path': `../../pareto/src/data/submodules/grammar_resolved/glossary.generated.ts`,
+        'data': {
+            'settings': {
+                'datamodel': [true, {
+                    'annotations': true,
+                    'properties optional': false,
+                    'reference mapping': ['reference and string', null],
+                }],
+                'visitor interface': [false],
+                'algorithms': {
+                    'serialize': [false],
+                },
+            },
+            'mappedModel': {
+                'model': grammar,
 
-    //             'stringmapping': pd.d({
-    //                 "identifier": ['string', null]
-    //             }),
-    //         },
-    //     }
-    // }
+                'stringmapping': pd.d({
+                    "identifier": ['string', null]
+                }),
+            },
+        }
+    }
 ])

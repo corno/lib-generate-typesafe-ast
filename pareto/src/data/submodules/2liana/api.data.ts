@@ -7,6 +7,6 @@ const d = pd.d
 
 export const $: gapi.T.API<pd.SourceLocation> = {
     'algorithms': d({
-        "map2Liana": algorithm(functionReference("this", {}, "Map2Liana"))
-    })
+        "map2Liana": algorithm(functionReference("this", {}, "Map2Liana")),
+    }),
 }

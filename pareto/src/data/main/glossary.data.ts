@@ -7,7 +7,7 @@ import {
     reference,
     boolean,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, glossaryParameter, parametrizedInterfaceReference, parametrizedTypeReference, nested
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, glossaryParameter, parametrizedInterfaceReference, parametrizedTypeReference, nested
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -19,7 +19,7 @@ export const $: mglossary.T.Glossary<string> = {
     'types': d({
 
         // "Config": group({
-        //     "fountainPen": member(reference("fp", "Configuration"))
+        //     "fountainPen": member(reference("fp", "Configuration")),
         // }),
         "GenerateImplementationData": type(group({
             "rootPath": member(reference("common", "Path")),
@@ -41,12 +41,13 @@ export const $: mglossary.T.Glossary<string> = {
             "grammar": member(reference("definition", "Grammar")),
         })),
     }),
+    'builders': d({}),
+    'interfaces': d({}),
     'functions': d({
         "GenerateImplementation": func(typeReference("GenerateImplementationData"), null, null, null),
         "GenerateInterface": func(typeReference("GenerateInterfaceData"), null, null, null),
-        "GenerateUnboundImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Directory"), null),
-        "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Directory"), null),
-        "Serialize": func(typeReference("SerializeData"), null, null, null)
+        // "GenerateUnboundImplementation": func(typeReference("GenerateImplementationData"), null, interfaceReference("fp", "Directory"), null),
+        // "GenerateInterface2": func(typeReference("GenerateInterfaceData"), null, interfaceReference("fp", "Directory"), null),
+        // "Serialize": func(typeReference("SerializeData"), null, null, null),
     }),
-    'interfaces': d({}),
 }

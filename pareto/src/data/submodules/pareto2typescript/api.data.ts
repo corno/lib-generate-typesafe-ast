@@ -25,5 +25,5 @@ export const $: gapi.T.API<pd.SourceLocation> = {
             "createApostrophedString": functionReference("ts", {}, "CreateApostrophedString"),
             "createIdentifier": functionReference("ts", {}, "CreateIdentifier"),
         })),
-    })
+    }),
 }

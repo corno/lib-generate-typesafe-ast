@@ -11,7 +11,7 @@ import {
     computed,
     parametrizedType,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number, glossaryParameter
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, glossaryParameter
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -126,6 +126,7 @@ export const $: gglossary.T.Glossary<string> = {
             })]
         },
     }),
+    'builders': d({}),
     'interfaces': d({}),
     'functions': d({}),
 }
