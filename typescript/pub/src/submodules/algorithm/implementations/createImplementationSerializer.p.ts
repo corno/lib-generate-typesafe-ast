@@ -1,8 +1,8 @@
 import * as pl from 'pareto-core-lib'
 
-import * as gfp from "lib-fountain-pen"
+import * as g_fp from "lib-fountain-pen"
 
-import { CcreateImplementationSerializer } from "../api"
+import { CcreateImplementationSerializer } from "../api.generated"
 
 export const $$:CcreateImplementationSerializer = ($d) => {
 
@@ -314,3 +314,4 @@ export const $$:CcreateImplementationSerializer = ($d) => {
     }
 }
 
+ 

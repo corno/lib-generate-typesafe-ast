@@ -1,38 +1,36 @@
 import * as pd from 'pareto-core-data'
 
-import {
-    null_,
-    array,
-    string,
-    reference,
-    boolean,
-    parametrizedReference,
-    typeParameter,
-    computed,
-    parametrizedType,
-    typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, glossaryParameter
-} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
+import { data, externalTypeReference, group, member, procedure, ref, sExternalInterfaceReference, sInterfaceReference, string, type, typeReference } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 
-export const $: mglossary.T.Glossary<string> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({}),
-    'types': d({
-        "GenerateInterfaceFileData": type(group({
-            "grammar": member(reference("definition", "Grammar")),
-        })),
-        "GenerateImplementationFileData": type(group({
-            "grammar": member(reference("resolved", "Grammar")),
-            "pathToInterface": member(string()),
-        })),
-    }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        // "GenerateImplementationFile": func(typeReference("GenerateImplementationFileData"), null, interfaceReference("fp", "Block"), null),
-        // "GenerateInterfaceFile": func(typeReference("GenerateInterfaceFileData"), null, interfaceReference("fp", "Block"), null),
-    }),
+    'imports': d({}),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "GenerateInterfaceFileData": type(group({
+                "grammar": member(ref(externalTypeReference("definition", "Grammar"))),
+            })),
+            "GenerateImplementationFileData": type(group({
+                "grammar": member(ref(externalTypeReference("resolved", "Grammar"))),
+                "pathToInterface": member(string()),
+            })),
+        }),
+    },
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "GenerateImplementationFile": procedure(data(typeReference("GenerateImplementationFileData")), sExternalInterfaceReference("fp", "Block")),
+            "GenerateInterfaceFile": procedure(data(typeReference("GenerateInterfaceFileData")), sExternalInterfaceReference("fp", "Block")),
+
+        }),
+    },
 }

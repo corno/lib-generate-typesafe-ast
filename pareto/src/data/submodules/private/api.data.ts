@@ -1,33 +1,33 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm, typeReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
+import { algorithm, dependent, procedure, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 const d = pd.d
 
-export const $: gapi.T.API<pd.SourceLocation> = {
+export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "generateFunctions": algorithm(functionReference("this", {}, "GenerateInterfaceFile"), constructor(null, {})),
-        "generateInterfaceIndex": algorithm(functionReference("this", {}, "GenerateInterfaceFile")),
-        "generateTypes": algorithm(functionReference("this", {}, "GenerateInterfaceFile"), constructor(null, {
-            "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
-            "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings"),
-        })),
-        "generateVisitorInterface": algorithm(functionReference("this", {}, "GenerateInterfaceFile"), constructor(null, {
-            "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
-        })),
+        "generateFunctions": algorithm(procedure("this", {}, "GenerateInterfaceFile"), {}, dependent(null, {}, {})),
+        "generateInterfaceIndex": algorithm(procedure("this", {}, "GenerateInterfaceFile")),
+        "generateTypes": algorithm(procedure("this", {}, "GenerateInterfaceFile"), {}, dependent(null, {
+            "sortedForEach": procedure("foreach", {}, "DictionaryForEach"),
+            "joinNestedStrings": sfunction("tostring", {}, "JoinNestedStrings"),
+        }, {})),
+        "generateVisitorInterface": algorithm(procedure("this", {}, "GenerateInterfaceFile"), {}, dependent(null, {
+            "sortedForEach": procedure("foreach", {}, "DictionaryForEach"),
+        }, {})),
 
-        "generateImplementationIndex": algorithm(functionReference("this", {}, "GenerateImplementationFile")),
-        "generateParser": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
-            "getKeysAsString": functionReference("tostring", {}, "GetKeysAsString"),
-            "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
-            "buildDictionary": functionReference("build", {}, "BuildDictionary"),
-        })),
-        "generateCreateDefaultVisitor": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
-            "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
-        })),
-        "generateVisit": algorithm(functionReference("this", {}, "GenerateImplementationFile"), constructor(null, {
-            "sortedForEach": functionReference("foreach", {}, "DictionaryForEach"),
-        })),
+        "generateImplementationIndex": algorithm(procedure("this", {}, "GenerateImplementationFile")),
+        "generateParser": algorithm(procedure("this", {}, "GenerateImplementationFile"), {}, dependent(null, {
+            "getKeysAsString": sfunction("tostring", {}, "GetKeysAsString"),
+            "sortedForEach": procedure("foreach", {}, "DictionaryForEach"),
+            "buildDictionary": sfunction("build", {}, "BuildSafeDictionary"),
+        }, {})),
+        "generateCreateDefaultVisitor": algorithm(procedure("this", {}, "GenerateImplementationFile"), {}, dependent(null, {
+            "sortedForEach": procedure("foreach", {}, "DictionaryForEach"),
+        }, {})),
+        "generateVisit": algorithm(procedure("this", {}, "GenerateImplementationFile"), {}, dependent(null, {
+            "sortedForEach": procedure("foreach", {}, "DictionaryForEach"),
+        }, {})),
     }),
 }

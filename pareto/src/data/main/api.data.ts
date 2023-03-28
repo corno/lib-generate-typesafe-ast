@@ -1,34 +1,34 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm, typeReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
+import { algorithm, dependent, procedure, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 const d = pd.d
 
-export const $: gapi.T.API<pd.SourceLocation> = {
+export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "generateImplementation": algorithm(functionReference("this", {}, "GenerateImplementation")),
-        "generateInterface": algorithm(functionReference("this", {}, "GenerateInterface")),
-        "unboundGenerateImplementation": algorithm(functionReference("this", {}, "GenerateUnboundImplementation"), constructor(null, {
-            "generateImplementationIndex": functionReference("private", {}, "GenerateImplementationFile"),
-            "generateParser": functionReference("private", {}, "GenerateImplementationFile"),
-            "generateCreateDefaultVisitor": functionReference("private", {}, "GenerateImplementationFile"),
-            "generateVisit": functionReference("private", {}, "GenerateImplementationFile"),
-            "resolve": functionReference("resolved", {}, "Resolve"),
-        })),
-        "unboundGenerateInterface": algorithm(functionReference("this", {}, "GenerateInterface2"), constructor(null, {
-            "generateFunctions": functionReference("private", {}, "GenerateInterfaceFile"),
-            "generateInterfaceIndex": functionReference("private", {}, "GenerateInterfaceFile"),
-            "generateTypes": functionReference("private", {}, "GenerateInterfaceFile"),
-            "generateVisitorInterface": functionReference("private", {}, "GenerateInterfaceFile"),
-        })),
-        "serialize": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
+        "generateImplementation": algorithm(procedure("this", {}, "GenerateImplementation")),
+        "generateInterface": algorithm(procedure("this", {}, "GenerateInterface")),
+        "unboundGenerateImplementation": algorithm(procedure("this", {}, "GenerateUnboundImplementation"), {}, dependent(null, {
+            "generateImplementationIndex": procedure("private", {}, "GenerateImplementationFile"),
+            "generateParser": procedure("private", {}, "GenerateImplementationFile"),
+            "generateCreateDefaultVisitor": procedure("private", {}, "GenerateImplementationFile"),
+            "generateVisit": sfunction("private", {}, "GenerateImplementationFile"),
+            "resolve": sfunction("resolved", {}, "Resolve"),
+        }, {})),
+        "unboundGenerateInterface": algorithm(procedure("this", {}, "GenerateInterface2"), {}, dependent(null, {
+            "generateFunctions": procedure("private", {}, "GenerateInterfaceFile"),
+            "generateInterfaceIndex": procedure("private", {}, "GenerateInterfaceFile"),
+            "generateTypes": procedure("private", {}, "GenerateInterfaceFile"),
+            "generateVisitorInterface": procedure("private", {}, "GenerateInterfaceFile"),
+        }, {})),
+        "serialize": algorithm(procedure("this", {}, "Serialize"), {}, dependent(null, {
             // "createFountainPen": functionReference("this", {}, "fp", {}, "CreateWriter"),
             // "serialize": functionReference("this", {}, "definition", {}, "Serialize"),
-        })),
-        "serializeToNew": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
+        }, {})),
+        "serializeToNew": algorithm(procedure("this", {}, "Serialize"), {}, dependent(null, {
             // "createFountainPen": functionReference("this", {}, "fp", {}, "CreateWriter"),
             // "serialize": functionReference("this", {}, "definition", {}, "Serialize"),
-        })),
+        }, {})),
     }),
 }

@@ -1,57 +1,54 @@
 import * as pd from 'pareto-core-data'
-import * as pt from 'pareto-core-types'
 
-import * as gliana2glossary from "lib-liana/dist/submodules/liana2glossary"
+import * as g_liana from "lib-liana/dist/main"
 
 import { $ as grammar } from "./models/grammar.data"
 
-
-export const $: pt.Array<gliana2glossary.T.GenerateData<pd.SourceLocation>> = pd.a([
-    {
-        'path': `../../pareto/src/data/submodules/grammar/glossary.generated.ts`,
-        'data': {
-            'settings': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'properties optional': false,
-                    'reference mapping': ['string', null],
-                }],
-                'visitor interface': [false],
-                'algorithms': {
-                    'serialize': [false],
+export const $: g_liana.T.CompileParameters<pd.SourceLocation> = {
+    'outputs': pd.a([
+        {
+            'path': `../../pareto/src/data/submodules/grammar/glossary.generated.ts`,
+            'data': {
+                'settings': {
+                    'datamodel': [true, {
+                        'annotations': true,
+                        'reference mapping': ['string', null],
+                    }],
+                    'visitor interface': [false],
+                    'algorithms': {
+                        'serialize': [false],
+                    },
                 },
-            },
-            'mappedModel': {
-                'model': grammar,
+                'mapped library': {
+                    'library': grammar,
 
-                'stringmapping': pd.d({
-                    "identifier": ['string', null]
-                }),
-            },
-        }
-    },
-
-    {
-        'path': `../../pareto/src/data/submodules/grammar_resolved/glossary.generated.ts`,
-        'data': {
-            'settings': {
-                'datamodel': [true, {
-                    'annotations': true,
-                    'properties optional': false,
-                    'reference mapping': ['reference and string', null],
-                }],
-                'visitor interface': [false],
-                'algorithms': {
-                    'serialize': [false],
+                    'terminal mapping': pd.d({
+                        "identifier": ['string', null],
+                    }),
                 },
-            },
-            'mappedModel': {
-                'model': grammar,
+            }
+        },
+        {
+            'path': `../../pareto/src/data/submodules/grammar_resolved/glossary.generated.ts`,
+            'data': {
+                'settings': {
+                    'datamodel': [true, {
+                        'annotations': true,
+                        'reference mapping': ['reference and string', null],
+                    }],
+                    'visitor interface': [false],
+                    'algorithms': {
+                        'serialize': [false],
+                    },
+                },
+                'mapped library': {
+                    'library': grammar,
 
-                'stringmapping': pd.d({
-                    "identifier": ['string', null]
-                }),
-            },
-        }
-    }
-])
+                    'terminal mapping': pd.d({
+                        "identifier": ['string', null],
+                    }),
+                },
+            }
+        },
+    ])
+}

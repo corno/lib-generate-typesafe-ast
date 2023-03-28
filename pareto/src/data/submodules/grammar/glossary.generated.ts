@@ -1,119 +1,128 @@
 import * as pd from 'pareto-core-data'
 
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 const a = pd.a
 
-export const $: gglossary.T.Glossary<pd.SourceLocation> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
-    'types': d({
-        "Grammar": {
-            'parameters': d({}),
-            'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                "root": {
-                    'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                        "annotation": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
-                        },
-                        "key": {
-                            'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
-                        },
-                    })],
-                },
-                "types": {
-                    'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                        'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
+    'imports': d({}),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "Grammar": {
+                'parameters': d({}),
+                'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                    "root": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                            "annotation": {
+                                'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                            },
+                            "key": {
+                                'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                            },
+                        })],
+                    },
+                    "types": {
+                        'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                            'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                            'type': "Value",
+                            'arguments': d({}),
+                        }]]],
+                    },
+                })]
+            },
+            "Value": {
+                'parameters': d({}),
+                'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                    "array": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
                         'type': "Value",
                         'arguments': d({}),
                     }]],
-                },
-            })]
-        },
-        "Value": {
-            'parameters': d({}),
-            'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                "array": <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                    'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
-                    'type': "Value",
-                    'arguments': d({}),
-                }],
-                "choice": <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                    "default": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                            "annotation": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
-                            },
-                            "key": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
-                            },
-                        })],
-                    },
-                    "options": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                            'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
-                            'type': "Value",
-                            'arguments': d({}),
-                        }]],
-                    },
-                })],
-                "component": <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                    "type": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                            "annotation": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['glossary parameter', "Annotation"],
-                            },
-                            "key": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
-                            },
-                        })],
-                    },
-                })],
-                "group": <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                    "members": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                            "value": {
-                                'type': <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                    'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
-                                    'type': "Value",
-                                    'arguments': d({}),
-                                }],
-                            },
-                        })]],
-                    },
-                })],
-                "node": <gglossary.T.Type<pd.SourceLocation>>['group', d({
-                    "flags": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                            "enumeration": <gglossary.T.Type<pd.SourceLocation>>['dictionary', <gglossary.T.Type<pd.SourceLocation>>['string', null]],
-                            "string": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
-                        })]],
-                    },
-                    "name": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['string', null],
-                    },
-                    "type": {
-                        'type': <gglossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
-                            "composite": <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                                'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
+                    "choice": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                        "default": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
+                                "key": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                                },
+                            })],
+                        },
+                        "options": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
                                 'type': "Value",
                                 'arguments': d({}),
-                            }],
-                            "leaf": <gglossary.T.Type<pd.SourceLocation>>['group', d({})],
-                        })],
-                    },
-                })],
-                "optional": <gglossary.T.Type<pd.SourceLocation>>['reference', {
-                    'context': <gglossary.T.Context<pd.SourceLocation>>['local', null],
-                    'type': "Value",
-                    'arguments': d({}),
-                }],
-            })]
-        },
-    }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({}),
+                            }]]],
+                        },
+                    })],
+                    "component": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                        "type": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "annotation": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['glossary parameter', "Annotation"]],
+                                },
+                                "key": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                                },
+                            })],
+                        },
+                    })],
+                    "group": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                        "members": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                                "value": {
+                                    'type': <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                        'type': "Value",
+                                        'arguments': d({}),
+                                    }]],
+                                },
+                            })]],
+                        },
+                    })],
+                    "node": <g_glossary.T.Type<pd.SourceLocation>>['group', d({
+                        "flags": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                                "enumeration": <g_glossary.T.Type<pd.SourceLocation>>['dictionary', <g_glossary.T.Type<pd.SourceLocation>>['string', null]],
+                                "string": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                            })]],
+                        },
+                        "name": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['string', null],
+                        },
+                        "type": {
+                            'type': <g_glossary.T.Type<pd.SourceLocation>>['taggedUnion', d({
+                                "composite": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                                    'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                                    'type': "Value",
+                                    'arguments': d({}),
+                                }]],
+                                "leaf": <g_glossary.T.Type<pd.SourceLocation>>['group', d({})],
+                            })],
+                        },
+                    })],
+                    "optional": <g_glossary.T.Type<pd.SourceLocation>>['reference', ['type', {
+                        'context': <g_glossary.T.Context<pd.SourceLocation>>['local', null],
+                        'type': "Value",
+                        'arguments': d({}),
+                    }]],
+                })]
+            },
+        }),
+    },
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
 }

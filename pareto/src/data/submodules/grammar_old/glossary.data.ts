@@ -1,66 +1,65 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    null_,
-    array,
-    string,
-    reference,
-    boolean,
-    parametrizedReference,
-    typeParameter,
-    computed,
-    parametrizedType,
-    typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, glossaryParameter
+    array, boolean, data, dictionary, group, member, procedure, ref, sExternalInterfaceReference, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 
-export const $: mglossary.T.Glossary<string> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({}),
-    'types': d({
-        "ValueType": type(taggedUnion({
-            "reference": group({
-                "name": member(string()),
-            }),
-            "choice": group({
-                "options": member(dictionary(reference("Value"))),
-            }),
-            "node": reference("Node2"),
-            "sequence": group({
-                "elements": member(array(group({
+    'imports': d({}),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "ValueType": type(taggedUnion({
+                "reference": group({
                     "name": member(string()),
-                    "value": member(reference("Value")),
-                }))),
-            }),
-        })),
-        "Value": type(group({
-            "cardinality": member(taggedUnion({
-                "one": group({}),
-                "optional": group({}),
-                "array": group({}),
-            })),
-            "type": member(reference("ValueType")),
-        })),
-        "Grammar": type(group({
-            "globalValueTypes": member(dictionary(reference("ValueType"))),
-            "root": member(reference("Node2")),
-        })),
-        "Node2": type(group({
-            "name": member(string()),
-            "type": member(taggedUnion({
-                "composite": reference("Value"),
-                "leaf": group({
-                    "hasTextContent": member(boolean()),
+                }),
+                "choice": group({
+                    "options": member(dictionary(ref(typeReference("Value")))),
+                }),
+                "node": ref(typeReference("Node2")),
+                "sequence": group({
+                    "elements": member(array(group({
+                        "name": member(string()),
+                        "value": member(ref(typeReference("Value"))),
+                    }))),
                 }),
             })),
-        })),
-    }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        // "Serialize": func(typeReference("Grammar"), null, interfaceReference("fp", "Block"), null),
-    }),
+            "Value": type(group({
+                "cardinality": member(taggedUnion({
+                    "one": group({}),
+                    "optional": group({}),
+                    "array": group({}),
+                })),
+                "type": member(ref(typeReference("ValueType"))),
+            })),
+            "Grammar": type(group({
+                "globalValueTypes": member(dictionary(ref(typeReference("ValueType")))),
+                "root": member(ref(typeReference("Node2"))),
+            })),
+            "Node2": type(group({
+                "name": member(string()),
+                "type": member(taggedUnion({
+                    "composite": ref(typeReference("Value")),
+                    "leaf": group({
+                        "hasTextContent": member(boolean()),
+                    }),
+                })),
+            })),
+        }),
+    },
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "Serialize": procedure(data(typeReference("Grammar")), sExternalInterfaceReference("fp", "Block"))
+        }),
+    },
 }

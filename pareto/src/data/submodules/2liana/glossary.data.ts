@@ -1,37 +1,36 @@
 import * as pd from 'pareto-core-data'
 
-import {
-    null_,
-    array,
-    string,
-    reference,
-    boolean,
-    parametrizedTypeReference,
-    typeParameter,
-    computed,
-    parametrizedType,
-    typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, glossaryParameter
-} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
+import { data, externalTypeReference, glossaryParameter, imp, ref, sfunction, string, taggedUnion, type, typeReference } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as gglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 
-export const $: gglossary.T.Glossary<string> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({
         "Annotation": null,
     }),
-    'types': d({
-        "Annotation": type(glossaryParameter("Annotation")),
-        "OutAnnotation": type(taggedUnion({
-            "source": glossaryParameter("Annotation"),
-            "internal": string(),
-        })),
+    'imports': d({
+        "def": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "liana": imp({ "Annotation": glossaryParameter("Annotation") }),
     }),
-    'builders': d({}),
-    'interfaces': d({}),
-    'functions': d({
-        "Map2Liana": func(parametrizedTypeReference("def", { "Annotation": typeReference("Annotation") }, "Grammar"), null, null, data(parametrizedTypeReference("liana", { "Annotation": typeReference("OutAnnotation") }, "Model"), false)),
-    }),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "OutAnnotation": type(taggedUnion({
+                "source": ref(glossaryParameter("Annotation")),
+                "internal": string(),
+            })),
+        }),
+    },
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "Map2Liana": sfunction(externalTypeReference("liana", "Model"), data(externalTypeReference("def", "Grammar"))),
+        }),
+    },
 }

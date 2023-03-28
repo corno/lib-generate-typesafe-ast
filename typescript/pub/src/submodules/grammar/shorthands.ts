@@ -1,7 +1,7 @@
 import * as pl from 'pareto-core-lib'
 import * as pd from 'pareto-core-data'
 
-import * as t from "./api"
+import * as t from "./glossary"
 
 type RawDictionary<T> = { [key: string]: T }
 
@@ -30,7 +30,7 @@ export function choice(options: RawDictionary<t.T.Value<pd.SourceLocation>>): t.
 }
 
 export function string(): t.T.Value.node.flags.D<pd.SourceLocation> {
-    return ['string', {}]
+    return ['string', null]
 }
 
 export function enumeration(options: RawDictionary<string>): t.T.Value.node.flags.D<pd.SourceLocation> {
@@ -42,8 +42,7 @@ export function node(name: string, content: null | t.T.Value<pd.SourceLocation>,
         'name': name,
         'type': pl.cc([1], ($): t.T.Value.node._ltype<pd.SourceLocation> => {
             if (content === null) {
-                return ['leaf', {
-                }]
+                return ['leaf', null]
             } else {
                 return ['composite', content]
             }

@@ -1,8 +1,8 @@
-import { API } from "./definition/api.generated"
-import { $$ as icreateImplementationSerializer } from "./implementations/createImplementationSerializer.p"
-import { $$ as icreateStatesSerializer } from "./implementations/createStatesSerializer.p"
+import { API } from "./api.generated"
+import { $$ as icreateImplementationSerializer } from "./implementations/createImplementationSerializer.s.p"
+import { $$ as icreateStatesSerializer } from "./implementations/createStatesSerializer.s.p"
 
-export const $a: API = {
+export const $api: API = {
     'createImplementationSerializer': icreateImplementationSerializer,
     'createStatesSerializer': icreateStatesSerializer,
 }

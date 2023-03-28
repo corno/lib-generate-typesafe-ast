@@ -2,9 +2,9 @@ import * as pd from 'pareto-core-data'
 
 import * as ggr from "../../../pub/dist/submodules/definition"
 
-const d = pd.wrapRawDictionary
+const d = pd.d
 
-export const $: mgr.T.Grammar = {
+export const $: ggr.T.Grammar = {
     'types': d({
         "block": node("Block", array(component("statement"))),
         "expression": choice({

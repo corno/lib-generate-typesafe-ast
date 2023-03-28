@@ -1,6 +1,6 @@
 import * as pd from 'pareto-core-data'
 
-import * as gproject from "lib-pareto-typescript-project/dist/submodules/project"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as grammar_resolved_old } from "./submodules/grammar_resolved_old/module.data"
 // import { $ as alg } from "./submodules/algorithm/module.data"
@@ -14,7 +14,7 @@ import { $ as main } from "./main/module.data"
 
 const d = pd.d
 
-export const $: gproject.T.Project<pd.SourceLocation> = {
+export const $: g_project.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "generates a typescript parser that provides a typed AST",
     'license': "TBD",
@@ -39,16 +39,38 @@ export const $: gproject.T.Project<pd.SourceLocation> = {
             "grammar_resolved_old": grammar_resolved_old,
             "private": _private,
         }),
+        'bindings': [false],
         'executables': d({}),
         'test': {
             'dependencies': d({
             }),
-            'glossary': {
-                'parameters': d({}),
-                'types': d({}),
-                'builders': d({}),
-                'interfaces': d({}),
-                'functions': d({}),
+            'definition': {
+                'glossary': {
+                    'root': {
+                        'parameters': d({}),
+                        'imports': d({}),
+                        'types': d({}),
+                        'asynchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+
+                        },
+                        'synchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+
+                        },
+
+                    },
+                    'imports': d({}),
+                },
+                'api': {
+                    'imports': d({}),
+                    'root': {
+                        'algorithms': d({}),
+                    },
+                }
+
             },
             'imports': d({}),
         }

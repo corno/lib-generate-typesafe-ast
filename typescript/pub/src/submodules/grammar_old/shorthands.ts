@@ -1,13 +1,13 @@
 import * as pl from 'pareto-core-lib'
 import * as pd from 'pareto-core-data'
 
-import * as t from "./api"
+import * as t from "./glossary"
 
 type RawDictionary<T> = { [key: string]: T }
 
 export function array(vt: t.T.ValueType): t.T.Value {
     return {
-        'cardinality': ['array', {}],
+        'cardinality': ['array', null],
         'type': vt,
     }
 
@@ -48,7 +48,7 @@ export function leaf(name: string, hasTextContent: boolean): t.T.Node2 {
 
 export function one(type: t.T.ValueType): t.T.Value {
     return {
-        'cardinality': ['one', {}],
+        'cardinality': ['one', null],
         'type': type,
     }
 
@@ -56,7 +56,7 @@ export function one(type: t.T.ValueType): t.T.Value {
 
 export function optional(type: t.T.ValueType): t.T.Value {
     return {
-        'cardinality': ['optional', {}],
+        'cardinality': ['optional', null],
         'type': type,
     }
 

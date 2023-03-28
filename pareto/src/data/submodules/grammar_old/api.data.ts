@@ -1,17 +1,17 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm, typeReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
+import { constructor, algorithm, procedure, dependent } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 const d = pd.d
 
-export const $: gapi.T.API<pd.SourceLocation> = {
+export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "serialize": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
-            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
-        })),
-        "serializeToNew": algorithm(functionReference("this", {}, "Serialize"), constructor(null, {
-            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
-        })),
+        "serialize": algorithm(procedure("this", {}, "Serialize"), {}, dependent(null, {
+            "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
+        }, {})),
+        "serializeToNew": algorithm(procedure("this", {}, "Serialize"), {}, dependent(null, {
+            "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
+        }, {})),
     }),
 }

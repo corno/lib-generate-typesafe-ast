@@ -1,29 +1,29 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm, typeReference } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
+import { algorithm, dependent, procedure, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as gapi from "lib-pareto-typescript-project/dist/submodules/api"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 const d = pd.d
 
-export const $: gapi.T.API<pd.SourceLocation> = {
+export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "createImplementationSerializer": algorithm(functionReference("this", {}, "SerializeImplementation"), constructor(null, {
-            "arrayForEach": functionReference("foreach", {}, "ArrayForEach"),
-            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
-            "enrichedArrayForEach": functionReference("foreach", {}, "EnrichedArrayForEach"),
-            "enrichedDictionaryForEach": functionReference("foreach", {}, "EnrichedDictionaryForEach"),
-            "createIdentifier": functionReference("ts", {}, "CreateIdentifier"),
-            "createApostrophedString": functionReference("ts", {}, "CreateApostrophedString"),
-            "createQuotedString": functionReference("ts", {}, "CreateQuotedString"),
-            "createBacktickedString": functionReference("ts", {}, "CreateBacktickedString"),
-        })),
-        "createStatesSerializer": algorithm(functionReference("this", {}, "SerializeStates"), constructor(null, {
-            "arrayForEach": functionReference("foreach", {}, "ArrayForEach"),
-            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
-            "enrichedArrayForEach": functionReference("foreach", {}, "EnrichedArrayForEach"),
-            "enrichedDictionaryForEach": functionReference("foreach", {}, "EnrichedDictionaryForEach"),
-            "createApostrophedString": functionReference("ts", {}, "CreateApostrophedString"),
-            "createIdentifier": functionReference("ts", {}, "CreateIdentifier"),
-        })),
+        "createImplementationSerializer": algorithm(procedure("this", {}, "SerializeImplementation"), { "Annotation": "Annotation" }, dependent(null, {
+            "arrayForEach": procedure("foreach", {}, "ArrayForEach"),
+            "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
+            "enrichedArrayForEach": procedure("foreach", {}, "EnrichedArrayForEach"),
+            "enrichedDictionaryForEach": procedure("foreach", {}, "EnrichedDictionaryForEach"),
+            "createIdentifier": sfunction("ts", {}, "CreateIdentifier"),
+            "createApostrophedString": sfunction("ts", {}, "CreateApostrophedString"),
+            "createQuotedString": sfunction("ts", {}, "CreateQuotedString"),
+            "createBacktickedString": sfunction("ts", {}, "CreateBacktickedString"),
+        }, {})),
+        "createStatesSerializer": algorithm(procedure("this", {}, "SerializeStates"), { "Annotation": "Annotation" }, dependent(null, {
+            "arrayForEach": procedure("foreach", {}, "ArrayForEach"),
+            "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
+            "enrichedArrayForEach": procedure("foreach", {}, "EnrichedArrayForEach"),
+            "enrichedDictionaryForEach": procedure("foreach", {}, "EnrichedDictionaryForEach"),
+            "createApostrophedString": sfunction("ts", {}, "CreateApostrophedString"),
+            "createIdentifier": sfunction("ts", {}, "CreateIdentifier"),
+        }, {})),
     }),
 }

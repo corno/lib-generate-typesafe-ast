@@ -2,62 +2,62 @@ import * as pd from 'pareto-core-data'
 
 import * as gliana from "lib-liana/dist/submodules/liana"
 import {
-    array,
-    boolean,
     component,
     dictionary,
     globalType,
     group,
     r,
     reference,
-    //string,
     taggedUnion,
-    string,
     prop,
+    option,
+    terminal,
+    typePath,
+    tbd,
+    grp,
+    tu,
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 const d = pd.d
 
-export const $: gliana.T.Model<pd.SourceLocation> = {
-    'type library': {
-        'imports': d({}),
-        'string types': d({
-            "text": null,
-        }),
-        'global types': d({
-            "Value": globalType({}, taggedUnion({
-                "component": group({
-                    "type": prop(reference(['sibling', "SSFSF"], [])),
-                }),
-                "choice": group({
-                    "options": prop(dictionary(component("Value", {}))),
-                    "default": prop(reference(['sibling', "XXXX"], [])),
-                }),
-                "node": group({
-                    "name": prop(string("identifier")),
-                    "type": prop(taggedUnion({
-                        "composite": component("Value", {}),
-                        "leaf": group({}),
-                    })),
-                    "flags": prop(dictionary(taggedUnion({
-                        "string": group({}),
-                        "enumeration": dictionary(string("identifier")),
-                    }))),
-                }),
-                "group": group({
-                    "members": prop(dictionary(group({
-                        "value": prop(component("Value", {})),
-                    }))),
-                }),
-                "array": component("Value", {}),
-                "optional": component("Value", {}),
+export const $: gliana.T.Type__Library<pd.SourceLocation> = {
+    'imports': d({}),
+    'terminal types': d({
+        "identifier": null,
+        "text": null,
+    }),
+    'global types': d({
+        "Value": globalType({}, taggedUnion({
+            "component": option(group({
+                "type": prop(reference(typePath("Grammar", [grp("types")]), tbd())),
             })),
-            "Grammar": globalType({}, group({
-                "types": prop(dictionary(component("Value", {}))),
-                "root": prop(reference(['sibling', "XXX"], [])),
+            "choice": option(group({
+                "options": prop(dictionary(component("Value", {}))),
+                "default": prop(reference(typePath("Value", [tu("choice"), grp("options")]), tbd())),
             })),
+            "node": option(group({
+                "name": prop(terminal("identifier")),
+                "type": prop(taggedUnion({
+                    "composite": option(component("Value", {})),
+                    "leaf": option(group({})),
+                })),
+                "flags": prop(dictionary(taggedUnion({
+                    "string": option(group({})),
+                    "enumeration": option(dictionary(terminal("identifier"))),
+                }))),
+            })),
+            "group": option(group({
+                "members": prop(dictionary(group({
+                    "value": prop(component("Value", {})),
+                }))),
+            })),
+            "array": option(component("Value", {})),
+            "optional": option(component("Value", {})),
+        })),
+        "Grammar": globalType({}, group({
+            "types": prop(dictionary(component("Value", {}))),
+            "root": prop(reference(typePath("Grammar", [grp("types")]), tbd())),
+        })),
 
-        }),
-    },
-    'root': r("Grammar"),
+    }),
 }

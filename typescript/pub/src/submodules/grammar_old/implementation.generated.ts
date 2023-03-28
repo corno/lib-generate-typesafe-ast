@@ -1,8 +1,8 @@
-import { API } from "./definition/api.generated"
-import { $$ as iserialize } from "./implementations/serialize.p"
-import { $$ as iserializeToNew } from "./implementations/serializeToNew.p"
+import { API } from "./api.generated"
+import { $$ as iserialize } from "./implementations/serialize.s.p"
+import { $$ as iserializeToNew } from "./implementations/serializeToNew.s.p"
 
-export const $a: API = {
+export const $api: API = {
     'serialize': iserialize,
     'serializeToNew': iserializeToNew,
 }
