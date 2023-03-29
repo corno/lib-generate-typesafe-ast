@@ -3,6 +3,8 @@ import * as pt from 'pareto-core-types'
 import * as g_definition from "../../grammar_old"
 import * as g_fp from "lib-fountain-pen"
 
+export namespace N {}
+
 export namespace T {
     
     export namespace Grammar {

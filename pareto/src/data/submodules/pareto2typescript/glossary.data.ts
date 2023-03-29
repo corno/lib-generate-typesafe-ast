@@ -11,7 +11,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
         "Annotation": null
     }),
     'imports': d({
-        "algorithm": imp({ "Annotation": glossaryParameter("Annotation") })
+        "algorithm": imp({ "Annotation": glossaryParameter("Annotation") }),
+        "fp": imp({}),
     }),
     'root': {
         'namespaces': d({}),

@@ -4,6 +4,8 @@ import * as g_common from "glo-pareto-common"
 import * as g_definition from "../../submodules/grammar_old"
 import * as g_fp from "lib-fountain-pen"
 
+export namespace N {}
+
 export namespace T {
     
     export namespace GenerateImplementationData {

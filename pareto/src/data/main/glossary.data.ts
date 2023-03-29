@@ -11,6 +11,7 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'imports': d({
         "common": imp({}),
         "definition": imp({}),
+        "fp": imp({}),
     }),
     'root': {
         'namespaces': d({}),

@@ -3,6 +3,8 @@ import * as pt from 'pareto-core-types'
 import * as g_def from "../../grammar"
 import * as g_liana from "lib-liana/dist/submodules/liana"
 
+export namespace N {}
+
 export namespace T {
     
     export namespace OutAnnotation {

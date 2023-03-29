@@ -9,11 +9,12 @@ export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
         "generateImplementation": algorithm(procedure("this", {}, "GenerateImplementation")),
         "generateInterface": algorithm(procedure("this", {}, "GenerateInterface")),
+        
         "unboundGenerateImplementation": algorithm(procedure("this", {}, "GenerateUnboundImplementation"), {}, dependent(null, {
             "generateImplementationIndex": procedure("private", {}, "GenerateImplementationFile"),
             "generateParser": procedure("private", {}, "GenerateImplementationFile"),
             "generateCreateDefaultVisitor": procedure("private", {}, "GenerateImplementationFile"),
-            "generateVisit": sfunction("private", {}, "GenerateImplementationFile"),
+            "generateVisit": procedure("private", {}, "GenerateImplementationFile"),
             "resolve": sfunction("resolved", {}, "Resolve"),
         }, {})),
         "unboundGenerateInterface": algorithm(procedure("this", {}, "GenerateInterface2"), {}, dependent(null, {

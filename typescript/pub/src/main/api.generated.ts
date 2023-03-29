@@ -16,7 +16,7 @@ export namespace D {
         readonly 'generateCreateDefaultVisitor': g_private.SYNC.A.P.GenerateImplementationFile
         readonly 'generateImplementationIndex': g_private.SYNC.A.P.GenerateImplementationFile
         readonly 'generateParser': g_private.SYNC.A.P.GenerateImplementationFile
-        readonly 'generateVisit': g_private.SYNC.A.F.GenerateImplementationFile
+        readonly 'generateVisit': g_private.SYNC.A.P.GenerateImplementationFile
         readonly 'resolve': g_resolved.SYNC.A.F.Resolve
     }
     
