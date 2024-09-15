@@ -6,7 +6,7 @@ const d = pd.d
 const a = pd.a
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({
+    'glossary parameters': d({
         "Annotation": null,
     }),
     'imports': d({}),

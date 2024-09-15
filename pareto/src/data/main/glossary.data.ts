@@ -7,11 +7,11 @@ import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/gloss
 const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
-    'parameters': d({}),
+    'glossary parameters': d({}),
     'imports': d({
-        "common": imp({}),
-        "definition": imp({}),
-        "fp": imp({}),
+        "common": imp(),
+        "definition": imp(),
+        "fp": imp(),
     }),
     'root': {
         'namespaces': d({}),
